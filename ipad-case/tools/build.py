@@ -2,28 +2,24 @@
 Run from the project folder: python3 tools/build.py"""
 import html as H
 
-TOTAL = 20.3
+TOTAL = 19.8
 
 # ---------------- shots ----------------
 # id, clip, start, dur, media_start
-shots = [
-    ("r1", "img_0343", 0.00, 0.37, 0.6),
-    ("r2", "img_0357", 0.37, 0.37, 2.5),
-    ("r3", "img_0353", 0.74, 0.37, 0.3),
-    ("r4", "img_0362", 1.11, 0.37, 3.0),
-    ("r5", "img_0361", 1.48, 0.37, 0.3),
-    ("s1", "img_0344", 1.85, 2.05, 0.5),
-    ("s2", "img_0363", 3.90, 2.20, 0.4),
-    ("s3", "img_0362", 6.10, 2.00, 0.6),
-    ("s4", "img_0347", 8.10, 1.60, 1.0),
-    ("s5", "img_0359", 9.70, 2.00, 0.4),
-    ("s6", "img_0353", 11.70, 2.00, 0.2),
-    ("s7", "img_0357", 13.70, 2.00, 0.8),
-    ("q1", "img_0354", 15.70, 0.53, 0.5),
-    ("q2", "img_0350", 16.23, 0.53, 0.2),
-    ("q3", "img_0361", 16.76, 0.54, 1.5),
-    ("s8", "img_0343", 17.30, 3.00, 1.5),
+SHOT = 2.2  # every shot is the same length
+order = [
+    # clip, media_start  (one clip per angle; -s = straightened/recentred)
+    ("img_0344-s", 0.5),
+    ("img_0343", 1.0),
+    ("img_0362", 1.2),
+    ("img_0347", 0.8),
+    ("img_0348", 0.05),
+    ("img_0359-s", 0.4),
+    ("img_0361", 0.4),
+    ("img_0354", 0.4),
+    ("img_0357-s", 1.0),
 ]
+shots = [(f"s{i+1}", c, round(i * SHOT, 2), SHOT, ms) for i, (c, ms) in enumerate(order)]
 vids = "\n".join(
     f'      <video id="{i}" class="clip" src="assets/clips/{c}.mp4" data-start="{st}" data-duration="{d}" data-media-start="{ms}" data-track-index="1" muted playsinline style="position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover;z-index:1"></video>'
     for i, c, st, d, ms in shots
@@ -38,10 +34,8 @@ def fx(name, t, dur=None, vol=0.35):
     d = f' data-duration="{dur}"'
     sfx.append(f'      <audio id="fx{n}" class="clip" src="assets/sfx/{name}.mp3" data-start="{t}"{d} data-volume="{vol}" data-track-index="{10 + n}"></audio>')
 
-for t in (0.37, 0.74, 1.11, 1.48, 1.85):
-    fx("click-soft", t, vol=0.5)
-for t in (15.7, 16.23, 16.76):
-    fx("whoosh-short", t, vol=0.3)
+for i in range(1, len(order)):
+    fx("click-soft", round(i * SHOT, 2), vol=0.45)
 
 # ---------------- words ----------------
 body, js = [], []
@@ -86,7 +80,7 @@ js.append('    tl.fromTo("#ti-c", { opacity: 0, y: 12 }, { opacity: 1, y: 0, dur
 fx("sparkle", 0.1, vol=0.3)
 sparkle("k1", 395, 800, 22, "#ffffff", 0.5, TOTAL)
 sparkle("k2", 690, 785, 16, "#ffffff", 0.7, TOTAL)
-fx("chime", 17.9, vol=0.25)
+fx("chime", 17.7, vol=0.25)
 
 index = f"""<!doctype html>
 <html lang="en" data-resolution="portrait">
