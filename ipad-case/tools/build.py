@@ -76,34 +76,17 @@ def caption(cid, text, t, d, top=620, step=0.045):
     fx("typing", t, dur=round(min(1.5, type_end - t + 0.05), 2), vol=0.3)
 
 # Title over the fast intro: on screen from frame 0
-body.append(f'''    <div id="ti" class="clip" data-start="0" data-duration="3.75" data-track-index="{nt()}" style="position:absolute;inset:0">
-      <div id="ti-all" style="position:absolute;inset:0">
-        <div id="ti-a" class="small" style="top:560px">{typed("ti-a", "found the cutest", 0.0, 0.03)}</div>
-        <div id="ti-b" class="scr" style="top:615px">Baby Blue iPad Case</div>
-        <div id="ti-c" class="small" style="top:765px">{typed("ti-c", "for my pink iPad <3", 1.2, 0.035)}</div>
-      </div>
+body.append(f'''    <div id="ti" class="clip" data-start="0" data-duration="{TOTAL}" data-track-index="{nt()}" style="position:absolute;inset:0">
+      <div id="ti-b" class="scr" style="top:790px">Blue</div>
+      <div id="ti-c" class="small" style="top:1012px">ipad case</div>
     </div>''')
-js.append('    tl.fromTo("#ti-b", { clipPath: "inset(-30% 100% -30% -5%)" }, { clipPath: "inset(-30% -5% -30% -5%)", duration: 0.9, ease: "power1.inOut" }, 0.3);')
-js.append('    tl.to("#ti-all", { opacity: 0, duration: 0.18 }, 3.55);')
-fx("typing", 0.0, dur=0.55, vol=0.3)
-fx("sparkle", 0.35, vol=0.3)
-fx("typing", 1.2, dur=0.7, vol=0.3)
-sparkle("k1", 120, 640, 52, "#ffc4dc", 0.6, 3.7)
-sparkle("k2", 905, 760, 40, "#fff1a6", 0.9, 3.7)
-sparkle("k3", 860, 560, 30, "#ffffff", 1.4, 3.7)
-fx("pop", 0.6, vol=0.25); fx("pop", 0.9, vol=0.2)
-
-caption("c1", "clear back so the pink shows 🎀", 3.95, 2.1)
-caption("c2", "the cover folds 👀", 6.15, 1.9)
-caption("c3", "into a stand <3", 8.15, 1.5)
-caption("c4", "so many angles 🫶", 9.75, 1.9, top=400)
-caption("c5", "perfect for netflix nights 🍿", 11.75, 1.9, top=360)
-caption("c6", "fits perfectly <3", 13.75, 1.9, top=300)
-caption("c7", "cuteness overload <3", 15.75, 1.5)
-caption("c8", "go grab yours 👀🎀", 17.35, 2.95)
-sparkle("k4", 200, 600, 46, "#ffc4dc", 17.9, TOTAL)
-sparkle("k5", 860, 690, 36, "#fff1a6", 18.1, TOTAL)
-fx("chime", 17.9, vol=0.3)
+# "Blue" writes on (already started at frame 0), "ipad case" settles in under it; both stay to the end
+js.append('    tl.fromTo("#ti-b", { clipPath: "inset(-40% 45% -40% -5%)" }, { clipPath: "inset(-40% -5% -40% -5%)", duration: 0.8, ease: "power1.inOut" }, 0);')
+js.append('    tl.fromTo("#ti-c", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, 0.55);')
+fx("sparkle", 0.1, vol=0.3)
+sparkle("k1", 395, 800, 22, "#ffffff", 0.5, TOTAL)
+sparkle("k2", 690, 785, 16, "#ffffff", 0.7, TOTAL)
+fx("chime", 17.9, vol=0.25)
 
 index = f"""<!doctype html>
 <html lang="en" data-resolution="portrait">
@@ -135,14 +118,14 @@ open("index.html", "w").write(index)
 
 words = f"""<template>
   <style>
-    @font-face {{ font-family: "Great Vibes"; src: url("assets/fonts/GreatVibes-Regular.ttf"); }}
+    @font-face {{ font-family: "Pinyon Script"; src: url("assets/fonts/PinyonScript-Regular.ttf"); }}
     @font-face {{ font-family: "Emoji"; src: local("Noto Color Emoji"); }}
     #root {{ position: absolute; inset: 0; }}
     .small, .scr, .cap {{ position: absolute; left: 0; width: 1080px; text-align: center; white-space: nowrap; }}
-    .small {{ font-family: "Nunito", sans-serif; font-weight: 700; font-size: 46px; color: #ffc4dc;
-      text-shadow: 0 0 3px rgba(120, 30, 70, 0.5), 0 2px 14px rgba(0, 0, 0, 0.45); }}
-    .scr {{ font-family: "Great Vibes", cursive; font-size: 116px; line-height: 1.15; color: #fff1f7;
-      text-shadow: 0 0 20px rgba(255, 170, 210, 0.85), 0 0 4px rgba(255, 120, 180, 0.6), 0 3px 10px rgba(0, 0, 0, 0.35); }}
+    .small {{ font-family: "Nunito", sans-serif; font-weight: 800; font-size: 46px; letter-spacing: 0.01em; color: #ffffff;
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.45), 0 0 16px rgba(40, 40, 60, 0.5), 0 2px 12px rgba(0, 0, 0, 0.35); }}
+    .scr {{ font-family: "Pinyon Script", cursive; font-size: 220px; line-height: 1.1; color: #ffffff;
+      text-shadow: 0 0 2px rgba(0, 0, 0, 0.45), 0 0 22px rgba(40, 40, 60, 0.45), 0 3px 14px rgba(0, 0, 0, 0.3); }}
     .cap {{ font-family: "Nunito", "Emoji", sans-serif; font-weight: 700; font-size: 52px; color: #ffffff;
       text-shadow: 0 0 3px rgba(0, 0, 0, 0.45), 0 2px 14px rgba(0, 0, 0, 0.5); }}
     .cap-in {{ display: inline-block; }}
