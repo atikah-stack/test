@@ -87,26 +87,26 @@ def sparkle_out(sid, t):
 # 1. Road Trip Season (0 - 2.6) — on screen from frame 0
 group("g1", 0, 2.6, """
       <div id="g1-all">
-        <div id="g1-a" class="scr" style="left:110px;top:660px;font-size:200px">Road Trip</div>
-        <div id="g1-b" class="scr" style="left:330px;top:860px;font-size:200px">Season</div>
-        <div id="g1-c" class="pink" style="left:0;width:1080px;text-align:center;top:1110px;font-size:74px">""" + typed("g1-c", "in November", 1.25, 0.05) + """</div>
+        <div id="g1-a" class="scr" style="left:150px;top:660px;font-size:190px">kecik je,</div>
+        <div id="g1-b" class="scr" style="left:230px;top:860px;font-size:190px">tapi lekat</div>
+        <div id="g1-c" class="pink" style="left:0;width:1080px;text-align:center;top:1100px;font-size:96px">""" + typed("g1-c", "kuat gila!", 1.25, 0.05) + """</div>
       </div>""")
 write_on("g1-a", 0, 0.75, start_pct=55)
 write_on("g1-b", 0.6, 0.65)
-sparkle("k1", 250, 1105, 58, "#a8d8ff", 1.5, 2.6); sparkle("k2", 790, 1150, 46, "#fff0a0", 1.75, 2.6); sparkle("k3", 870, 1060, 34, "#ffffff", 1.95, 2.6)
+sparkle("k1", 230, 1100, 58, "#a8d8ff", 1.5, 2.6); sparkle("k2", 810, 1160, 46, "#fff0a0", 1.75, 2.6); sparkle("k3", 870, 1060, 34, "#ffffff", 1.95, 2.6)
 for k in ("k1", "k2", "k3"): sparkle_out(k, 2.42)
 
 # 2. ft. (2.6 - 3.4)
 group("g2", 2.6, 0.8, """
-      <div id="g2-all"><div id="g2-a" class="pink" style="left:0;width:1080px;text-align:center;top:930px;font-size:96px">""" + typed("g2-a", "ft.", 2.62, 0.07) + """</div></div>""", out=False)
+      <div id="g2-all"><div id="g2-a" class="pink" style="left:0;width:1080px;text-align:center;top:930px;font-size:96px">""" + typed("g2-a", "ni dia...", 2.62, 0.05) + """</div></div>""", out=False)
 sparkle("k4", 400, 900, 50, "#a8d8ff", 2.65, 3.4); sparkle("k5", 640, 990, 40, "#fff0a0", 2.75, 3.4)
 for k in ("k4", "k5"): sparkle_out(k, 3.32)
 
 # 3. Vacuum Magnetic Holder (3.4 - 5.6)
 group("g3", 3.4, 2.2, """
       <div id="g3-all">
-        <div id="g3-a" class="pink" style="left:0;width:1080px;text-align:center;top:930px;font-size:100px">""" + typed("g3-a", "Vacuum Magnetic", 3.45, 0.045) + """</div>
-        <div id="g3-b" class="pink" style="left:0;width:1080px;text-align:center;top:1050px;font-size:100px">""" + typed("g3-b", "Holder", 4.15, 0.05) + """<span id="g3-moon" class="emo">&nbsp;🌙</span></div>
+        <div id="g3-a" class="pink" style="left:0;width:1080px;text-align:center;top:930px;font-size:100px">""" + typed("g3-a", "Vacuum Magnetic", 3.45, 0.04) + """</div>
+        <div id="g3-b" class="pink" style="left:0;width:1080px;text-align:center;top:1050px;font-size:100px">""" + typed("g3-b", "Phone Holder", 4.1, 0.04) + """<span id="g3-moon" class="emo">&nbsp;🌙</span></div>
       </div>""")
 js.append('    tl.fromTo("#g3-moon", { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(3)" }, 4.5);')
 sparkle("k6", 140, 900, 44, "#a8d8ff", 4.6, 5.6); sparkle("k7", 900, 1180, 52, "#fff0a0", 4.75, 5.6)
@@ -115,21 +115,21 @@ for k in ("k6", "k7"): sparkle_out(k, 5.42)
 # 4. suction grip (5.6 - 7.4)
 group("g4", 5.6, 1.8, """
       <div id="g4-all" style="position:absolute;inset:0;transform-origin:540px 1000px">
-        <div id="g4-a" class="hand" style="left:170px;top:880px;font-size:150px">suction grip</div>
-        <div id="g4-b" class="hand" style="left:300px;top:1060px;font-size:72px">sticks firm on glass</div>
+        <div id="g4-a" class="hand" style="left:190px;top:880px;font-size:150px">sedut padu</div>
+        <div id="g4-b" class="hand" style="left:230px;top:1060px;font-size:72px">melekat kemas kat cermin</div>
       </div>""")
 write_on("g4-a", 5.62, 0.5); write_on("g4-b", 5.95, 0.45)
 
 # 5. magnetic snap (7.4 - 9.6)
 group("g5", 7.4, 2.2, """
       <div id="g5-all">
-        <div id="g5-a" class="hand" style="left:110px;top:800px;font-size:150px">magnetic snap</div>
-        <div id="g5-b" class="hand" style="left:150px;top:980px;font-size:72px">place your phone in a second</div>
+        <div id="g5-a" class="hand" style="left:170px;top:800px;font-size:150px">magnet kuat</div>
+        <div id="g5-b" class="hand" style="left:170px;top:980px;font-size:72px">letak phone, terus lekat</div>
       </div>""")
 write_on("g5-a", 7.42, 0.55); write_on("g5-b", 7.8, 0.5)
 
 # 6. THE ULTIMATE GRIP WHILE DRIVING (9.6 - 11.75), one word at a time
-words = [("THE", 9.62), ("ULTIMATE", 10.05), ("GRIP", 10.55), ("WHILE", 10.95), ("DRIVING", 11.4)]
+words = [("PALING", 9.62), ("STABIL", 10.12), ("MASA", 10.62), ("MEMANDU", 11.05)]
 ends = [w[1] for w in words[1:]] + [11.9]
 for n, ((w, t), e) in enumerate(zip(words, ends)):
     gid = f"g6-{n}"
@@ -139,25 +139,25 @@ for n, ((w, t), e) in enumerate(zip(words, ends)):
 # 7. Save this video (11.85 - 13.2)
 group("g7", 11.9, 1.3, """
       <div id="g7-all">
-        <div id="g7-a" class="scr" style="left:170px;top:720px;font-size:190px">Save this</div>
-        <div id="g7-b" class="scr" style="left:380px;top:910px;font-size:190px">video</div>
+        <div id="g7-a" class="scr" style="left:230px;top:720px;font-size:190px">Simpan</div>
+        <div id="g7-b" class="scr" style="left:300px;top:910px;font-size:190px">video ni</div>
       </div>""")
 write_on("g7-a", 11.92, 0.5); write_on("g7-b", 12.3, 0.4)
 
 # 8. To buy and try (13.2 - 14.5)
 group("g8", 13.2, 1.3, """
       <div id="g8-all">
-        <div id="g8-a" class="scr" style="left:200px;top:740px;font-size:190px">To buy</div>
-        <div id="g8-b" class="scr" style="left:330px;top:930px;font-size:190px">and try</div>
+        <div id="g8-a" class="scr" style="left:170px;top:740px;font-size:190px">Untuk beli</div>
+        <div id="g8-b" class="scr" style="left:300px;top:930px;font-size:190px">dan cuba</div>
       </div>""")
 write_on("g8-a", 13.23, 0.5); write_on("g8-b", 13.65, 0.5)
 
 # 9. This Magnetic Holder (14.5 - 16.5)
 group("g9", 14.5, 2.5, """
       <div id="g9-all">
-        <div id="g9-a" class="scr" style="left:330px;top:640px;font-size:180px">This</div>
-        <div id="g9-b" class="scr" style="left:120px;top:830px;font-size:180px">Magnetic</div>
-        <div id="g9-c" class="scr" style="left:300px;top:1020px;font-size:180px">Holder</div>
+        <div id="g9-a" class="scr" style="left:200px;top:640px;font-size:170px">Vacuum</div>
+        <div id="g9-b" class="scr" style="left:140px;top:820px;font-size:170px">Magnetic</div>
+        <div id="g9-c" class="scr" style="left:90px;top:1000px;font-size:170px">Phone Holder</div>
       </div>""", out=False)
 write_on("g9-a", 14.5, 0.3); write_on("g9-b", 14.62, 0.45); write_on("g9-c", 14.85, 0.4)
 sparkle("k8", 760, 700, 54, "#a8d8ff", 15.4); sparkle("k9", 180, 1150, 44, "#fff0a0", 15.55)
