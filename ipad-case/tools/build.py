@@ -2,11 +2,11 @@
 Run from the project folder: python3 tools/build.py"""
 import html as H
 
-TOTAL = 19.8
+TOTAL = 7.4
 
 # ---------------- shots ----------------
 # id, clip, start, dur, media_start
-SHOT = 2.2  # every shot is the same length
+FIRST, SHOT = 1.0, 0.8  # first shot 1s, every other shot 0.8s
 order = [
     # clip, media_start  (one clip per angle; -s = straightened/recentred)
     ("img_0344-s", 0.5),
@@ -19,7 +19,8 @@ order = [
     ("img_0354", 0.4),
     ("img_0357-s", 1.0),
 ]
-shots = [(f"s{i+1}", c, round(i * SHOT, 2), SHOT, ms) for i, (c, ms) in enumerate(order)]
+starts = [0.0] + [round(FIRST + (i - 1) * SHOT, 2) for i in range(1, len(order))]
+shots = [(f"s{i+1}", c, starts[i], FIRST if i == 0 else SHOT, ms) for i, (c, ms) in enumerate(order)]
 vids = "\n".join(
     f'      <video id="{i}" class="clip" src="assets/clips/{c}.mp4" data-start="{st}" data-duration="{d}" data-media-start="{ms}" data-track-index="1" muted playsinline style="position:absolute;left:0;top:0;width:1080px;height:1920px;object-fit:cover;z-index:1"></video>'
     for i, c, st, d, ms in shots
@@ -34,8 +35,8 @@ def fx(name, t, dur=None, vol=0.35):
     d = f' data-duration="{dur}"'
     sfx.append(f'      <audio id="fx{n}" class="clip" src="assets/sfx/{name}.mp3" data-start="{t}"{d} data-volume="{vol}" data-track-index="{10 + n}"></audio>')
 
-for i in range(1, len(order)):
-    fx("click-soft", round(i * SHOT, 2), vol=0.45)
+for t in starts[1:]:
+    fx("click-soft", t, vol=0.45)
 
 # ---------------- words ----------------
 body, js = [], []
@@ -80,7 +81,7 @@ js.append('    tl.fromTo("#ti-c", { opacity: 0, y: 12 }, { opacity: 1, y: 0, dur
 fx("sparkle", 0.1, vol=0.3)
 sparkle("k1", 395, 800, 22, "#ffffff", 0.5, TOTAL)
 sparkle("k2", 690, 785, 16, "#ffffff", 0.7, TOTAL)
-fx("chime", 17.7, vol=0.25)
+fx("chime", starts[-1], vol=0.25)
 
 index = f"""<!doctype html>
 <html lang="en" data-resolution="portrait">
