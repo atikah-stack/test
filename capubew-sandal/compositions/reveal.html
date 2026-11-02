@@ -1,0 +1,372 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Emoji";
+      src: local("Noto Color Emoji");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      font-family: "Nunito", "Emoji", sans-serif;
+      color: var(--ink, #5b3762);
+    }
+    /* Pastel ground */
+    #rv-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(170deg, #ffe3ef 0%, #f1e6ff 48%, #dcf6ec 100%);
+    }
+    .rv-blob {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.75;
+    }
+    #rv-blob-a {
+      left: -220px;
+      top: 120px;
+      width: 720px;
+      height: 720px;
+      background: radial-gradient(circle, #ffc4dd 0%, rgba(255, 196, 221, 0) 68%);
+    }
+    #rv-blob-b {
+      left: 560px;
+      top: 980px;
+      width: 760px;
+      height: 760px;
+      background: radial-gradient(circle, #cdeaff 0%, rgba(205, 234, 255, 0) 68%);
+    }
+    #rv-blob-c {
+      left: 420px;
+      top: -180px;
+      width: 620px;
+      height: 620px;
+      background: radial-gradient(circle, #fff1b8 0%, rgba(255, 241, 184, 0) 70%);
+    }
+    #rv-dots {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.85) 3px, transparent 3.5px);
+      background-size: 54px 54px;
+      opacity: 0.55;
+    }
+
+    /* Headline */
+    .rv-head {
+      position: absolute;
+      left: 60px;
+      width: 960px;
+      top: 196px;
+      text-align: center;
+      font-weight: 900;
+      font-size: 72px;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: #5b3762;
+    }
+    .rv-head-in {
+      display: inline-block;
+      text-shadow:
+        0 4px 0 #ffffff,
+        0 10px 24px rgba(160, 90, 150, 0.22);
+    }
+    .rv-mark {
+      background: #ffb9d6;
+      border-radius: 28px;
+      padding: 0 16px;
+      box-shadow: 0 6px 0 #f79cc4;
+    }
+
+    /* Product card with a slow turntable sway */
+    #rv-stage {
+      position: absolute;
+      inset: 0;
+      perspective: 1500px;
+    }
+    #rv-floor {
+      position: absolute;
+      left: 230px;
+      top: 1262px;
+      width: 620px;
+      height: 80px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(150, 90, 150, 0.32) 0%, rgba(150, 90, 150, 0) 70%);
+    }
+    #rv-card {
+      position: absolute;
+      left: 195px;
+      top: 440px;
+      width: 690px;
+      height: 860px;
+      border-radius: 64px;
+      background: #ffffff;
+      padding: 18px;
+      box-shadow:
+        0 30px 60px rgba(170, 100, 160, 0.28),
+        0 8px 18px rgba(170, 100, 160, 0.18);
+      transform-style: preserve-3d;
+    }
+    #rv-window {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 48px;
+      overflow: hidden;
+      background: #2b2230;
+    }
+    #rv-zoom {
+      position: absolute;
+      inset: 0;
+    }
+    #rv-zoom video {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    #rv-pair {
+      object-position: 50% 42%;
+    }
+    #rv-worn {
+      object-position: 30% 30%;
+    }
+    #rv-gloss {
+      position: absolute;
+      inset: 0;
+      border-radius: 48px;
+      background: linear-gradient(
+        160deg,
+        rgba(255, 220, 238, 0.28) 0%,
+        rgba(255, 255, 255, 0) 38%,
+        rgba(255, 255, 255, 0) 70%,
+        rgba(214, 200, 255, 0.25) 100%
+      );
+    }
+
+    /* Charms = little friends */
+    .rv-charm {
+      position: absolute;
+      width: 230px;
+      height: 230px;
+    }
+    .rv-charm-body {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 16px 18px rgba(150, 80, 140, 0.28));
+    }
+    .rv-charm svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+    #rv-flower {
+      left: 70px;
+      top: 430px;
+    }
+    #rv-paw {
+      left: 790px;
+      top: 720px;
+    }
+    #rv-bunny {
+      left: 70px;
+      top: 1010px;
+    }
+    .rv-tag {
+      position: absolute;
+      white-space: nowrap;
+      font-weight: 800;
+      font-size: 38px;
+      padding: 12px 26px;
+      border-radius: 40px;
+      background: #ffffff;
+      color: #5b3762;
+      box-shadow: 0 10px 22px rgba(150, 80, 140, 0.2);
+    }
+    #rv-flower-tag {
+      left: 300px;
+      top: 470px;
+    }
+    #rv-paw-tag {
+      left: 470px;
+      top: 960px;
+    }
+    #rv-bunny-tag {
+      left: 300px;
+      top: 1150px;
+    }
+    .rv-spark {
+      position: absolute;
+      width: 56px;
+      height: 56px;
+    }
+  </style>
+
+  <div data-hf-id="hf-w79m" id="root" data-composition-id="reveal" data-width="1080" data-height="1920">
+    <div data-hf-id="hf-ylef" id="rv-bg">
+      <div data-hf-id="hf-lrz0" id="rv-blob-a" class="rv-blob"></div>
+      <div data-hf-id="hf-wngn" id="rv-blob-b" class="rv-blob"></div>
+      <div data-hf-id="hf-qhqu" id="rv-blob-c" class="rv-blob"></div>
+      <div data-hf-id="hf-sfg2" id="rv-dots"></div>
+    </div>
+
+    <div data-hf-id="hf-0m38" id="rv-stage">
+      <div data-hf-id="hf-xc98" id="rv-floor"></div>
+      <div data-hf-id="hf-t1js" id="rv-card">
+        <div data-hf-id="hf-ojle" id="rv-window">
+          <div data-hf-id="hf-h3ln" id="rv-zoom">
+            <video data-color-grading="{&quot;preset&quot;:null,&quot;intensity&quot;:0.85,&quot;adjust&quot;:{&quot;exposure&quot;:0.13,&quot;contrast&quot;:0.04,&quot;highlights&quot;:-0.1,&quot;shadows&quot;:0.12,&quot;whites&quot;:0,&quot;blacks&quot;:0,&quot;temperature&quot;:0,&quot;tint&quot;:0,&quot;vibrance&quot;:0.05,&quot;saturation&quot;:0.03},&quot;details&quot;:{&quot;vignette&quot;:0,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0,&quot;grainSize&quot;:0.25,&quot;grainRoughness&quot;:0.5},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-oxez" id="rv-pair" class="clip" src="assets/sandal-pair.mp4" data-start="0" data-duration="6.2" data-media-start="0.4" data-track-index="2" muted playsinline></video>
+            <video data-color-grading="{&quot;preset&quot;:null,&quot;intensity&quot;:0.85,&quot;adjust&quot;:{&quot;exposure&quot;:0.16,&quot;contrast&quot;:0.04,&quot;highlights&quot;:-0.1,&quot;shadows&quot;:0.12,&quot;whites&quot;:0,&quot;blacks&quot;:0,&quot;temperature&quot;:0,&quot;tint&quot;:0,&quot;vibrance&quot;:0.05,&quot;saturation&quot;:0.03},&quot;details&quot;:{&quot;vignette&quot;:0,&quot;vignetteMidpoint&quot;:0.5,&quot;vignetteRoundness&quot;:0,&quot;vignetteFeather&quot;:0.65,&quot;grain&quot;:0,&quot;grainSize&quot;:0.25,&quot;grainRoughness&quot;:0.5},&quot;effects&quot;:{&quot;blur&quot;:0,&quot;pixelate&quot;:0,&quot;chromaBleed&quot;:0,&quot;tapeDamage&quot;:0,&quot;tapeTracking&quot;:0,&quot;tapeNoise&quot;:1,&quot;tapeSpeed&quot;:0.5,&quot;filmArtifacts&quot;:0,&quot;halftone&quot;:0,&quot;halftoneSize&quot;:0,&quot;twoInkPrint&quot;:0,&quot;twoInkPrintSize&quot;:0,&quot;ascii&quot;:0,&quot;asciiSize&quot;:0.06578947368421052,&quot;asciiInvert&quot;:0,&quot;asciiStyle&quot;:0,&quot;asciiColor&quot;:1,&quot;asciiRotation&quot;:0,&quot;dither&quot;:0,&quot;ditherSize&quot;:0,&quot;bloom&quot;:0,&quot;bloomRadius&quot;:8,&quot;monoScreen&quot;:0,&quot;monoScreenSize&quot;:0,&quot;monoScreenAngle&quot;:0,&quot;monoScreenSpread&quot;:0,&quot;monoScreenShape&quot;:0,&quot;monoScreenInvert&quot;:0,&quot;scanlines&quot;:0,&quot;scanlineCount&quot;:0,&quot;scanlineSoftness&quot;:0,&quot;chromaticAberration&quot;:0,&quot;chromaticAngle&quot;:0,&quot;crtCurvature&quot;:0,&quot;digitalGlitch&quot;:0,&quot;digitalGlitchColorSplit&quot;:0,&quot;digitalGlitchLineTear&quot;:0,&quot;digitalGlitchPixelate&quot;:0,&quot;digitalGlitchBlockAmount&quot;:0,&quot;digitalGlitchBlockDisplacement&quot;:0,&quot;digitalGlitchBlockOpacity&quot;:0,&quot;digitalGlitchSpeed&quot;:0,&quot;engraving&quot;:0,&quot;engravingSpacing&quot;:0.4117647058823529,&quot;engravingMinThickness&quot;:0.2,&quot;engravingMaxThickness&quot;:0.4571428571428572,&quot;engravingAngle&quot;:0.25,&quot;engravingContrast&quot;:0.4666666666666667,&quot;engravingSharpness&quot;:0.59,&quot;engravingWave&quot;:0.2,&quot;engravingWaveFrequency&quot;:0.2222222222222222,&quot;crosshatch&quot;:0,&quot;crosshatchSpacing&quot;:0.28,&quot;crosshatchThickness&quot;:0.25,&quot;crosshatchAngle&quot;:0.25,&quot;crosshatchContrast&quot;:0.3333333333333333,&quot;crosshatchEdges&quot;:0.5,&quot;crosshatchLineWeight&quot;:0,&quot;crosshatchWave&quot;:0.33,&quot;crosshatchWaveFrequency&quot;:0.2222222222222222,&quot;kuwahara&quot;:0,&quot;kuwaharaRadius&quot;:0.14285714285714285,&quot;kuwaharaSharpness&quot;:0.3125,&quot;kuwaharaSaturation&quot;:0.5},&quot;lut&quot;:null,&quot;colorSpace&quot;:&quot;rec709&quot;}" data-hf-id="hf-cx5l" id="rv-worn" class="clip" src="assets/sandal-worn.mp4" data-start="5.9" data-duration="1.7" data-media-start="1.2" data-track-index="3" muted playsinline></video>
+          </div>
+          <div data-hf-id="hf-57so" id="rv-gloss"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hook line, on screen from frame 0 -->
+    <div data-hf-id="hf-7gid" id="rv-head-1" class="rv-head clip" data-start="0" data-duration="5.95" data-track-index="4">
+      <div data-hf-id="hf-509c" id="rv-head-1-in" class="rv-head-in">
+        not gatekeeping this<br data-hf-id="hf-x5px"><span data-hf-id="hf-cl2p" class="rv-mark">cute sandal</span> anymore 😭
+      </div>
+    </div>
+    <div data-hf-id="hf-9ad7" id="rv-head-2" class="rv-head clip" data-start="5.8" data-duration="1.8" data-track-index="4">
+      <div data-hf-id="hf-scug" id="rv-head-2-in" class="rv-head-in">
+        my little friends<br data-hf-id="hf-rsrt"><span data-hf-id="hf-assn" class="rv-mark">go everywhere</span> 🫶
+      </div>
+    </div>
+
+    <!-- Friend 1: flower -->
+    <div data-hf-id="hf-ld2w" id="rv-flower" class="rv-charm clip" data-start="1.3" data-duration="6.3" data-track-index="5">
+      <div data-hf-id="hf-5h9k" id="rv-flower-body" class="rv-charm-body">
+        <svg data-hf-id="hf-i2dl" viewBox="0 0 200 200">
+          <g data-hf-id="hf-nm9v" stroke="#ee8fbb" stroke-width="5" fill="#ffc2dc">
+            <circle data-hf-id="hf-26s9" cx="100" cy="44" r="40" />
+            <circle data-hf-id="hf-ggo8" cx="153" cy="83" r="40" />
+            <circle data-hf-id="hf-av4q" cx="133" cy="146" r="40" />
+            <circle data-hf-id="hf-g34o" cx="67" cy="146" r="40" />
+            <circle data-hf-id="hf-lvh6" cx="47" cy="83" r="40" />
+          </g>
+          <circle data-hf-id="hf-961n" cx="100" cy="100" r="46" fill="#fff3ad" stroke="#f2cf6b" stroke-width="5" />
+          <ellipse data-hf-id="hf-312v" cx="84" cy="96" rx="6" ry="8" fill="#4a2c45" />
+          <ellipse data-hf-id="hf-ymdf" cx="116" cy="96" rx="6" ry="8" fill="#4a2c45" />
+          <circle data-hf-id="hf-41e3" cx="86" cy="93" r="2.2" fill="#fff" />
+          <circle data-hf-id="hf-p6d7" cx="118" cy="93" r="2.2" fill="#fff" />
+          <ellipse data-hf-id="hf-zvl3" cx="72" cy="112" rx="9" ry="5" fill="#ff9cc4" opacity="0.8" />
+          <ellipse data-hf-id="hf-z9ar" cx="128" cy="112" rx="9" ry="5" fill="#ff9cc4" opacity="0.8" />
+          <path data-hf-id="hf-ujqw" d="M92 110 Q100 118 108 110" stroke="#4a2c45" stroke-width="4" fill="none" stroke-linecap="round" />
+        </svg>
+      </div>
+    </div>
+    <div data-hf-id="hf-dbyp" id="rv-flower-tag" class="rv-tag clip" data-start="1.55" data-duration="1.6" data-track-index="6">
+      hi, i'm bloom 🌸
+    </div>
+
+    <!-- Friend 2: paw -->
+    <div data-hf-id="hf-v9ui" id="rv-paw" class="rv-charm clip" data-start="2.7" data-duration="4.9" data-track-index="5">
+      <div data-hf-id="hf-t40b" id="rv-paw-body" class="rv-charm-body">
+        <svg data-hf-id="hf-wxh9" viewBox="0 0 200 200">
+          <g data-hf-id="hf-sfcp" fill="#ffe28c" stroke="#f0b94a" stroke-width="5">
+            <ellipse data-hf-id="hf-5i39" cx="44" cy="78" rx="22" ry="26" />
+            <ellipse data-hf-id="hf-ke0x" cx="78" cy="44" rx="22" ry="26" />
+            <ellipse data-hf-id="hf-8n1x" cx="122" cy="44" rx="22" ry="26" />
+            <ellipse data-hf-id="hf-88mp" cx="156" cy="78" rx="22" ry="26" />
+            <path data-hf-id="hf-jl16" d="M100 82 C142 82 166 118 160 146 C154 172 128 176 100 168 C72 176 46 172 40 146 C34 118 58 82 100 82 Z" />
+          </g>
+          <ellipse data-hf-id="hf-25m3" cx="86" cy="126" rx="6" ry="8" fill="#4a2c45" />
+          <ellipse data-hf-id="hf-961b" cx="114" cy="126" rx="6" ry="8" fill="#4a2c45" />
+          <circle data-hf-id="hf-pw53" cx="88" cy="123" r="2.2" fill="#fff" />
+          <circle data-hf-id="hf-oxyf" cx="116" cy="123" r="2.2" fill="#fff" />
+          <ellipse data-hf-id="hf-hu2u" cx="72" cy="142" rx="9" ry="5" fill="#ff9cc4" opacity="0.8" />
+          <ellipse data-hf-id="hf-nz6i" cx="128" cy="142" rx="9" ry="5" fill="#ff9cc4" opacity="0.8" />
+          <path data-hf-id="hf-6d7u" d="M93 140 Q100 147 107 140" stroke="#4a2c45" stroke-width="4" fill="none" stroke-linecap="round" />
+        </svg>
+      </div>
+    </div>
+    <div data-hf-id="hf-bqao" id="rv-paw-tag" class="rv-tag clip" data-start="2.95" data-duration="1.6" data-track-index="6">
+      paw-paw here 🐾
+    </div>
+
+    <!-- Friend 3: bunny -->
+    <div data-hf-id="hf-krgp" id="rv-bunny" class="rv-charm clip" data-start="4.1" data-duration="3.5" data-track-index="5">
+      <div data-hf-id="hf-dlmn" id="rv-bunny-body" class="rv-charm-body">
+        <svg data-hf-id="hf-y4ec" viewBox="0 0 200 200">
+          <g data-hf-id="hf-yzg3" stroke="#f0a9c8" stroke-width="5">
+            <ellipse data-hf-id="hf-iebg" cx="72" cy="52" rx="20" ry="48" fill="#ffffff" transform="rotate(-10 72 52)" />
+            <ellipse data-hf-id="hf-emsl" cx="128" cy="52" rx="20" ry="48" fill="#ffffff" transform="rotate(10 128 52)" />
+          </g>
+          <ellipse data-hf-id="hf-ap0r" cx="72" cy="56" rx="9" ry="32" fill="#ffc6dd" transform="rotate(-10 72 56)" />
+          <ellipse data-hf-id="hf-i9q2" cx="128" cy="56" rx="9" ry="32" fill="#ffc6dd" transform="rotate(10 128 56)" />
+          <ellipse data-hf-id="hf-5jls" cx="100" cy="128" rx="66" ry="58" fill="#ffffff" stroke="#f0a9c8" stroke-width="5" />
+          <ellipse data-hf-id="hf-cyj3" cx="80" cy="124" rx="6" ry="8" fill="#4a2c45" />
+          <ellipse data-hf-id="hf-4mv0" cx="120" cy="124" rx="6" ry="8" fill="#4a2c45" />
+          <circle data-hf-id="hf-4tx3" cx="82" cy="121" r="2.2" fill="#fff" />
+          <circle data-hf-id="hf-eraq" cx="122" cy="121" r="2.2" fill="#fff" />
+          <ellipse data-hf-id="hf-yrrw" cx="64" cy="142" rx="10" ry="6" fill="#ff9cc4" opacity="0.8" />
+          <ellipse data-hf-id="hf-zjy4" cx="136" cy="142" rx="10" ry="6" fill="#ff9cc4" opacity="0.8" />
+          <path data-hf-id="hf-hjj3" d="M94 136 Q100 142 106 136" stroke="#4a2c45" stroke-width="4" fill="none" stroke-linecap="round" />
+          <path data-hf-id="hf-ic4q" d="M100 132 L100 137" stroke="#4a2c45" stroke-width="3" stroke-linecap="round" />
+        </svg>
+      </div>
+    </div>
+    <div data-hf-id="hf-jtzn" id="rv-bunny-tag" class="rv-tag clip" data-start="4.35" data-duration="1.5" data-track-index="6">
+      bun-bun joined! 🐰
+    </div>
+
+    <!-- Sparkles that burst with each friend -->
+    <svg data-hf-id="hf-k6ez" id="rv-spark-1" class="rv-spark" style="left: 40px; top: 400px" viewBox="0 0 40 40"><path data-hf-id="hf-exhi" d="M20 0 C22 14 26 18 40 20 C26 22 22 26 20 40 C18 26 14 22 0 20 C14 18 18 14 20 0 Z" fill="#ffffff" /></svg>
+    <svg data-hf-id="hf-pjec" id="rv-spark-2" class="rv-spark" style="left: 280px; top: 640px" viewBox="0 0 40 40"><path data-hf-id="hf-mgsi" d="M20 0 C22 14 26 18 40 20 C26 22 22 26 20 40 C18 26 14 22 0 20 C14 18 18 14 20 0 Z" fill="#ffd36e" /></svg>
+    <svg data-hf-id="hf-yd5p" id="rv-spark-3" class="rv-spark" style="left: 980px; top: 690px" viewBox="0 0 40 40"><path data-hf-id="hf-ae4q" d="M20 0 C22 14 26 18 40 20 C26 22 22 26 20 40 C18 26 14 22 0 20 C14 18 18 14 20 0 Z" fill="#ffffff" /></svg>
+    <svg data-hf-id="hf-z2bw" id="rv-spark-4" class="rv-spark" style="left: 770px; top: 930px" viewBox="0 0 40 40"><path data-hf-id="hf-9u7n" d="M20 0 C22 14 26 18 40 20 C26 22 22 26 20 40 C18 26 14 22 0 20 C14 18 18 14 20 0 Z" fill="#ff9cc4" /></svg>
+    <svg data-hf-id="hf-4q4g" id="rv-spark-5" class="rv-spark" style="left: 40px; top: 1000px" viewBox="0 0 40 40"><path data-hf-id="hf-tgeo" d="M20 0 C22 14 26 18 40 20 C26 22 22 26 20 40 C18 26 14 22 0 20 C14 18 18 14 20 0 Z" fill="#b9a6ff" /></svg>
+    <svg data-hf-id="hf-tpqm" id="rv-spark-6" class="rv-spark" style="left: 290px; top: 1220px" viewBox="0 0 40 40"><path data-hf-id="hf-asfr" d="M20 0 C22 14 26 18 40 20 C26 22 22 26 20 40 C18 26 14 22 0 20 C14 18 18 14 20 0 Z" fill="#ffffff" /></svg>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    // Background drifts slowly
+    tl.fromTo("#rv-blob-a", { x: 0, y: 0 }, { x: 80, y: 60, duration: 7.6, ease: "sine.inOut" }, 0);
+    tl.fromTo("#rv-blob-b", { x: 0, y: 0 }, { x: -90, y: -50, duration: 7.6, ease: "sine.inOut" }, 0);
+    tl.fromTo("#rv-blob-c", { x: 0, y: 0 }, { x: -60, y: 40, duration: 7.6, ease: "sine.inOut" }, 0);
+
+    // Hook: on screen at frame 0, then a soft squish
+    tl.fromTo("#rv-head-1-in", { scale: 1.08, rotation: -2 }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(3)" }, 0);
+    tl.to("#rv-head-1-in", { y: -30, opacity: 0, duration: 0.22, ease: "power2.in" }, 5.6);
+    tl.fromTo("#rv-head-2-in", { y: 30, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.4)" }, 5.82);
+
+    // Turntable sway on the card + slow push-in on the footage
+    tl.fromTo("#rv-card", { rotationY: -16, rotationZ: -1.5, scale: 0.96 }, { rotationY: 14, rotationZ: 1.5, scale: 1, duration: 7.6, ease: "sine.inOut" }, 0);
+    tl.fromTo("#rv-floor", { scaleX: 0.92, x: -20 }, { scaleX: 1.04, x: 20, duration: 7.6, ease: "sine.inOut" }, 0);
+    tl.fromTo("#rv-zoom", { scale: 1.04 }, { scale: 1.2, duration: 6.2, ease: "none" }, 0);
+    tl.fromTo("#rv-worn", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 5.9);
+
+    // Each friend pops in, says hi, then floats
+    const friends = [
+      { id: "#rv-flower", t: 1.3, tag: "#rv-flower-tag", sparks: ["#rv-spark-1", "#rv-spark-2"] },
+      { id: "#rv-paw", t: 2.7, tag: "#rv-paw-tag", sparks: ["#rv-spark-3", "#rv-spark-4"] },
+      { id: "#rv-bunny", t: 4.1, tag: "#rv-bunny-tag", sparks: ["#rv-spark-5", "#rv-spark-6"] },
+    ];
+    friends.forEach((f, i) => {
+      tl.fromTo(
+        f.id + "-body",
+        { scale: 0, rotation: -35, y: 40 },
+        { scale: 1, rotation: 0, y: 0, duration: 0.55, ease: "back.out(2.6)" },
+        f.t,
+      );
+      tl.to(f.id + "-body", { y: -14, rotation: i % 2 ? -4 : 4, duration: 0.8, ease: "sine.inOut", yoyo: true, repeat: Math.floor((7.6 - f.t - 0.6) / 0.8) - 1 }, f.t + 0.6);
+      tl.fromTo(f.tag, { scale: 0.4, opacity: 0, y: 16 }, { scale: 1, opacity: 1, y: 0, duration: 0.32, ease: "back.out(2.8)" }, f.t + 0.25);
+      tl.to(f.tag, { scale: 0.8, opacity: 0, duration: 0.2, ease: "power2.in" }, f.t + 1.6);
+      f.sparks.forEach((s, j) => {
+        tl.fromTo(s, { scale: 0, rotation: 0, opacity: 1 }, { scale: 1.2, rotation: 90, duration: 0.35, ease: "back.out(3)" }, f.t + 0.1 + j * 0.08);
+        tl.to(s, { scale: 0, opacity: 0, duration: 0.3, ease: "power2.in" }, f.t + 0.7 + j * 0.08);
+      });
+    });
+
+    // Hand-off to the end card
+    tl.to("#rv-stage", { scale: 0.86, y: -60, opacity: 0, duration: 0.3, ease: "power2.in" }, 7.28);
+    tl.to(["#rv-flower-body", "#rv-paw-body", "#rv-bunny-body", "#rv-head-2-in"], { scale: 0.6, opacity: 0, duration: 0.28, ease: "power2.in" }, 7.28);
+
+    window.__timelines["reveal"] = tl;
+  </script>
+</template>
