@@ -117,15 +117,13 @@ words = f"""<template>
     @font-face {{ font-family: "Emoji"; src: local("Noto Color Emoji"); }}
     #root {{ position: absolute; inset: 0; }}
     .small, .scr, .cap {{ position: absolute; left: 0; width: 1080px; text-align: center; white-space: nowrap; }}
-    .small {{ font-family: "Nunito", sans-serif; font-weight: 800; font-size: 46px; letter-spacing: 0.01em; color: #ffffff;
-      text-shadow: 0 0 2px rgba(0, 0, 0, 0.45), 0 0 16px rgba(40, 40, 60, 0.5), 0 2px 12px rgba(0, 0, 0, 0.35); }}
-    .scr {{ font-family: "Pinyon Script", cursive; font-size: 220px; line-height: 1.1; color: #ffffff;
-      text-shadow: 0 0 2px rgba(0, 0, 0, 0.45), 0 0 22px rgba(40, 40, 60, 0.45), 0 3px 14px rgba(0, 0, 0, 0.3); }}
+    .small {{ font-family: "Nunito", sans-serif; font-weight: 800; font-size: 46px; letter-spacing: 0.01em; color: #ffffff; }}
+    .scr {{ font-family: "Pinyon Script", cursive; font-size: 220px; line-height: 1.1; color: #ffffff; }}
     .cap {{ font-family: "Nunito", "Emoji", sans-serif; font-weight: 700; font-size: 52px; color: #ffffff;
       text-shadow: 0 0 3px rgba(0, 0, 0, 0.45), 0 2px 14px rgba(0, 0, 0, 0.5); }}
     .cap-in {{ display: inline-block; }}
     .cur {{ display: inline-block; width: 0.32em; height: 0.95em; margin-left: 0.12em; background: #ffffff; vertical-align: -0.12em; }}
-    .spark {{ position: absolute; line-height: 1; text-shadow: 0 0 14px rgba(255, 255, 255, 0.8); }}
+    .spark {{ position: absolute; line-height: 1; }}
   </style>
   <div id="root" data-composition-id="words" data-width="1080" data-height="1920">
 {chr(10).join(body)}
