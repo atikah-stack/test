@@ -4,13 +4,13 @@ Usage: python3 tools/even_grade.py [passes]"""
 import json, math, re, subprocess, sys
 
 HF = ["node", "/root/.claude/plugins/marketplaces/hyperframes/skills/hyperframes/scripts/plugin-cli.mjs"]
-STYLE = {"contrast": -0.08, "highlights": -0.22, "shadows": 0.22, "blacks": 0.08, "whites": 0.0,
+STYLE = {"contrast": -0.04, "highlights": -0.2, "shadows": 0.15, "blacks": 0.05, "whites": 0.0,
          "vibrance": 0.04, "saturation": -0.1}
-TARGET_Y, TARGET_U, TARGET_V = 182.0, 127.5, 129.0   # bright sheet, neutral with a touch of warmth
+TARGET_Y, TARGET_U, TARGET_V = 152.0, 127.5, 129.0   # medium-bright sheet, neutral with a touch of warmth
 
 html = open("index.html").read()
 shots = re.findall(r'<video[^>]*id="(s\d+)"[^>]*data-start="([\d.]+)" data-duration="([\d.]+)"', html)
-state = {sid: {"exposure": 0.3, "temperature": 0.0, "tint": 0.0} for sid, _, _ in shots}
+state = {sid: {"exposure": 0.1, "temperature": 0.0, "tint": 0.0} for sid, _, _ in shots}
 
 def apply():
     for sid, st in state.items():

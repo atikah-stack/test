@@ -7,18 +7,39 @@ from PIL import Image
 
 src, out = sys.argv[1], sys.argv[2]
 t = sys.argv[3] if len(sys.argv) > 3 else "1.5"
+mode = sys.argv[4] if len(sys.argv) > 4 else "blue"   # "blue" = the case, "dark" = the iPad's black bezel
 W, H = 1080, 1920
 tmp = os.path.join(tempfile.mkdtemp(), "f.png")
 subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", t, "-i", src, "-frames:v", "1", tmp], check=True)
 im = np.asarray(Image.open(tmp).convert("RGB")).astype(int)
-mask = (im[..., 2] - im[..., 0] > 18) & (im[..., 2] > 90)
+if mode == "dark":
+    lum = im.mean(axis=2)
+    mask = lum < 60
+    # keep the bezel blob only: fill rows/cols between its first and last dark pixel
+else:
+    mask = (im[..., 2] - im[..., 0] > 18) & (im[..., 2] > 90)
 ys, xs = np.nonzero(mask)
 y0, y1 = np.percentile(ys, [3, 97]); x0, x1 = np.percentile(xs, [3, 97])
 L, R, T, B = [], [], [], []
-for y in range(int(y0 + 0.15 * (y1 - y0)), int(y1 - 0.15 * (y1 - y0)), 3):
+if mode == "dark":
+    # the screen: the widest bright gap between bezel pixels, sampled away from the middle (wallpaper art)
+    lum = im.mean(axis=2); dark = lum < 60
+    Hh, Ww = dark.shape
+    def gap(line):
+        d = np.nonzero(line)[0]
+        if len(d) < 4: return None
+        g = np.diff(d); k = int(np.argmax(g))
+        return (d[k] + 1, d[k + 1] - 1) if g[k] > 0.3 * len(line) else None
+    for y in list(range(int(Hh * 0.22), int(Hh * 0.36), 3)) + list(range(int(Hh * 0.55), int(Hh * 0.68), 3)):
+        r = gap(dark[y])
+        if r: L.append((y, r[0])); R.append((y, r[1]))
+    for x in list(range(int(Ww * 0.2), int(Ww * 0.36), 3)) + list(range(int(Ww * 0.6), int(Ww * 0.78), 3)):
+        c = gap(dark[:, x])
+        if c: T.append((x, c[0])); B.append((x, c[1]))
+for y in ([] if mode == "dark" else range(int(y0 + 0.15 * (y1 - y0)), int(y1 - 0.15 * (y1 - y0)), 3)):
     row = np.nonzero(mask[y])[0]
     if len(row) > 50: L.append((y, row[0])); R.append((y, row[-1]))
-for x in range(int(x0 + 0.15 * (x1 - x0)), int(x1 - 0.15 * (x1 - x0)), 3):
+for x in ([] if mode == "dark" else range(int(x0 + 0.15 * (x1 - x0)), int(x1 - 0.15 * (x1 - x0)), 3)):
     col = np.nonzero(mask[:, x])[0]
     if len(col) > 50: T.append((x, col[0])); B.append((x, col[-1]))
 fl = lambda P: np.polyfit(np.array(P)[:, 0], np.array(P)[:, 1], 1)
