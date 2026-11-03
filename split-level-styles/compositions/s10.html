@@ -3,9 +3,8 @@
     #root { position: absolute; inset: 0; overflow: hidden; background: #12151B; font-family: Montserrat, sans-serif; color: #fff; }
     #root .shot { position: absolute; inset: 0; overflow: hidden; }
     #root .shot .sbg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
-    #root .shot .card { position: absolute; left: 0; top: 510px; width: 1080px; height: 700px; overflow: hidden;
-      box-shadow: 0 40px 90px rgba(0,0,0,.55); }
-    #root .frame { position: absolute; left: -82px; top: 0; width: 1244px; height: 700px; transform-origin: 50% 55%; }
+    #root .frame { position: absolute; left: 0; top: 0; width: 3413px; height: 1920px; transform-origin: 0 50%; }
+    #root .dimv { position: absolute; inset: 0; background: rgba(8,10,14,.62); }
     #root .frame img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }
     #root .frame svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; }
     #root .tshade { position: absolute; left: 0; top: 0; width: 1080px; height: 640px; z-index: 2;
@@ -48,8 +47,7 @@
     <div id="s10-gr"><img src="assets/img/plan-ground-hd.png" alt="" /></div>
     <div id="s10-pen"></div>
     <div class="shot" id="s10-3d">
-      <img class="sbg" src="assets/img/kemaman3d-bg.jpg" alt="" />
-      <div class="card"><div class="frame" id="s10-3d-f"><img src="assets/img/kemaman3d.jpg" alt="" /></div></div>
+      <div class="frame" id="s10-3d-f"><img src="assets/img/kemaman3d.jpg" alt="" /></div>
     </div>
     <div class="vwrap" id="s10-house"><video id="s10-hv" class="clip full" src="assets/video/walk-under.mp4" data-start="8.0" data-duration="3.13" data-media-start="0.3" muted playsinline></video></div>
     <div class="t" id="s10-h" style="top:206px; font-size:84px">Pelukis pelan<br /><span class="y">sendiri</span></div>
@@ -70,7 +68,7 @@
     tl.fromTo("#s10-gr", { opacity: 1, clipPath: "inset(100% 0% 36% 0%)", x: -480, y: 300, scale: 0.9 }, { opacity: 1, clipPath: "inset(0% 0% 36% 0%)", duration: 0.55, ease: "power3.inOut" }, 3.0);
     tl.to("#s10-gr", { scale: 1.0, x: -560, y: 260, duration: 2.6, ease: "sine.inOut" }, 3.0);
     tl.fromTo("#s10-3d", { opacity: 1, clipPath: "polygon(0% 0%, 0% 0%, -45% 100%, 0% 100%)" }, { opacity: 1, clipPath: "polygon(0% 0%, 145% 0%, 100% 100%, 0% 100%)", duration: 0.6, ease: "power3.inOut" }, 5.6);
-    tl.fromTo("#s10-3d-f", { scale: 1.0, x: 20 }, { scale: 1.12, x: -20, duration: 2.6, ease: "sine.inOut" }, 5.6);
+    tl.fromTo("#s10-3d-f", { scale: 1.0, x: -467 }, { scale: 1.05, x: -1502, duration: 2.6, ease: "sine.inOut" }, 5.6);
 
     tl.fromTo("#s10-house", { opacity: 1, clipPath: "inset(0% 50% 0% 50%)", scale: 1.1 }, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", scale: 1.0, duration: 0.6, ease: "power3.inOut" }, 8.0);
     tl.fromTo("#s10-h", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "power4.out" }, 0.15);

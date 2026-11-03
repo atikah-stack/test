@@ -33,9 +33,8 @@ BASE_CSS = f"""
     #root {{ position: absolute; inset: 0; overflow: hidden; background: {INK}; font-family: Montserrat, sans-serif; color: #fff; }}
     #root .shot {{ position: absolute; inset: 0; overflow: hidden; }}
     #root .shot .sbg {{ position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }}
-    #root .shot .card {{ position: absolute; left: 0; top: 510px; width: 1080px; height: 700px; overflow: hidden;
-      box-shadow: 0 40px 90px rgba(0,0,0,.55); }}
-    #root .frame {{ position: absolute; left: -82px; top: 0; width: 1244px; height: 700px; transform-origin: 50% 55%; }}
+    #root .frame {{ position: absolute; left: 0; top: 0; width: 3413px; height: 1920px; transform-origin: 0 50%; }}
+    #root .dimv {{ position: absolute; inset: 0; background: rgba(8,10,14,.62); }}
     #root .frame img {{ position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }}
     #root .frame svg {{ position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; }}
     #root .tshade {{ position: absolute; left: 0; top: 0; width: 1080px; height: 640px; z-index: 2;
@@ -80,15 +79,27 @@ def scene(cid, css, body, js, shade=True):
 
 
 def shot(id_, key, overlay=""):
+    """A house image filling the whole 9:16 frame; the camera pans across the facade."""
     svg = f'<svg viewBox="0 0 2560 1440" preserveAspectRatio="none">{overlay}</svg>' if overlay else ""
     return f"""    <div class="shot" id="{id_}">
-      <img class="sbg" src="assets/img/{key}-bg.jpg" alt="" />
-      <div class="card"><div class="frame" id="{id_}-f"><img src="assets/img/{key}.jpg" alt="" />{svg}</div></div>
+      <div class="frame" id="{id_}-f"><img src="assets/img/{key}.jpg" alt="" />{svg}</div>
     </div>"""
 
 
-def move(id_, t, dur, s0=1.0, s1=1.12, x0=0, x1=-30, ease="sine.inOut"):
-    return f'    tl.fromTo("#{id_}-f", {{ scale: {s0}, x: {x0} }}, {{ scale: {s1}, x: {x1}, duration: {dur}, ease: "{ease}" }}, {t});\n'
+FW = 3413  # full-bleed width of a 16:9 image at 1920 px tall
+
+
+def px(f, s):
+    """x offset that puts fraction f (0 = left edge, 1 = right edge) of the image in view at scale s."""
+    return round(-f * (FW * s - 1080))
+
+
+# where each facade is framed: (pan from, pan to) as fractions across the image
+PAN = {"modern": (0.2, 0.62), "muji": (0.3, 0.62), "english": (0.74, 0.38), "nordic": (0.25, 0.6), "malay": (0.62, 0.36), "kemaman3d": (0.2, 0.6)}
+
+
+def move(id_, t, dur, f0, f1, s0=1.0, s1=1.05, ease="sine.inOut"):
+    return f'    tl.fromTo("#{id_}-f", {{ scale: {s0}, x: {px(f0, s0)} }}, {{ scale: {s1}, x: {px(f1, s1)}, duration: {dur}, ease: "{ease}" }}, {t});\n'
 
 
 def rise(sel, t, dur=0.5, y=40):
@@ -105,7 +116,7 @@ MASKS = {
     "roof_rl": (poly(100, 100, 100, 145), poly(-45, 100, 100, 0)),   # diagonal roofline sweep, right to left
     "wall": (poly(0, 0, 0, 0), poly(0, 100, 100, 0)),                # wall-edge wipe
     "columns": ("inset(0% 50% 0% 50%)", "inset(0% 0% 0% 0%)"),       # opening between two columns
-    "door": ("inset(55% 17% 39% 73%)", "inset(0% 0% 0% 0%)"),        # doorway reveal (English door)
+    "door": ("inset(77% 26% 10% 55%)", "inset(0% 0% 0% 0%)"),        # doorway reveal (English door)
 }
 
 
@@ -140,7 +151,7 @@ for i, (k, t) in enumerate(HOOK):
     end = HOOK[i + 1][1] if i + 1 < len(HOOK) else 7.45
     if i:
         js += f'    tl.fromTo("#s01-{k}", {{ opacity: 0, clipPath: "{MASKS["columns"][0]}" }}, {{ opacity: 1, clipPath: "{MASKS["columns"][1]}", duration: 0.35, ease: "power3.out" }}, {t});\n'
-    js += move(f"s01-{k}", t, round(end - t + 0.4, 2), 1.22, 1.04, 30 if i % 2 else -30, 0, "power2.out")
+    js += move(f"s01-{k}", t, round(end - t + 0.4, 2), PAN[k][0], PAN[k][1], 1.12, 1.0, "power2.out")
 css1 = "\n".join(f"    #s01-{k} {{ opacity: 0; }}" for k, _ in HOOK[1:])
 js += """    tl.fromTo("#s01-h", { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.5, ease: "expo.out" }, 0);
     tl.fromTo("#s01-k", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.25);
@@ -157,7 +168,7 @@ scene("s02", """
     #s02-loc .l1 { font-weight: 900; font-size: 52px; letter-spacing: .08em; line-height: 1; text-shadow: 0 6px 20px rgba(0,0,0,.6); }
     #s02-loc .l2 { font-weight: 700; font-size: 30px; letter-spacing: .3em; color: """ + YEL + """; margin-top: 6px; }
 """, f"""    <div class="vwrap" id="s02-a"><video id="s02-v1" class="clip full" src="assets/video/walk-front.mp4" data-start="0" data-duration="5.4" data-media-start="0.4" muted playsinline></video></div>
-    <div class="vwrap" id="s02-b"><video id="s02-v2" class="clip full" src="assets/video/hero-drone.mp4" data-start="5.3" data-duration="2.7" data-media-start="0.5" muted playsinline></video></div>
+    <div class="vwrap" id="s02-b"><video id="s02-v2" class="clip full" src="assets/video/drone-house.mp4" data-start="5.3" data-duration="2.7" data-media-start="0.2" muted playsinline></video></div>
     <div id="s02-loc"><svg class="pin" viewBox="0 0 24 24"><path d="M12 2C7.6 2 4 5.4 4 9.8 4 15.5 12 22 12 22s8-6.5 8-12.2C20 5.4 16.4 2 12 2z" fill="{YEL}"/><circle cx="12" cy="9.8" r="3.2" fill="{INK}"/></svg>
       <div><div class="l1">KEMAMAN</div><div class="l2">TERENGGANU</div></div></div>""", f"""
     tl.fromTo("#s02-a", {{ scale: 1.0 }}, {{ scale: 1.1, duration: 5.4, ease: "sine.inOut" }}, 0);
@@ -169,54 +180,63 @@ scene("s02", """
 # ---------------------------------------------------------------- S03 SPLIT LEVEL EXPLAINED (Modern Tropical render)
 LV = f"""
 <g id="s03-l1"><line x1="70" y1="1086" x2="1060" y2="1086" stroke="{YEL}" stroke-width="7" stroke-dasharray="26 14" pathLength="1" />
-  <rect x="330" y="940" width="520" height="124" rx="16" fill="rgba(12,14,18,.88)" stroke="{YEL}" stroke-width="5"/><text x="590" y="1031" text-anchor="middle" font-family="Montserrat" font-weight="900" font-size="80" fill="#fff" letter-spacing="6">LEVEL 01</text></g>
+  <rect x="340" y="975" width="380" height="94" rx="14" fill="rgba(12,14,18,.88)" stroke="{YEL}" stroke-width="4"/><text x="530" y="1039" text-anchor="middle" font-family="Montserrat" font-weight="900" font-size="58" fill="#fff" letter-spacing="5">LEVEL 01</text></g>
 <g id="s03-l2"><line x1="1360" y1="890" x2="2440" y2="890" stroke="#fff" stroke-width="7" stroke-dasharray="26 14" />
-  <rect x="1640" y="744" width="520" height="124" rx="16" fill="rgba(12,14,18,.88)" stroke="#fff" stroke-width="5"/><text x="1900" y="835" text-anchor="middle" font-family="Montserrat" font-weight="900" font-size="80" fill="{YEL}" letter-spacing="6">LEVEL 02</text></g>
+  <rect x="1420" y="779" width="380" height="94" rx="14" fill="rgba(12,14,18,.88)" stroke="#fff" stroke-width="4"/><text x="1610" y="843" text-anchor="middle" font-family="Montserrat" font-weight="900" font-size="58" fill="{YEL}" letter-spacing="5">LEVEL 02</text></g>
 <g id="s03-up"><line x1="1250" y1="1080" x2="1250" y2="905" stroke="{YEL}" stroke-width="8" /><path d="M1222 935 L1250 895 L1278 935" fill="none" stroke="{YEL}" stroke-width="8" stroke-linejoin="round" />
   <line x1="1215" y1="1086" x2="1285" y2="1086" stroke="{YEL}" stroke-width="6" /><line x1="1215" y1="890" x2="1285" y2="890" stroke="{YEL}" stroke-width="6" /></g>"""
-scene("s03", "#s03-l1, #s03-l2, #s03-up { opacity: 0; }", shot("s03-m", "modern", LV) + """
+scene("s03", "#s03-l1, #s03-l2, #s03-up { opacity: 0; } #s03-i1, #s03-i2 { opacity: 0; }", shot("s03-m", "modern", LV) + """
+    <div class="vwrap" id="s03-i1"><video id="s03-v1" class="clip full" src="assets/video/interior-stairs.mp4" data-start="5.35" data-duration="2.55" data-media-start="1.0" muted playsinline></video></div>
+    <div class="vwrap" id="s03-i2"><video id="s03-v2" class="clip full" src="assets/video/interior-room.mp4" data-start="7.85" data-duration="2.5" data-media-start="0.6" muted playsinline></video></div>
     <div class="t" id="s03-h" style="top:206px; font-size:96px">Split <span class="y">level</span></div>
     <div class="t ser" id="s03-d" style="top:320px; font-size:62px">aras lantai berbeza</div>
     <div class="t" id="s03-u" style="top:420px; font-size:40px; letter-spacing:.2em; font-weight:800">Unik <span class="y">•</span> Ada karakter</div>""", f"""
-{move("s03-m", 0, 10.35, 1.0, 1.1, 20, -20)}{rise("#s03-h", 0.1)}{rise("#s03-d", 1.4, 0.6, 24)}
-    tl.fromTo("#s03-l1", {{ opacity: 0, x: -60 }}, {{ opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }}, 2.2);
-    tl.fromTo("#s03-l2", {{ opacity: 0, x: 60 }}, {{ opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }}, 3.4);
-    tl.fromTo("#s03-up", {{ opacity: 0, y: 40 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: "back.out(2)" }}, 4.3);
+{move("s03-m", 0, 5.5, 0.13, 0.63, 1.0, 1.0)}{rise("#s03-h", 0.1)}{rise("#s03-d", 1.4, 0.6, 24)}
+    tl.fromTo("#s03-l1", {{ opacity: 0, x: -60 }}, {{ opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }}, 0.8);
+    tl.fromTo("#s03-up", {{ opacity: 0, y: 40 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: "back.out(2)" }}, 2.6);
+    tl.fromTo("#s03-l2", {{ opacity: 0, x: 60 }}, {{ opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }}, 4.5);
+    tl.fromTo("#s03-i1", {{ opacity: 1, clipPath: "{MASKS['wall'][0]}" }}, {{ opacity: 1, clipPath: "{MASKS['wall'][1]}", duration: 0.55, ease: "power3.inOut" }}, 5.35);
+    tl.fromTo("#s03-i1", {{ scale: 1.12 }}, {{ scale: 1.0, duration: 2.5, ease: "power2.out" }}, 5.35);
+    tl.fromTo("#s03-i2", {{ opacity: 1, clipPath: "{MASKS['columns'][0]}" }}, {{ opacity: 1, clipPath: "{MASKS['columns'][1]}", duration: 0.5, ease: "power3.inOut" }}, 7.85);
+    tl.fromTo("#s03-i2", {{ scale: 1.0 }}, {{ scale: 1.08, duration: 2.5, ease: "sine.inOut" }}, 7.85);
+    tl.to("#s03-d", {{ opacity: 0, duration: 0.2 }}, 5.3);
 {rise("#s03-u", round(wt("unik") - START["s03"], 2), 0.5, 24)}""")
 
 # ---------------------------------------------------------------- S04 PATTERN INTERRUPT: one house -> many
 GRID = [("modern", "Modern Tropical"), ("muji", "Muji"), ("english", "English"), ("nordic", "Nordic"), ("malay", "Malay Traditional"), ("kemaman3d", "Kemaman")]
-POS = [(66, 400), (570, 400), (66, 665), (570, 665), (66, 930), (570, 930)]
+POS = [(32, 300), (556, 300), (32, 610), (556, 610), (32, 920), (556, 920)]
 t_bukan = round(wt("bukan") - START["s04"], 2)
-cards = "\n".join(f'    <div class="acard" id="s04-c{i}" style="left:{x}px; top:{y}px"><img src="assets/img/{k}.jpg" alt="" /><span>{n}</span></div>'
+cards = "\n".join(f'    <div class="acard" id="s04-c{i}" style="left:{x}px; top:{y}px; width:492px; height:290px"><img src="assets/img/{k}.jpg" alt="" /><span>{n}</span></div>'
                   for i, ((k, n), (x, y)) in enumerate(zip(GRID, POS)))
-js = f'{move("s04-one", 0, 1.8, 1.0, 1.1, 0, 0)}'
-js += f'    tl.to("#s04-one", {{ scale: 0.41, x: -237, y: -205, opacity: 0, duration: 0.5, ease: "power3.in" }}, 1.65);\n'
+js = f'{move("s04-one", 0, 1.8, 0.5, 0.42, 1.0, 1.05)}'
+js += f'    tl.to("#s04-one", {{ scale: 0.46, opacity: 0, duration: 0.5, ease: "power3.in" }}, 1.65);\n'
 for i, (x, y) in enumerate(POS):
-    dx, dy = 540 - (x + 222), 860 - (y + 125)
+    dx, dy = 540 - (x + 246), 860 - (y + 150)
     js += f'    tl.fromTo("#s04-c{i}", {{ opacity: 0, x: {dx}, y: {dy}, scale: 0.6 }}, {{ opacity: 1, x: 0, y: 0, scale: 1, duration: 0.55, ease: "expo.out" }}, {round(1.75 + i * 0.05, 2)});\n'
 js += f'    tl.fromTo("#s04-h", {{ opacity: 0, scale: 1.3 }}, {{ opacity: 1, scale: 1, duration: 0.45, ease: "expo.out" }}, {max(1.9, t_bukan)});\n'
-scene("s04", "#s04-h { opacity: 0; } #s04-one { transform-origin: 50% 45%; }", shot("s04-one", "malay") + "\n" + cards + """
+scene("s04", "#s04-h { opacity: 0; } #s04-one { transform-origin: 50% 45%; }", """    <video id="s04-bgv" class="clip full" src="assets/video/interior-family.mp4" data-start="0" data-duration="5.25" data-media-start="1.0" muted playsinline></video>
+    <div class="dimv"></div>
+""" + shot("s04-one", "malay") + "\n" + cards + """
     <div class="t" id="s04-h" style="top:200px; font-size:82px">Bukan <span class="y">satu style</span> je</div>""", js)
 
 # ---------------------------------------------------------------- S05 COLLECTION GALLERY
 GAL = [("modern", "Modern Tropical"), ("muji", "Muji Style"), ("english", "English Style"), ("nordic", "Nordic Style"), ("malay", "Malay Traditional"), ("kemaman3d", "Kemaman")]
-gal = "\n".join(f'      <div class="gc" style="left:{i * 700}px"><img src="assets/img/{k}.jpg" alt="" /><b>{n}</b></div>' for i, (k, n) in enumerate(GAL))
+gal = "\n".join(f'      <div class="gc" style="left:{i * 740}px"><img src="assets/img/{k}.jpg" alt="" /><b>{n}</b></div>' for i, (k, n) in enumerate(GAL))
 scene("s05", f"""
-    #s05-bg {{ position: absolute; inset: 0; background: radial-gradient(120% 80% at 50% 55%, #2A3140 0%, {INK} 70%); }}
-    #s05-row {{ position: absolute; left: 0; top: 600px; height: 420px; width: 4300px; }}
+    #s05-row {{ position: absolute; left: 0; top: 500px; height: 960px; width: 4500px; }}
     #s05-row2 {{ position: absolute; left: 0; top: 1060px; height: 120px; width: 4300px; opacity: .35; }}
-    #root .gc {{ position: absolute; top: 0; width: 660px; height: 420px; border-radius: 18px; overflow: hidden; box-shadow: 0 30px 70px rgba(0,0,0,.55); }}
+    #root .gc {{ position: absolute; top: 0; width: 700px; height: 960px; border-radius: 18px; overflow: hidden; box-shadow: 0 30px 70px rgba(0,0,0,.55); }}
     #root .gc img {{ width: 100%; height: 100%; object-fit: cover; display: block; }}
     #root .gc b {{ position: absolute; left: 20px; bottom: 18px; font-weight: 900; font-size: 36px; text-transform: uppercase; letter-spacing: .05em;
       text-shadow: 0 4px 16px rgba(0,0,0,.8); }}
-""", f"""    <div id="s05-bg"></div>
+""", f"""    <video id="s05-bgv" class="clip full" src="assets/video/interior-room.mp4" data-start="0" data-duration="4.85" data-media-start="5.0" muted playsinline></video>
+    <div class="dimv"></div>
     <div id="s05-row">
 {gal}
     </div>
     <div class="num" id="s05-n" style="top:206px">Mahligai Idaman</div>
     <div class="t" id="s05-h" style="top:252px; font-size:84px">Koleksi design<br /><span class="y">split level</span></div>""", """
-    tl.fromTo("#s05-row", { x: 1100 }, { x: -3200, duration: 4.85, ease: "power2.inOut" }, 0);
+    tl.fromTo("#s05-row", { x: 1000 }, { x: -3500, duration: 4.85, ease: "power2.inOut" }, 0);
     tl.fromTo("#s05-row .gc", { rotateY: 0, scale: 0.92 }, { scale: 1, duration: 0.6, stagger: 0.12, ease: "power2.out" }, 0);
 """ + rise("#s05-n", 0.1, 0.4, 20) + rise("#s05-h", 0.2))
 
@@ -228,13 +248,13 @@ def style_scene(cid, items, prev=None):
     css = ""
     if prev:
         body += shot(f"{cid}-p", prev[0]) + "\n"
-        js += f'    tl.set("#{cid}-p-f", {{ scale: {prev[1]}, x: {prev[2]} }}, 0);\n'
+        js += f'    tl.set("#{cid}-p-f", {{ scale: 1.05, x: {px(PAN[prev[0]][1], 1.05)} }}, 0);\n'
     for i, (key, t0, t1, mask, num, name, desc) in enumerate(items):
         sid = f"{cid}-{key}"
         body += shot(sid, key) + "\n"
         body += style_title(f"{cid}-t{i}", num, name, desc) + "\n"
         js += wipe(f"#{sid}", mask, t0)
-        js += move(sid, t0, round(t1 - t0 + 0.3, 2), 1.06, 1.18, 24, -24)
+        js += move(sid, t0, round(t1 - t0 + 0.3, 2), PAN[key][0], PAN[key][1], 1.0, 1.05)
         js += title_in(f"{cid}-t{i}", t0 + 0.2, bool(desc))
         if i + 1 < len(items):
             js += f'    tl.to(["#{cid}-t{i}-n", "#{cid}-t{i}-nm"{", " + chr(34) + "#" + cid + "-t" + str(i) + "-ds" + chr(34) if desc else ""}], {{ opacity: 0, duration: 0.2 }}, {t1 - 0.05});\n'
@@ -242,11 +262,11 @@ def style_scene(cid, items, prev=None):
 
 
 style_scene("s06", [("modern", 0, 2.16, "columns", "01 / 05", "Modern Tropical", "Elegant")], prev=None)
-style_scene("s07", [("muji", 0, 2.63, "roof_lr", "02 / 05", "Muji Style", "Simple • Calm")], prev=("modern", 1.18, -24))
-style_scene("s08", [("english", 0, 2.26, "door", "03 / 05", "English Style", "Classic")], prev=("muji", 1.18, -24))
+style_scene("s07", [("muji", 0, 2.63, "roof_lr", "02 / 05", "Muji Style", "Simple • Calm")], prev=("modern",))
+style_scene("s08", [("english", 0, 2.26, "door", "03 / 05", "English Style", "Classic")], prev=("muji",))
 t_malay = round(wt("malay") - START["s09"], 2)
 style_scene("s09", [("nordic", 0, t_malay, "wall", "04 / 05", "Nordic Style", "Cozy"),
-                    ("malay", t_malay, 4.87, "roof_rl", "05 / 05", "Malay Traditional", "")], prev=("english", 1.18, -24))
+                    ("malay", t_malay, 4.87, "roof_rl", "05 / 05", "Malay Traditional", "")], prev=("english",))
 
 # ---------------------------------------------------------------- S10 IN-HOUSE DESIGNER: SKETCH -> FLOOR PLAN -> 3D -> HOUSE
 S10 = START["s10"]
@@ -287,7 +307,7 @@ scene("s10", f"""
     tl.fromTo("#s10-gr", {{ opacity: 1, clipPath: "inset(100% 0% 36% 0%)", x: -480, y: 300, scale: 0.9 }}, {{ opacity: 1, clipPath: "inset(0% 0% 36% 0%)", duration: 0.55, ease: "power3.inOut" }}, 3.0);
     tl.to("#s10-gr", {{ scale: 1.0, x: -560, y: 260, duration: 2.6, ease: "sine.inOut" }}, 3.0);
     tl.fromTo("#s10-3d", {{ opacity: 1, clipPath: "{MASKS['roof_lr'][0]}" }}, {{ opacity: 1, clipPath: "{MASKS['roof_lr'][1]}", duration: 0.6, ease: "power3.inOut" }}, 5.6);
-{move("s10-3d", 5.6, 2.6, 1.0, 1.12, 20, -20)}
+{move("s10-3d", 5.6, 2.6, 0.2, 0.6, 1.0, 1.05)}
     tl.fromTo("#s10-house", {{ opacity: 1, clipPath: "{MASKS['columns'][0]}", scale: 1.1 }}, {{ opacity: 1, clipPath: "{MASKS['columns'][1]}", scale: 1.0, duration: 0.6, ease: "power3.inOut" }}, 8.0);
 {rise("#s10-h", 0.15)}{rise("#s10-steps", 0.5, 0.4, 20)}
 """ + "".join(f'    tl.to("#s10-st{i}", {{ color: "{INK}", backgroundColor: "{YEL}", borderColor: "{YEL}", duration: 0.2 }}, {t});\n' + (f'    tl.to("#s10-st{i - 1}", {{ color: "#ffffff", backgroundColor: "rgba(12,14,18,.6)", borderColor: "rgba(255,255,255,.25)", duration: 0.2 }}, {t});\n' if i else "")
@@ -305,8 +325,8 @@ for i in range(5):
     js += f'    tl.fromTo("#s11-c{i}", {{ opacity: 0, x: {fx}, y: {fy}, rotation: {fr}, scale: 1.25 }}, {{ opacity: 1, x: {fx // 3}, y: {fy // 3}, rotation: {fr // 2}, scale: 1.25, duration: 0.45, ease: "power3.out" }}, {round(0.05 + i * 0.22, 2)});\n'
     js += f'    tl.to("#s11-c{i}", {{ x: {ex}, y: {ey}, rotation: {er}, scale: {1.35 if i == 4 else 1.05}, duration: 0.8, ease: "expo.inOut" }}, 1.9);\n'
 scene("s11", f"""
-    #s11-bg {{ position: absolute; inset: 0; background: radial-gradient(110% 70% at 50% 50%, #2A3140 0%, {INK} 72%); }}
-""", '    <div id="s11-bg"></div>\n' + cards + f"""
+
+""", '    <video id="s11-bgv" class="clip full" src="assets/video/interior-stairs.mp4" data-start="0" data-duration="3.75" data-media-start="4.5" muted playsinline></video>\n    <div class="dimv"></div>\n' + cards + f"""
     <div class="t" id="s11-h" style="top:1080px; font-size:40px; letter-spacing:.24em; font-weight:800">Mahligai <span class="y">Idaman</span></div>""", js + rise("#s11-h", 2.6, 0.5, 20), shade=False)
 
 # ---------------------------------------------------------------- S12 CTA
@@ -317,7 +337,7 @@ scene("s12", """
     #s12-fade { position: absolute; inset: 0; background: #000; opacity: 0; z-index: 5; }
     #s12-b { position: absolute; left: 60px; right: 60px; top: 760px; z-index: 3; display: flex; justify-content: center; opacity: 0; }
     #s12-b span { padding: 18px 34px; background: """ + YEL + f"""; color: {INK}; font-weight: 900; font-size: 54px; letter-spacing: .06em; border-radius: 14px; }}
-""", f"""    <div class="vwrap" id="s12-v"><video id="s12-vid" class="clip full" src="assets/video/drone-house.mp4" data-start="0" data-duration="5.3" data-media-start="0.3" muted playsinline></video></div>
+""", f"""    <div class="vwrap" id="s12-v"><video id="s12-vid" class="clip full" src="assets/video/drone-estate.mp4" data-start="0" data-duration="5.3" data-media-start="1.0" muted playsinline></video></div>
     <div class="t" id="s12-l1" style="top:206px; font-size:74px">Bina rumah<br />split level</div>
     <div class="t y" id="s12-l2" style="top:378px; font-size:60px">Kelantan &amp; Terengganu</div>
     <div class="t" id="s12-l3" style="top:478px; font-size:46px; letter-spacing:.24em; font-weight:800">Mahligai Idaman</div>

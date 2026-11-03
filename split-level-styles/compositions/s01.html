@@ -3,9 +3,8 @@
     #root { position: absolute; inset: 0; overflow: hidden; background: #12151B; font-family: Montserrat, sans-serif; color: #fff; }
     #root .shot { position: absolute; inset: 0; overflow: hidden; }
     #root .shot .sbg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
-    #root .shot .card { position: absolute; left: 0; top: 510px; width: 1080px; height: 700px; overflow: hidden;
-      box-shadow: 0 40px 90px rgba(0,0,0,.55); }
-    #root .frame { position: absolute; left: -82px; top: 0; width: 1244px; height: 700px; transform-origin: 50% 55%; }
+    #root .frame { position: absolute; left: 0; top: 0; width: 3413px; height: 1920px; transform-origin: 0 50%; }
+    #root .dimv { position: absolute; inset: 0; background: rgba(8,10,14,.62); }
     #root .frame img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }
     #root .frame svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; }
     #root .tshade { position: absolute; left: 0; top: 0; width: 1080px; height: 640px; z-index: 2;
@@ -32,24 +31,19 @@
   </style>
   <div id="root" data-composition-id="s01" data-width="1080" data-height="1920" data-duration="7.45">
     <div class="shot" id="s01-modern">
-      <img class="sbg" src="assets/img/modern-bg.jpg" alt="" />
-      <div class="card"><div class="frame" id="s01-modern-f"><img src="assets/img/modern.jpg" alt="" /></div></div>
+      <div class="frame" id="s01-modern-f"><img src="assets/img/modern.jpg" alt="" /></div>
     </div>
     <div class="shot" id="s01-nordic">
-      <img class="sbg" src="assets/img/nordic-bg.jpg" alt="" />
-      <div class="card"><div class="frame" id="s01-nordic-f"><img src="assets/img/nordic.jpg" alt="" /></div></div>
+      <div class="frame" id="s01-nordic-f"><img src="assets/img/nordic.jpg" alt="" /></div>
     </div>
     <div class="shot" id="s01-muji">
-      <img class="sbg" src="assets/img/muji-bg.jpg" alt="" />
-      <div class="card"><div class="frame" id="s01-muji-f"><img src="assets/img/muji.jpg" alt="" /></div></div>
+      <div class="frame" id="s01-muji-f"><img src="assets/img/muji.jpg" alt="" /></div>
     </div>
     <div class="shot" id="s01-malay">
-      <img class="sbg" src="assets/img/malay-bg.jpg" alt="" />
-      <div class="card"><div class="frame" id="s01-malay-f"><img src="assets/img/malay.jpg" alt="" /></div></div>
+      <div class="frame" id="s01-malay-f"><img src="assets/img/malay.jpg" alt="" /></div>
     </div>
     <div class="shot" id="s01-english">
-      <img class="sbg" src="assets/img/english-bg.jpg" alt="" />
-      <div class="card"><div class="frame" id="s01-english-f"><img src="assets/img/english.jpg" alt="" /></div></div>
+      <div class="frame" id="s01-english-f"><img src="assets/img/english.jpg" alt="" /></div>
     </div>
     <div class="t" id="s01-k" style="top:212px; font-size:40px; letter-spacing:.32em; font-weight:800"><span class="y">Design rumah</span></div>
     <div class="t" id="s01-h" style="top:256px; font-size:124px; letter-spacing:-.01em">Split<br />Level</div>
@@ -57,15 +51,15 @@
   </div>
   <script>
     const tl = gsap.timeline({ paused: true });
-    tl.fromTo("#s01-modern-f", { scale: 1.22, x: -30 }, { scale: 1.04, x: 0, duration: 1.95, ease: "power2.out" }, 0.0);
+    tl.fromTo("#s01-modern-f", { scale: 1.12, x: -549 }, { scale: 1.0, x: -1446, duration: 1.95, ease: "power2.out" }, 0.0);
     tl.fromTo("#s01-nordic", { opacity: 0, clipPath: "inset(0% 50% 0% 50%)" }, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: 0.35, ease: "power3.out" }, 1.55);
-    tl.fromTo("#s01-nordic-f", { scale: 1.22, x: 30 }, { scale: 1.04, x: 0, duration: 1.9, ease: "power2.out" }, 1.55);
+    tl.fromTo("#s01-nordic-f", { scale: 1.12, x: -686 }, { scale: 1.0, x: -1400, duration: 1.9, ease: "power2.out" }, 1.55);
     tl.fromTo("#s01-muji", { opacity: 0, clipPath: "inset(0% 50% 0% 50%)" }, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: 0.35, ease: "power3.out" }, 3.05);
-    tl.fromTo("#s01-muji-f", { scale: 1.22, x: -30 }, { scale: 1.04, x: 0, duration: 1.9, ease: "power2.out" }, 3.05);
+    tl.fromTo("#s01-muji-f", { scale: 1.12, x: -823 }, { scale: 1.0, x: -1446, duration: 1.9, ease: "power2.out" }, 3.05);
     tl.fromTo("#s01-malay", { opacity: 0, clipPath: "inset(0% 50% 0% 50%)" }, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: 0.35, ease: "power3.out" }, 4.55);
-    tl.fromTo("#s01-malay-f", { scale: 1.22, x: 30 }, { scale: 1.04, x: 0, duration: 1.85, ease: "power2.out" }, 4.55);
+    tl.fromTo("#s01-malay-f", { scale: 1.12, x: -1700 }, { scale: 1.0, x: -840, duration: 1.85, ease: "power2.out" }, 4.55);
     tl.fromTo("#s01-english", { opacity: 0, clipPath: "inset(0% 50% 0% 50%)" }, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: 0.35, ease: "power3.out" }, 6.0);
-    tl.fromTo("#s01-english-f", { scale: 1.22, x: -30 }, { scale: 1.04, x: 0, duration: 1.85, ease: "power2.out" }, 6.0);
+    tl.fromTo("#s01-english-f", { scale: 1.12, x: -2029 }, { scale: 1.0, x: -887, duration: 1.85, ease: "power2.out" }, 6.0);
     tl.fromTo("#s01-h", { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.5, ease: "expo.out" }, 0);
     tl.fromTo("#s01-k", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.25);
     tl.to("#s01-h", { scale: 1.06, duration: 6.4, ease: "sine.inOut" }, 0.6);

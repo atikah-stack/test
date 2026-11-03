@@ -3,9 +3,8 @@
     #root { position: absolute; inset: 0; overflow: hidden; background: #12151B; font-family: Montserrat, sans-serif; color: #fff; }
     #root .shot { position: absolute; inset: 0; overflow: hidden; }
     #root .shot .sbg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
-    #root .shot .card { position: absolute; left: 0; top: 510px; width: 1080px; height: 700px; overflow: hidden;
-      box-shadow: 0 40px 90px rgba(0,0,0,.55); }
-    #root .frame { position: absolute; left: -82px; top: 0; width: 1244px; height: 700px; transform-origin: 50% 55%; }
+    #root .frame { position: absolute; left: 0; top: 0; width: 3413px; height: 1920px; transform-origin: 0 50%; }
+    #root .dimv { position: absolute; inset: 0; background: rgba(8,10,14,.62); }
     #root .frame img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }
     #root .frame svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; }
     #root .tshade { position: absolute; left: 0; top: 0; width: 1080px; height: 640px; z-index: 2;
@@ -26,11 +25,12 @@
     #root .acard span { position: absolute; left: 10px; bottom: 10px; padding: 6px 12px; background: rgba(12,14,18,.85); color: #fff;
       font-weight: 800; font-size: 28px; letter-spacing: .06em; border-radius: 6px; text-transform: uppercase; }
 
-    #s11-bg { position: absolute; inset: 0; background: radial-gradient(110% 70% at 50% 50%, #2A3140 0%, #12151B 72%); }
+
 
   </style>
   <div id="root" data-composition-id="s11" data-width="1080" data-height="1920" data-duration="3.75">
-    <div id="s11-bg"></div>
+    <video id="s11-bgv" class="clip full" src="assets/video/interior-stairs.mp4" data-start="0" data-duration="3.75" data-media-start="4.5" muted playsinline></video>
+    <div class="dimv"></div>
     <div class="acard sc" id="s11-c0" style="left:318px; top:735px; width:444px; height:250px"><img src="assets/img/modern.jpg" alt="" /></div>
     <div class="acard sc" id="s11-c1" style="left:318px; top:735px; width:444px; height:250px"><img src="assets/img/muji.jpg" alt="" /></div>
     <div class="acard sc" id="s11-c2" style="left:318px; top:735px; width:444px; height:250px"><img src="assets/img/english.jpg" alt="" /></div>
