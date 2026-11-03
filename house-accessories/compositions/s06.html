@@ -1,40 +1,46 @@
 <template>
   <style>
-    #root { position: absolute; inset: 0; overflow: hidden; background: #F1F2F4; font-family: Inter, sans-serif; color: #1C1E21; }
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: Montserrat, sans-serif; color: #fff;
+      background: linear-gradient(180deg, #10151F 0%, #1A2232 45%, #2B3446 100%); }
     #root .bg { position: absolute; inset: 0;
-      background-image: linear-gradient(rgba(28,30,33,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(28,30,33,.045) 1px, transparent 1px);
+      background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
       background-size: 60px 60px; background-position: 30px 0; }
     #root .stage { position: absolute; left: 0; top: 0; width: 1600px; height: 2800px; transform-origin: 0 0;
-      -webkit-mask-image: linear-gradient(to bottom, transparent 0px, #000 72px);
-      mask-image: linear-gradient(to bottom, transparent 0px, #000 72px); }
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0px, #000 150px);
+      mask-image: linear-gradient(to bottom, transparent 0px, #000 150px); }
     #root .stage .floor { position: absolute; left: -1200px; top: 880px; width: 4000px; height: 1900px;
-      background: linear-gradient(to bottom, #C1BEC6 0px, #CBC9CF 500px, #D9D8DC 1900px); }
+      background: linear-gradient(to bottom, #C1BEC6 0px, #B5B3BC 500px, #9E9DA6 1900px); }
     #root .stage .floorfade { position: absolute; left: 0; top: 800px; width: 1600px; height: 84px;
       background: linear-gradient(to bottom, rgba(193,190,198,0), #C1BEC6); }
     #root .stage.nomask { -webkit-mask-image: none; mask-image: none; }
     #root .stage img, #root .stage .layer { position: absolute; left: 0; top: 0; width: 1600px; height: 900px; display: block; }
     #root .stage svg { position: absolute; left: 0; top: 0; width: 1600px; height: 900px; overflow: visible; }
-    #root .win { position: absolute; left: 0; width: 1080px; overflow: hidden; background: #F1F2F4; }
-    #root .headline { position: absolute; left: 80px; right: 80px; text-align: center; font-weight: 900; font-size: 80px;
-      line-height: 1.0; letter-spacing: -0.02em; text-transform: uppercase; color: #1C1E21; }
+    #root .win { position: absolute; left: 0; width: 1080px; overflow: hidden; background: #141A26; }
+    #root .headline { position: absolute; left: 50px; right: 50px; text-align: center; font-weight: 900; font-size: 92px;
+      line-height: 1.02; letter-spacing: -0.01em; text-transform: uppercase; color: #fff;
+      text-shadow: 0 4px 0 rgba(0,0,0,.28), 0 12px 34px rgba(0,0,0,.55); }
     #root .headline .ln { display: block; }
-    #root .kicker { position: absolute; left: 0; right: 0; text-align: center; font-weight: 700; font-size: 26px;
-      letter-spacing: 0.32em; text-transform: uppercase; color: #7D7A75; }
+    #root .y { color: #F6C343; }
+    #root .kicker { position: absolute; left: 0; right: 0; text-align: center; font-weight: 700; font-size: 30px;
+      letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,.78); }
     #root .tagwrap { position: absolute; left: 0; right: 0; display: flex; justify-content: center; }
-    #root .tag { display: flex; align-items: center; gap: 22px; padding: 22px 36px; background: rgba(250,250,249,.96);
-      border: 1.5px solid #1C1E21; border-radius: 6px; box-shadow: 0 18px 40px rgba(20,22,25,.18); }
-    #root .tag .num { font-weight: 900; font-size: 44px; color: #A8875A; letter-spacing: 0.02em; }
-    #root .tag .dash { width: 46px; height: 2px; background: #1C1E21; }
-    #root .tag .name { font-weight: 700; font-size: 42px; letter-spacing: 0.16em; color: #1C1E21; }
-    #root .chip { position: absolute; padding: 10px 18px; background: #1C1E21; color: #fff; font-weight: 700; font-size: 28px;
-      letter-spacing: 0.22em; text-transform: uppercase; border-radius: 4px; }
-    #root .chip.light { background: rgba(250,250,249,.95); color: #1C1E21; border: 1.5px solid #1C1E21; }
+    #root .tag { display: flex; align-items: center; gap: 22px; padding: 22px 38px; background: rgba(16,20,29,.94);
+      border: 2px solid #F6C343; border-radius: 10px; box-shadow: 0 18px 44px rgba(0,0,0,.4); }
+    #root .tag .num { font-weight: 900; font-size: 50px; color: #F6C343; }
+    #root .tag .dash { width: 46px; height: 3px; background: #F6C343; }
+    #root .tag .name { font-weight: 800; font-size: 46px; letter-spacing: 0.08em; color: #fff; }
+    #root .chip { position: absolute; padding: 10px 20px; background: rgba(16,20,29,.94); color: #fff; font-weight: 800; font-size: 30px;
+      letter-spacing: 0.16em; text-transform: uppercase; border-radius: 6px; }
+    #root .chip.yl { background: #F6C343; color: #141A26; }
     #root .pointer { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+    #root .shade { position: absolute; left: 0; right: 0; top: 0; height: 900px;
+      background: linear-gradient(to bottom, rgba(10,13,20,.85), rgba(10,13,20,.45) 55%, rgba(10,13,20,0)); }
+    #root video.full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
 
     #s06-chip-b, #s06-chip-a, #s06-ticks { opacity: 0; }
 
   </style>
-  <div id="root" data-composition-id="s06" data-width="1080" data-height="1920" data-duration="6.4">
+  <div id="root" data-composition-id="s06" data-width="1080" data-height="1920" data-duration="7.6">
     <div class="bg"></div>
     <div class="stage" id="s06-stage">
       <div class="floor"></div>
@@ -42,21 +48,19 @@
       <img id="s06-full" src="assets/house-full.jpg" alt="" />
       <div class="floorfade"></div>
       <svg viewBox="0 0 1600 900">
-        <rect id="s06-frame" x="1213" y="388" width="213" height="162" fill="none" stroke="#F2E6D2" stroke-width="2.2" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" vector-effect="non-scaling-stroke" />
-        <g id="s06-ticks" stroke="#A8875A" stroke-width="2.2" vector-effect="non-scaling-stroke">
-          <line x1="1199" y1="388" x2="1209" y2="388" vector-effect="non-scaling-stroke" /><line x1="1213" y1="374" x2="1213" y2="384" vector-effect="non-scaling-stroke" />
-          <line x1="1430" y1="388" x2="1440" y2="388" vector-effect="non-scaling-stroke" /><line x1="1426" y1="374" x2="1426" y2="384" vector-effect="non-scaling-stroke" />
-          <line x1="1199" y1="550" x2="1209" y2="550" vector-effect="non-scaling-stroke" /><line x1="1213" y1="554" x2="1213" y2="564" vector-effect="non-scaling-stroke" />
-          <line x1="1430" y1="550" x2="1440" y2="550" vector-effect="non-scaling-stroke" /><line x1="1426" y1="554" x2="1426" y2="564" vector-effect="non-scaling-stroke" />
+        <rect id="s06-frame" x="1213" y="388" width="213" height="162" fill="none" stroke="#F6C343" stroke-width="3" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" vector-effect="non-scaling-stroke" />
+        <g id="s06-ticks" stroke="#fff" stroke-width="2.5">
+          <line x1="1199" y1="388" x2="1209" y2="388" vector-effect="non-scaling-stroke" /><line x1="1213" y1="374" x2="1213" y2="384" vector-effect="non-scaling-stroke" /><line x1="1430" y1="388" x2="1440" y2="388" vector-effect="non-scaling-stroke" /><line x1="1426" y1="374" x2="1426" y2="384" vector-effect="non-scaling-stroke" />
+          <line x1="1199" y1="550" x2="1209" y2="550" vector-effect="non-scaling-stroke" /><line x1="1213" y1="554" x2="1213" y2="564" vector-effect="non-scaling-stroke" /><line x1="1430" y1="550" x2="1440" y2="550" vector-effect="non-scaling-stroke" /><line x1="1426" y1="554" x2="1426" y2="564" vector-effect="non-scaling-stroke" />
         </g>
       </svg>
     </div>
     <div class="tagwrap" style="top:250px"><div class="tag" id="s06-tag">
       <span class="num">03</span><span class="dash"></span><span class="name">CORNICE</span>
     </div></div>
-    <svg class="pointer" viewBox="0 0 1080 1920"><line id="s06-ptr" x1="540" y1="345" x2="540" y2="470" stroke="#1C1E21" stroke-width="2" /><circle id="s06-dot" cx="540" cy="470" r="7" fill="#A8875A" stroke="#fff" stroke-width="2" /></svg>
+    <svg class="pointer" viewBox="0 0 1080 1920"><line id="s06-ptr" x1="540" y1="352" x2="540" y2="470" stroke="#F6C343" stroke-width="3" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" /><circle id="s06-dot" cx="540" cy="470" r="9" fill="#F6C343" stroke="#141A26" stroke-width="3" /></svg>
     <div class="chip" id="s06-chip-b" style="left:60px; top:1060px">Sebelum</div>
-    <div class="chip" id="s06-chip-a" style="left:60px; top:1060px; background:#A8875A">Selepas</div>
+    <div class="chip yl" id="s06-chip-a" style="left:60px; top:1060px">Selepas</div>
   </div>
   <script>
     const F = (s, px, py, cx, cy) => ({ x: cx - px * s, y: cy - py * s, scale: s });
@@ -64,21 +68,21 @@
       `inset(${(y1 / 9).toFixed(3)}% ${(100 - x2 / 16).toFixed(3)}% ${(100 - y2 / 9).toFixed(3)}% ${(x1 / 16).toFixed(3)}%)`;
     const tl = gsap.timeline({ paused: true });
 
-    tl.set("#s06-full", { opacity: 1 }, 0);
     tl.fromTo("#s06-stage", F(1.5, 1320, 470, 540, 800), { ...F(3.0, 1320, 470, 540, 800), duration: 0.55, ease: "expo.out" }, 0);
-    tl.to("#s06-stage", { ...F(3.15, 1318, 468, 540, 800), duration: 5.8, ease: "sine.inOut" }, 0.55);
-    tl.fromTo("#s06-tag", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.35);
-    tl.fromTo("#s06-ptr", { attr: { y2: 345 } }, { attr: { y2: 470 }, duration: 0.35, ease: "power2.out" }, 0.6);
-    tl.fromTo("#s06-dot", { opacity: 0, scale: 0, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)" }, 0.9);
-    tl.to("#s06-frame", { strokeDashoffset: 0, duration: 1.0, ease: "power2.inOut" }, 1.0);
-    tl.to("#s06-ticks", { opacity: 1, duration: 0.3 }, 1.8);
-    // quick before / after flick
-    tl.to(["#s06-frame", "#s06-ticks"], { opacity: 0, duration: 0.2 }, 3.6);
-    tl.to("#s06-full", { opacity: 0, duration: 0.18 }, 3.9);
-    tl.to("#s06-chip-b", { opacity: 1, duration: 0.12 }, 3.9);
-    tl.to("#s06-full", { opacity: 1, duration: 0.18 }, 4.7);
-    tl.to("#s06-chip-b", { opacity: 0, duration: 0.08 }, 4.7);
-    tl.to("#s06-chip-a", { opacity: 1, duration: 0.12 }, 4.75);
+    tl.to("#s06-stage", { ...F(3.15, 1318, 468, 540, 800), duration: 7.0, ease: "sine.inOut" }, 0.55);
+
+    tl.fromTo("#s06-tag", { opacity: 0, y: -24, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "back.out(1.6)" }, 0.9);
+    tl.to("#s06-ptr", { strokeDashoffset: 0, duration: 0.4, ease: "power2.inOut" }, 1.15);
+    tl.fromTo("#s06-dot", { opacity: 0, scale: 0, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)" }, 1.5);
+
+    tl.to("#s06-frame", { strokeDashoffset: 0, duration: 1.0, ease: "power2.inOut" }, 2.2);
+    tl.to("#s06-ticks", { opacity: 1, duration: 0.3 }, 3.0);
+    tl.to(["#s06-frame", "#s06-ticks"], { opacity: 0, duration: 0.2 }, 4.6);
+    tl.to("#s06-full", { opacity: 0, duration: 0.18 }, 4.8);
+    tl.to("#s06-chip-b", { opacity: 1, duration: 0.12 }, 4.8);
+    tl.to("#s06-full", { opacity: 1, duration: 0.18 }, 5.8);
+    tl.to("#s06-chip-b", { opacity: 0, duration: 0.08 }, 5.8);
+    tl.to("#s06-chip-a", { opacity: 1, duration: 0.12 }, 5.85);
 
     window.__timelines["s06"] = tl;
   </script>
