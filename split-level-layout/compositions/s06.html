@@ -1,0 +1,56 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #FFFFFF; font-family: Montserrat, sans-serif; color: #fff; }
+    #root .paper { position: absolute; inset: 0; background: #FFFFFF;
+      background-image: linear-gradient(rgba(22,24,29,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(22,24,29,.05) 1px, transparent 1px);
+      background-size: 54px 54px; }
+    #root .plan { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+    #root .plan img { position: absolute; left: 0; top: 0; display: block; }
+    #root .plan svg { position: absolute; left: 0; top: 0; overflow: visible; }
+    #root .card { position: absolute; left: 50px; right: 50px; padding: 26px 34px 28px; background: #16181D; border-radius: 22px;
+      text-align: center; font-weight: 900; font-size: 64px; line-height: 1.06; text-transform: uppercase; color: #fff;
+      box-shadow: 0 22px 50px rgba(0,0,0,.28); }
+    #root .card .a { color: #F59E0B; }
+    #root .card .r { color: #FF6B6F; }
+    #root .kick { position: absolute; left: 0; right: 0; display: flex; justify-content: center; }
+    #root .kick span { padding: 10px 22px; background: #F59E0B; color: #16181D; font-weight: 900; font-size: 32px; letter-spacing: .14em;
+      text-transform: uppercase; border-radius: 8px; }
+    #root .chip { position: absolute; padding: 12px 22px; background: #16181D; color: #fff; font-weight: 800; font-size: 34px;
+      letter-spacing: .06em; text-transform: uppercase; border-radius: 10px; white-space: nowrap; box-shadow: 0 10px 26px rgba(0,0,0,.25); }
+    #root .chip i { display: inline-block; width: 16px; height: 16px; border-radius: 50%; background: #F59E0B; margin-right: 12px; vertical-align: 2px; font-style: normal; }
+    #root .inset { position: absolute; width: 400px; height: 520px; border-radius: 26px; overflow: hidden; border: 6px solid #fff;
+      box-shadow: 0 24px 60px rgba(0,0,0,.35); background: #16181D; }
+    #root .inset video { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }
+    #root .inset .tagv { position: absolute; left: 14px; bottom: 14px; padding: 8px 14px; background: rgba(22,24,29,.85); color: #fff;
+      font-weight: 800; font-size: 28px; letter-spacing: .08em; border-radius: 8px; text-transform: uppercase; }
+    #root video.full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    #root .dim { position: absolute; inset: 0; background: rgba(12,14,18,.5); }
+    #root .topshade { position: absolute; left: 0; right: 0; top: 0; height: 760px; background: linear-gradient(rgba(12,14,18,.75), rgba(12,14,18,0)); }
+
+  </style>
+  <div id="root" data-composition-id="s06" data-width="1080" data-height="1920" data-duration="3.05">
+    <div class="paper"></div>
+    <div class="plan" id="s06-plan" style="width:2200px; height:1800px">
+      <img src="assets/plan-upper-hd.png" alt="" style="width:2200px; height:1800px" />
+      <svg viewBox="0 0 2200 1800" style="width:2200px; height:1800px"><g id="s06-h"><rect x="1743" y="473" width="160" height="203" fill="none" stroke="#F59E0B" stroke-opacity=".35" stroke-width="16" vector-effect="non-scaling-stroke" /><rect x="1743" y="473" width="160" height="203" fill="#F59E0B" fill-opacity=".2" stroke="#F59E0B" stroke-width="5" vector-effect="non-scaling-stroke" /></g><polyline id="s06-r" points="1394,640 1500,700 1524,772 1600,800 1700,760 1790,700 1812,600" fill="none" stroke="#F59E0B" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1 2" stroke-dashoffset="1.05" vector-effect="non-scaling-stroke" /><circle id="s06-r-end" cx="1812" cy="600" r="16" fill="#F59E0B" stroke="#fff" stroke-width="5" vector-effect="non-scaling-stroke" /></svg>
+    </div>
+    <div class="card" id="s06-head" style="top:230px">Tak semestinya!</div>
+    <div class="card" id="s06-sub" style="top:390px; font-size:46px; background:#F59E0B; color:#16181D">✓ Masih ada bilik air di tingkat atas</div>
+    <div class="chip" id="s06-lab" style="left:760px; top:640px"><i></i>Bath 1</div>
+  </div>
+  <script>
+    const F = (s, px, py, cx, cy) => ({ x: cx - px * s, y: cy - py * s, scale: s });
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#s06-plan", F(1.6, 1560, 640, 540, 900), { ...F(2.0, 1600, 640, 540, 900), duration: 3.05, ease: "sine.inOut" }, 0);
+    tl.to("#s06-r", { strokeDashoffset: 0, duration: 1.2, ease: "power2.inOut" }, 0.4);
+    tl.fromTo("#s06-r-end", { opacity: 0, scale: 0, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)" }, 1.55);
+    tl.fromTo("#s06-h", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 1.5);
+    tl.fromTo("#s06-h rect:last-child", { fillOpacity: 0.55 }, { fillOpacity: 0.2, duration: 0.5, repeat: 2, yoyo: true }, 1.6);
+    tl.fromTo("#s06-head", { opacity: 0, y: 24, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 0.05);
+    tl.fromTo("#s06-sub", { opacity: 0, y: 24, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 1.0);
+    tl.fromTo("#s06-lab", { opacity: 0, y: 24, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 1.7);
+
+    window.__timelines["s06"] = tl;
+  </script>
+</template>

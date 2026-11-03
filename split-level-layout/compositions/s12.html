@@ -1,0 +1,63 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #FFFFFF; font-family: Montserrat, sans-serif; color: #fff; }
+    #root .paper { position: absolute; inset: 0; background: #FFFFFF;
+      background-image: linear-gradient(rgba(22,24,29,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(22,24,29,.05) 1px, transparent 1px);
+      background-size: 54px 54px; }
+    #root .plan { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+    #root .plan img { position: absolute; left: 0; top: 0; display: block; }
+    #root .plan svg { position: absolute; left: 0; top: 0; overflow: visible; }
+    #root .card { position: absolute; left: 50px; right: 50px; padding: 26px 34px 28px; background: #16181D; border-radius: 22px;
+      text-align: center; font-weight: 900; font-size: 64px; line-height: 1.06; text-transform: uppercase; color: #fff;
+      box-shadow: 0 22px 50px rgba(0,0,0,.28); }
+    #root .card .a { color: #F59E0B; }
+    #root .card .r { color: #FF6B6F; }
+    #root .kick { position: absolute; left: 0; right: 0; display: flex; justify-content: center; }
+    #root .kick span { padding: 10px 22px; background: #F59E0B; color: #16181D; font-weight: 900; font-size: 32px; letter-spacing: .14em;
+      text-transform: uppercase; border-radius: 8px; }
+    #root .chip { position: absolute; padding: 12px 22px; background: #16181D; color: #fff; font-weight: 800; font-size: 34px;
+      letter-spacing: .06em; text-transform: uppercase; border-radius: 10px; white-space: nowrap; box-shadow: 0 10px 26px rgba(0,0,0,.25); }
+    #root .chip i { display: inline-block; width: 16px; height: 16px; border-radius: 50%; background: #F59E0B; margin-right: 12px; vertical-align: 2px; font-style: normal; }
+    #root .inset { position: absolute; width: 400px; height: 520px; border-radius: 26px; overflow: hidden; border: 6px solid #fff;
+      box-shadow: 0 24px 60px rgba(0,0,0,.35); background: #16181D; }
+    #root .inset video { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }
+    #root .inset .tagv { position: absolute; left: 14px; bottom: 14px; padding: 8px 14px; background: rgba(22,24,29,.85); color: #fff;
+      font-weight: 800; font-size: 28px; letter-spacing: .08em; border-radius: 8px; text-transform: uppercase; }
+    #root video.full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    #root .dim { position: absolute; inset: 0; background: rgba(12,14,18,.5); }
+    #root .topshade { position: absolute; left: 0; right: 0; top: 0; height: 760px; background: linear-gradient(rgba(12,14,18,.75), rgba(12,14,18,0)); }
+#s12-h2 { opacity: 0; } #s12-g, #s12-u { position: absolute; inset: 0; } #s12-u { opacity: 0; } #s12-ft { position: absolute; inset: 0; }
+  </style>
+  <div id="root" data-composition-id="s12" data-width="1080" data-height="1920" data-duration="9.6">
+    <div class="paper"></div>
+    <div id="s12-g">
+    <div class="plan" id="s12-gp" style="width:2200px; height:2040px">
+      <img src="assets/plan-ground-hd.png" alt="" style="width:2200px; height:2040px" />
+      <svg viewBox="0 0 2200 2040" style="width:2200px; height:2040px"></svg>
+    </div>
+    </div>
+    <div id="s12-u">
+    <div class="plan" id="s12-up" style="width:2200px; height:1800px">
+      <img src="assets/plan-upper-hd.png" alt="" style="width:2200px; height:1800px" />
+      <svg viewBox="0 0 2200 1800" style="width:2200px; height:1800px"></svg>
+    </div>
+    </div>
+    <div id="s12-ft"><video id="s12-v" class="clip full" src="assets/video/room-walk.mp4" data-start="0" data-duration="3.2" data-media-start="0.5" muted playsinline></video><div class="topshade"></div></div>
+    <div class="card" id="s12-h1" style="top:230px; font-size:56px">Kita nilai ikut<br /><span class="a">cara hidup kita</span></div>
+    <div class="card" id="s12-h2" style="top:230px; font-size:68px">Design yang baik<br /><span class="a">tak semestinya sama</span><br />untuk semua.</div>
+  </div>
+  <script>
+    const F = (s, px, py, cx, cy) => ({ x: cx - px * s, y: cy - py * s, scale: s });
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#s12-ft", { clipPath: "inset(0% 0% 0% 0%)" }, { clipPath: "inset(100% 0% 0% 0%)", duration: 0.55, ease: "power3.inOut" }, 3.0);
+    tl.fromTo("#s12-gp", F(2.0, 600, 450, 540, 1000), { ...F(2.0, 1000, 520, 540, 1000), duration: 2.8, ease: "sine.inOut" }, 3.0);
+    tl.fromTo("#s12-u", { opacity: 1, clipPath: "inset(0% 0% 0% 100%)" }, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: 0.55, ease: "power3.inOut" }, 5.6);
+    tl.fromTo("#s12-up", F(1.35, 1520, 820, 540, 1150), { ...F(1.15, 1460, 820, 540, 1120), duration: 4.0, ease: "sine.inOut" }, 5.6);
+    tl.fromTo("#s12-h1", { opacity: 0, y: 24, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 0.4);
+    tl.to("#s12-h1", { opacity: 0, duration: 0.25 }, 5.4);
+    tl.fromTo("#s12-h2", { opacity: 0, y: 24, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(1.6)" }, 5.75);
+
+    window.__timelines["s12"] = tl;
+  </script>
+</template>
