@@ -1,0 +1,92 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #12151B; font-family: Montserrat, sans-serif; color: #fff; }
+    #root .shot { position: absolute; inset: 0; overflow: hidden; }
+    #root .shot .sbg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    #root .shot .card { position: absolute; left: 0; top: 510px; width: 1080px; height: 700px; overflow: hidden;
+      box-shadow: 0 40px 90px rgba(0,0,0,.55); }
+    #root .frame { position: absolute; left: -82px; top: 0; width: 1244px; height: 700px; transform-origin: 50% 55%; }
+    #root .frame img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }
+    #root .frame svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; }
+    #root .tshade { position: absolute; left: 0; top: 0; width: 1080px; height: 640px; z-index: 2;
+      background: linear-gradient(rgba(8,10,14,.85), rgba(8,10,14,.55) 55%, rgba(8,10,14,0)); }
+    #root .t { position: absolute; left: 40px; right: 40px; text-align: center; z-index: 3; text-transform: uppercase;
+      font-weight: 900; color: #fff; line-height: 1.02; text-shadow: 0 4px 0 rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.7); }
+    #root .y { color: #F6C343; }
+    #root .ser { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; text-transform: none; color: #F6C343; }
+    #root .num { position: absolute; left: 0; right: 0; text-align: center; z-index: 3; font-weight: 700; font-size: 28px;
+      letter-spacing: .34em; color: #F6C343; }
+    #root .chip { position: absolute; z-index: 3; padding: 12px 24px; background: rgba(12,14,18,.82); border: 2px solid #F6C343;
+      border-radius: 999px; font-weight: 800; font-size: 34px; letter-spacing: .12em; text-transform: uppercase; color: #fff; white-space: nowrap; }
+    #root video.full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    #root .vwrap { position: absolute; inset: 0; transform-origin: 50% 50%; }
+    #root .acard { position: absolute; width: 444px; height: 250px; overflow: hidden; border-radius: 14px; border: 3px solid rgba(255,255,255,.9);
+      box-shadow: 0 20px 50px rgba(0,0,0,.5); }
+    #root .acard img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    #root .acard span { position: absolute; left: 10px; bottom: 10px; padding: 6px 12px; background: rgba(12,14,18,.85); color: #fff;
+      font-weight: 800; font-size: 28px; letter-spacing: .06em; border-radius: 6px; text-transform: uppercase; }
+
+    #s10-paper { position: absolute; inset: 0; background: #F7F6F2; background-image: linear-gradient(rgba(30,40,60,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(30,40,60,.06) 1px, transparent 1px); background-size: 54px 54px; }
+    #s10-up, #s10-gr { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+    #s10-up { width: 2200px; height: 1800px; }
+    #s10-gr { width: 2200px; height: 2040px; opacity: 0; }
+    #s10-up img, #s10-gr img { width: 100%; height: 100%; display: block; }
+    #s10-pen { position: absolute; left: 0; top: 0; width: 8px; height: 1920px; background: #F6C343; box-shadow: 0 0 24px #F6C343; opacity: 0; z-index: 2; }
+    #s10-3d, #s10-house { opacity: 0; }
+    #s10-steps { position: absolute; left: 30px; right: 30px; top: 470px; z-index: 3; display: flex; justify-content: center; align-items: center; gap: 10px;
+      font-weight: 800; font-size: 28px; letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.45); }
+    #s10-steps span { padding: 8px 14px; border-radius: 999px; border: 2px solid rgba(255,255,255,.25); background: rgba(12,14,18,.6); }
+    #s10-steps i { font-style: normal; color: rgba(255,255,255,.4); }
+    #root .kw { position: absolute; left: 0; right: 0; display: flex; justify-content: center; z-index: 3; opacity: 0; }
+    #root .kw b { padding: 14px 30px; background: #F6C343; color: #12151B; font-weight: 900; font-size: 44px; letter-spacing: .08em; border-radius: 12px;
+      box-shadow: 0 14px 34px rgba(0,0,0,.35); }
+
+  </style>
+  <div id="root" data-composition-id="s10" data-width="1080" data-height="1920" data-duration="11.13">
+    <div id="s10-paper"></div>
+    <div id="s10-up"><img src="assets/img/plan-upper-hd.png" alt="" /></div>
+    <div id="s10-gr"><img src="assets/img/plan-ground-hd.png" alt="" /></div>
+    <div id="s10-pen"></div>
+    <div class="shot" id="s10-3d">
+      <img class="sbg" src="assets/img/kemaman3d-bg.jpg" alt="" />
+      <div class="card"><div class="frame" id="s10-3d-f"><img src="assets/img/kemaman3d.jpg" alt="" /></div></div>
+    </div>
+    <div class="vwrap" id="s10-house"><video id="s10-hv" class="clip full" src="assets/video/walk-under.mp4" data-start="8.0" data-duration="3.13" data-media-start="0.3" muted playsinline></video></div>
+    <div class="t" id="s10-h" style="top:206px; font-size:84px">Pelukis pelan<br /><span class="y">sendiri</span></div>
+    <div id="s10-steps"><span id="s10-st0">Sketch</span><i>→</i><span id="s10-st1">Floor plan</span><i>→</i><span id="s10-st2">3D design</span><i>→</i><span id="s10-st3">House</span></div>
+    <div class="kw" id="s10-k1" style="top:900px"><b>Cita rasa</b></div>
+    <div class="kw" id="s10-k2" style="top:1000px"><b>Gaya hidup</b></div>
+    <div class="kw" id="s10-k3" style="top:1100px"><b>Kesesuaian tanah</b></div>
+    <div class="tshade"></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.set("#s10-up", { x: -32, y: 560, scale: 0.52 }, 0);
+    tl.fromTo("#s10-up", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 2.4, ease: "power1.inOut" }, 0.1);
+    tl.fromTo("#s10-pen", { opacity: 1, x: -32 }, { opacity: 1, x: 1112, duration: 2.4, ease: "power1.inOut" }, 0.1);
+    tl.to("#s10-pen", { opacity: 0, duration: 0.2 }, 2.5);
+    tl.to("#s10-up", { scale: 0.62, x: -300, y: 470, duration: 0.6, ease: "power2.inOut" }, 2.45);
+    tl.fromTo("#s10-gr", { opacity: 1, clipPath: "inset(100% 0% 36% 0%)", x: -480, y: 300, scale: 0.9 }, { opacity: 1, clipPath: "inset(0% 0% 36% 0%)", duration: 0.55, ease: "power3.inOut" }, 3.0);
+    tl.to("#s10-gr", { scale: 1.0, x: -560, y: 260, duration: 2.6, ease: "sine.inOut" }, 3.0);
+    tl.fromTo("#s10-3d", { opacity: 1, clipPath: "polygon(0% 0%, 0% 0%, -45% 100%, 0% 100%)" }, { opacity: 1, clipPath: "polygon(0% 0%, 145% 0%, 100% 100%, 0% 100%)", duration: 0.6, ease: "power3.inOut" }, 5.6);
+    tl.fromTo("#s10-3d-f", { scale: 1.0, x: 20 }, { scale: 1.12, x: -20, duration: 2.6, ease: "sine.inOut" }, 5.6);
+
+    tl.fromTo("#s10-house", { opacity: 1, clipPath: "inset(0% 50% 0% 50%)", scale: 1.1 }, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", scale: 1.0, duration: 0.6, ease: "power3.inOut" }, 8.0);
+    tl.fromTo("#s10-h", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "power4.out" }, 0.15);
+    tl.fromTo("#s10-steps", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power4.out" }, 0.5);
+
+    tl.to("#s10-st0", { color: "#12151B", backgroundColor: "#F6C343", borderColor: "#F6C343", duration: 0.2 }, 0.3);
+    tl.to("#s10-st1", { color: "#12151B", backgroundColor: "#F6C343", borderColor: "#F6C343", duration: 0.2 }, 3.0);
+    tl.to("#s10-st0", { color: "#ffffff", backgroundColor: "rgba(12,14,18,.6)", borderColor: "rgba(255,255,255,.25)", duration: 0.2 }, 3.0);
+    tl.to("#s10-st2", { color: "#12151B", backgroundColor: "#F6C343", borderColor: "#F6C343", duration: 0.2 }, 5.6);
+    tl.to("#s10-st1", { color: "#ffffff", backgroundColor: "rgba(12,14,18,.6)", borderColor: "rgba(255,255,255,.25)", duration: 0.2 }, 5.6);
+    tl.to("#s10-st3", { color: "#12151B", backgroundColor: "#F6C343", borderColor: "#F6C343", duration: 0.2 }, 8.0);
+    tl.to("#s10-st2", { color: "#ffffff", backgroundColor: "rgba(12,14,18,.6)", borderColor: "rgba(255,255,255,.25)", duration: 0.2 }, 8.0);
+    tl.fromTo("#s10-k1", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, 6.86);
+    tl.fromTo("#s10-k2", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, 7.84);
+    tl.fromTo("#s10-k3", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, 8.8);
+
+    window.__timelines["s10"] = tl;
+  </script>
+</template>
