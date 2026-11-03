@@ -140,19 +140,27 @@ def title_in(pre, t, desc=True):
     return js
 
 
-# ---------------------------------------------------------------- S01 HOOK MONTAGE
-HOOK = [("modern", 0.0), ("nordic", 1.55), ("muji", 3.05), ("malay", 4.55), ("english", 6.0)]
-body = "\n".join(shot(f"s01-{k}", k) for k, _ in HOOK)
-body += f"""
+# ---------------------------------------------------------------- S01 HOOK: real footage montage (no 3D renders)
+HOOK = [("drone-house", 0.0, 0.5, None), ("kem-orbit-left", 1.55, 3.0, "columns"), ("kem-porch", 3.05, 4.0, "wall"),
+        ("interior-stairs", 4.55, 1.5, "roof_lr"), ("kem-orbit-right", 6.0, 1.0, "columns")]
+body = ""
+js = ""
+css1 = ""
+for i, (src, t, ms, mask) in enumerate(HOOK):
+    end_ = HOOK[i + 1][1] if i + 1 < len(HOOK) else 7.45
+    body += (f'    <div class="vwrap" id="s01-w{i}"><video id="s01-v{i}" class="clip full" src="assets/video/{src}.mp4" '
+             f'data-start="{t}" data-duration="{round(end_ - t + (0.5 if i + 1 < len(HOOK) else 0), 2)}" data-media-start="{ms}" muted playsinline></video></div>\n')
+    if mask:
+        css1 += f"    #s01-w{i} {{ opacity: 0; }}\n"
+        a, b = MASKS[mask]
+        js += f'    tl.fromTo("#s01-w{i}", {{ opacity: 1, clipPath: "{a}" }}, {{ opacity: 1, clipPath: "{b}", duration: 0.38, ease: "power3.out" }}, {t});\n'
+        js += f'    tl.fromTo("#s01-flash", {{ opacity: 0.45 }}, {{ opacity: 0, duration: 0.35, ease: "power2.out", immediateRender: false }}, {t + 0.05});\n'
+    js += f'    tl.fromTo("#s01-w{i}", {{ scale: 1.22 }}, {{ scale: 1.0, duration: 0.55, ease: "expo.out" }}, {t});\n'
+    js += f'    tl.to("#s01-w{i}", {{ scale: 1.07, duration: {round(end_ - t - 0.55 + 0.4, 2)}, ease: "sine.inOut" }}, {t + 0.55});\n'
+body += f"""    <div id="s01-flash"></div>
     <div class="t" id="s01-k" style="top:212px; font-size:40px; letter-spacing:.32em; font-weight:800"><span class="y">Design rumah</span></div>
     <div class="t" id="s01-h" style="top:256px; font-size:124px; letter-spacing:-.01em">Split<br />Level</div>"""
-js = ""
-for i, (k, t) in enumerate(HOOK):
-    end = HOOK[i + 1][1] if i + 1 < len(HOOK) else 7.45
-    if i:
-        js += f'    tl.fromTo("#s01-{k}", {{ opacity: 0, clipPath: "{MASKS["columns"][0]}" }}, {{ opacity: 1, clipPath: "{MASKS["columns"][1]}", duration: 0.35, ease: "power3.out" }}, {t});\n'
-    js += move(f"s01-{k}", t, round(end - t + 0.4, 2), PAN[k][0], PAN[k][1], 1.12, 1.0, "power2.out")
-css1 = "\n".join(f"    #s01-{k} {{ opacity: 0; }}" for k, _ in HOOK[1:])
+css1 += "    #s01-flash { position: absolute; inset: 0; background: #fff; opacity: 0; z-index: 1; }"
 js += """    tl.fromTo("#s01-h", { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.5, ease: "expo.out" }, 0);
     tl.fromTo("#s01-k", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.25);
     tl.to("#s01-h", { scale: 1.06, duration: 6.4, ease: "sine.inOut" }, 0.6);
@@ -185,14 +193,18 @@ LV = f"""
   <rect x="1420" y="779" width="380" height="94" rx="14" fill="rgba(12,14,18,.88)" stroke="#fff" stroke-width="4"/><text x="1610" y="843" text-anchor="middle" font-family="Montserrat" font-weight="900" font-size="58" fill="{YEL}" letter-spacing="5">LEVEL 02</text></g>
 <g id="s03-up"><line x1="1250" y1="1080" x2="1250" y2="905" stroke="{YEL}" stroke-width="8" /><path d="M1222 935 L1250 895 L1278 935" fill="none" stroke="{YEL}" stroke-width="8" stroke-linejoin="round" />
   <line x1="1215" y1="1086" x2="1285" y2="1086" stroke="{YEL}" stroke-width="6" /><line x1="1215" y1="890" x2="1285" y2="890" stroke="{YEL}" stroke-width="6" /></g>"""
-scene("s03", "#s03-l1, #s03-l2, #s03-up { opacity: 0; } #s03-i1, #s03-i2 { opacity: 0; }", shot("s03-m", "modern", LV) + """
+scene("s03", """#s03-l1, #s03-l2, #s03-up { opacity: 0; } #s03-i1, #s03-i2 { opacity: 0; }
+    #s03-m { top: -290px; }
+    #s03-pave { position: absolute; left: 0; top: 1560px; width: 1080px; height: 360px;
+      background: linear-gradient(to bottom, rgba(197,205,226,0), #C5CDE2 70px, #BAC2D8); }""", shot("s03-m", "modern", LV) + """
+    <div id="s03-pave"></div>
     <div class="vwrap" id="s03-i1"><video id="s03-v1" class="clip full" src="assets/video/interior-stairs.mp4" data-start="5.35" data-duration="2.55" data-media-start="1.0" muted playsinline></video></div>
     <div class="vwrap" id="s03-i2"><video id="s03-v2" class="clip full" src="assets/video/interior-room.mp4" data-start="7.85" data-duration="2.5" data-media-start="0.6" muted playsinline></video></div>
     <div class="t" id="s03-h" style="top:206px; font-size:96px">Split <span class="y">level</span></div>
     <div class="t ser" id="s03-d" style="top:320px; font-size:62px">aras lantai berbeza</div>
     <div class="t" id="s03-u" style="top:420px; font-size:40px; letter-spacing:.2em; font-weight:800">Unik <span class="y">•</span> Ada karakter</div>""", f"""
-{move("s03-m", 0, 5.5, 0.13, 0.63, 1.0, 1.0)}{rise("#s03-h", 0.1)}{rise("#s03-d", 1.4, 0.6, 24)}
-    tl.fromTo("#s03-l1", {{ opacity: 0, x: -60 }}, {{ opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }}, 0.8);
+{move("s03-m", 0, 5.5, 0.05, 0.6, 1.0, 1.0)}{rise("#s03-h", 0.1)}{rise("#s03-d", 1.4, 0.6, 24)}
+    tl.fromTo("#s03-l1", {{ opacity: 0, x: -60 }}, {{ opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }}, 0.5);
     tl.fromTo("#s03-up", {{ opacity: 0, y: 40 }}, {{ opacity: 1, y: 0, duration: 0.5, ease: "back.out(2)" }}, 2.6);
     tl.fromTo("#s03-l2", {{ opacity: 0, x: 60 }}, {{ opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }}, 4.5);
     tl.fromTo("#s03-i1", {{ opacity: 1, clipPath: "{MASKS['wall'][0]}" }}, {{ opacity: 1, clipPath: "{MASKS['wall'][1]}", duration: 0.55, ease: "power3.inOut" }}, 5.35);
@@ -501,7 +513,7 @@ for gi in range(len(GAL)):
         lo, hi_ = (mid, hi_) if _ease(mid) < frac else (lo, mid)
     GAL_SFX.append((f"sx-slide-{gi}", ("whoosh-short", "whoosh")[gi % 2], round(START["s05"] + lo * 4.85 - 0.12, 2), 0.24))
 SFX = [("sx-hook", "impact-bass-1", 0.0, 0.5)]
-SFX += [(f"sx-hook-{i}", ("whoosh-short", "whoosh")[i % 2], round(t - 0.05, 2), 0.3) for i, (k, t) in enumerate(HOOK[1:])]
+SFX += [(f"sx-hook-{i}", ("whoosh-short", "whoosh")[i % 2], round(h[1] - 0.05, 2), 0.32) for i, h in enumerate(HOOK[1:])]
 SFX += [("sx-kem", "whoosh", START["s02"] - 0.03, 0.3), ("sx-kem-pin", "pop", START["s02"] + t_kem - 0.1, 0.3), ("sx-wide", "whoosh-short", START["s02"] + 5.27, 0.3),
         ("sx-lv1", "click-soft", START["s03"] + 2.2, 0.3), ("sx-lv2", "click-soft", START["s03"] + 3.4, 0.3), ("sx-up", "pop", START["s03"] + 4.3, 0.25),
         ("sx-rise", "riser", START["s04"] + 1.72 - 1.97, 0.22, 1.5, 2.0), ("sx-drop", "impact-bass-2", START["s04"] + 1.72, 0.45),
