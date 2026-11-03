@@ -167,8 +167,8 @@ scene("s02", """
     #s02-loc .pin { width: 58px; height: 58px; }
     #s02-loc .l1 { font-weight: 900; font-size: 52px; letter-spacing: .08em; line-height: 1; text-shadow: 0 6px 20px rgba(0,0,0,.6); }
     #s02-loc .l2 { font-weight: 700; font-size: 30px; letter-spacing: .3em; color: """ + YEL + """; margin-top: 6px; }
-""", f"""    <div class="vwrap" id="s02-a"><video id="s02-v1" class="clip full" src="assets/video/walk-front.mp4" data-start="0" data-duration="5.4" data-media-start="0.4" muted playsinline></video></div>
-    <div class="vwrap" id="s02-b"><video id="s02-v2" class="clip full" src="assets/video/drone-house.mp4" data-start="5.3" data-duration="2.7" data-media-start="0.2" muted playsinline></video></div>
+""", f"""    <div class="vwrap" id="s02-a"><video id="s02-v1" class="clip full" src="assets/video/kem-approach.mp4" data-start="0" data-duration="5.4" data-media-start="0.5" muted playsinline></video></div>
+    <div class="vwrap" id="s02-b"><video id="s02-v2" class="clip full" src="assets/video/kem-porch.mp4" data-start="5.3" data-duration="2.7" data-media-start="1.0" muted playsinline></video></div>
     <div id="s02-loc"><svg class="pin" viewBox="0 0 24 24"><path d="M12 2C7.6 2 4 5.4 4 9.8 4 15.5 12 22 12 22s8-6.5 8-12.2C20 5.4 16.4 2 12 2z" fill="{YEL}"/><circle cx="12" cy="9.8" r="3.2" fill="{INK}"/></svg>
       <div><div class="l1">KEMAMAN</div><div class="l2">TERENGGANU</div></div></div>""", f"""
     tl.fromTo("#s02-a", {{ scale: 1.0 }}, {{ scale: 1.1, duration: 5.4, ease: "sine.inOut" }}, 0);
@@ -180,7 +180,7 @@ scene("s02", """
 # ---------------------------------------------------------------- S03 SPLIT LEVEL EXPLAINED (Modern Tropical render)
 LV = f"""
 <g id="s03-l1"><line x1="70" y1="1086" x2="1060" y2="1086" stroke="{YEL}" stroke-width="7" stroke-dasharray="26 14" pathLength="1" />
-  <rect x="340" y="975" width="380" height="94" rx="14" fill="rgba(12,14,18,.88)" stroke="{YEL}" stroke-width="4"/><text x="530" y="1039" text-anchor="middle" font-family="Montserrat" font-weight="900" font-size="58" fill="#fff" letter-spacing="5">LEVEL 01</text></g>
+  <line x1="530" y1="874" x2="530" y2="1086" stroke="{YEL}" stroke-width="5" /><rect x="340" y="780" width="380" height="94" rx="14" fill="rgba(12,14,18,.88)" stroke="{YEL}" stroke-width="4"/><text x="530" y="844" text-anchor="middle" font-family="Montserrat" font-weight="900" font-size="58" fill="#fff" letter-spacing="5">LEVEL 01</text></g>
 <g id="s03-l2"><line x1="1360" y1="890" x2="2440" y2="890" stroke="#fff" stroke-width="7" stroke-dasharray="26 14" />
   <rect x="1420" y="779" width="380" height="94" rx="14" fill="rgba(12,14,18,.88)" stroke="#fff" stroke-width="4"/><text x="1610" y="843" text-anchor="middle" font-family="Montserrat" font-weight="900" font-size="58" fill="{YEL}" letter-spacing="5">LEVEL 02</text></g>
 <g id="s03-up"><line x1="1250" y1="1080" x2="1250" y2="905" stroke="{YEL}" stroke-width="8" /><path d="M1222 935 L1250 895 L1278 935" fill="none" stroke="{YEL}" stroke-width="8" stroke-linejoin="round" />
@@ -203,8 +203,8 @@ scene("s03", "#s03-l1, #s03-l2, #s03-up { opacity: 0; } #s03-i1, #s03-i2 { opaci
 {rise("#s03-u", round(wt("unik") - START["s03"], 2), 0.5, 24)}""")
 
 # ---------------------------------------------------------------- S04 PATTERN INTERRUPT: one house -> many
-GRID = [("modern", "Modern Tropical"), ("muji", "Muji"), ("english", "English"), ("nordic", "Nordic"), ("malay", "Malay Traditional"), ("kemaman3d", "Kemaman")]
-POS = [(32, 300), (556, 300), (32, 610), (556, 610), (32, 920), (556, 920)]
+GRID = [("modern", "Modern Tropical"), ("muji", "Muji"), ("english", "English"), ("nordic", "Nordic"), ("malay", "Malay Traditional")]
+POS = [(32, 300), (556, 300), (32, 610), (556, 610), (294, 920)]
 t_bukan = round(wt("bukan") - START["s04"], 2)
 cards = "\n".join(f'    <div class="acard" id="s04-c{i}" style="left:{x}px; top:{y}px; width:492px; height:290px"><img src="assets/img/{k}.jpg" alt="" /><span>{n}</span></div>'
                   for i, ((k, n), (x, y)) in enumerate(zip(GRID, POS)))
@@ -220,7 +220,7 @@ scene("s04", "#s04-h { opacity: 0; } #s04-one { transform-origin: 50% 45%; }", "
     <div class="t" id="s04-h" style="top:200px; font-size:82px">Bukan <span class="y">satu style</span> je</div>""", js)
 
 # ---------------------------------------------------------------- S05 COLLECTION GALLERY
-GAL = [("modern", "Modern Tropical"), ("muji", "Muji Style"), ("english", "English Style"), ("nordic", "Nordic Style"), ("malay", "Malay Traditional"), ("kemaman3d", "Kemaman")]
+GAL = [("modern", "Modern Tropical"), ("muji", "Muji Style"), ("english", "English Style"), ("nordic", "Nordic Style"), ("malay", "Malay Traditional")]
 gal = "\n".join(f'      <div class="gc" style="left:{i * 740}px"><img src="assets/img/{k}.jpg" alt="" /><b>{n}</b></div>' for i, (k, n) in enumerate(GAL))
 scene("s05", f"""
     #s05-row {{ position: absolute; left: 0; top: 500px; height: 960px; width: 4500px; }}
@@ -236,7 +236,7 @@ scene("s05", f"""
     </div>
     <div class="num" id="s05-n" style="top:206px">Mahligai Idaman</div>
     <div class="t" id="s05-h" style="top:252px; font-size:84px">Koleksi design<br /><span class="y">split level</span></div>""", """
-    tl.fromTo("#s05-row", { x: 1000 }, { x: -3500, duration: 4.85, ease: "power2.inOut" }, 0);
+    tl.fromTo("#s05-row", { x: 1000 }, { x: -2770, duration: 4.85, ease: "power2.inOut" }, 0);
     tl.fromTo("#s05-row .gc", { rotateY: 0, scale: 0.92 }, { scale: 1, duration: 0.6, stagger: 0.12, ease: "power2.out" }, 0);
 """ + rise("#s05-n", 0.1, 0.4, 20) + rise("#s05-h", 0.2))
 
@@ -293,7 +293,7 @@ scene("s10", f"""
     <div id="s10-gr"><img src="assets/img/plan-ground-hd.png" alt="" /></div>
     <div id="s10-pen"></div>
 {shot("s10-3d", "kemaman3d")}
-    <div class="vwrap" id="s10-house"><video id="s10-hv" class="clip full" src="assets/video/walk-under.mp4" data-start="8.0" data-duration="3.13" data-media-start="0.3" muted playsinline></video></div>
+    <div class="vwrap" id="s10-house"><video id="s10-hv" class="clip full" src="assets/video/kem-orbit-right.mp4" data-start="8.0" data-duration="3.13" data-media-start="5.2" muted playsinline></video></div>
     <div class="t" id="s10-h" style="top:206px; font-size:84px">Pelukis pelan<br /><span class="y">sendiri</span></div>
     <div id="s10-steps">{stp}</div>
     <div class="kw" id="s10-k1" style="top:900px"><b>Cita rasa</b></div>
@@ -337,7 +337,7 @@ scene("s12", """
     #s12-fade { position: absolute; inset: 0; background: #000; opacity: 0; z-index: 5; }
     #s12-b { position: absolute; left: 60px; right: 60px; top: 760px; z-index: 3; display: flex; justify-content: center; opacity: 0; }
     #s12-b span { padding: 18px 34px; background: """ + YEL + f"""; color: {INK}; font-weight: 900; font-size: 54px; letter-spacing: .06em; border-radius: 14px; }}
-""", f"""    <div class="vwrap" id="s12-v"><video id="s12-vid" class="clip full" src="assets/video/drone-estate.mp4" data-start="0" data-duration="5.3" data-media-start="1.0" muted playsinline></video></div>
+""", f"""    <div class="vwrap" id="s12-v"><video id="s12-vid" class="clip full" src="assets/video/kem-orbit-left.mp4" data-start="0" data-duration="5.3" data-media-start="5.6" muted playsinline></video></div>
     <div class="t" id="s12-l1" style="top:206px; font-size:74px">Bina rumah<br />split level</div>
     <div class="t y" id="s12-l2" style="top:378px; font-size:60px">Kelantan &amp; Terengganu</div>
     <div class="t" id="s12-l3" style="top:478px; font-size:46px; letter-spacing:.24em; font-weight:800">Mahligai Idaman</div>
@@ -487,12 +487,26 @@ with open(f"{OUT}/compositions/captions.html", "w") as f:
 
 # ---------------------------------------------------------------- INDEX + SOUND
 hosts = "\n".join(f'      <div id="{c}" data-composition-id="{c}" data-composition-src="compositions/{c}.html" data-start="{s}" data-duration="{d}" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>' for c, s, d in SCENES)
+def _ease(u):  # GSAP power2.inOut
+    return 2 * u * u if u < 0.5 else 1 - (-2 * u + 2) ** 2 / 2
+
+
+GAL_SFX = []
+for gi in range(len(GAL)):
+    target = 190 - gi * 740           # row x at which card gi is centred on screen
+    frac = (1000 - target) / (1000 + 2770)
+    lo, hi_ = 0.0, 1.0
+    for _ in range(40):
+        mid = (lo + hi_) / 2
+        lo, hi_ = (mid, hi_) if _ease(mid) < frac else (lo, mid)
+    GAL_SFX.append((f"sx-slide-{gi}", ("whoosh-short", "whoosh")[gi % 2], round(START["s05"] + lo * 4.85 - 0.12, 2), 0.24))
 SFX = [("sx-hook", "impact-bass-1", 0.0, 0.5)]
 SFX += [(f"sx-hook-{i}", ("whoosh-short", "whoosh")[i % 2], round(t - 0.05, 2), 0.3) for i, (k, t) in enumerate(HOOK[1:])]
 SFX += [("sx-kem", "whoosh", START["s02"] - 0.03, 0.3), ("sx-kem-pin", "pop", START["s02"] + t_kem - 0.1, 0.3), ("sx-wide", "whoosh-short", START["s02"] + 5.27, 0.3),
         ("sx-lv1", "click-soft", START["s03"] + 2.2, 0.3), ("sx-lv2", "click-soft", START["s03"] + 3.4, 0.3), ("sx-up", "pop", START["s03"] + 4.3, 0.25),
         ("sx-rise", "riser", START["s04"] + 1.72 - 1.97, 0.22, 1.5, 2.0), ("sx-drop", "impact-bass-2", START["s04"] + 1.72, 0.45),
         ("sx-gal", "whoosh", START["s05"] - 0.02, 0.3),
+    ] + GAL_SFX + [
         ("sx-st1", "whoosh-short", START["s06"] - 0.03, 0.3), ("sx-st2", "whoosh", START["s07"] - 0.03, 0.3), ("sx-st3", "whoosh-short", START["s08"] - 0.03, 0.3),
         ("sx-st4", "whoosh", START["s09"] - 0.03, 0.3), ("sx-st5", "whoosh-short", START["s09"] + t_malay - 0.03, 0.3),
         ("sx-pen", "sparkle", START["s10"] + 0.1, 0.18), ("sx-plan", "whoosh-short", START["s10"] + 2.97, 0.25), ("sx-3d", "whoosh", START["s10"] + 5.57, 0.25),
