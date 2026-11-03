@@ -1,0 +1,76 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #F1F2F4; font-family: Inter, sans-serif; color: #1C1E21; }
+    #root .bg { position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(28,30,33,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(28,30,33,.045) 1px, transparent 1px);
+      background-size: 60px 60px; background-position: 30px 0; }
+    #root .stage { position: absolute; left: 0; top: 0; width: 1600px; height: 2800px; transform-origin: 0 0;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0px, #000 72px);
+      mask-image: linear-gradient(to bottom, transparent 0px, #000 72px); }
+    #root .stage .floor { position: absolute; left: -1200px; top: 880px; width: 4000px; height: 1900px;
+      background: linear-gradient(to bottom, #C1BEC6 0px, #CBC9CF 500px, #D9D8DC 1900px); }
+    #root .stage .floorfade { position: absolute; left: 0; top: 800px; width: 1600px; height: 84px;
+      background: linear-gradient(to bottom, rgba(193,190,198,0), #C1BEC6); }
+    #root .stage.nomask { -webkit-mask-image: none; mask-image: none; }
+    #root .stage img, #root .stage .layer { position: absolute; left: 0; top: 0; width: 1600px; height: 900px; display: block; }
+    #root .stage svg { position: absolute; left: 0; top: 0; width: 1600px; height: 900px; overflow: visible; }
+    #root .win { position: absolute; left: 0; width: 1080px; overflow: hidden; background: #F1F2F4; }
+    #root .headline { position: absolute; left: 80px; right: 80px; text-align: center; font-weight: 900; font-size: 80px;
+      line-height: 1.0; letter-spacing: -0.02em; text-transform: uppercase; color: #1C1E21; }
+    #root .headline .ln { display: block; }
+    #root .kicker { position: absolute; left: 0; right: 0; text-align: center; font-weight: 700; font-size: 26px;
+      letter-spacing: 0.32em; text-transform: uppercase; color: #7D7A75; }
+    #root .tagwrap { position: absolute; left: 0; right: 0; display: flex; justify-content: center; }
+    #root .tag { display: flex; align-items: center; gap: 22px; padding: 22px 36px; background: rgba(250,250,249,.96);
+      border: 1.5px solid #1C1E21; border-radius: 6px; box-shadow: 0 18px 40px rgba(20,22,25,.18); }
+    #root .tag .num { font-weight: 900; font-size: 44px; color: #A8875A; letter-spacing: 0.02em; }
+    #root .tag .dash { width: 46px; height: 2px; background: #1C1E21; }
+    #root .tag .name { font-weight: 700; font-size: 42px; letter-spacing: 0.16em; color: #1C1E21; }
+    #root .chip { position: absolute; padding: 10px 18px; background: #1C1E21; color: #fff; font-weight: 700; font-size: 28px;
+      letter-spacing: 0.22em; text-transform: uppercase; border-radius: 4px; }
+    #root .chip.light { background: rgba(250,250,249,.95); color: #1C1E21; border: 1.5px solid #1C1E21; }
+    #root .pointer { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+
+    #s10-vs { position: absolute; left: 480px; top: 620px; width: 120px; height: 120px; border-radius: 50%; background: #1C1E21;
+      color: #fff; font-weight: 900; font-size: 44px; display: flex; align-items: center; justify-content: center; border: 6px solid #F1F2F4; }
+
+  </style>
+  <div id="root" data-composition-id="s10" data-width="1080" data-height="1920" data-duration="4.6">
+    <div class="bg"></div>
+    <div class="win" id="s10-wt" style="top:190px; height:480px">
+    <div class="stage nomask" id="s10-st">
+      <div class="floor"></div>
+      <img id="s10-st-plain" src="assets/house-plain.jpg" alt="" />
+      
+      <div class="floorfade"></div>
+
+    </div>
+      <div class="chip light" style="left:36px; bottom:28px">Simple</div>
+    </div>
+    <div class="win" id="s10-wb" style="top:690px; height:480px">
+    <div class="stage nomask" id="s10-sb">
+      <div class="floor"></div>
+      
+      <img id="s10-sb-full" src="assets/house-full.jpg" alt="" />
+      <div class="floorfade"></div>
+
+    </div>
+      <div class="chip" style="right:36px; bottom:28px; background:#A8875A">Full accessories</div>
+    </div>
+    <div id="s10-vs">VS</div>
+  </div>
+  <script>
+    const F = (s, px, py, cx, cy) => ({ x: cx - px * s, y: cy - py * s, scale: s });
+    const R = (x1, y1, x2, y2) =>
+      `inset(${(y1 / 9).toFixed(3)}% ${(100 - x2 / 16).toFixed(3)}% ${(100 - y2 / 9).toFixed(3)}% ${(x1 / 16).toFixed(3)}%)`;
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#s10-st", F(0.70, 800, 470, 540, 240), { ...F(0.75, 800, 470, 540, 240), duration: 4.6, ease: "sine.inOut" }, 0);
+    tl.fromTo("#s10-sb", F(0.75, 800, 470, 540, 240), { ...F(0.70, 800, 470, 540, 240), duration: 4.6, ease: "sine.inOut" }, 0);
+    tl.fromTo("#s10-wt", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.55, ease: "power3.inOut" }, 0);
+    tl.fromTo("#s10-wb", { clipPath: "inset(0% 0% 0% 100%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.55, ease: "power3.inOut" }, 0.15);
+    tl.fromTo("#s10-vs", { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2.2)" }, 0.6);
+
+    window.__timelines["s10"] = tl;
+  </script>
+</template>

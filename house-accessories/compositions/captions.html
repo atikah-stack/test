@@ -1,0 +1,50 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: Inter, sans-serif; }
+    #root .cap { position: absolute; left: 80px; right: 80px; top: 1170px; text-align: center; }
+    #root .pill { display: inline-block; padding: 16px 28px; background: rgba(24,26,29,.95); color: #fff; border-radius: 14px;
+      font-weight: 700; font-size: 40px; line-height: 1.28; letter-spacing: -0.005em; }
+  </style>
+  <div id="root" data-composition-id="captions" data-width="1080" data-height="1920" data-duration="63">
+    <div class="cap clip" id="cap-01" data-start="0.2" data-duration="4.3"><span class="pill">Apa jadi kalau rumah ni kita buang semua aksesori dia?</span></div>
+    <div class="cap clip" id="cap-02" data-start="4.7" data-duration="3.8"><span class="pill">Haa, cuba tengok! Nampak hambar dan tak berseri langsung kan?</span></div>
+    <div class="cap clip" id="cap-03" data-start="8.7" data-duration="4.8"><span class="pill">Tapi bila kita tambahkan aksesori satu per satu, terus berubah rupa rumah!</span></div>
+    <div class="cap clip" id="cap-04" data-start="13.7" data-duration="1.6"><span class="pill">Yang pertama, groove line!</span></div>
+    <div class="cap clip" id="cap-05" data-start="15.4" data-duration="5.1"><span class="pill">Garisan dekat dinding ni buat rumah nampak lebih menarik dan tak terlalu plain.</span></div>
+    <div class="cap clip" id="cap-06" data-start="20.7" data-duration="1.6"><span class="pill">Yang kedua, batu hiasan!</span></div>
+    <div class="cap clip" id="cap-07" data-start="22.4" data-duration="4.1"><span class="pill">Batu dekat bahagian pintu masuk ni buat rumah nampak lebih eksklusif.</span></div>
+    <div class="cap clip" id="cap-08" data-start="26.7" data-duration="1.6"><span class="pill">Yang ketiga, cornice!</span></div>
+    <div class="cap clip" id="cap-09" data-start="28.4" data-duration="4.5"><span class="pill">Kemasan dekat tingkap ni pula buat design rumah nampak lebih kemas dan menyerlah.</span></div>
+    <div class="cap clip" id="cap-10" data-start="33.1" data-duration="1.7"><span class="pill">Dan yang keempat, concrete slab!</span></div>
+    <div class="cap clip" id="cap-11" data-start="34.9" data-duration="3.6"><span class="pill">Elemen ni buat fasad rumah nampak lebih berdimensi.</span></div>
+    <div class="cap clip" id="cap-12" data-start="38.7" data-duration="3.8"><span class="pill">Haa, nampak tak beza dia?</span></div>
+    <div class="cap clip" id="cap-13" data-start="42.7" data-duration="3.8"><span class="pill">Tapi nak tambah aksesori ni, mestilah kena tambah bajet juga!</span></div>
+    <div class="cap clip" id="cap-14" data-start="46.7" data-duration="4.4"><span class="pill">Jadi, korang sanggup tambah bajet atau cukup rumah yang simple?</span></div>
+    <div class="cap clip" id="cap-15" data-start="51.3" data-duration="3.0"><span class="pill">Sebab rumah ni kita bina sekali je seumur hidup.</span></div>
+    <div class="cap clip" id="cap-16" data-start="54.4" data-duration="2.5"><span class="pill">Kalau dah buat, biarlah sedap mata memandang!</span></div>
+    <div class="cap clip" id="cap-17" data-start="57.1" data-duration="2.8"><span class="pill">Nak jimat bajet atau nak puas hati setiap kali tengok rumah sendiri?</span></div>
+    <div class="cap clip" id="cap-18" data-start="60.0" data-duration="2.9"><span class="pill">Korang team mana? Cuba komen dekat bawah!</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#cap-01 .pill", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 0.2);
+    tl.fromTo("#cap-02 .pill", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 4.7);
+    tl.fromTo("#cap-03 .pill", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 8.7);
+    tl.fromTo("#cap-04 .pill", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 13.7);
+    tl.fromTo("#cap-05 .pill", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 15.4);
+    tl.fromTo("#cap-06 .pill", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 20.7);
+    tl.fromTo("#cap-07 .pill", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 22.4);
+    tl.fromTo("#cap-08 .pill", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 26.7);
+    tl.fromTo("#cap-09 .pill", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 28.4);
+    tl.fromTo("#cap-10 .pill", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 33.1);
+    tl.fromTo("#cap-11 .pill", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 34.9);
+    tl.fromTo("#cap-12 .pill", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 38.7);
+    tl.fromTo("#cap-13 .pill", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 42.7);
+    tl.fromTo("#cap-14 .pill", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 46.7);
+    tl.fromTo("#cap-15 .pill", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 51.3);
+    tl.fromTo("#cap-16 .pill", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 54.4);
+    tl.fromTo("#cap-17 .pill", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 57.1);
+    tl.fromTo("#cap-18 .pill", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 60.0);
+    window.__timelines["captions"] = tl;
+  </script>
+</template>
