@@ -28,7 +28,7 @@ ROUTE_GROUND = "960,618 820,640 745,560 712,440 690,368"
 
 SCENES = [("s01", 0, 3.6), ("s02", 3.6, 5.0), ("s03", 8.6, 6.4), ("s04", 15.0, 3.8), ("s05", 18.8, 3.9),
           ("s06", 22.7, 3.05), ("s07", 25.75, 4.55), ("s08", 30.3, 5.1), ("s09", 35.4, 4.8), ("s10", 40.2, 6.3),
-          ("s11", 46.5, 6.9), ("s12", 53.4, 9.6), ("s13", 63.0, 7.55), ("s14", 70.55, 3.15)]
+          ("s11", 46.5, 6.9), ("s12", 53.4, 9.6), ("s13", 63.0, 7.55), ("s14", 70.55, 3.15), ("s15", 73.7, 5.0)]
 START = {c: s for c, s, d in SCENES}
 TOTAL = round(SCENES[-1][1] + SCENES[-1][2], 2)
 
@@ -379,6 +379,33 @@ scene("s14", f"""
     tl.fromTo("#s14-arrow", {{ y: 0 }}, {{ y: 16, duration: 0.35, ease: "sine.inOut", yoyo: true, repeat: 5 }}, 0.9);
 """)
 
+# ---------------------------------------------------------------- S15 OUTRO (company card, same as the previous video)
+scene("s15", f"""
+    #s15-img {{ position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: 50% 55%; }}
+    #s15-img img {{ position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; display: block; }}
+    #root .ring {{ position: absolute; width: 120px; height: 120px; margin: -60px 0 0 -60px; border-radius: 50%; border: 5px solid #F6C343; opacity: 0; }}
+    #s15-shine {{ position: absolute; left: 30px; top: 1180px; width: 1020px; height: 420px; overflow: hidden; }}
+    #s15-band {{ position: absolute; left: 0; top: 0; width: 220px; height: 420px;
+      background: linear-gradient(100deg, rgba(255,255,255,0), rgba(255,255,255,.38) 50%, rgba(255,255,255,0)); }}
+    #s15-glow {{ position: absolute; left: 86px; top: 1440px; width: 908px; height: 132px; border-radius: 30px; border: 4px solid #F6C343;
+      box-shadow: 0 0 40px rgba(246,195,67,.75); opacity: 0; }}
+    #s15-fade {{ position: absolute; inset: 0; background: #0B0F16; }}
+""", """    <div id="s15-img"><img src="assets/outro.jpg" alt="" /></div>
+    <div class="ring" id="s15-r1" style="left:477px; top:888px"></div>
+    <div class="ring" id="s15-r2" style="left:744px; top:1002px"></div>
+    <div id="s15-shine"><div id="s15-band"></div></div>
+    <div id="s15-glow"></div>
+    <div id="s15-fade"></div>""", """
+    tl.fromTo("#s15-fade", { opacity: 1 }, { opacity: 0, duration: 0.45, ease: "power2.out" }, 0);
+    tl.fromTo("#s15-img", { scale: 1.14 }, { scale: 1.0, duration: 1.1, ease: "expo.out" }, 0);
+    tl.to("#s15-img", { scale: 1.03, duration: 3.9, ease: "sine.inOut" }, 1.1);
+    ["#s15-r1", "#s15-r2"].forEach((r, i) => {
+      tl.fromTo(r, { opacity: 0.95, scale: 0.3 }, { opacity: 0, scale: 2.1, duration: 1.0, ease: "power2.out", repeat: 2 }, 0.7 + i * 0.25);
+    });
+    tl.fromTo("#s15-band", { x: -240 }, { x: 1060, duration: 1.1, ease: "sine.inOut" }, 1.0);
+    tl.fromTo("#s15-glow", { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "sine.inOut", yoyo: true, repeat: 5 }, 1.6);
+""")
+
 # ---------------------------------------------------------------- CAPTIONS synced to the voiceover
 SCRIPT = """Nak mandi pun kena turun bawah guna tandas dapur?
 Haa, ada yang komen pasal layout rumah split level dekat Kemaman ni!
@@ -477,6 +504,7 @@ SFX = [
     ("sx-12-wipe", "whoosh", "s12", 3.0, 0.28), ("sx-12-up", "whoosh-short", "s12", 5.6, 0.28),
     ("sx-13-in", "whoosh", "s13", -0.02, 0.3), ("sx-13-a", "pop", "s13", 3.1, 0.35), ("sx-13-b", "pop", "s13", 5.7, 0.35),
     ("sx-14-in", "impact-bass-1", "s14", 0.0, 0.4),
+    ("sx-outro", "whoosh", "s15", -0.02, 0.45), ("sx-outro-hit", "impact-bass-1", "s15", 0.05, 0.55), ("sx-outro-sp", "sparkle", "s15", 1.0, 0.3),
 ]
 DUR = {"click-soft": 0.36, "click": 0.36, "impact-bass-1": 2.1, "impact-bass-2": 2.55, "key-press": 0.43, "pop": 0.72,
        "sparkle": 1.8, "whoosh-cinematic": 5.5, "whoosh-short": 0.57, "whoosh": 0.57}

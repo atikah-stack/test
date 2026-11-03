@@ -1,0 +1,65 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #FFFFFF; font-family: Montserrat, sans-serif; color: #fff; }
+    #root .paper { position: absolute; inset: 0; background: #FFFFFF;
+      background-image: linear-gradient(rgba(22,24,29,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(22,24,29,.05) 1px, transparent 1px);
+      background-size: 54px 54px; }
+    #root .plan { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+    #root .plan img { position: absolute; left: 0; top: 0; display: block; }
+    #root .plan svg { position: absolute; left: 0; top: 0; overflow: visible; }
+    #root .card { position: absolute; left: 50px; right: 50px; padding: 26px 34px 28px; background: #16181D; border-radius: 22px;
+      text-align: center; font-weight: 900; font-size: 64px; line-height: 1.06; text-transform: uppercase; color: #fff;
+      box-shadow: 0 22px 50px rgba(0,0,0,.28); }
+    #root .card .a { color: #F59E0B; }
+    #root .card .r { color: #FF6B6F; }
+    #root .kick { position: absolute; left: 0; right: 0; display: flex; justify-content: center; }
+    #root .kick span { padding: 10px 22px; background: #F59E0B; color: #16181D; font-weight: 900; font-size: 32px; letter-spacing: .14em;
+      text-transform: uppercase; border-radius: 8px; }
+    #root .chip { position: absolute; padding: 12px 22px; background: #16181D; color: #fff; font-weight: 800; font-size: 34px;
+      letter-spacing: .06em; text-transform: uppercase; border-radius: 10px; white-space: nowrap; box-shadow: 0 10px 26px rgba(0,0,0,.25); }
+    #root .chip i { display: inline-block; width: 16px; height: 16px; border-radius: 50%; background: #F59E0B; margin-right: 12px; vertical-align: 2px; font-style: normal; }
+    #root .inset { position: absolute; width: 400px; height: 520px; border-radius: 26px; overflow: hidden; border: 6px solid #fff;
+      box-shadow: 0 24px 60px rgba(0,0,0,.35); background: #16181D; }
+    #root .inset video { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }
+    #root .inset .tagv { position: absolute; left: 14px; bottom: 14px; padding: 8px 14px; background: rgba(22,24,29,.85); color: #fff;
+      font-weight: 800; font-size: 28px; letter-spacing: .08em; border-radius: 8px; text-transform: uppercase; }
+    #root video.full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    #root .dim { position: absolute; inset: 0; background: rgba(12,14,18,.5); }
+    #root .topshade { position: absolute; left: 0; right: 0; top: 0; height: 760px; background: linear-gradient(rgba(12,14,18,.75), rgba(12,14,18,0)); }
+
+    #s15-img { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: 50% 55%; }
+    #s15-img img { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; display: block; }
+    #root .ring { position: absolute; width: 120px; height: 120px; margin: -60px 0 0 -60px; border-radius: 50%; border: 5px solid #F6C343; opacity: 0; }
+    #s15-shine { position: absolute; left: 30px; top: 1180px; width: 1020px; height: 420px; overflow: hidden; }
+    #s15-band { position: absolute; left: 0; top: 0; width: 220px; height: 420px;
+      background: linear-gradient(100deg, rgba(255,255,255,0), rgba(255,255,255,.38) 50%, rgba(255,255,255,0)); }
+    #s15-glow { position: absolute; left: 86px; top: 1440px; width: 908px; height: 132px; border-radius: 30px; border: 4px solid #F6C343;
+      box-shadow: 0 0 40px rgba(246,195,67,.75); opacity: 0; }
+    #s15-fade { position: absolute; inset: 0; background: #0B0F16; }
+
+  </style>
+  <div id="root" data-composition-id="s15" data-width="1080" data-height="1920" data-duration="5.0">
+    <div class="paper"></div>
+    <div id="s15-img"><img src="assets/outro.jpg" alt="" /></div>
+    <div class="ring" id="s15-r1" style="left:477px; top:888px"></div>
+    <div class="ring" id="s15-r2" style="left:744px; top:1002px"></div>
+    <div id="s15-shine"><div id="s15-band"></div></div>
+    <div id="s15-glow"></div>
+    <div id="s15-fade"></div>
+  </div>
+  <script>
+    const F = (s, px, py, cx, cy) => ({ x: cx - px * s, y: cy - py * s, scale: s });
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#s15-fade", { opacity: 1 }, { opacity: 0, duration: 0.45, ease: "power2.out" }, 0);
+    tl.fromTo("#s15-img", { scale: 1.14 }, { scale: 1.0, duration: 1.1, ease: "expo.out" }, 0);
+    tl.to("#s15-img", { scale: 1.03, duration: 3.9, ease: "sine.inOut" }, 1.1);
+    ["#s15-r1", "#s15-r2"].forEach((r, i) => {
+      tl.fromTo(r, { opacity: 0.95, scale: 0.3 }, { opacity: 0, scale: 2.1, duration: 1.0, ease: "power2.out", repeat: 2 }, 0.7 + i * 0.25);
+    });
+    tl.fromTo("#s15-band", { x: -240 }, { x: 1060, duration: 1.1, ease: "sine.inOut" }, 1.0);
+    tl.fromTo("#s15-glow", { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "sine.inOut", yoyo: true, repeat: 5 }, 1.6);
+
+    window.__timelines["s15"] = tl;
+  </script>
+</template>
