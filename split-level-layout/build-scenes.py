@@ -8,6 +8,7 @@ OUT = sys.argv[1] if len(sys.argv) > 1 else "."
 os.makedirs(f"{OUT}/compositions", exist_ok=True)
 
 AMB = "#F59E0B"     # accent: room highlights, routes
+YEL = "#F6C343"     # title yellow (white + yellow titles, like the reference)
 RED = "#E5484D"     # the issue
 TEAL = "#14B8A6"    # hypothetical suggestion only
 INK = "#16181D"
@@ -40,13 +41,16 @@ BASE_CSS = f"""
     #root .plan {{ position: absolute; left: 0; top: 0; transform-origin: 0 0; }}
     #root .plan img {{ position: absolute; left: 0; top: 0; display: block; }}
     #root .plan svg {{ position: absolute; left: 0; top: 0; overflow: visible; }}
-    #root .card {{ position: absolute; left: 50px; right: 50px; padding: 26px 34px 28px; background: {INK}; border-radius: 22px;
-      text-align: center; font-weight: 900; font-size: 64px; line-height: 1.06; text-transform: uppercase; color: #fff;
-      box-shadow: 0 22px 50px rgba(0,0,0,.28); }}
-    #root .card .a {{ color: {AMB}; }}
+    #root .card {{ position: absolute; left: 40px; right: 40px; padding: 0; background: transparent; border-radius: 0;
+      text-shadow: 0 4px 0 rgba(0,0,0,.35), 0 10px 30px rgba(0,0,0,.7), 0 0 3px rgba(0,0,0,.85);
+      text-align: center; font-weight: 900; font-size: 74px; line-height: 1.06; text-transform: uppercase; color: #fff; }}
+    #root .card .a {{ color: {YEL}; }}
+    #root .tshade {{ position: absolute; left: 0; top: 0; width: 1080px; height: 900px; z-index: 2;
+      background: linear-gradient(rgba(10,12,16,.9) 0px, rgba(10,12,16,.72) 420px, rgba(10,12,16,0) 880px); }}
+    #root .card, #root .kick, #root .chip, #root .opt, #root .row, #root #s14-cm {{ z-index: 3; }}
     #root .card .r {{ color: #FF6B6F; }}
     #root .kick {{ position: absolute; left: 0; right: 0; display: flex; justify-content: center; }}
-    #root .kick span {{ padding: 10px 22px; background: {AMB}; color: {INK}; font-weight: 900; font-size: 32px; letter-spacing: .14em;
+    #root .kick span {{ padding: 10px 22px; background: {YEL}; color: {INK}; font-weight: 900; font-size: 32px; letter-spacing: .14em;
       text-transform: uppercase; border-radius: 8px; }}
     #root .chip {{ position: absolute; padding: 12px 22px; background: {INK}; color: #fff; font-weight: 800; font-size: 34px;
       letter-spacing: .06em; text-transform: uppercase; border-radius: 10px; white-space: nowrap; box-shadow: 0 10px 26px rgba(0,0,0,.25); }}
@@ -56,6 +60,8 @@ BASE_CSS = f"""
     #root .inset video {{ position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }}
     #root .inset .tagv {{ position: absolute; left: 14px; bottom: 14px; padding: 8px 14px; background: rgba(22,24,29,.85); color: #fff;
       font-weight: 800; font-size: 28px; letter-spacing: .08em; border-radius: 8px; text-transform: uppercase; }}
+    #root .photo {{ position: absolute; inset: 0; overflow: hidden; opacity: 0; }}
+    #root .photo img {{ position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; transform-origin: 50% 60%; }}
     #root video.full {{ position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }}
     #root .dim {{ position: absolute; inset: 0; background: rgba(12,14,18,.5); }}
     #root .topshade {{ position: absolute; left: 0; right: 0; top: 0; height: 760px; background: linear-gradient(rgba(12,14,18,.75), rgba(12,14,18,0)); }}
@@ -75,6 +81,7 @@ def scene(cid, css, body, js):
   </style>
   <div id="root" data-composition-id="{cid}" data-width="1080" data-height="1920" data-duration="{dur}">
     <div class="paper"></div>
+{'' if cid == 's15' else '<div class="tshade"></div>'}
 {body}
   </div>
   <script>{HELPERS}{js}
@@ -110,6 +117,15 @@ def inset(id_, src, start, dur, mstart, left, top, label="Foto sebenar"):
       <video id="{id_}-v" class="clip" src="assets/video/{src}.mp4" data-start="{start}" data-duration="{dur}" data-media-start="{mstart}" muted playsinline></video>
       <div class="tagv">{label}</div>
     </div>"""
+
+
+def photo(id_, src, label):
+    return f"""    <div class="photo" id="{id_}"><img src="assets/{src}" alt="" /><div class="chip" style="left:50px; top:1060px"><i></i>{label}</div></div>"""
+
+
+def photo_in(id_, t, end):
+    return (f'    tl.fromTo("#{id_}", {{ opacity: 1, clipPath: "inset(100% 0% 0% 0%)" }}, {{ opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: 0.45, ease: "power3.inOut" }}, {t});\n'
+            f'    tl.fromTo("#{id_} img", {{ scale: 1.12 }}, {{ scale: 1.0, duration: {round(end - t, 2)}, ease: "sine.out" }}, {t});\n')
 
 
 def pop(sel, t, dur=0.4):
@@ -176,7 +192,7 @@ ROOMS3 = [("master", "Master bedroom", "master", 2.05, 1.85, (390, 840)),
           ("br2", "Bilik anak", "bedroom2-beds", 3.85, 2.3, (390, 820)),
           ("family", "Ruang keluarga", "family", 5.0, 2.0, (390, 840))]
 ov3 = "".join(hl(f"s03-h-{k}", U[k]) for k, *_ in ROOMS3)
-body3 = plan("s03-plan", "upper", ov3) + "\n"
+body3 = plan("s03-plan", "upper", ov3) + "\n" + photo("s03-ph", "photo-family.jpg", "Ruang keluarga · foto sebenar") + "\n"
 body3 += '    <div class="kick" id="s03-k" style="top:200px"><span>Tingkat atas</span></div>\n'
 js3 = f"""
     tl.fromTo("#s03-plan", {F(1.3, (1560, 820), (540, 960))}, {{ ...{F(1.2, RB, (540, 900))}, duration: 1.8, ease: "sine.inOut" }}, 0);
@@ -191,6 +207,8 @@ for i, (k, name, vid, t, s, c) in enumerate(ROOMS3):
 {pop(f"#s03-n-{k}", t)}{pop(f"#s03-in-{k}", t + 0.1)}"""
     if i + 1 < len(ROOMS3):
         js3 += out(f"#s03-n-{k}", end - 0.12, 0.12) + out(f"#s03-in-{k}", end - 0.12, 0.12) + f'    tl.to("#s03-h-{k}", {{ opacity: 0.35, duration: 0.3 }}, {end});\n'
+js3 += photo_in("s03-ph", 5.3, 6.4)
+js3 += out("#s03-in-family", 5.3, 0.2)
 scene("s03", """
     #s03-n-master, #s03-n-br2, #s03-n-family, #s03-in-master, #s03-in-br2, #s03-in-family { opacity: 0; }
 """, body3, js3)
@@ -210,7 +228,7 @@ scene("s04", """
 
 # ---------------------------------------------------------------- S05 QUESTION
 scene("s05", "", f"""{plan("s05-plan", "upper", hl("s05-h", U["br2"], RED) + hl("s05-st", U["stair"]) + route("s05-r", ROUTE_STAIR_U, RED))}
-    <div class="card" id="s05-head" style="top:250px; font-size:96px; padding:40px 34px">Betul ke<br /><span class="a">kena turun</span><br />bawah?</div>""", f"""
+    <div class="card" id="s05-head" style="top:250px; font-size:96px; ">Betul ke<br /><span class="a">kena turun</span><br />bawah?</div>""", f"""
     tl.fromTo("#s05-plan", {F(1.75, (1500, 680), (540, 1000))}, {{ ...{F(1.95, (1420, 690), (540, 1010))}, duration: 3.9, ease: "sine.inOut" }}, 0);
     tl.to("#s05-r", {{ strokeDashoffset: 0, duration: 0.9, ease: "power2.inOut" }}, 0.5);
     tl.fromTo("#s05-r-end", {{ opacity: 0, scale: 0, transformOrigin: "50% 50%" }}, {{ opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)" }}, 1.35);
@@ -219,7 +237,7 @@ scene("s05", "", f"""{plan("s05-plan", "upper", hl("s05-h", U["br2"], RED) + hl(
 # ---------------------------------------------------------------- S06 ANSWER: BATH 1 UPSTAIRS
 scene("s06", "", f"""{plan("s06-plan", "upper", hl("s06-h", U["bath1"]) + route("s06-r", ROUTE_BATH))}
     <div class="card" id="s06-head" style="top:230px">Tak semestinya!</div>
-    <div class="card" id="s06-sub" style="top:390px; font-size:46px; background:{AMB}; color:{INK}">✓ Masih ada bilik air di tingkat atas</div>
+    <div class="card" id="s06-sub" style="top:390px; font-size:46px; color:{YEL}">✓ Masih ada bilik air di tingkat atas</div>
     <div class="chip" id="s06-lab" style="left:760px; top:640px"><i></i>Bath 1</div>""", f"""
     tl.fromTo("#s06-plan", {F(1.6, (1560, 640), (540, 900))}, {{ ...{F(2.0, (1600, 640), (540, 900))}, duration: 3.05, ease: "sine.inOut" }}, 0);
     tl.to("#s06-r", {{ strokeDashoffset: 0, duration: 1.2, ease: "power2.inOut" }}, 0.4);
@@ -230,7 +248,7 @@ scene("s06", "", f"""{plan("s06-plan", "upper", hl("s06-h", U["bath1"]) + route(
 
 # ---------------------------------------------------------------- S07 MASTER + BATH 1
 scene("s07", """
-    #s07-in2 { opacity: 0; }
+    #s07-head2 { opacity: 0; }
 """, f"""{plan("s07-plan", "upper", hl("s07-hm", U["master"]) + hl("s07-hb", U["bath1"]))}
     <svg class="ptr" style="position:absolute; left:0; top:0; width:1080px; height:1920px; overflow:visible" viewBox="0 0 1080 1920">
       <polyline id="s07-ptr" points="700,470 840,470 840,620" fill="none" stroke="{INK}" stroke-width="4" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" />
@@ -238,15 +256,18 @@ scene("s07", """
     </svg>
     <div class="card" id="s07-head" style="top:200px; font-size:54px">Bilik air dalam<br /><span class="a">master bedroom</span></div>
     <div class="chip" id="s07-lab" style="left:290px; top:440px"><i></i>Boleh dikongsi</div>
-{inset("s07-in1", "bath-mirror", 0.6, 2.0, 0.5, 60, 640)}
-{inset("s07-in2", "bath-ceiling", 2.6, 1.95, 3.0, 60, 640)}""", f"""
+""" + "\n" + photo("s07-p1", "photo-master.jpg", "Master bedroom · foto sebenar") + "\n" + photo("s07-p2", "photo-bath.jpg", "Bilik air (Bath 1) · foto sebenar") + f"""
+    <div class="card" id="s07-head2" style="top:200px; font-size:58px">Bilik air dalam<br /><span class="a">master bedroom</span></div>""", f"""
     tl.fromTo("#s07-plan", {F(1.9, (1700, 760), (700, 980))}, {{ ...{F(1.75, (1690, 800), (720, 1000))}, duration: 4.55, ease: "sine.inOut" }}, 0);
     tl.fromTo("#s07-hm", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.3 }}, 0.2);
     tl.fromTo("#s07-hb", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.3 }}, 0.45);
     tl.to("#s07-ptr", {{ strokeDashoffset: 0, duration: 0.45, ease: "power2.inOut" }}, 0.7);
     tl.fromTo("#s07-dot", {{ opacity: 0, scale: 0, transformOrigin: "50% 50%" }}, {{ opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)" }}, 1.1);
-{pop("#s07-head", 0.05)}{pop("#s07-lab", 0.5)}{pop("#s07-in1", 0.6)}
-    tl.to("#s07-in2", {{ opacity: 1, duration: 0.2 }}, 2.6);
+{pop("#s07-head", 0.05)}{pop("#s07-lab", 0.5)}
+{photo_in("s07-p1", 1.2, 2.9)}{photo_in("s07-p2", 2.9, 4.55)}
+    tl.fromTo("#s07-head2", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.2 }}, 1.4);
+    tl.to("#s07-head", {{ opacity: 0, duration: 0.15 }}, 1.4);
+    tl.to("#s07-lab", {{ opacity: 0, duration: 0.15 }}, 1.2);
 """)
 
 # ---------------------------------------------------------------- S08 GROUND FLOOR OPTION
@@ -294,7 +315,7 @@ scene("s09", """
     </div>
     <div id="s09-ft"><video id="s09-v" class="clip full" src="assets/video/living-door.mp4" data-start="0" data-duration="1.9" data-media-start="1.5" muted playsinline></video><div class="topshade"></div></div>
     <div class="card" id="s09-h1" style="top:230px">Bina rumah atas<br /><span class="a">tanah sendiri</span></div>
-    <div class="card" id="s09-h2" style="top:430px; font-size:46px; background:{AMB}; color:{INK}">Layout boleh dirancang ikut keperluan</div>""", f"""
+    <div class="card" id="s09-h2" style="top:430px; font-size:46px; color:{YEL}">Layout boleh dirancang ikut keperluan</div>""", f"""
     tl.fromTo("#s09-ft", {{ clipPath: "inset(0% 0% 0% 0%)" }}, {{ clipPath: "inset(0% 100% 0% 0%)", duration: 0.55, ease: "power3.inOut" }}, 1.7);
     tl.fromTo("#s09-gp", {F(1.05, (700, 700), (540, 1080))}, {{ ...{F(1.05, (1250, 700), (540, 1080))}, duration: 1.8, ease: "sine.inOut" }}, 1.7);
     tl.fromTo("#s09-u", {{ opacity: 1, clipPath: "inset(100% 0% 0% 0%)" }}, {{ opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: 0.55, ease: "power3.inOut" }}, 3.3);
@@ -321,7 +342,7 @@ scene("s10", f"""
 # ---------------------------------------------------------------- S11 EVERY FAMILY IS DIFFERENT
 scene("s11", "#s11-l2 { opacity: 0; }", f"""{plan("s11-plan", "upper")}
     <div class="card" id="s11-l1" style="top:260px; font-size:80px">Setiap keluarga,</div>
-    <div class="card" id="s11-l2" style="top:400px; font-size:80px; background:{AMB}; color:{INK}">keperluan berbeza.</div>""", f"""
+    <div class="card" id="s11-l2" style="top:400px; font-size:80px; color:{YEL}">keperluan berbeza.</div>""", f"""
     tl.fromTo("#s11-plan", {F(1.15, (900, 820), (540, 1060))}, {{ ...{F(1.2, (1520, 820), (540, 1060))}, duration: 6.9, ease: "sine.inOut" }}, 0);
 {pop("#s11-l1", 0.2, 0.5)}{pop("#s11-l2", 3.85, 0.5)}""")
 
@@ -350,7 +371,7 @@ scene("s13", f"""
     #root .opt .t {{ font-weight: 900; font-size: 62px; line-height: 1.02; text-transform: uppercase; }}
 """, f"""{plan("s13-plan", "upper")}
     <div class="dim" style="background:rgba(14,16,20,.82)"></div>
-    <div class="card" id="s13-head" style="top:230px; background:transparent; box-shadow:none; font-size:76px">Kalau korang<br /><span class="a">yang design?</span></div>
+    <div class="card" id="s13-head" style="top:230px; font-size:76px">Kalau korang<br /><span class="a">yang design?</span></div>
     <div class="opt" id="s13-a" style="top:560px"><div class="l" style="background:{TEAL}">A</div><div class="t">Tambah<br />bilik air</div></div>
     <div class="opt" id="s13-b" style="top:830px"><div class="l" style="background:{AMB}">B</div><div class="t">Kekalkan<br />layout</div></div>""", f"""
     tl.fromTo("#s13-plan", {F(1.15, RB, (540, 1000))}, {{ ...{F(1.3, RB, (540, 1000))}, duration: 7.55, ease: "sine.inOut" }}, 0);
@@ -370,7 +391,7 @@ scene("s14", f"""
     #s14-cm span {{ padding: 16px 44px; background: {AMB}; color: {INK}; font-weight: 900; font-size: 64px; border-radius: 16px; letter-spacing: .06em; }}
 """, f"""{plan("s14-plan", "upper")}
     <div class="dim" style="background:rgba(14,16,20,.84)"></div>
-    <div class="card" id="s14-head" style="top:220px; font-size:84px; background:transparent; box-shadow:none">Korang pilih<br /><span class="a">yang mana?</span></div>
+    <div class="card" id="s14-head" style="top:220px; font-size:84px">Korang pilih<br /><span class="a">yang mana?</span></div>
     <div class="row" id="s14-a" style="top:520px"><b style="background:{TEAL}">A</b>Tambah bilik air</div>
     <div class="row" id="s14-b" style="top:665px"><b style="background:{AMB}">B</b>Kekalkan layout</div>
     <div id="s14-cm"><span id="s14-k">Komen</span><svg id="s14-arrow" width="64" height="80" viewBox="0 0 64 80"><path d="M32 4 V66 M8 44 L32 68 L56 44" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" /></svg></div>""", f"""
@@ -472,7 +493,7 @@ with open(f"{OUT}/compositions/captions.html", "w") as f:
     #root .cap {{ position: absolute; left: 70px; right: 70px; top: 1200px; text-align: center; }}
     #root .pill {{ display: inline-block; padding: 14px 30px 16px; background: #111318; color: #fff; border-radius: 14px;
       font-weight: 800; font-size: 50px; line-height: 1.2; box-shadow: 0 10px 30px rgba(0,0,0,.35); }}
-    #root .pill .y {{ color: {AMB}; }}
+    #root .pill .y {{ color: {YEL}; }}
   </style>
   <div id="root" data-composition-id="captions" data-width="1080" data-height="1920" data-duration="{TOTAL}">
 {cap_html}
@@ -527,6 +548,7 @@ with open(f"{OUT}/index.html", "w") as f:
   <body>
     <div id="root" data-composition-id="main" data-start="0" data-duration="{TOTAL}" data-width="1080" data-height="1920">
 {hosts}
+      <img id="logo" class="clip" src="assets/logo.png" alt="" data-start="0" data-duration="{TOTAL}" data-track-index="9" style="position:absolute; left:455px; top:52px; width:170px; height:117px; z-index:20" />
       <div id="captions" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="{TOTAL}" data-track-index="2" data-track-kind="captions" data-width="1080" data-height="1920" style="z-index:10"></div>
       <audio id="vo" class="clip" src="assets/audio/vo.mp3" data-start="0" data-duration="71.88" data-track-index="3" data-volume="1"></audio>
 {audio}

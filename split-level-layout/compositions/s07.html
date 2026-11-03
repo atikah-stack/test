@@ -7,13 +7,16 @@
     #root .plan { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
     #root .plan img { position: absolute; left: 0; top: 0; display: block; }
     #root .plan svg { position: absolute; left: 0; top: 0; overflow: visible; }
-    #root .card { position: absolute; left: 50px; right: 50px; padding: 26px 34px 28px; background: #16181D; border-radius: 22px;
-      text-align: center; font-weight: 900; font-size: 64px; line-height: 1.06; text-transform: uppercase; color: #fff;
-      box-shadow: 0 22px 50px rgba(0,0,0,.28); }
-    #root .card .a { color: #F59E0B; }
+    #root .card { position: absolute; left: 40px; right: 40px; padding: 0; background: transparent; border-radius: 0;
+      text-shadow: 0 4px 0 rgba(0,0,0,.35), 0 10px 30px rgba(0,0,0,.7), 0 0 3px rgba(0,0,0,.85);
+      text-align: center; font-weight: 900; font-size: 74px; line-height: 1.06; text-transform: uppercase; color: #fff; }
+    #root .card .a { color: #F6C343; }
+    #root .tshade { position: absolute; left: 0; top: 0; width: 1080px; height: 900px; z-index: 2;
+      background: linear-gradient(rgba(10,12,16,.9) 0px, rgba(10,12,16,.72) 420px, rgba(10,12,16,0) 880px); }
+    #root .card, #root .kick, #root .chip, #root .opt, #root .row, #root #s14-cm { z-index: 3; }
     #root .card .r { color: #FF6B6F; }
     #root .kick { position: absolute; left: 0; right: 0; display: flex; justify-content: center; }
-    #root .kick span { padding: 10px 22px; background: #F59E0B; color: #16181D; font-weight: 900; font-size: 32px; letter-spacing: .14em;
+    #root .kick span { padding: 10px 22px; background: #F6C343; color: #16181D; font-weight: 900; font-size: 32px; letter-spacing: .14em;
       text-transform: uppercase; border-radius: 8px; }
     #root .chip { position: absolute; padding: 12px 22px; background: #16181D; color: #fff; font-weight: 800; font-size: 34px;
       letter-spacing: .06em; text-transform: uppercase; border-radius: 10px; white-space: nowrap; box-shadow: 0 10px 26px rgba(0,0,0,.25); }
@@ -23,15 +26,18 @@
     #root .inset video { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }
     #root .inset .tagv { position: absolute; left: 14px; bottom: 14px; padding: 8px 14px; background: rgba(22,24,29,.85); color: #fff;
       font-weight: 800; font-size: 28px; letter-spacing: .08em; border-radius: 8px; text-transform: uppercase; }
+    #root .photo { position: absolute; inset: 0; overflow: hidden; opacity: 0; }
+    #root .photo img { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; transform-origin: 50% 60%; }
     #root video.full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
     #root .dim { position: absolute; inset: 0; background: rgba(12,14,18,.5); }
     #root .topshade { position: absolute; left: 0; right: 0; top: 0; height: 760px; background: linear-gradient(rgba(12,14,18,.75), rgba(12,14,18,0)); }
 
-    #s07-in2 { opacity: 0; }
+    #s07-head2 { opacity: 0; }
 
   </style>
   <div id="root" data-composition-id="s07" data-width="1080" data-height="1920" data-duration="4.55">
     <div class="paper"></div>
+<div class="tshade"></div>
     <div class="plan" id="s07-plan" style="width:2200px; height:1800px">
       <img src="assets/plan-upper-hd.png" alt="" style="width:2200px; height:1800px" />
       <svg viewBox="0 0 2200 1800" style="width:2200px; height:1800px"><g id="s07-hm"><rect x="1567" y="676" width="336" height="495" fill="none" stroke="#F59E0B" stroke-opacity=".35" stroke-width="16" vector-effect="non-scaling-stroke" /><rect x="1567" y="676" width="336" height="495" fill="#F59E0B" fill-opacity=".2" stroke="#F59E0B" stroke-width="5" vector-effect="non-scaling-stroke" /></g><g id="s07-hb"><rect x="1743" y="473" width="160" height="203" fill="none" stroke="#F59E0B" stroke-opacity=".35" stroke-width="16" vector-effect="non-scaling-stroke" /><rect x="1743" y="473" width="160" height="203" fill="#F59E0B" fill-opacity=".2" stroke="#F59E0B" stroke-width="5" vector-effect="non-scaling-stroke" /></g></svg>
@@ -42,14 +48,10 @@
     </svg>
     <div class="card" id="s07-head" style="top:200px; font-size:54px">Bilik air dalam<br /><span class="a">master bedroom</span></div>
     <div class="chip" id="s07-lab" style="left:290px; top:440px"><i></i>Boleh dikongsi</div>
-    <div class="inset" id="s07-in1" style="left:60px; top:640px" data-layout-allow-overlap>
-      <video id="s07-in1-v" class="clip" src="assets/video/bath-mirror.mp4" data-start="0.6" data-duration="2.0" data-media-start="0.5" muted playsinline></video>
-      <div class="tagv">Foto sebenar</div>
-    </div>
-    <div class="inset" id="s07-in2" style="left:60px; top:640px" data-layout-allow-overlap>
-      <video id="s07-in2-v" class="clip" src="assets/video/bath-ceiling.mp4" data-start="2.6" data-duration="1.95" data-media-start="3.0" muted playsinline></video>
-      <div class="tagv">Foto sebenar</div>
-    </div>
+
+    <div class="photo" id="s07-p1"><img src="assets/photo-master.jpg" alt="" /><div class="chip" style="left:50px; top:1060px"><i></i>Master bedroom · foto sebenar</div></div>
+    <div class="photo" id="s07-p2"><img src="assets/photo-bath.jpg" alt="" /><div class="chip" style="left:50px; top:1060px"><i></i>Bilik air (Bath 1) · foto sebenar</div></div>
+    <div class="card" id="s07-head2" style="top:200px; font-size:58px">Bilik air dalam<br /><span class="a">master bedroom</span></div>
   </div>
   <script>
     const F = (s, px, py, cx, cy) => ({ x: cx - px * s, y: cy - py * s, scale: s });
@@ -62,9 +64,15 @@
     tl.fromTo("#s07-dot", { opacity: 0, scale: 0, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)" }, 1.1);
     tl.fromTo("#s07-head", { opacity: 0, y: 24, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 0.05);
     tl.fromTo("#s07-lab", { opacity: 0, y: 24, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 0.5);
-    tl.fromTo("#s07-in1", { opacity: 0, y: 24, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 0.6);
 
-    tl.to("#s07-in2", { opacity: 1, duration: 0.2 }, 2.6);
+    tl.fromTo("#s07-p1", { opacity: 1, clipPath: "inset(100% 0% 0% 0%)" }, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: 0.45, ease: "power3.inOut" }, 1.2);
+    tl.fromTo("#s07-p1 img", { scale: 1.12 }, { scale: 1.0, duration: 1.7, ease: "sine.out" }, 1.2);
+    tl.fromTo("#s07-p2", { opacity: 1, clipPath: "inset(100% 0% 0% 0%)" }, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: 0.45, ease: "power3.inOut" }, 2.9);
+    tl.fromTo("#s07-p2 img", { scale: 1.12 }, { scale: 1.0, duration: 1.65, ease: "sine.out" }, 2.9);
+
+    tl.fromTo("#s07-head2", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 1.4);
+    tl.to("#s07-head", { opacity: 0, duration: 0.15 }, 1.4);
+    tl.to("#s07-lab", { opacity: 0, duration: 0.15 }, 1.2);
 
     window.__timelines["s07"] = tl;
   </script>
