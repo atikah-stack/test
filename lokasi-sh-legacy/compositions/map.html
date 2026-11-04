@@ -1,0 +1,104 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #101216; font-family: Montserrat, sans-serif; color: #fff; }
+    #m-stage { position: absolute; inset: 0; }
+    #m-bg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; opacity: 0; }
+    #m-cam { position: absolute; left: 0; top: 0; width: 0; height: 0; }
+    #m-wide { position: absolute; left: 0; top: 0; opacity: 0; }
+    #m-wide img { position: absolute; left: -717.4px; top: -567px; width: 1543px; height: 749px; display: block;
+      box-shadow: 0 0 0 3px rgba(255,255,255,.9), 0 30px 80px rgba(0,0,0,.6); }
+    #m-group { position: absolute; left: 0; top: 0; }
+    #m-cu-rot { position: absolute; left: 0; top: 0; transform: rotate(90deg); transform-origin: 0 0; }
+    #m-cu { position: absolute; left: -1460px; top: -684px; width: 2496px; height: 1270px; display: block; }
+    #m-drone { position: absolute; left: -325px; top: -1087px; width: 1080px; height: 1921px; display: block; }
+    .pin { position: absolute; width: 56px; height: 72px; margin: -72px 0 0 -28px; filter: drop-shadow(0 8px 10px rgba(0,0,0,.55)); }
+    .pin.sm { width: 42px; height: 54px; margin: -54px 0 0 -21px; }
+    #m-ring { position: absolute; left: -45px; top: -45px; width: 90px; height: 90px; border-radius: 50%; border: 4px solid #fff; opacity: 0; }
+    #m-label { position: absolute; left: 0; top: -158px; white-space: nowrap; padding: 14px 26px 14px 22px; background: #C8102E;
+      border-left: 8px solid #F6C343; border-radius: 10px; font-weight: 800; font-size: 32px; letter-spacing: .06em; color: #fff;
+      box-shadow: 0 14px 34px rgba(0,0,0,.45); }
+    #m-lines { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+    #m-lines path { fill: none; stroke: #fff; stroke-width: 5; stroke-linecap: round; stroke-dasharray: 100 120; stroke-dashoffset: 110; }
+    .card { position: absolute; width: 440px; background: #fff; border-radius: 16px; overflow: hidden; color: #1A1A1A;
+      box-shadow: 0 22px 50px rgba(0,0,0,.5); opacity: 0; }
+    .card .ph { width: 440px; height: 224px; overflow: hidden; }
+    .card .ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .card .tx { padding: 16px 22px 20px; border-top: 6px solid #C8102E; }
+    .card .nm { font-weight: 900; font-size: 36px; letter-spacing: .02em; color: #A50E24; line-height: 1.05; }
+    .card .ds { margin-top: 10px; display: inline-block; padding: 6px 14px; background: #1A1A1A; border-radius: 8px;
+      font-weight: 700; font-size: 28px; letter-spacing: .04em; color: #fff; }
+    .card .ds b { color: #F6C343; font-weight: 900; }
+    #m-credit { position: absolute; left: 60px; top: 1346px; font-size: 16px; color: rgba(255,255,255,.85); opacity: 0;
+      padding: 4px 8px; background: rgba(0,0,0,.55); border-radius: 4px; }
+  </style>
+  <div id="root" data-composition-id="map" data-width="1080" data-height="1920" data-duration="10">
+    <div id="m-stage" data-layout-allow-overflow>
+      <img id="m-bg" src="assets/img/map-bg.jpg" alt="" />
+      <div id="m-cam">
+        <div id="m-wide"><img src="assets/img/map-wide.jpg" alt="" /></div>
+        <div id="m-group">
+          <div id="m-cu-wrap"><div id="m-cu-rot"><img id="m-cu" src="assets/img/map-close.jpg" alt="" /></div></div>
+          <img id="m-drone" src="assets/img/drone.jpg" alt="" />
+        </div>
+        <div id="m-ring"></div>
+        <svg class="pin" id="m-pin" viewBox="0 0 48 64"><path d="M24 1C11.3 1 1 11.3 1 24c0 16.5 23 39 23 39s23-22.5 23-39C47 11.3 36.7 1 24 1z" fill="#D7192F" stroke="#fff" stroke-width="3"/><circle cx="24" cy="24" r="8.5" fill="#fff"/></svg>
+        <div id="m-label">LOKASI TANAH — SH LEGACY</div>
+      </div>
+      <svg id="m-lines" viewBox="0 0 1080 1920">
+        <path id="l-smk" pathLength="100" d="M602 1160 L540 1430" />
+        <path id="l-uitm" pathLength="100" d="M110 702 L180 580" />
+        <path id="l-mch" pathLength="100" d="M1000 862 L900 580" />
+      </svg>
+      <svg class="pin sm" id="p-uitm" style="left:110px; top:759px" viewBox="0 0 48 64"><path d="M24 1C11.3 1 1 11.3 1 24c0 16.5 23 39 23 39s23-22.5 23-39C47 11.3 36.7 1 24 1z" fill="#D7192F" stroke="#fff" stroke-width="3"/><circle cx="24" cy="24" r="8.5" fill="#fff"/></svg>
+      <svg class="pin sm" id="p-mch" style="left:1000px; top:917px" viewBox="0 0 48 64"><path d="M24 1C11.3 1 1 11.3 1 24c0 16.5 23 39 23 39s23-22.5 23-39C47 11.3 36.7 1 24 1z" fill="#D7192F" stroke="#fff" stroke-width="3"/><circle cx="24" cy="24" r="8.5" fill="#fff"/></svg>
+      <div class="card" id="c-smk" style="left:320px; top:1430px">
+        <div class="ph"><img src="assets/img/smk-hamzah2.jpg" alt="" style="object-position:50% 60%" /></div>
+        <div class="tx"><div class="nm">SMK HAMZAH 2</div><div class="ds"><b>2 KM</b> | 4 MINIT</div></div>
+      </div>
+      <div class="card" id="c-uitm" style="left:60px; top:232px">
+        <div class="ph"><img src="assets/img/uitm.jpg" alt="" style="object-position:50% 40%" /></div>
+        <div class="tx"><div class="nm">UiTM MACHANG</div><div class="ds"><b>6 KM</b> | 10 MINIT</div></div>
+      </div>
+      <div class="card" id="c-mch" style="left:580px; top:232px">
+        <div class="ph"><img src="assets/img/bandar-machang.jpg" alt="" style="object-position:50% 47%" /></div>
+        <div class="tx"><div class="nm">BANDAR MACHANG</div><div class="ds"><b>6 KM</b> | 10 MINIT</div></div>
+      </div>
+      <div id="m-credit" data-layout-ignore>Imej: © Google · Airbus, Maxar Technologies, CNES / Airbus</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // Scale link: wide map scale = 17.8 × drone/close-up scale, same eases, so the ground stays aligned.
+    // 0–2 s: drone push toward SH Legacy
+    tl.fromTo("#m-cam", { x: 325, y: 1087 }, { x: 470, y: 1000, duration: 2.0, ease: "sine.inOut" }, 0);
+    tl.fromTo("#m-group", { scale: 1, rotation: 0, transformOrigin: "0 0" }, { scale: 1.45, rotation: 0, duration: 2.0, ease: "sine.inOut" }, 0);
+    tl.fromTo("#m-wide", { scale: 17.8, transformOrigin: "0 0" }, { scale: 25.8, duration: 2.0, ease: "sine.inOut" }, 0);
+    tl.fromTo("#m-pin", { y: -70, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, 0.5);
+    tl.fromTo("#m-ring", { scale: 0.3, opacity: 0.9 }, { scale: 1.8, opacity: 0, duration: 0.9, ease: "power2.out" }, 0.9);
+    tl.fromTo("#m-label", { xPercent: -50, opacity: 0, filter: "blur(8px)" }, { xPercent: -50, opacity: 1, filter: "blur(0px)", duration: 0.25, ease: "power4.out" }, 0.8);
+    // 2–2.5 s: turn north-up, drone dissolves into the matching satellite view
+    tl.to("#m-group", { rotation: -90, scale: 1.0, duration: 0.5, ease: "power2.inOut" }, 2.0);
+    tl.to("#m-wide", { scale: 17.8, duration: 0.5, ease: "power2.inOut" }, 2.0);
+    tl.fromTo("#m-wide", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power1.inOut" }, 2.68);
+    tl.to("#m-drone", { opacity: 0, duration: 0.3, ease: "power1.inOut" }, 2.15);
+    // 2.5–3.1 s: pull back to the Machang overview
+    tl.to("#m-group", { scale: 0.0562, duration: 0.6, ease: "power3.inOut" }, 2.5);
+    tl.to("#m-wide", { scale: 1, duration: 0.6, ease: "power3.inOut" }, 2.5);
+    tl.to("#m-cam", { x: 602, y: 1152, duration: 0.6, ease: "power3.inOut" }, 2.5);
+    tl.to("#m-cu-wrap", { opacity: 0, duration: 0.25, ease: "power1.inOut" }, 2.8);
+    tl.fromTo("#m-bg", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.inOut" }, 2.0);
+    tl.fromTo("#m-credit", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 3.0);
+    // 3–6 s: landmark cards
+    const card = (c, l, p, t) => {
+      if (p) tl.fromTo(p, { y: -50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, t);
+      tl.fromTo(l, { strokeDashoffset: 110 }, { strokeDashoffset: 0, duration: 0.4, ease: "power2.inOut" }, t + 0.15);
+      tl.fromTo(c, { opacity: 0, y: 28, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, t + 0.4);
+    };
+    card("#c-smk", "#l-smk", null, 3.1);
+    card("#c-uitm", "#l-uitm", "#p-uitm", 4.0);
+    card("#c-mch", "#l-mch", "#p-mch", 4.9);
+    // 6–10 s: slow push on the full overview
+    tl.fromTo("#m-stage", { scale: 1, transformOrigin: "540px 1000px" }, { scale: 1.035, duration: 4.0, ease: "sine.inOut" }, 6.0);
+    window.__timelines["map"] = tl;
+  </script>
+</template>
