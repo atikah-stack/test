@@ -1,0 +1,44 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #06231a; }
+    #root .o-zoom { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: 50% 50%; }
+    #root .o-img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }
+    #root .ring {
+      position: absolute; width: 120px; height: 120px; margin: -60px 0 0 -60px; border-radius: 50%;
+      border: 6px solid #FFC83D; box-shadow: 0 0 24px #FFC83D; opacity: 0;
+    }
+    #root .cta-glow {
+      position: absolute; left: 92px; top: 1440px; width: 898px; height: 96px; border-radius: 60px;
+      border: 5px solid #FFC83D; box-shadow: 0 0 40px #FFC83D, inset 0 0 22px rgba(255,200,61,0.6); opacity: 0;
+    }
+    #root .shine {
+      position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; mix-blend-mode: screen;
+      background: linear-gradient(105deg, rgba(255,255,255,0) 38%, rgba(255,255,255,0.55) 50%, rgba(255,255,255,0) 62%);
+    }
+  </style>
+  <div id="root" data-composition-id="outro" data-width="1080" data-height="1920">
+    <div id="o-zoom" class="o-zoom">
+      <img id="o-img" class="o-img" src="assets/outro.jpg" alt="" />
+      <div id="o-ring1" class="ring" style="left:477px;top:873px" data-layout-ignore></div>
+      <div id="o-ring2" class="ring" style="left:744px;top:990px" data-layout-ignore></div>
+      <div id="o-cta" class="cta-glow" data-layout-ignore></div>
+    </div>
+    <div id="o-shine" class="shine" data-layout-ignore></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // push in on the map and the two branches
+    tl.fromTo("#o-zoom", { scale: 1.12, y: 40 }, { scale: 1, y: 0, duration: 0.9, ease: "power3.out" }, 0);
+    // pin pulses on "Kelantan" and "Terengganu"
+    tl.fromTo("#o-ring1", { scale: 0.3, opacity: 1 }, { scale: 2.1, opacity: 0, duration: 1.0, ease: "power2.out", repeat: 5 }, 1.61);
+    tl.fromTo("#o-ring2", { scale: 0.3, opacity: 1 }, { scale: 2.1, opacity: 0, duration: 1.0, ease: "power2.out", repeat: 5 }, 2.27);
+    // "Hubungi" -> pull back to reveal the full CTA card
+    tl.to("#o-zoom", { scale: 0.97, duration: 0.25, ease: "power2.out" }, 3.24);
+    tl.to("#o-zoom", { scale: 1, duration: 0.5, ease: "back.out(3)" }, 3.49);
+    // light sweep + glowing CTA button
+    tl.fromTo("#o-shine", { xPercent: -110 }, { xPercent: 110, duration: 0.9, ease: "power2.inOut" }, 4.09);
+    tl.fromTo("#o-shine", { xPercent: -110 }, { xPercent: 110, duration: 0.9, ease: "power2.inOut", immediateRender: false }, 6.64);
+    tl.fromTo("#o-cta", { opacity: 0, scale: 1 }, { opacity: 1, scale: 1.035, duration: 0.6, ease: "sine.inOut", yoyo: true, repeat: 5 }, 4.24);
+    window.__timelines["outro"] = tl;
+  </script>
+</template>
