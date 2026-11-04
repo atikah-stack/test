@@ -1,0 +1,22 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Montserrat",sans-serif; }
+    .wrap { position:absolute; left:110px; right:110px; display:flex; justify-content:center; }
+    .box { display:inline-block; text-align:center; padding:26px 40px 28px; border-radius:26px;
+      background:rgba(0,0,0,0.55); color:#fff; font-weight:800; font-size:62px; line-height:1.18;
+      text-shadow:0 2px 10px rgba(0,0,0,0.35); }
+    .gold { color:#f6c343; }
+    .heart { display:inline-block; width:0.8em; height:0.8em; vertical-align:-0.06em; margin-left:0.18em; }
+</style>
+  <div id="root" data-composition-id="t2" data-width="1080" data-height="1920">
+    <div id="t2-wrap" class="wrap clip" data-start="0" data-duration="3.7" data-track-index="0" style="top:300px">
+      <div id="t2-box" class="box">Banglo siap,<br /><span class="gold">hadiah</span> pun sampai.</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#t2-box", { opacity:0, y:16, scale:0.98 }, { opacity:1, y:0, scale:1, duration:0.6, ease:"power2.out" }, 0);
+    tl.to("#t2-box", { opacity:0, duration:0.35, ease:"sine.in" }, 3.25);
+    window.__timelines["t2"] = tl;
+  </script>
+</template>
