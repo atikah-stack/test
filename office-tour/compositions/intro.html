@@ -7,6 +7,8 @@
     .backdrop { position:absolute; inset:0; pointer-events:none;
       background: radial-gradient(ellipse 80% 22% at 50% 53%, rgba(20,14,8,.55) 0%, rgba(20,14,8,.25) 55%, rgba(20,14,8,0) 100%); }
     .backdrop.strong { background: radial-gradient(ellipse 100% 28% at 50% 54%, rgba(18,12,7,.78) 0%, rgba(18,12,7,.5) 55%, rgba(18,12,7,.12) 100%); }
+    .stack.top { justify-content:flex-start; padding-top:250px; }
+    .backdrop.top { background: radial-gradient(ellipse 90% 16% at 50% 21%, rgba(20,14,8,.5) 0%, rgba(20,14,8,.22) 60%, rgba(20,14,8,0) 100%); }
     .card { display:flex; flex-direction:column; align-items:center; padding:60px 44px 56px;
       border-radius:40px; background:rgba(26,18,11,.64); border:1px solid rgba(255,255,255,.14);
       box-shadow:0 20px 60px rgba(0,0,0,.25); }
@@ -23,13 +25,10 @@
       text-shadow:0 3px 20px rgba(0,0,0,.5), 0 1px 3px rgba(0,0,0,.35); }
   </style>
   <div id="root" data-composition-id="intro" data-width="1080" data-height="1920">
-    <div id="in-bd" class="backdrop strong clip" data-start="0" data-duration="4" data-track-index="1" data-layout-ignore></div>
-    <div id="in-stack" class="stack clip" data-start="0" data-duration="4" data-track-index="0">
-      <div id="in-card" class="card">
+    <div id="in-bd" class="backdrop top clip" data-start="0" data-duration="4" data-track-index="1" data-layout-ignore></div>
+    <div id="in-stack" class="stack top clip" data-start="0" data-duration="4" data-track-index="0">
       <div id="in-big" class="big">6</div>
       <div id="in-hook" class="hook">THINGS YOU'LL LOVE<br />ABOUT OUR OFFICE</div>
-      <div id="in-rule" class="rule" style="margin-top:34px;margin-bottom:0"></div>
-      </div>
     </div>
   </div>
   <script>
@@ -37,10 +36,8 @@
     // Already readable on frame 0 (the thumbnail); a gentle settle only.
     tl.fromTo("#in-big", { opacity:0.85, scale:1.04 }, { opacity:1, scale:1, duration:1.2, ease:"power2.out" }, 0);
     tl.fromTo("#in-hook", { opacity:0.85, scale:1.02 }, { opacity:1, scale:1, duration:1.4, ease:"power2.out" }, 0);
-    tl.fromTo("#in-rule", { scaleX:0.2 }, { scaleX:1, duration:1.2, ease:"power2.inOut" }, 0.2);
     tl.to("#in-bd", { opacity:0, duration:0.5, ease:"sine.in" }, 3.45);
-    tl.to("#in-card", { opacity:0, duration:0.45, ease:"sine.in" }, 3.4);
-    tl.to(["#in-big","#in-hook","#in-rule"], { opacity:0, duration:0.45, ease:"sine.in" }, 3.4);
+    tl.to(["#in-big","#in-hook"], { opacity:0, duration:0.45, ease:"sine.in" }, 3.4);
     window.__timelines["intro"] = tl;
   </script>
 </template>
