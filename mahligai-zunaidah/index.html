@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ms">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #000;
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      .cam {
+        position: absolute;
+        inset: 0;
+        transform-origin: 50% 45%;
+      }
+      .shot {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1080px;
+        height: 1920px;
+        object-fit: cover;
+      }
+      #fade-black {
+        position: absolute;
+        inset: 0;
+        background: #000;
+        opacity: 0;
+        z-index: 60;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="40"
+      data-width="1080"
+      data-height="1920"
+    >
+      <!-- 0–5 s · senyuman klien (slow motion, zoom-in perlahan) -->
+      <div id="cam-hook" class="cam" style="z-index: 1">
+        <video id="v-hook" class="clip shot" src="assets/shots/s01_hook.mp4" data-start="0" data-duration="5.2" data-media-start="0" data-track-index="1" muted playsinline></video>
+      </div>
+
+      <!-- 5–12 s · rumah -->
+      <div id="cam-ext" class="cam" style="z-index: 2">
+        <video id="v-ext" class="clip shot" src="assets/shots/s02_exterior.mp4" data-start="4.8" data-duration="2.2" data-media-start="0" data-track-index="2" muted playsinline></video>
+      </div>
+      <div id="cam-living" class="cam" style="z-index: 3">
+        <video id="v-living" class="clip shot" src="assets/shots/s03_living.mp4" data-start="7" data-duration="2.5" data-media-start="0" data-track-index="1" muted playsinline></video>
+      </div>
+      <div id="cam-kitchen" class="cam" style="z-index: 4">
+        <video id="v-kitchen" class="clip shot" src="assets/shots/s04_kitchen.mp4" data-start="9.5" data-duration="2.5" data-media-start="0" data-track-index="2" muted playsinline></video>
+      </div>
+
+      <!-- 12–17 s · hadiah sampai -->
+      <video id="v-truck" class="clip shot" style="z-index: 5" src="assets/shots/s05_truck.mp4" data-start="12" data-duration="2" data-media-start="0" data-track-index="1" muted playsinline></video>
+      <video id="v-carry" class="clip shot" style="z-index: 6" src="assets/shots/s06_carry.mp4" data-start="14" data-duration="1.6" data-media-start="0" data-track-index="2" muted playsinline></video>
+      <video id="v-box" class="clip shot" style="z-index: 7" src="assets/shots/s07_box.mp4" data-start="15.6" data-duration="1.4" data-media-start="0" data-track-index="1" muted playsinline></video>
+
+      <!-- 17–26 s · sound on tape (kelajuan asal, audio asal) -->
+      <video id="v-stot" class="clip shot" style="z-index: 8" src="assets/shots/s08_stot.mp4" data-start="17" data-duration="9" data-media-start="0" data-track-index="2" data-has-audio="true" data-volume="1" playsinline></video>
+
+      <!-- 26–32 s · reaksi + tilam -->
+      <video id="v-smile" class="clip shot" style="z-index: 9" src="assets/shots/s09_smile.mp4" data-start="26" data-duration="1.5" data-media-start="0" data-track-index="1" muted playsinline></video>
+      <video id="v-unwrap" class="clip shot" style="z-index: 10" src="assets/shots/s10_unwrap.mp4" data-start="27.5" data-duration="1.5" data-media-start="0" data-track-index="2" muted playsinline></video>
+      <video id="v-cut" class="clip shot" style="z-index: 11" src="assets/shots/s11_cut.mp4" data-start="29" data-duration="1.5" data-media-start="0" data-track-index="1" muted playsinline></video>
+      <video id="v-smooth" class="clip shot" style="z-index: 12" src="assets/shots/s12_smooth.mp4" data-start="30.5" data-duration="1.5" data-media-start="0" data-track-index="2" muted playsinline></video>
+
+      <!-- 32–36 s · ucapan penutup -->
+      <div id="cam-close" class="cam" style="z-index: 13">
+        <video id="v-close" class="clip shot" src="assets/shots/s13_close.mp4" data-start="32" data-duration="4.1" data-media-start="0" data-track-index="1" muted playsinline></video>
+      </div>
+
+      <!-- 36–40 s · bergambar ramai-ramai (zoom-out halus) -->
+      <div id="cam-group" class="cam" style="z-index: 14">
+        <img id="i-group" class="clip shot" src="assets/shots/s14_group.jpg" data-start="35.6" data-duration="4.4" data-track-index="2" alt="Bergambar ramai-ramai bersama Mahligai Idaman" />
+      </div>
+
+      <!-- teks cerita dan sari kata -->
+      <div id="copy" data-composition-id="copy" data-composition-src="compositions/copy.html" data-start="0" data-duration="40" data-track-index="5" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 40"></div>
+      <div id="subs" data-composition-id="subs" data-composition-src="compositions/subs.html" data-start="17" data-duration="9" data-track-index="6" data-track-kind="captions" data-width="1080" data-height="1920" style="z-index: 41"></div>
+
+      <div id="fade-black"></div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      // slow camera moves
+      tl.fromTo("#cam-hook", { scale: 1 }, { scale: 1.09, duration: 5.2, ease: "sine.inOut" }, 0);
+      tl.fromTo("#v-ext", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "sine.out" }, 4.8);
+      tl.fromTo("#cam-ext", { scale: 1.0 }, { scale: 1.07, duration: 2.2, ease: "none" }, 4.8);
+      tl.fromTo("#cam-living", { scale: 1.06, xPercent: 1.5 }, { scale: 1.06, xPercent: -1.5, duration: 2.5, ease: "none" }, 7);
+      tl.fromTo("#cam-kitchen", { scale: 1.0 }, { scale: 1.05, duration: 2.5, ease: "none" }, 9.5);
+      tl.fromTo("#cam-close", { scale: 1.0 }, { scale: 1.05, duration: 4.1, ease: "none" }, 32);
+      tl.fromTo("#i-group", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "sine.out" }, 35.6);
+      tl.fromTo("#cam-group", { scale: 1.05 }, { scale: 1.0, duration: 4.4, ease: "sine.out" }, 35.6);
+      // gentle fade-out
+      tl.fromTo("#fade-black", { opacity: 0 }, { opacity: 1, duration: 1.0, ease: "sine.in" }, 38.95);
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

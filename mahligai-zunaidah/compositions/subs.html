@@ -1,0 +1,45 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Montserrat", sans-serif;
+      color: #fff;
+    }
+    .cap {
+      position: absolute;
+      left: 50%;
+      top: 1150px;
+      width: 900px;
+      margin-left: -450px;
+      text-align: center;
+    }
+    .cap-in {
+      display: inline-block;
+      padding: 16px 30px 18px;
+      border-radius: 22px;
+      background: rgba(0, 0, 0, 0.55);
+      font-weight: 700;
+      font-size: 46px;
+      line-height: 1.2;
+    }
+    .hl { color: #f9c846; font-weight: 800; }
+  </style>
+  <div id="root" data-composition-id="subs" data-width="1080" data-height="1920">
+    <!-- times are local to the 17 s mount; source clip time = local + 4.2 -->
+    <div id="c1" class="cap clip" data-start="0" data-duration="1.2"><span class="cap-in">So kita harap…</span></div>
+    <div id="c2" class="cap clip" data-start="1.3" data-duration="2.25"><span class="cap-in"><span class="hl">Small</span> je reward-nya,</span></div>
+    <div id="c3" class="cap clip" data-start="3.6" data-duration="1.2"><span class="cap-in">tapi semoga <span class="hl">happy</span> lah.</span></div>
+    <div id="c4" class="cap clip" data-start="4.8" data-duration="2.7"><span class="cap-in">Happy boleh baring-baring<br />kat bawah, kat depan.</span></div>
+    <div id="c5" class="cap clip" data-start="7.5" data-duration="0.9"><span class="cap-in">Betul.</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    ["#c1", "#c2", "#c3", "#c4", "#c5"].forEach((id) => {
+      const el = document.querySelector(id);
+      const s = parseFloat(el.dataset.start);
+      tl.fromTo(id + " .cap-in", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }, s);
+    });
+    window.__timelines["subs"] = tl;
+  </script>
+</template>

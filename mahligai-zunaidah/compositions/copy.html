@@ -1,0 +1,105 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 800;
+      color: #fff;
+      --gold: #f9c846;
+    }
+    .card {
+      position: absolute;
+      left: 50%;
+      width: 880px;
+      margin-left: -440px;
+      text-align: center;
+    }
+    .line {
+      display: block;
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+    }
+    .shadow .line {
+      text-shadow: 0 4px 18px rgba(0, 0, 0, 0.55), 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+    .box {
+      display: inline-block;
+      padding: 26px 40px 28px;
+      border-radius: 28px;
+      background: rgba(0, 0, 0, 0.5);
+    }
+    .hl {
+      color: var(--gold);
+    }
+    .xl { font-size: 92px; }
+    .l { font-size: 66px; }
+    .m { font-size: 54px; }
+    .s { font-size: 44px; font-weight: 700; }
+    .heart { display: inline-block; width: 0.8em; height: 0.8em; vertical-align: -0.06em; margin-left: 0.15em; }
+  </style>
+  <div id="root" data-composition-id="copy" data-width="1080" data-height="1920">
+    <!-- 0–5 s -->
+    <div id="t-hook" class="card shadow clip" style="top: 1190px" data-start="0.4" data-duration="4.4">
+      <div id="t-hook-in">
+        <span class="line l">Tengok</span>
+        <span class="line xl"><span class="hl">senyuman</span> tu…</span>
+      </div>
+    </div>
+
+    <!-- 5–12 s -->
+    <div id="t-house" class="card clip" style="top: 330px" data-start="5.3" data-duration="6.5">
+      <div id="t-house-in" class="box">
+        <span class="line m">Banglo <span class="hl">Pn. Zunaidah Ishak</span></span>
+        <span class="line s" style="margin-top: 10px">Tumpat, Kelantan</span>
+      </div>
+    </div>
+
+    <!-- 12–17 s -->
+    <div id="t-arrive" class="card clip" style="top: 330px" data-start="12.3" data-duration="4.5">
+      <div id="t-arrive-in" class="box">
+        <span class="line m">Banglo siap,</span>
+        <span class="line m"><span class="hl">hadiah</span> pun sampai.</span>
+      </div>
+    </div>
+
+    <!-- 26–32 s -->
+    <div id="t-gift" class="card clip" style="top: 1130px" data-start="26.3" data-duration="5.5">
+      <div id="t-gift-in" class="box">
+        <span class="line m">Hadiah percuma</span>
+        <span class="line l hl">1 unit tilam</span>
+      </div>
+    </div>
+
+    <!-- 32–36 s -->
+    <div id="t-close" class="card clip" style="top: 300px" data-start="32.3" data-duration="3.5">
+      <div id="t-close-in" class="box">
+        <span class="line m">Moga makin <span class="hl">lena</span></span>
+        <span class="line m">di rumah baharu<svg class="heart" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12 21s-7.5-4.6-10-9.3C.4 8.6 2.1 4.5 6 4.1c2.2-.2 4.3 1 6 3 1.7-2 3.8-3.2 6-3 3.9.4 5.6 4.5 4 7.6C19.5 16.4 12 21 12 21z"/></svg></span>
+      </div>
+    </div>
+
+    <!-- 36–40 s -->
+    <div id="t-end" class="card clip" style="top: 215px" data-start="36.2" data-duration="3.8">
+      <div id="t-end-in" class="box">
+        <span class="line s">Kenangan manis bersama</span>
+        <span class="line l hl" style="margin-top: 4px">Mahligai Idaman</span>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const show = (sel, start, end) => {
+      tl.set(sel, { opacity: 0, y: 26, filter: "blur(6px)" }, 0);
+      tl.to(sel, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, ease: "power3.out" }, start);
+      if (end != null) tl.to(sel, { opacity: 0, duration: 0.35, ease: "sine.in" }, end - 0.4);
+    };
+    show("#t-hook-in", 0.4, 4.8);
+    show("#t-house-in", 5.3, 11.8);
+    show("#t-arrive-in", 12.3, 16.8);
+    show("#t-gift-in", 26.3, 31.8);
+    show("#t-close-in", 32.3, 35.8);
+    show("#t-end-in", 36.2, null);
+    window.__timelines["copy"] = tl;
+  </script>
+</template>
