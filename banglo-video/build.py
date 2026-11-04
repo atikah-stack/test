@@ -37,20 +37,51 @@ shots = [
     (16.55, 20.80, "p", "c6.mp4", 0.0, ("in", 1.12, 1.0)),
     (20.80, 25.70, "p", "c7.mp4", 0.0, ("in", 1.15, 1.03)),
     (25.70, 30.98, "p", "c8.mp4", 0.0, ("in", 1.12, 1.0)),
-    (30.98, 35.85, "p", "n2.mp4", 3.0, ("in", 1.12, 1.0)),
+    (30.98, 35.85, "collage", None, 0, None),
     (35.85, 38.05, "l", "style-tropical.jpg", 0, ("pan", -1500, -900)),
     (38.05, 40.52, "l", "style-muji.jpg", 0, ("pan", -650, -1250)),
     (40.52, 42.95, "l", "style-english.jpg", 0, ("pan", -1500, -800)),
     (42.95, 44.85, "l", "style-nordic.jpg", 0, ("pan", -650, -1350)),
     (44.85, 47.75, "l", "style-melayu.jpg", 0, ("pan", -1550, -800)),
-    (47.75, 53.20, "p", "c8.mp4", 6.0, ("in", 1.12, 1.0)),
-    (53.20, 58.89, "p", "n4.mp4", 1.0, ("in", 1.12, 1.0)),
+    (47.75, 49.00, "p", "c8.mp4", 6.0, ("in", 1.12, 1.0)),
+    (49.00, 52.60, "plan", "plan-ground.png", 0, (515, 1148, 760)),
+    (52.60, 55.65, "plan", "plan-upper.png", 0, (515, 1180, 800)),
+    (55.65, 58.89, "p", "n4.mp4", 2.0, ("in", 1.12, 1.0)),
     (58.89, OUTRO_START, "p", "c2.mp4", 2.5, ("in", 1.25, 1.05)),
 ]
 
 shot_html, shot_js = [], []
 for n, (s, e, kind, src, ms, mot) in enumerate(shots, 1):
     d = round(e - s, 3)
+    if kind == "collage":
+        styles = ["tropical", "muji", "english", "nordic", "melayu"]
+        pos = ["50% 55%", "45% 60%", "50% 55%", "45% 60%", "55% 55%"]
+        strips = "\n".join(
+            f'          <div id="cs{n}-{k}" class="strip" style="top:{k * 386}px">'
+            f'<img id="ci{n}-{k}" class="strip-img" src="assets/style-{st}.jpg" style="object-position:{pos[k]}" alt="" /></div>'
+            for k, st in enumerate(styles))
+        shot_html.append(f'      <div id="sw{n}" class="shot" style="left:0;top:0;width:{W}px;height:{H}px;z-index:{n}">\n'
+                         f'        <div id="v{n}" class="clip collage" data-start="{s}" data-duration="{d}" data-track-index="0">\n{strips}\n        </div>\n      </div>')
+        for k in range(5):
+            t0 = round(s + 0.05 + 0.3 * k, 3)
+            shot_js.append(f'tl.fromTo("#cs{n}-{k}", {{ x: {-W if k % 2 == 0 else W} }}, {{ x: 0, duration: 0.5, ease: "power3.out" }}, {t0});')
+            shot_js.append(f'tl.fromTo("#ci{n}-{k}", {{ scale: 1.18 }}, {{ scale: 1.0, duration: {round(e - t0, 3)}, ease: "power1.out" }}, {t0});')
+        continue
+    if kind == "plan":
+        top, iw, ih = mot
+        dh = 540
+        dw = round(iw * dh / ih)
+        shot_html.append(f'      <div id="sw{n}" class="shot" style="left:0;top:0;width:{W}px;height:{H}px;z-index:{n}">\n'
+                         f'        <div id="v{n}" class="clip blueprint" data-start="{s}" data-duration="{d}" data-track-index="0">\n'
+                         f'          <div id="pw{n}" class="plan-wrap" style="left:{(W - dw) // 2}px;top:{top}px;width:{dw}px;height:{dh}px">\n'
+                         f'            <img id="pi{n}" class="plan-img" src="assets/{src}" alt="" />\n'
+                         f'            <div id="pp{n}" class="plan-pen"></div>\n'
+                         f'          </div>\n        </div>\n      </div>')
+        shot_js.append(f'tl.fromTo("#pi{n}", {{ clipPath: "inset(0% 100% 0% 0%)" }}, {{ clipPath: "inset(0% 0% 0% 0%)", duration: 1.5, ease: "power2.inOut" }}, {s + 0.1:.3f});')
+        shot_js.append(f'tl.fromTo("#pp{n}", {{ x: 0, opacity: 1 }}, {{ x: {dw}, duration: 1.5, ease: "power2.inOut" }}, {s + 0.1:.3f});')
+        shot_js.append(f'tl.to("#pp{n}", {{ opacity: 0, duration: 0.2 }}, {s + 1.6:.3f});')
+        shot_js.append(f'tl.fromTo("#pw{n}", {{ scale: 0.97 }}, {{ scale: 1.02, duration: {d}, ease: "none" }}, {s});')
+        continue
     if kind == "p":
         size = f"left:0;top:0;width:{W}px;height:{H}px"
     else:
@@ -85,7 +116,7 @@ sfx = [  # (file, start, duration, volume, media_start)
 ]
 cut_whoosh = [(5.19, WS), (8.30, WH), (12.75, WS), (16.55, WH), (20.80, WS), (25.70, WH),
               (35.85, WS), (38.05, WH), (40.52, WS), (42.95, WH), (44.85, WS),
-              (53.20, WS), (58.89, WH)]
+              (31.05, WS), (31.95, WS), (49.00, WH), (52.60, WS), (55.65, WH), (58.89, WH)]
 for t, f in cut_whoosh:
     sfx.append((f, at_peak(t, 0.162), 0.45, 0.45, 0))
 for t in (30.98, 47.75):
@@ -129,6 +160,22 @@ index = f'''<!doctype html>
       html, body {{ margin: 0; width: {W}px; height: {H}px; overflow: hidden; background: var(--ground); }}
       #root {{ position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--ground); }}
       .shot {{ position: absolute; transform-origin: 50% 50%; }}
+      .collage {{ position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: #0b1712; }}
+      .strip {{ position: absolute; left: 0; width: {W}px; height: 380px; overflow: hidden; }}
+      .strip-img {{ position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }}
+      .blueprint {{
+        position: absolute; left: 0; top: 0; width: 100%; height: 100%;
+        background-color: #0e2a47;
+        background-image: linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+        background-size: 54px 54px;
+      }}
+      .plan-wrap {{ position: absolute; transform-origin: 50% 50%; }}
+      .plan-img {{ position: absolute; left: 0; top: 0; width: 100%; height: 100%; }}
+      .plan-pen {{
+        position: absolute; left: 0; top: -20px; width: 6px; height: calc(100% + 40px); margin-left: -3px;
+        background: {GOLD}; box-shadow: 0 0 24px {GOLD}, 0 0 8px #fff; opacity: 0;
+      }}
       .shot .media {{ position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }}
       #topshade {{
         position: absolute; left: 0; top: 0; width: {W}px; height: 820px; z-index: 40; pointer-events: none;
@@ -196,13 +243,13 @@ heads = [  # id, start, end, line1, line2, chip(top), extra
     ("h7", 25.70, 27.30, "KORANG", "TAHU TAK?", None, None),
     ("h8", 27.35, 30.93, "SPLIT LEVEL", "BUKAN SATU STYLE JE", None, None),
     ("h9", 30.98, 35.80, "PELBAGAI KOLEKSI", "DESIGN SPLIT LEVEL", None, None),
-    ("h10", 35.97, 38.00, "MODERN", "TROPICAL", "01 / 05", None),
-    ("h11", 38.09, 40.47, "MUJI", "STYLE", "02 / 05", None),
-    ("h12", 40.65, 42.90, "ENGLISH", "STYLE", "03 / 05", None),
-    ("h13", 42.97, 44.80, "NORDIC", "STYLE", "04 / 05", None),
-    ("h14", 45.00, 47.70, "MELAYU", "TRADISIONAL", "05 / 05", None),
-    ("h15", 47.80, 53.15, "PELUKIS PELAN", "SENDIRI", None, None),
-    ("h16", 53.20, 58.84, "IKUT CITA RASA", "& KESESUAIAN TANAH", None, None),
+    ("h10", 35.97, 38.00, "MODERN", "TROPICAL", "KATALOG 01 / 05", None),
+    ("h11", 38.09, 40.47, "MUJI", "STYLE", "KATALOG 02 / 05", None),
+    ("h12", 40.65, 42.90, "ENGLISH", "STYLE", "KATALOG 03 / 05", None),
+    ("h13", 42.97, 44.80, "NORDIC", "STYLE", "KATALOG 04 / 05", None),
+    ("h14", 45.00, 47.70, "MELAYU", "TRADISIONAL", "KATALOG 05 / 05", None),
+    ("h15", 47.80, 52.55, "PELUKIS PELAN", "SENDIRI", None, None),
+    ("h16", 52.60, 58.84, "IKUT CITA RASA", "& KESESUAIAN TANAH", None, None),
     ("h17", 58.89, 62.50, "TAK PERLU", "PENING LAGI!", None, None),
 ]
 t_html, t_js = [], []
