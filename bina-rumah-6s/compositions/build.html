@@ -14,6 +14,8 @@
         linear-gradient(to right, transparent 0, #000 50px, #000 calc(100% - 50px), transparent 100%),
         linear-gradient(to bottom, transparent 0, #000 50px, #000 calc(100% - 22px), transparent 100%);
       -webkit-mask-composite: source-in, source-in; mask-composite: intersect; }
+    #b-end { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; opacity: 0; }
+    #b-end img { position: absolute; left: 0; top: 0; width: 1080px; height: 1919px; display: block; }
     #b-empty img { position: absolute; left: -120px; top: -600px; width: 1080px; height: 1919px; display: block; }
   </style>
   <div id="root" data-composition-id="build" data-width="1080" data-height="1920" data-duration="6">
@@ -21,18 +23,22 @@
       <img id="b-house" src="assets/img/house.png" alt="" />
       <div id="b-empty"><img src="assets/img/empty-plot.png" alt="" /></div>
     </div>
+    <div id="b-end" data-layout-allow-overflow><img src="assets/img/render-angle.png" alt="" /></div>
   </div>
   <script>
     const tl = gsap.timeline({ paused: true });
-    // one continuous drone move: forward (scale) and descending (frame drifts up as the camera drops)
-    tl.fromTo("#b-cam", { scale: 1.0, y: 0, transformOrigin: "590px 1000px" }, { scale: 1.24, y: -40, duration: 6, ease: "power1.inOut" }, 0);
-    // build stages (mask height above the road line, px): 1–2 s ground works, fence and driveway;
-    // 2–3.5 s ground floor, car porch and upper walls; 3.5–4.5 s roof and finishing
-    tl.fromTo("#b-empty", { "--p": "-80px" }, { "--p": "120px", duration: 0.95, ease: "power2.inOut" }, 1.0);
-    tl.to("#b-empty", { "--p": "330px", duration: 0.7, ease: "power2.inOut" }, 2.0);
-    tl.to("#b-empty", { "--p": "520px", duration: 0.75, ease: "power2.inOut" }, 2.75);
-    tl.to("#b-empty", { "--p": "820px", duration: 0.85, ease: "power2.inOut" }, 3.5);
-    tl.to("#b-empty", { opacity: 0, duration: 0.3, ease: "power1.in" }, 4.2);
+    // AERIAL: forward-and-down drone move over the plot, then a faster fly-in onto the finished house
+    tl.fromTo("#b-cam", { scale: 1.0, y: 0, transformOrigin: "590px 1000px" }, { scale: 1.2, y: -40, duration: 3.7, ease: "power1.inOut" }, 0);
+    tl.to("#b-cam", { scale: 2.6, y: -60, duration: 0.7, ease: "power3.in" }, 3.7);
+    // build stages, bottom-up: ground works/fence/driveway, ground floor + car porch, upper walls, roof
+    tl.fromTo("#b-empty", { "--p": "-80px" }, { "--p": "120px", duration: 0.7, ease: "power2.inOut" }, 0.8);
+    tl.to("#b-empty", { "--p": "330px", duration: 0.6, ease: "power2.inOut" }, 1.5);
+    tl.to("#b-empty", { "--p": "520px", duration: 0.6, ease: "power2.inOut" }, 2.1);
+    tl.to("#b-empty", { "--p": "820px", duration: 0.7, ease: "power2.inOut" }, 2.7);
+    tl.to("#b-empty", { opacity: 0, duration: 0.3, ease: "power1.in" }, 3.25);
+    // FINAL: arrive at the angled street-level view, still moving forward and down, then settle
+    tl.fromTo("#b-end", { opacity: 0 }, { opacity: 1, duration: 0.22, ease: "power1.inOut" }, 4.12);
+    tl.fromTo("#b-end", { scale: 1.1, y: -70, transformOrigin: "540px 975px" }, { scale: 1.0, y: 0, duration: 1.88, ease: "power2.out" }, 4.12);
     window.__timelines["build"] = tl;
   </script>
 </template>
