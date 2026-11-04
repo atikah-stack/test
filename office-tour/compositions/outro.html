@@ -1,0 +1,50 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Montserrat",sans-serif; color:#fff; }
+    .stack { position:absolute; left:120px; right:120px; top:0; height:1920px;
+      display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
+      padding-top:120px; }
+    .backdrop { position:absolute; inset:0; pointer-events:none;
+      background: radial-gradient(ellipse 80% 22% at 50% 53%, rgba(20,14,8,.55) 0%, rgba(20,14,8,.25) 55%, rgba(20,14,8,0) 100%); }
+    .backdrop.strong { background: radial-gradient(ellipse 100% 28% at 50% 54%, rgba(18,12,7,.78) 0%, rgba(18,12,7,.5) 55%, rgba(18,12,7,.12) 100%); }
+    .card { display:flex; flex-direction:column; align-items:center; padding:60px 44px 56px;
+      border-radius:40px; background:rgba(26,18,11,.64); border:1px solid rgba(255,255,255,.14);
+      box-shadow:0 20px 60px rgba(0,0,0,.25); }
+    .num { font-weight:300; font-size:44px; letter-spacing:0.32em; padding-left:0.32em; line-height:1;
+      text-shadow:0 2px 14px rgba(0,0,0,.45); }
+    .rule { width:96px; height:3px; background:#e8424b; margin:26px 0 30px; transform-origin:50% 50%; }
+    .title { font-weight:600; font-size:66px; line-height:1.14; letter-spacing:0.06em;
+      text-shadow:0 3px 20px rgba(0,0,0,.5), 0 1px 3px rgba(0,0,0,.35); }
+    .sub { font-family:"Poppins",sans-serif; font-weight:400; font-size:36px; letter-spacing:0.02em; margin-top:30px;
+      text-shadow:0 2px 14px rgba(0,0,0,.55); opacity:.95; }
+
+    .main { font-weight:700; font-size:56px; line-height:1.18; letter-spacing:0.05em;
+      text-shadow:0 3px 22px rgba(0,0,0,.5), 0 1px 3px rgba(0,0,0,.35); }
+    .visit { font-family:"Poppins",sans-serif; font-weight:400; font-size:40px; margin-top:8px;
+      text-shadow:0 2px 14px rgba(0,0,0,.55); }
+    .cta { margin-top:54px; padding:24px 40px; border:2px solid rgba(255,255,255,.85); border-radius:60px;
+      font-weight:600; font-size:30px; line-height:1.45; letter-spacing:0.12em; background:rgba(20,14,8,.28); }
+  </style>
+  <div id="root" data-composition-id="outro" data-width="1080" data-height="1920">
+    <div id="out-bd" class="backdrop strong clip" data-start="0" data-duration="4.7" data-track-index="1" data-layout-ignore></div>
+    <div id="out-stack" class="stack clip" data-start="0" data-duration="4.7" data-track-index="0">
+      <div id="out-card" class="card">
+      <div id="out-main" class="main">YOUR DREAM HOME<br />STARTS HERE.</div>
+      <div id="out-rule" class="rule"></div>
+      <div id="out-visit" class="visit">Visit Mahligai Idaman HQ</div>
+      <div id="out-cta" class="cta">FREE CONSULTATION<br />WALK-IN &amp; APPOINTMENT</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#out-bd", { opacity:0 }, { opacity:1, duration:0.8, ease:"sine.inOut" }, 0);
+    tl.fromTo("#out-card", { opacity:0, scale:0.97 }, { opacity:1, scale:1, duration:0.9, ease:"power2.out" }, 0);
+    tl.fromTo("#out-main", { opacity:0, y:18 }, { opacity:1, y:0, duration:1.0, ease:"power2.out" }, 0.1);
+    tl.fromTo("#out-rule", { scaleX:0 }, { scaleX:1, duration:0.8, ease:"power2.inOut" }, 0.5);
+    tl.fromTo("#out-visit", { opacity:0, y:14 }, { opacity:1, y:0, duration:0.8, ease:"power2.out" }, 0.8);
+    tl.fromTo("#out-cta", { opacity:0, y:14 }, { opacity:1, y:0, duration:0.8, ease:"power2.out" }, 1.3);
+    tl.to("#out-stack", { opacity:0, duration:0.7, ease:"sine.in" }, 3.9);
+    window.__timelines["outro"] = tl;
+  </script>
+</template>
