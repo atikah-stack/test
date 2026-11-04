@@ -1,0 +1,51 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: "Montserrat", sans-serif; }
+    .cap { position: absolute; left: 50%; top: 1040px; width: 940px; margin-left: -470px; text-align: center; }
+    .cap-in {
+      display: inline-block;
+      font-weight: 900;
+      font-size: 82px;
+      line-height: 1.08;
+      color: #fff;
+      -webkit-text-stroke: 12px #111;
+      paint-order: stroke fill;
+      text-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+      letter-spacing: -0.01em;
+    }
+    .gold { color: #ffd23f; }
+    #stamp { position: absolute; left: 50%; top: 860px; width: 960px; margin-left: -480px; text-align: center; }
+    #stamp-in {
+      display: inline-block;
+      padding: 24px 46px 30px;
+      border-radius: 34px;
+      background: #ffd23f;
+      color: #111;
+      font-weight: 900;
+      font-size: 108px;
+      line-height: 1;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+    }
+    #stamp-sub { display: block; margin-top: 26px; font-weight: 800; font-size: 50px; color: #fff; -webkit-text-stroke: 9px #111; paint-order: stroke fill; }
+  </style>
+  <div id="root" data-composition-id="caps" data-width="1080" data-height="1920">
+    <div id="k1" class="cap clip" data-start="0" data-duration="1.1"><span class="cap-in">Dia kalau macam…</span></div>
+    <div id="k2" class="cap clip" data-start="1.1" data-duration="1.15"><span class="cap-in"><span class="gold">Mahligai</span> ni,</span></div>
+    <div id="k3" class="cap clip" data-start="2.25" data-duration="0.89"><span class="cap-in">adik, <span class="gold">team media</span></span></div>
+    <div id="k4" class="cap clip" data-start="3.14" data-duration="1.71"><span class="cap-in">ada <span class="gold">berapa team?</span></span></div>
+    <div id="stamp" class="clip" data-start="4.85" data-duration="1.55">
+      <span id="stamp-in">BERAPA TEAM?</span>
+      <span id="stamp-sub">hmm…</span>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    [["#k1", 0], ["#k2", 1.1], ["#k3", 2.25], ["#k4", 3.14]].forEach(([id, t], i) => {
+      tl.fromTo(id + " .cap-in", { scale: 0.6, rotation: i % 2 ? 3 : -3, opacity: 0 }, { scale: 1, rotation: 0, opacity: 1, duration: 0.28, ease: "back.out(2.6)" }, t);
+    });
+    tl.fromTo("#stamp-in", { scale: 2.2, rotation: -10, opacity: 0 }, { scale: 1, rotation: -4, opacity: 1, duration: 0.32, ease: "back.out(2)" }, 4.85);
+    tl.fromTo("#stamp-sub", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, 5.35);
+    tl.to("#stamp-in", { rotation: 3, duration: 0.5, ease: "sine.inOut" }, 5.4);
+    window.__timelines["caps"] = tl;
+  </script>
+</template>
