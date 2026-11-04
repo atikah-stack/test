@@ -9,46 +9,45 @@
       html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #0b0b0b; }
       #root { width: 100%; height: 100%; background: #0b0b0b; font-family: "Montserrat", sans-serif; }
       video.shot { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
-      #logo-plate { position: absolute; left: 726px; top: 200px; width: 264px; z-index: 60;
-        padding: 22px 28px; border-radius: 22px; background: rgba(255,255,255,0.92);
-        box-shadow: 0 12px 40px rgba(0,0,0,0.25); }
-      #logo-plate img { display: block; width: 100%; height: auto; }
+      #logo-plate { position: absolute; left: 714px; top: 196px; width: 290px; z-index: 60; }
+      #logo-plate img { display: block; width: 100%; height: auto;
+        filter: drop-shadow(0 0 6px rgba(255,255,255,0.95)) drop-shadow(0 0 18px rgba(255,255,255,0.85)) drop-shadow(0 0 36px rgba(255,255,255,0.6)); }
       #fade { position: absolute; inset: 0; z-index: 90; background: #0b0b0b; opacity: 0; pointer-events: none; }
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="19" data-width="1080" data-height="1920">
-      <video id="v-smile" class="shot clip" src="assets/footage/smile.mp4" muted playsinline data-start="0" data-duration="4.05" data-track-index="1" style="z-index:1"></video>
-      <video id="v-truck" class="shot clip" src="assets/footage/truck.mp4" muted playsinline data-start="3.75" data-duration="2.5" data-track-index="0" style="z-index:2"></video>
-      <video id="v-carry" class="shot clip" src="assets/footage/carry.mp4" muted playsinline data-start="5.95" data-duration="2.1" data-track-index="1" style="z-index:3"></video>
-      <video id="v-unwrap" class="shot clip" src="assets/footage/unwrap.mp4" muted playsinline data-start="7.75" data-duration="3.15" data-playback-rate="0.85" data-track-index="0" style="z-index:4"></video>
-      <video id="v-flip" class="shot clip" src="assets/footage/flip.mp4" muted playsinline data-start="10.6" data-duration="2.3" data-playback-rate="0.9" data-track-index="1" style="z-index:5"></video>
-      <video id="v-laid" class="shot clip" src="assets/footage/laid.mp4" muted playsinline data-start="12.6" data-duration="2.6" data-track-index="0" style="z-index:6"></video>
-      <video id="v-laugh" class="shot clip" src="assets/footage/laugh.mp4" muted playsinline data-start="14.9" data-duration="4" data-playback-rate="0.74" data-track-index="1" style="z-index:7"></video>
-      <audio id="a-smile" class="clip" src="assets/audio/smile.wav" data-start="0" data-duration="4.05" data-volume="1" data-fade-out="0.3" data-track-index="10"></audio>
-      <audio id="a-truck" class="clip" src="assets/audio/mid.wav" data-start="3.75" data-duration="2.5" data-media-start="0" data-volume="0.45" data-fade-in="0.3" data-fade-out="0.3" data-track-index="11"></audio>
-      <audio id="a-carry" class="clip" src="assets/audio/mid.wav" data-start="5.95" data-duration="2.1" data-media-start="10" data-volume="0.45" data-fade-in="0.3" data-fade-out="0.3" data-track-index="12"></audio>
-      <audio id="a-unwrap" class="clip" src="assets/audio/mid.wav" data-start="7.75" data-duration="3.15" data-media-start="21" data-volume="0.45" data-fade-in="0.3" data-fade-out="0.3" data-track-index="11"></audio>
-      <audio id="a-flip" class="clip" src="assets/audio/mid.wav" data-start="10.6" data-duration="2.3" data-media-start="27" data-volume="0.45" data-fade-in="0.3" data-fade-out="0.3" data-track-index="12"></audio>
-      <audio id="a-laid" class="clip" src="assets/audio/mid.wav" data-start="12.6" data-duration="2.3" data-media-start="30.5" data-volume="0.45" data-fade-in="0.3" data-fade-out="0.3" data-track-index="11"></audio>
-      <audio id="a-laugh" class="clip" src="assets/audio/laugh.wav" data-start="14.9" data-duration="2.96" data-volume="1" data-fade-in="0.2" data-fade-out="0.5" data-track-index="10"></audio>
-      <div id="logo-plate" class="clip" data-start="16.6" data-duration="2.4" data-track-index="6"><img id="logo-img" src="assets/brand/logo-mi.png" alt="Mahligai Idaman" /></div>
-      <div id="fade" class="clip" data-start="0" data-duration="19" data-track-index="7" data-layout-ignore></div>
-      <div id="t1" data-composition-id="t1" data-composition-src="compositions/t1.html" data-start="0.3" data-duration="3.5" data-track-index="5" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:50"></div>
-      <div id="t2" data-composition-id="t2" data-composition-src="compositions/t2.html" data-start="4.1" data-duration="3.7" data-track-index="5" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:50"></div>
-      <div id="t3" data-composition-id="t3" data-composition-src="compositions/t3.html" data-start="10.9" data-duration="4" data-track-index="5" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:50"></div>
-      <div id="t4" data-composition-id="t4" data-composition-src="compositions/t4.html" data-start="15.3" data-duration="3.7" data-track-index="5" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:50"></div>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="19.9" data-width="1080" data-height="1920">
+      <video id="v-hook" class="shot clip" src="assets/footage/hook.mp4" muted playsinline data-start="0" data-duration="4.35" data-track-index="1" style="z-index:1"></video>
+      <video id="v-sot" class="shot clip" src="assets/footage/sot.mp4" muted playsinline data-start="4.05" data-duration="4.65" data-track-index="0" style="z-index:2"></video>
+      <video id="v-truck" class="shot clip" src="assets/footage/truck.mp4" muted playsinline data-start="8.4" data-duration="2" data-track-index="1" style="z-index:3"></video>
+      <video id="v-box" class="shot clip" src="assets/footage/box.mp4" muted playsinline data-start="10.1" data-duration="2.3" data-track-index="0" style="z-index:4"></video>
+      <video id="v-flip" class="shot clip" src="assets/footage/flip.mp4" muted playsinline data-start="12.1" data-duration="2.33" data-playback-rate="0.9" data-track-index="1" style="z-index:5"></video>
+      <video id="v-laid" class="shot clip" src="assets/footage/laid.mp4" muted playsinline data-start="14.13" data-duration="2.3" data-track-index="0" style="z-index:6"></video>
+      <video id="v-laugh" class="shot clip" src="assets/footage/laugh.mp4" muted playsinline data-start="16.13" data-duration="3.7" data-playback-rate="0.8" data-track-index="1" style="z-index:7"></video>
+      <audio id="a-hook" class="clip" src="assets/audio/hook.wav" data-start="0" data-duration="4.35" data-volume="1" data-fade-out="0.3" data-track-index="10"></audio>
+      <audio id="a-sot" class="clip" src="assets/audio/sot.wav" data-start="4.05" data-duration="4.65" data-volume="1.1" data-fade-in="0.15" data-fade-out="0.25" data-track-index="13"></audio>
+      <audio id="a-truck" class="clip" src="assets/audio/mid.wav" data-start="8.4" data-duration="2" data-media-start="0" data-volume="0.45" data-fade-in="0.3" data-fade-out="0.3" data-track-index="11"></audio>
+      <audio id="a-box" class="clip" src="assets/audio/mid.wav" data-start="10.1" data-duration="2.3" data-media-start="10" data-volume="0.45" data-fade-in="0.3" data-fade-out="0.3" data-track-index="12"></audio>
+      <audio id="a-flip" class="clip" src="assets/audio/mid.wav" data-start="12.1" data-duration="2.33" data-media-start="27" data-volume="0.45" data-fade-in="0.3" data-fade-out="0.3" data-track-index="11"></audio>
+      <audio id="a-laid" class="clip" src="assets/audio/mid.wav" data-start="14.13" data-duration="2.2" data-media-start="30.5" data-volume="0.45" data-fade-in="0.3" data-fade-out="0.3" data-track-index="12"></audio>
+      <audio id="a-laugh" class="clip" src="assets/audio/laugh.wav" data-start="16.13" data-duration="2.96" data-volume="1" data-fade-in="0.2" data-fade-out="0.5" data-track-index="10"></audio>
+      <div id="logo-plate" class="clip" data-start="17.8" data-duration="2.1" data-track-index="6"><img id="logo-img" src="assets/brand/logo-mi.png" alt="Mahligai Idaman" /></div>
+      <div id="fade" class="clip" data-start="0" data-duration="19.9" data-track-index="7" data-layout-ignore></div>
+      <div id="t1" data-composition-id="t1" data-composition-src="compositions/t1.html" data-start="0.2" data-duration="3.85" data-track-index="5" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:50"></div>
+      <div id="ts" data-composition-id="ts" data-composition-src="compositions/ts.html" data-start="4.4" data-duration="4.1" data-track-index="5" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:50"></div>
+      <div id="t2" data-composition-id="t2" data-composition-src="compositions/t2.html" data-start="8.7" data-duration="3.5" data-track-index="5" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:50"></div>
+      <div id="t3" data-composition-id="t3" data-composition-src="compositions/t3.html" data-start="12.4" data-duration="3.7" data-track-index="5" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:50"></div>
+      <div id="t4" data-composition-id="t4" data-composition-src="compositions/t4.html" data-start="16.4" data-duration="3.4" data-track-index="5" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:50"></div>
     </div>
     <script>
       const tl = gsap.timeline({ paused: true });
-      const shots = [["v-smile",0,4.05],["v-truck",3.75,2.5],["v-carry",5.95,2.1],["v-unwrap",7.75,3.15],["v-flip",10.6,2.3],["v-laid",12.6,2.6],["v-laugh",14.9,4]];
+      const shots = [["v-hook",0,4.35],["v-sot",4.05,4.65],["v-truck",8.4,2],["v-box",10.1,2.3],["v-flip",12.1,2.33],["v-laid",14.13,2.3],["v-laugh",16.13,3.7]];
       shots.forEach(([id, s, d], i) => {
         tl.fromTo("#" + id, { scale: 1 }, { scale: 1.05, duration: d, ease: "none" }, s);
         if (i > 0) tl.fromTo("#" + id, { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "sine.inOut" }, s);
       });
-      tl.fromTo("#logo-img", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 16.6);
-      tl.fromTo("#logo-plate", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "sine.out" }, 16.6);
-      tl.fromTo("#fade", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "sine.in" }, 18.45);
+      tl.fromTo("#logo-img", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, 17.8);
+      tl.fromTo("#fade", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "sine.in" }, 19.35);
       window.__timelines["main"] = tl;
     </script>
   </body>
