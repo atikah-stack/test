@@ -3,8 +3,8 @@
     #root { position: absolute; inset: 0; overflow: hidden; background: #101216; }
     #b-cam { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
     #b-house { position: absolute; left: 0; top: 0; width: 1080px; height: 1919px; display: block; }
-    /* empty plot from the earlier empty-land photo, aligned to this view by feature matching.
-       It is cleared from the ground line upward in stages, so the house is built bottom-up. */
+    /* empty plot from the earlier empty-land photo, aligned to this view by feature matching,
+       cleared from the ground line upward so the house is built bottom-up */
     #b-empty { position: absolute; left: 120px; top: 600px; width: 920px; height: 730px; overflow: hidden;
       --p: -80px;
       -webkit-mask-image: linear-gradient(to top, transparent var(--p), #000 calc(var(--p) + 80px)),
@@ -14,31 +14,41 @@
         linear-gradient(to right, transparent 0, #000 50px, #000 calc(100% - 50px), transparent 100%),
         linear-gradient(to bottom, transparent 0, #000 50px, #000 calc(100% - 22px), transparent 100%);
       -webkit-mask-composite: source-in, source-in; mask-composite: intersect; }
-    #b-end { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; opacity: 0; }
-    #b-end img { position: absolute; left: 0; top: 0; width: 1080px; height: 1919px; display: block; }
     #b-empty img { position: absolute; left: -120px; top: -600px; width: 1080px; height: 1919px; display: block; }
+    /* final street-level view split into depth layers for a parallax camera arc */
+    #b-end { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; opacity: 0;
+      perspective: 1800px; perspective-origin: 540px 1000px; }
+    #b-rig { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-style: preserve-3d; }
+    .ly { position: absolute; left: 0; top: 0; width: 1080px; height: 1919px; display: block; }
   </style>
   <div id="root" data-composition-id="build" data-width="1080" data-height="1920" data-duration="6">
     <div id="b-cam" data-layout-allow-overflow>
       <img id="b-house" src="assets/img/house.png" alt="" />
       <div id="b-empty"><img src="assets/img/empty-plot.png" alt="" /></div>
     </div>
-    <div id="b-end" data-layout-allow-overflow><img src="assets/img/render-angle.png" alt="" /></div>
+    <div id="b-end" data-layout-allow-overflow>
+      <div id="b-rig">
+        <img class="ly" id="b-sky" src="assets/img/L-sky.jpg" alt="" />
+        <img class="ly" id="b-mid" src="assets/img/L-mid.png" alt="" />
+        <img class="ly" id="b-fg" src="assets/img/L-fg.png" alt="" />
+      </div>
+    </div>
   </div>
   <script>
     const tl = gsap.timeline({ paused: true });
-    // AERIAL: forward-and-down drone move over the plot, then a faster fly-in onto the finished house
-    tl.fromTo("#b-cam", { scale: 1.0, y: 0, transformOrigin: "590px 1000px" }, { scale: 1.2, y: -40, duration: 3.7, ease: "power1.inOut" }, 0);
-    tl.to("#b-cam", { scale: 2.6, y: -60, duration: 0.7, ease: "power3.in" }, 3.7);
-    // build stages, bottom-up: ground works/fence/driveway, ground floor + car porch, upper walls, roof
-    tl.fromTo("#b-empty", { "--p": "-80px" }, { "--p": "120px", duration: 0.7, ease: "power2.inOut" }, 0.8);
-    tl.to("#b-empty", { "--p": "330px", duration: 0.6, ease: "power2.inOut" }, 1.5);
-    tl.to("#b-empty", { "--p": "520px", duration: 0.6, ease: "power2.inOut" }, 2.1);
-    tl.to("#b-empty", { "--p": "820px", duration: 0.7, ease: "power2.inOut" }, 2.7);
-    tl.to("#b-empty", { opacity: 0, duration: 0.3, ease: "power1.in" }, 3.25);
-    // FINAL: arrive at the angled street-level view, still moving forward and down, then settle
+    // AERIAL: one accelerating forward-and-down drone move, never stopping, into the fly-in
+    tl.fromTo("#b-cam", { scale: 1.0, y: 0, transformOrigin: "590px 1000px" }, { scale: 1.6, y: -55, duration: 4.4, ease: "power2.in" }, 0);
+    // the house rises bottom-up in one continuous sweep (fence/driveway, ground floor, walls, roof)
+    tl.fromTo("#b-empty", { "--p": "-80px" }, { "--p": "820px", duration: 2.7, ease: "sine.inOut" }, 0.6);
+    tl.to("#b-empty", { opacity: 0, duration: 0.3, ease: "power1.in" }, 3.0);
+    // FINAL: hand off to the street-level view at matching scale, then a continuous camera arc:
+    // the rig keeps pulling in and swinging, layers slide at depth-dependent speeds (parallax)
     tl.fromTo("#b-end", { opacity: 0 }, { opacity: 1, duration: 0.22, ease: "power1.inOut" }, 4.12);
-    tl.fromTo("#b-end", { scale: 1.1, y: -70, transformOrigin: "540px 975px" }, { scale: 1.0, y: 0, duration: 1.88, ease: "power2.out" }, 4.12);
+    tl.fromTo("#b-rig", { scale: 1.1, y: -70, rotationY: -3, transformOrigin: "540px 975px" },
+      { scale: 1.14, y: 0, rotationY: 3, duration: 1.88, ease: "none" }, 4.12);
+    tl.fromTo("#b-sky", { x: 18, scale: 1.08, transformOrigin: "540px 700px" }, { x: -18, scale: 1.08, duration: 1.88, ease: "none" }, 4.12);
+    tl.fromTo("#b-mid", { x: 45, scale: 1.1, transformOrigin: "540px 1000px" }, { x: -45, scale: 1.1, duration: 1.88, ease: "none" }, 4.12);
+    tl.fromTo("#b-fg", { x: 90, scale: 1.2, transformOrigin: "540px 1919px" }, { x: -90, scale: 1.2, duration: 1.88, ease: "none" }, 4.12);
     window.__timelines["build"] = tl;
   </script>
 </template>
