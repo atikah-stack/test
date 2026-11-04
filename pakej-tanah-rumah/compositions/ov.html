@@ -1,0 +1,76 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #101216; font-family: Montserrat, sans-serif; color: #fff; }
+    #o-wrap { position: absolute; inset: 0; transform-origin: 540px 900px; }
+    #o-v { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    /* soft top shade so the cards read over bright clouds */
+    #o-shade { position: absolute; left: 0; top: 0; width: 1080px; height: 980px; opacity: 0;
+      background: linear-gradient(rgba(8,10,14,.62), rgba(8,10,14,.32) 55%, rgba(8,10,14,0)); }
+    /* brand lockup */
+    #o-brand { position: absolute; left: 0; right: 0; top: 70px; display: flex; flex-direction: column; align-items: center; opacity: 0; }
+    #o-logo { width: 130px; height: auto; display: block; filter: drop-shadow(0 8px 18px rgba(0,0,0,.45)); }
+    #o-name { margin-top: 14px; padding: 10px 30px 12px; border-radius: 999px;
+      background: linear-gradient(100deg, rgba(255,255,255,0) 40%, rgba(255,255,255,.35) 50%, rgba(255,255,255,0) 60%) no-repeat, rgba(12,14,18,.82);
+      background-size: 300% 100%, auto; background-position: 120% 0, 0 0; border: 2px solid #F6C343; font-weight: 900; font-size: 40px; letter-spacing: .08em; white-space: nowrap; }
+    #o-name .y { color: #F6C343; }
+    #o-sub { margin-top: 12px; font-weight: 700; font-size: 34px; letter-spacing: .26em; color: #fff; opacity: 0;
+      text-shadow: 0 3px 10px rgba(0,0,0,.6); white-space: nowrap; }
+    /* offer cards */
+    .card { position: absolute; left: 130px; width: 820px; height: 140px; display: flex; align-items: center; gap: 30px;
+      padding: 0 40px; border-radius: 28px; opacity: 0; box-shadow: 0 22px 50px rgba(0,0,0,.45); }
+    #o-c1 { top: 385px; background: #F6C343; color: #14161B; }
+    #o-c2 { top: 570px; background: #C8102E; color: #fff; }
+    .card svg { width: 92px; height: 92px; flex: none; }
+    .card .tx { display: flex; flex-direction: column; }
+    .card .k { font-weight: 700; font-size: 28px; letter-spacing: .22em; opacity: .85; }
+    .card .w { font-weight: 900; font-size: 72px; line-height: .95; letter-spacing: .01em; white-space: nowrap; }
+    #o-plus { position: absolute; left: 500px; top: 497px; width: 80px; height: 80px; font-size: 66px; line-height: 78px; width: 100px; height: 100px; border-radius: 50%; background: #fff;
+      color: #C8102E; font-weight: 900; font-size: 84px; line-height: 96px; text-align: center; opacity: 0;
+      box-shadow: 0 12px 30px rgba(0,0,0,.4); z-index: 2; }
+  </style>
+  <div id="root" data-composition-id="ov" data-width="1080" data-height="1920" data-duration="9.3">
+    <div id="o-wrap"><video id="o-v" class="clip" src="assets/video/main.mp4" data-start="0" data-duration="7.93" playsinline data-has-audio="true" data-volume="1"></video><img id="o-hold" class="clip" src="assets/video/last.jpg" alt="" data-start="7.93" data-duration="1.37" style="position:absolute; left:0; top:0; width:1080px; height:1920px; object-fit:cover" /></div>
+    <div id="o-shade"></div>
+    <div id="o-brand">
+      <img id="o-logo" src="assets/logo.png" alt="" />
+      <div id="o-name"><span class="y">MAHLIGAI</span> IDAMAN</div>
+      <div id="o-sub">ADA MENYEDIAKAN</div>
+    </div>
+    <div class="card" id="o-c1">
+      <svg viewBox="0 0 120 120" fill="none" stroke="#14161B" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M14 84 L60 60 L106 84 L60 108 Z" /><path d="M37 72 L83 96" /><path d="M83 72 L37 96" />
+        <path d="M60 60 V22" /><path d="M60 22 L84 30 L60 38" fill="#14161B" />
+      </svg>
+      <div class="tx"><span class="k">PAKEJ</span><span class="w">TANAH</span></div>
+    </div>
+    <div id="o-plus">+</div>
+    <div class="card" id="o-c2">
+      <svg viewBox="0 0 120 120" fill="none" stroke="#fff" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M14 58 L60 20 L106 58" /><path d="M26 50 V104 H94 V50" /><path d="M50 104 V74 H70 V104" /><path d="M80 34 V18 H92 V44" />
+      </svg>
+      <div class="tx"><span class="k">BESERTA</span><span class="w">BINA RUMAH</span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // camera punch-ins on the key words; the frame never sits still between them
+    tl.fromTo("#o-wrap", { scale: 1.0 }, { scale: 1.06, duration: 0.45, ease: "power3.out" }, 3.72);
+    tl.to("#o-wrap", { scale: 1.08, duration: 0.4, ease: "power3.out" }, 5.6);
+    tl.to("#o-wrap", { scale: 1.1, duration: 0.4, ease: "power3.out" }, 7.04);
+    tl.fromTo("#o-shade", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 3.7);
+    // "Mahligai Idaman" — logo drops in, name lands, a shine passes
+    tl.fromTo("#o-brand", { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.45, ease: "expo.out" }, 3.76);
+    tl.fromTo("#o-logo", { scale: 0.6 }, { scale: 1, duration: 0.5, ease: "back.out(1.7)" }, 3.76);
+    tl.fromTo("#o-name", { backgroundPosition: "120% 0, 0 0" }, { backgroundPosition: "-20% 0, 0 0", duration: 0.8, ease: "sine.inOut" }, 4.2);
+    tl.fromTo("#o-sub", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 4.82);
+    // "pakej tanah" — yellow card slides in from the left
+    tl.fromTo("#o-c1", { opacity: 0, x: -260, filter: "blur(10px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 5.6);
+    // "beserta" — the plus pops between the cards
+    tl.fromTo("#o-plus", { opacity: 0, scale: 0, rotation: -90 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.4, ease: "back.out(2)" }, 6.44);
+    // "bina rumah" — red card slides in from the right
+    tl.fromTo("#o-c2", { opacity: 0, x: 260, filter: "blur(10px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 7.06);
+    // hold: a slow push keeps the frame alive while the full offer reads
+    tl.to("#o-wrap", { scale: 1.12, duration: 1.8, ease: "sine.out" }, 7.5);
+    window.__timelines["ov"] = tl;
+  </script>
+</template>
