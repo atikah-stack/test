@@ -1,0 +1,48 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #101216; }
+    .shot { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    #f-air img.full { position: absolute; left: 0; top: 0; width: 1080px; height: 1919px; display: block; }
+    /* empty-plot cover from the empty-land photo of the same spot, wiped away from the ground up */
+    #f-empty { position: absolute; left: 310px; top: 734px; width: 516px; height: 448px; overflow: hidden;
+      --p: -90px;
+      -webkit-mask-image: linear-gradient(to top, transparent var(--p), #000 calc(var(--p) + 90px)),
+        linear-gradient(to right, transparent 0, #000 46px, #000 calc(100% - 46px), transparent 100%),
+        linear-gradient(to bottom, transparent 0, #000 40px, #000 calc(100% - 30px), transparent 100%);
+      mask-image: linear-gradient(to top, transparent var(--p), #000 calc(var(--p) + 90px)),
+        linear-gradient(to right, transparent 0, #000 46px, #000 calc(100% - 46px), transparent 100%),
+        linear-gradient(to bottom, transparent 0, #000 40px, #000 calc(100% - 30px), transparent 100%);
+      -webkit-mask-composite: source-in, source-in; mask-composite: intersect; }
+    #f-empty img { position: absolute; left: -310px; top: -734px; width: 1080px; height: 1919px; display: block; }
+    #f-front, #f-entr { opacity: 0; }
+    /* front render: framed on the gable with vent blocks, balcony, round window and car porch */
+    #f-front img { position: absolute; left: -1687px; top: 0; width: 3413px; height: 1920px; display: block; }
+    /* three-quarter render: framed on the entrance door and steps */
+    #f-entr img { position: absolute; left: -1487px; top: 0; width: 3413px; height: 1920px; display: block; }
+  </style>
+  <div id="root" data-composition-id="film" data-width="1080" data-height="1920" data-duration="6">
+    <div class="shot" id="f-air" data-layout-allow-overflow>
+      <img class="full" src="assets/img/aerial-house.png" alt="" />
+      <div id="f-empty"><img src="assets/img/aerial-empty.png" alt="" /></div>
+    </div>
+    <div class="shot" id="f-front" data-layout-allow-overflow><img src="assets/img/render-front.jpg" alt="" /></div>
+    <div class="shot" id="f-entr" data-layout-allow-overflow><img src="assets/img/render-entrance.jpg" alt="" /></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // AERIAL: drone push toward the plot (0–2.8 s), then a fast fly-in onto the front gable (2.8–3.6 s)
+    tl.fromTo("#f-air", { scale: 1.2, x: 0, y: 0, transformOrigin: "600px 1000px" }, { scale: 1.6, x: 0, y: 0, duration: 2.8, ease: "power1.inOut" }, 0);
+    tl.to("#f-air", { scale: 7.5, x: -435, y: -20, duration: 0.85, ease: "power3.in" }, 2.8);
+    // 1.4–2.8 s: the bungalow rises on the empty plot, ground first
+    tl.fromTo("#f-empty", { "--p": "-90px" }, { "--p": "480px", duration: 1.4, ease: "power2.inOut" }, 1.4);
+    tl.fromTo("#f-empty", { opacity: 1 }, { opacity: 0, duration: 0.4, ease: "power1.in" }, 2.4);
+    // FRONT: arrive forward-and-down onto the facade, then truck slowly along it
+    tl.fromTo("#f-front", { opacity: 0 }, { opacity: 1, duration: 0.28, ease: "power1.inOut" }, 3.42);
+    tl.fromTo("#f-front", { scale: 1.3, x: 0, y: 160, transformOrigin: "540px 700px" }, { scale: 1.0, x: 0, y: 0, duration: 0.8, ease: "power2.out" }, 3.42);
+    tl.to("#f-front", { x: 230, scale: 1.04, duration: 0.9, ease: "sine.in" }, 4.0);
+    // ENTRANCE: soft blend to the three-quarter view, gliding toward the door
+    tl.fromTo("#f-entr", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power1.inOut" }, 4.8);
+    tl.fromTo("#f-entr", { scale: 1.0, x: -160, transformOrigin: "540px 1100px" }, { scale: 1.1, x: 40, duration: 1.2, ease: "power2.out" }, 4.8);
+    window.__timelines["film"] = tl;
+  </script>
+</template>
