@@ -1,0 +1,38 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #101216; }
+    #b-cam { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    #b-house { position: absolute; left: 0; top: 0; width: 1080px; height: 1919px; display: block; }
+    /* empty plot from the earlier empty-land photo, aligned to this view by feature matching.
+       It is cleared from the ground line upward in stages, so the house is built bottom-up. */
+    #b-empty { position: absolute; left: 120px; top: 600px; width: 920px; height: 730px; overflow: hidden;
+      --p: -80px;
+      -webkit-mask-image: linear-gradient(to top, transparent var(--p), #000 calc(var(--p) + 80px)),
+        linear-gradient(to right, transparent 0, #000 50px, #000 calc(100% - 50px), transparent 100%),
+        linear-gradient(to bottom, transparent 0, #000 50px, #000 calc(100% - 22px), transparent 100%);
+      mask-image: linear-gradient(to top, transparent var(--p), #000 calc(var(--p) + 80px)),
+        linear-gradient(to right, transparent 0, #000 50px, #000 calc(100% - 50px), transparent 100%),
+        linear-gradient(to bottom, transparent 0, #000 50px, #000 calc(100% - 22px), transparent 100%);
+      -webkit-mask-composite: source-in, source-in; mask-composite: intersect; }
+    #b-empty img { position: absolute; left: -120px; top: -600px; width: 1080px; height: 1919px; display: block; }
+  </style>
+  <div id="root" data-composition-id="build" data-width="1080" data-height="1920" data-duration="6">
+    <div id="b-cam" data-layout-allow-overflow>
+      <img id="b-house" src="assets/img/house.png" alt="" />
+      <div id="b-empty"><img src="assets/img/empty-plot.png" alt="" /></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // one continuous drone move: forward (scale) and descending (frame drifts up as the camera drops)
+    tl.fromTo("#b-cam", { scale: 1.0, y: 0, transformOrigin: "590px 1000px" }, { scale: 1.24, y: -40, duration: 6, ease: "power1.inOut" }, 0);
+    // build stages (mask height above the road line, px): 1–2 s ground works, fence and driveway;
+    // 2–3.5 s ground floor, car porch and upper walls; 3.5–4.5 s roof and finishing
+    tl.fromTo("#b-empty", { "--p": "-80px" }, { "--p": "120px", duration: 0.95, ease: "power2.inOut" }, 1.0);
+    tl.to("#b-empty", { "--p": "330px", duration: 0.7, ease: "power2.inOut" }, 2.0);
+    tl.to("#b-empty", { "--p": "520px", duration: 0.75, ease: "power2.inOut" }, 2.75);
+    tl.to("#b-empty", { "--p": "820px", duration: 0.85, ease: "power2.inOut" }, 3.5);
+    tl.to("#b-empty", { opacity: 0, duration: 0.3, ease: "power1.in" }, 4.2);
+    window.__timelines["build"] = tl;
+  </script>
+</template>
