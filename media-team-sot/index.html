@@ -14,11 +14,12 @@
   </head>
   <body>
     <div id="root" data-composition-id="main" data-start="0" data-duration="6.4" data-width="1080" data-height="1920">
-      <!-- rumah sahaja -->
-      <div id="cam1" class="cam" style="z-index: 1"><img id="h1" class="clip shot" src="assets/shots/h1.jpg" data-start="0" data-duration="1.6" data-track-index="1" alt="Luar banglo" /></div>
-      <div id="cam2" class="cam" style="z-index: 2"><img id="h2" class="clip shot" src="assets/shots/h2.jpg" data-start="1.6" data-duration="1.55" data-track-index="2" alt="Ruang tamu" /></div>
-      <div id="cam3" class="cam" style="z-index: 3"><img id="h3" class="clip shot" src="assets/shots/h3.jpg" data-start="3.15" data-duration="1.7" data-track-index="1" alt="Dapur" /></div>
-      <div id="cam4" class="cam" style="z-index: 4"><img id="h4" class="clip shot" src="assets/shots/h4.jpg" data-start="4.85" data-duration="1.55" data-track-index="2" alt="Bilik tidur" /></div>
+      <!-- klien bercakap + rumah -->
+      <div id="cam0" class="cam" style="z-index: 1"><video id="cw" class="clip shot" src="assets/shots/c_wide.mp4" data-start="0" data-duration="1.1" data-media-start="0" data-track-index="1" muted playsinline></video></div>
+      <div id="cam1" class="cam" style="z-index: 2"><img id="h1" class="clip shot" src="assets/shots/h1.jpg" data-start="1.1" data-duration="1.15" data-track-index="2" alt="Luar banglo" /></div>
+      <div id="cam2" class="cam" style="z-index: 3"><img id="h2" class="clip shot" src="assets/shots/h2.jpg" data-start="2.25" data-duration="0.9" data-track-index="1" alt="Ruang tamu" /></div>
+      <div id="cam3" class="cam" style="z-index: 4"><img id="h3" class="clip shot" src="assets/shots/h3.jpg" data-start="3.15" data-duration="1.7" data-track-index="2" alt="Dapur" /></div>
+      <div id="cam4" class="cam" style="z-index: 5"><video id="cc" class="clip shot" src="assets/shots/c_close.mp4" data-start="4.85" data-duration="1.55" data-media-start="0" data-track-index="1" muted playsinline></video></div>
 
       <!-- SOT klien, penuh tanpa potong -->
       <audio id="sot" class="clip" src="assets/shots/sot.m4a" data-start="0" data-duration="6.4" data-track-index="8" data-volume="1"></audio>
@@ -28,14 +29,15 @@
     </div>
     <script>
       const tl = gsap.timeline({ paused: true });
-      tl.fromTo("#cam1", { scale: 1.0 }, { scale: 1.08, duration: 1.6, ease: "none" }, 0);
-      tl.fromTo("#cam2", { scale: 1.08, xPercent: 2 }, { scale: 1.08, xPercent: -2, duration: 1.55, ease: "none" }, 1.6);
+      tl.fromTo("#cam0", { scale: 1.0 }, { scale: 1.04, duration: 1.1, ease: "none" }, 0);
+      tl.fromTo("#cam1", { scale: 1.0 }, { scale: 1.07, duration: 1.15, ease: "none" }, 1.1);
+      tl.fromTo("#cam2", { scale: 1.08, xPercent: 2 }, { scale: 1.08, xPercent: -2, duration: 0.9, ease: "none" }, 2.25);
       // comedic punch-in on "berapa"
       tl.fromTo("#cam3", { scale: 1.0 }, { scale: 1.02, duration: 0.3, ease: "none" }, 3.15);
       tl.to("#cam3", { scale: 1.16, duration: 0.18, ease: "power4.out" }, 3.46);
       tl.to("#cam3", { scale: 1.2, duration: 1.2, ease: "none" }, 3.64);
       // bounce-in on the last shot
-      tl.fromTo("#cam4", { scale: 1.14 }, { scale: 1.0, duration: 0.45, ease: "back.out(2.2)" }, 4.85);
+      tl.fromTo("#cam4", { scale: 1.12 }, { scale: 1.0, duration: 0.45, ease: "back.out(2.2)" }, 4.85);
       tl.to("#cam4", { scale: 1.04, duration: 1.1, ease: "sine.inOut" }, 5.3);
       window.__timelines["main"] = tl;
     </script>
