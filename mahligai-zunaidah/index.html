@@ -51,7 +51,7 @@
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="40"
+      data-duration="45"
       data-width="1080"
       data-height="1920"
     >
@@ -92,14 +92,16 @@
 
       <!-- 36–40 s · bergambar ramai-ramai (zoom-out halus) -->
       <div id="cam-group" class="cam" style="z-index: 14">
-        <img id="i-group" class="clip shot" src="assets/shots/s14_group.jpg" data-start="35.6" data-duration="4.4" data-track-index="2" alt="Bergambar ramai-ramai bersama Mahligai Idaman" />
+        <img id="i-group" class="clip shot" src="assets/shots/s14_group.jpg" data-start="35.6" data-duration="4.9" data-track-index="2" alt="Bergambar ramai-ramai bersama Mahligai Idaman" />
       </div>
 
+      <!-- 40–45 s · outro (poster beranimasi) -->
+      <div id="outro" data-composition-id="outro" data-composition-src="compositions/outro.html" data-start="40" data-duration="5" data-track-index="3" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 50"></div>
+
       <!-- teks cerita dan sari kata -->
-      <div id="copy" data-composition-id="copy" data-composition-src="compositions/copy.html" data-start="0" data-duration="40" data-track-index="5" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 40"></div>
+      <div id="copy" data-composition-id="copy" data-composition-src="compositions/copy.html" data-start="0" data-duration="40.5" data-track-index="5" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 40"></div>
       <div id="subs" data-composition-id="subs" data-composition-src="compositions/subs.html" data-start="17" data-duration="9" data-track-index="6" data-track-kind="captions" data-width="1080" data-height="1920" style="z-index: 41"></div>
 
-      <div id="fade-black"></div>
     </div>
     <script>
       const tl = gsap.timeline({ paused: true });
@@ -111,9 +113,7 @@
       tl.fromTo("#cam-kitchen", { scale: 1.0 }, { scale: 1.05, duration: 2.5, ease: "none" }, 9.5);
       tl.fromTo("#cam-close", { scale: 1.0 }, { scale: 1.05, duration: 4.1, ease: "none" }, 32);
       tl.fromTo("#i-group", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "sine.out" }, 35.6);
-      tl.fromTo("#cam-group", { scale: 1.05 }, { scale: 1.0, duration: 4.4, ease: "sine.out" }, 35.6);
-      // gentle fade-out
-      tl.fromTo("#fade-black", { opacity: 0 }, { opacity: 1, duration: 1.0, ease: "sine.in" }, 38.95);
+      tl.fromTo("#cam-group", { scale: 1.05 }, { scale: 1.0, duration: 4.9, ease: "sine.out" }, 35.6);
       window.__timelines["main"] = tl;
     </script>
   </body>

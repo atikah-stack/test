@@ -1,0 +1,77 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #06231f;
+    }
+    #outro-cam {
+      position: absolute;
+      inset: 0;
+      transform-origin: 50% 30%;
+    }
+    #outro-img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1080px;
+      height: 1920px;
+    }
+    .ring {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      margin: -60px 0 0 -60px;
+      border-radius: 50%;
+      border: 6px solid #ffd54a;
+      box-shadow: 0 0 24px rgba(255, 213, 74, 0.8);
+      opacity: 0;
+    }
+    #outro-shine-box {
+      position: absolute;
+      left: 94px;
+      top: 1450px;
+      width: 894px;
+      height: 116px;
+      border-radius: 58px;
+      overflow: hidden;
+    }
+    #outro-shine {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      width: 140px;
+      height: 200px;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.55) 50%, rgba(255, 255, 255, 0) 100%);
+    }
+  </style>
+  <div id="root" data-composition-id="outro" data-width="1080" data-height="1920">
+    <div id="outro-cam">
+      <img id="outro-img" src="assets/shots/s15_outro.png" alt="Nak bina banglo idaman? Hubungi kami segera" />
+      <div id="outro-ring1a" class="ring" style="left: 476px; top: 880px"></div>
+      <div id="outro-ring1b" class="ring" style="left: 476px; top: 880px"></div>
+      <div id="outro-ring2a" class="ring" style="left: 744px; top: 998px"></div>
+      <div id="outro-ring2b" class="ring" style="left: 744px; top: 998px"></div>
+      <div id="outro-shine-box" data-layout-allow-overflow><div id="outro-shine"></div></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // reveal: start close on the two branches, ease out to the full poster
+    tl.fromTo("#outro-cam", { scale: 1.32, y: 120 }, { scale: 1.0, y: 0, duration: 2.4, ease: "power3.inOut" }, 0);
+    tl.fromTo("#outro-cam", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "sine.out" }, 0);
+    // a slow breathing push while the CTA holds
+    tl.to("#outro-cam", { scale: 1.03, duration: 2.6, ease: "sine.inOut" }, 2.4);
+    // pin pulses
+    const pulse = (id, t) => tl.fromTo(id, { scale: 0.3, opacity: 0.95 }, { scale: 1.9, opacity: 0, duration: 1.1, ease: "sine.out" }, t);
+    [0.6, 1.7, 2.8, 3.9].forEach((t) => { pulse("#outro-ring1a", t); pulse("#outro-ring2a", t + 0.25); });
+    [1.15, 2.25, 3.35].forEach((t) => { pulse("#outro-ring1b", t); pulse("#outro-ring2b", t + 0.25); });
+    // shine across the CTA button
+    tl.set("#outro-shine", { x: -180, skewX: -20 }, 0);
+    tl.to("#outro-shine", { x: 980, duration: 0.8, ease: "power2.inOut" }, 2.5);
+    tl.set("#outro-shine", { x: -180 }, 3.4);
+    tl.to("#outro-shine", { x: 980, duration: 0.8, ease: "power2.inOut" }, 3.9);
+    window.__timelines["outro"] = tl;
+  </script>
+</template>
