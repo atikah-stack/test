@@ -44,6 +44,16 @@
     .dn { font-weight: 900; font-size: 44px; white-space: nowrap; margin-top: 8px; color: #FFFFFF; }
     .dd { display: inline-block; margin-top: 10px; font-weight: 800; font-size: 28px; letter-spacing: .05em; color: #171717;
       background: #FFD400; padding: 6px 14px 7px; border-radius: 6px; }
+    .ripple, .tapr { position: absolute; border-radius: 50%; border: 4px solid #FFD400; opacity: 0; pointer-events: none; }
+    .pin { position: relative; }
+    .ripple { left: -18px; top: -14px; width: 80px; height: 80px; }
+    .am { position: relative; }
+    .tick { position: absolute; right: 14px; top: 50%; margin-top: -21px; width: 42px; height: 42px; border-radius: 50%; background: #FFD400;
+      display: flex; align-items: center; justify-content: center; transform: scale(0); }
+    .ar { display: inline-block; }
+    .btnw { position: relative; }
+    .tapr { left: 50%; top: 50%; width: 120px; height: 120px; margin: -60px 0 0 -60px; }
+    .hand { position: absolute; right: -34px; top: 62px; opacity: 0; filter: drop-shadow(0 8px 14px rgba(0,0,0,.4)); }
     .rbg { position: absolute; inset: 0; opacity: 0; }
     .rbg img { width: 100%; height: 100%; object-fit: cover; filter: blur(28px); transform: scale(1.15); }
     .rdim { position: absolute; inset: 0; background: rgba(23,23,23,.45); }
@@ -56,10 +66,10 @@
       <div class="lbl dk xl" id="hk2"><span class="hw" id="hw4">TAPI</span> <span class="hw" id="hw5">TAK ADA</span></div>
       <div class="lbl yl xxl" id="hk3"><span class="hw" id="hw6">TANAH?</span></div></div>
     <div class="grp clip col" id="g-kick" data-start="3.85" data-duration="1.57" style="top:390px; height:200px"><div class="lbl dk md" id="kk">MAHLIGAI IDAMAN</div><div class="lbl wh sm" id="kk2">MENYEDIAKAN</div></div>
-    <div class="grp clip col" id="g-pkg" data-start="5.45" data-duration="2.8" style="top:700px; height:400px"><div class="lbl yl lg" id="pk1">PAKEJ BINA RUMAH</div>
+    <div class="grp clip col" id="g-pkg" data-start="5.45" data-duration="2.8" style="top:400px; height:400px"><div class="lbl yl lg" id="pk1">PAKEJ BINA RUMAH</div>
       <div class="lbl dk lg" id="pk2"><span class="y">BERSERTA</span> TANAH</div>
       <div class="lbl wh sm" id="pk3">MAHLIGAI IDAMAN</div></div>
-    <div class="grp clip col" id="g-loc" data-start="12.8" data-duration="2.05" style="top:800px; height:170px"><div class="chip" id="lc"><div class="pin" id="lc-pin"><svg viewBox="0 0 48 64" width="44" height="58"><path d="M24 1C11.3 1 1 11.3 1 24c0 16.5 23 39 23 39s23-22.5 23-39C47 11.3 36.7 1 24 1z" fill="#FFD400"/><circle cx="24" cy="24" r="8.5" fill="#171717"/></svg></div><div><div class="ck">LOKASI TANAH</div><div class="cv">KAMPUNG WEK, MACHANG</div></div></div></div>
+    <div class="grp clip col" id="g-loc" data-start="12.8" data-duration="2.05" style="top:400px; height:170px"><div class="chip" id="lc"><div class="pin" id="lc-pin"><div class="ripple" id="lc-rip"></div><svg viewBox="0 0 48 64" width="44" height="58"><path d="M24 1C11.3 1 1 11.3 1 24c0 16.5 23 39 23 39s23-22.5 23-39C47 11.3 36.7 1 24 1z" fill="#FFD400"/><circle cx="24" cy="24" r="8.5" fill="#171717"/></svg></div><div><div class="ck">LOKASI TANAH</div><div class="cv">KAMPUNG WEK, MACHANG</div></div></div></div>
     <div class="grp clip col" id="g-land" data-start="17.2" data-duration="2.75" style="top:1300px; height:200px"><div class="stat dkc" id="ld"><div class="si"><svg viewBox="0 0 48 48" width="68" height="68" fill="none" stroke="#171717" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 32 24 22l20 10-20 10z"/><path d="M24 22V6"/><path d="M24 6l12 4-12 4" fill="#171717"/></svg></div><div><div class="sk">KELUASAN LOT BERMULA</div>
       <div class="sv"><span class="y" id="n-land">5,101</span> <small>KPS</small></div></div></div></div>
     <div class="grp clip col" id="g-house" data-start="20.8" data-duration="3.68" style="top:390px; height:200px"><div class="stat" id="hs"><div class="si"><svg viewBox="0 0 48 48" width="68" height="68" fill="none" stroke="#171717" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22 24 6l20 16"/><path d="M9 19v24h30V19"/><path d="M20 43V31h8v12"/></svg></div><div><div class="sk">BINA RUMAH BERMULA</div>
@@ -78,10 +88,11 @@
     <div class="grp clip col" id="g-nb" data-start="33.43" data-duration="2.95" style="top:390px; height:190px"><div class="card" id="nb"><div class="si"><svg viewBox="0 0 48 48" width="68" height="68" fill="none" stroke="#171717" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 26 14 16l12 10"/><path d="M5 24v18h18V24"/><path d="M22 20 34 10l12 10"/><path d="M26 18v24h17V18"/></svg></div><div><div class="sk">KEJIRANAN</div><div class="cv2">BANGLO <span class="y">SEDIA ADA</span></div></div></div></div>
     <div class="grp clip col" id="g-flood" data-start="39.03" data-duration="1.35" style="top:390px; height:190px"><div class="card wcard" id="fl"><div class="si"><svg viewBox="0 0 48 48" width="68" height="68" fill="none" stroke="#171717" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4 7 10v12c0 11 7.5 18.5 17 22 9.5-3.5 17-11 17-22V10z"/><path d="M16 24l6 6 10-11"/></svg></div><div><div class="sk">KAWASAN</div><div class="cv2">BEBAS BANJIR</div></div></div></div>
     <div class="grp clip col" id="g-road" data-start="43.31" data-duration="1.97" style="top:390px; height:190px"><div class="card" id="rd"><div class="si"><svg viewBox="0 0 48 48" width="68" height="68" fill="none" stroke="#171717" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4 6 44M32 4l10 40"/><path d="M24 8v6M24 21v6M24 34v6"/></svg></div><div><div class="sk">AKSES</div><div class="cv2"><span class="y">JALAN TAR</span> TERSEDIA</div></div></div></div>
-    <div class="grp clip col" id="g-near" data-start="46.98" data-duration="3.23" style="top:360px; height:360px"><div class="lbl yl md" id="nh">KEMUDAHAN BERDEKATAN</div><div class="grid"><div class="am" id="am0"><div class="ai"><svg viewBox="0 0 48 48" width="56" height="56" fill="none" stroke="#171717" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="34" height="34" rx="6"/><path d="M24 15v18M15 24h18"/></svg></div><span>HOSPITAL</span></div><div class="am" id="am1"><div class="ai"><svg viewBox="0 0 48 48" width="56" height="56" fill="none" stroke="#171717" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9h6l5 22h21l4-15H14"/><circle cx="19" cy="39" r="3"/><circle cx="34" cy="39" r="3"/></svg></div><span>PASARAYA</span></div><div class="am" id="am2"><div class="ai"><svg viewBox="0 0 48 48" width="56" height="56" fill="none" stroke="#171717" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 42V26c0-7 12-10 12-17 0 7 12 10 12 17v16z"/><path d="M5 42V20M43 42V20M5 20v-5M43 20v-5"/><path d="M20 42v-8a4 4 0 0 1 8 0v8M2 42h44"/></svg></div><span>MASJID</span></div><div class="am" id="am3"><div class="ai"><svg viewBox="0 0 48 48" width="56" height="56" fill="none" stroke="#171717" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18 24 8l21 10-21 10z"/><path d="M11 22v11c4 4 22 4 26 0V22"/><path d="M45 18v12"/></svg></div><span>SEKOLAH</span></div></div></div>
-    <div class="grp clip col" id="g-dir" data-start="57.71" data-duration="4.55" style="top:380px; height:200px"><div class="dirs"><div class="dir" id="d-kiri"><div class="dk2">◀ KE KIRI</div><div class="dn">UiTM MACHANG</div><div class="dd">6 KM | 10 MINIT</div></div><div class="dir" id="d-kanan"><div class="dk2">KE KANAN ▶</div><div class="dn">BANDAR MACHANG</div><div class="dd">6 KM | 10 MINIT</div></div></div></div>
+    <div class="grp clip col" id="g-near" data-start="46.98" data-duration="3.23" style="top:360px; height:360px"><div class="lbl yl md" id="nh">KEMUDAHAN BERDEKATAN</div><div class="grid"><div class="am" id="am0"><div class="ai"><svg viewBox="0 0 48 48" width="56" height="56" fill="none" stroke="#171717" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="34" height="34" rx="6"/><path d="M24 15v18M15 24h18"/></svg></div><span>HOSPITAL</span><div class="tick" id="tk0"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#171717" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17 19 7"/></svg></div></div><div class="am" id="am1"><div class="ai"><svg viewBox="0 0 48 48" width="56" height="56" fill="none" stroke="#171717" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9h6l5 22h21l4-15H14"/><circle cx="19" cy="39" r="3"/><circle cx="34" cy="39" r="3"/></svg></div><span>PASARAYA</span><div class="tick" id="tk1"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#171717" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17 19 7"/></svg></div></div><div class="am" id="am2"><div class="ai"><svg viewBox="0 0 48 48" width="56" height="56" fill="none" stroke="#171717" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 42V26c0-7 12-10 12-17 0 7 12 10 12 17v16z"/><path d="M5 42V20M43 42V20M5 20v-5M43 20v-5"/><path d="M20 42v-8a4 4 0 0 1 8 0v8M2 42h44"/></svg></div><span>MASJID</span><div class="tick" id="tk2"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#171717" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17 19 7"/></svg></div></div><div class="am" id="am3"><div class="ai"><svg viewBox="0 0 48 48" width="56" height="56" fill="none" stroke="#171717" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18 24 8l21 10-21 10z"/><path d="M11 22v11c4 4 22 4 26 0V22"/><path d="M45 18v12"/></svg></div><span>SEKOLAH</span><div class="tick" id="tk3"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#171717" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17 19 7"/></svg></div></div></div></div>
+    <div class="grp clip col" id="g-dir" data-start="57.71" data-duration="4.55" style="top:380px; height:200px"><div class="dirs"><div class="dir" id="d-kiri"><div class="dk2"><span class="ar" id="ar-kiri">◀</span> KE KIRI</div><div class="dn">UiTM MACHANG</div><div class="dd">6 KM | 10 MINIT</div></div><div class="dir" id="d-kanan"><div class="dk2">KE KANAN <span class="ar" id="ar-kanan">▶</span></div><div class="dn">BANDAR MACHANG</div><div class="dd">6 KM | 10 MINIT</div></div></div></div>
     <div class="grp clip col" id="g-lot" data-start="62.29" data-duration="2.77" style="top:380px; height:280px"><div class="lbl yl xxl" id="lt">LOT TERHAD!</div><div class="lbl dk md" id="lt-s">SIAPA CEPAT, <span class="y">DIA DAPAT</span></div></div>
-    <div class="grp clip col" id="g-cta" data-start="65.09" data-duration="3.19" style="top:380px; height:280px"><div class="lbl dk lg" id="ct-k">BERMINAT?</div><div class="lbl yl lg" id="ct-b">PM KAMI SEGERA</div></div>
+    <div class="grp clip col" id="g-cta" data-start="65.09" data-duration="3.19" style="top:380px; height:300px"><div class="lbl dk lg" id="ct-k">BERMINAT?</div><div class="btnw"><div class="lbl yl lg" id="ct-b">PM KAMI SEGERA</div>
+      <div class="tapr" id="tap-r"></div><div class="hand" id="hand"><svg viewBox="0 0 64 72" width="78" height="88"><path d="M22 6c0-3 2-5 5-5s5 2 5 5v24l3-1c3-1 6 1 6 4l8-2c3 0 5 2 5 5v14c0 10-7 20-19 20h-6c-7 0-11-3-14-8L4 44c-2-3-1-6 2-7 2-1 5 0 6 2l10 10z" fill="#FFFFFF" stroke="#171717" stroke-width="3.5" stroke-linejoin="round"/></svg></div></div></div>
   </div>
   <script>
     const tl = gsap.timeline({ paused: true });
@@ -96,25 +107,26 @@
     tl.fromTo("#hw4", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 0.95);
     tl.fromTo("#hw5", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 1.32);
     tl.fromTo("#hw6", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.2, ease: "power3.out" }, 2.1);
-    tl.to("#g-hook", { opacity: 0, duration: 0.22, ease: "power2.in" }, 3.58);
+    tl.to("#g-hook", { opacity: 0, y: -16, duration: 0.22, ease: "power2.in" }, 3.58);
     tl.fromTo("#kk", { opacity: 0, y: 28 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 3.85);
     tl.fromTo("#kk2", { opacity: 0, y: 28 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "expo.out" }, 4.15);
-    tl.to("#g-kick", { opacity: 0, duration: 0.22, ease: "power2.in" }, 5.3);
+    tl.to("#g-kick", { opacity: 0, y: -16, duration: 0.22, ease: "power2.in" }, 5.3);
     tl.fromTo("#pk1", { opacity: 0, scale: 0.86 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 5.65);
     tl.set("#pk2", { opacity: 0 }, 0);
     tl.fromTo("#pk2", { opacity: 0, scale: 0.86 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 6.65);
     tl.set("#pk3", { opacity: 0 }, 0);
     tl.fromTo("#pk3", { opacity: 0, y: 28 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "expo.out" }, 7.3);
-    tl.to("#g-pkg", { opacity: 0, duration: 0.22, ease: "power2.in" }, 8.05);
+    tl.to("#g-pkg", { opacity: 0, y: -16, duration: 0.22, ease: "power2.in" }, 8.05);
     tl.fromTo("#lc", { opacity: 0, scale: 0.86 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 12.8);
     tl.fromTo("#lc-pin", { y: -26 }, { y: 0, duration: 0.55, ease: "bounce.out" }, 12.85);
-    tl.to("#g-loc", { opacity: 0, duration: 0.22, ease: "power2.in" }, 14.63);
+    tl.fromTo("#lc-rip", { scale: 0.2, opacity: 0.9 }, { scale: 1.6, opacity: 0, duration: 0.9, ease: "power2.out", repeat: 1, immediateRender: false }, 13.15);
+    tl.to("#g-loc", { opacity: 0, y: -16, duration: 0.22, ease: "power2.in" }, 14.63);
     tl.fromTo("#ld", { opacity: 0, y: 28 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 17.2);
     (() => { const o = { v: 0 }; tl.fromTo(o, { v: 0 }, { v: 5101, duration: 0.7, ease: "power3.out", onUpdate: () => { document.querySelector("#n-land").textContent = Math.round(o.v).toLocaleString("en-US"); } }, 17.2); })();
-    tl.to("#g-land", { opacity: 0, duration: 0.22, ease: "power2.in" }, 19.73);
+    tl.to("#g-land", { opacity: 0, y: -16, duration: 0.22, ease: "power2.in" }, 19.73);
     tl.fromTo("#hs", { opacity: 0, y: 28 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 20.8);
     (() => { const o = { v: 0 }; tl.fromTo(o, { v: 0 }, { v: 1400, duration: 0.7, ease: "power3.out", onUpdate: () => { document.querySelector("#n-house").textContent = Math.round(o.v).toLocaleString("en-US"); } }, 21.85); })();
-    tl.to("#g-house", { opacity: 0, duration: 0.22, ease: "power2.in" }, 24.26);
+    tl.to("#g-house", { opacity: 0, y: -16, duration: 0.22, ease: "power2.in" }, 24.26);
     tl.fromTo("#g-renders", { opacity: 0 }, { opacity: 1, duration: 0.22, ease: "power1.out" }, 28.23);
     tl.fromTo(["#rc1", "#rb1"], { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 28.23);
     tl.fromTo("#rc1", { scale: 0.94 }, { scale: 1, duration: 0.5, ease: "expo.out" }, 28.23);
@@ -130,37 +142,51 @@
     tl.fromTo("#cu1", { opacity: 0, scale: 0.86 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 28.31);
     tl.set("#cu2", { opacity: 0 }, 0);
     tl.fromTo("#cu2", { opacity: 0, y: 28 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 29.53);
-    tl.to("#g-renders", { opacity: 0, duration: 0.22, ease: "power2.in" }, 31.18);
-    tl.to("#g-cust-h", { opacity: 0, duration: 0.22, ease: "power2.in" }, 31.18);
-    tl.to("#g-cust-s", { opacity: 0, duration: 0.22, ease: "power2.in" }, 31.18);
+    tl.to("#g-renders", { opacity: 0, y: -16, duration: 0.22, ease: "power2.in" }, 31.18);
+    tl.to("#g-cust-h", { opacity: 0, y: -16, duration: 0.22, ease: "power2.in" }, 31.18);
+    tl.to("#g-cust-s", { opacity: 0, y: -16, duration: 0.22, ease: "power2.in" }, 31.18);
     tl.fromTo("#nb", { opacity: 0, y: 28 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 33.43);
-    tl.to("#g-nb", { opacity: 0, duration: 0.22, ease: "power2.in" }, 36.16);
+    tl.to("#g-nb", { opacity: 0, y: -16, duration: 0.22, ease: "power2.in" }, 36.16);
     tl.fromTo("#fl", { opacity: 0, scale: 0.86 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 39.03);
-    tl.to("#g-flood", { opacity: 0, duration: 0.22, ease: "power2.in" }, 40.18);
+    tl.to("#g-flood", { opacity: 0, y: -16, duration: 0.22, ease: "power2.in" }, 40.18);
     tl.fromTo("#rd", { opacity: 0, y: 28 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 43.31);
-    tl.to("#g-road", { opacity: 0, duration: 0.22, ease: "power2.in" }, 45.08);
+    tl.to("#g-road", { opacity: 0, y: -16, duration: 0.22, ease: "power2.in" }, 45.08);
     tl.fromTo("#nh", { opacity: 0, y: 28 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 46.98);
     tl.set("#am0", { opacity: 0 }, 0);
     tl.fromTo("#am0", { opacity: 0, scale: 0.86 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "expo.out" }, 47.48);
+    tl.fromTo("#tk0", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.35, ease: "back.out(2.4)" }, 47.66);
     tl.set("#am1", { opacity: 0 }, 0);
     tl.fromTo("#am1", { opacity: 0, scale: 0.86 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "expo.out" }, 47.76);
+    tl.fromTo("#tk1", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.35, ease: "back.out(2.4)" }, 47.94);
     tl.set("#am2", { opacity: 0 }, 0);
     tl.fromTo("#am2", { opacity: 0, scale: 0.86 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "expo.out" }, 48.04);
+    tl.fromTo("#tk2", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.35, ease: "back.out(2.4)" }, 48.22);
     tl.set("#am3", { opacity: 0 }, 0);
     tl.fromTo("#am3", { opacity: 0, scale: 0.86 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "expo.out" }, 48.32);
-    tl.to("#g-near", { opacity: 0, duration: 0.22, ease: "power2.in" }, 50.03);
+    tl.fromTo("#tk3", { scale: 0, rotation: -40 }, { scale: 1, rotation: 0, duration: 0.35, ease: "back.out(2.4)" }, 48.5);
+    tl.to("#g-near", { opacity: 0, y: -16, duration: 0.22, ease: "power2.in" }, 50.03);
     tl.fromTo("#d-kanan", { opacity: 0, y: 28 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 57.76);
     tl.set("#d-kiri", { opacity: 0 }, 0);
     tl.fromTo("#d-kiri", { opacity: 0, y: 28 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 59.11);
     tl.fromTo("#d-kiri .dn", { color: "#FFFFFF" }, { color: "#FFD400", duration: 0.25 }, 60.57);
-    tl.to("#g-dir", { opacity: 0, duration: 0.22, ease: "power2.in" }, 62.06);
+    tl.fromTo("#ar-kanan", { x: 0 }, { x: 10, duration: 0.35, ease: "sine.inOut", yoyo: true, repeat: 5 }, 58.11);
+    tl.fromTo("#ar-kiri", { x: 0 }, { x: -10, duration: 0.35, ease: "sine.inOut", yoyo: true, repeat: 5 }, 59.41);
+    tl.to("#g-dir", { opacity: 0, y: -16, duration: 0.22, ease: "power2.in" }, 62.06);
     tl.fromTo("#lt", { opacity: 0, scale: 0.86 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 62.29);
     tl.set("#lt-s", { opacity: 0 }, 0);
     tl.fromTo("#lt-s", { opacity: 0, y: 28 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 63.24);
-    tl.to("#g-lot", { opacity: 0, duration: 0.22, ease: "power2.in" }, 64.88);
+    tl.to("#g-lot", { opacity: 0, y: -16, duration: 0.22, ease: "power2.in" }, 64.88);
     tl.fromTo("#ct-k", { opacity: 0, y: 28 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 65.09);
     tl.set("#ct-b", { opacity: 0 }, 0);
     tl.fromTo("#ct-b", { opacity: 0, scale: 0.86 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 66.21);
+    tl.set("#hand", { opacity: 0 }, 0);
+    tl.fromTo("#hand", { opacity: 0, x: 60, y: 50 }, { opacity: 1, x: 0, y: 0, duration: 0.4, ease: "power3.out" }, 66.46);
+    tl.fromTo("#hand", { scale: 1 }, { scale: 0.86, duration: 0.1, ease: "power2.in", yoyo: true, repeat: 1 }, 66.86);
+    tl.fromTo("#ct-b", { scale: 1 }, { scale: 0.95, duration: 0.1, ease: "power2.in", yoyo: true, repeat: 1 }, 66.86);
+    tl.fromTo("#tap-r", { scale: 0.2, opacity: 0.9 }, { scale: 1.5, opacity: 0, duration: 0.55, ease: "power2.out", immediateRender: false }, 66.96);
+    tl.fromTo("#hand", { scale: 1 }, { scale: 0.86, duration: 0.1, ease: "power2.in", yoyo: true, repeat: 1 }, 67.46);
+    tl.fromTo("#ct-b", { scale: 1 }, { scale: 0.95, duration: 0.1, ease: "power2.in", yoyo: true, repeat: 1 }, 67.46);
+    tl.fromTo("#tap-r", { scale: 0.2, opacity: 0.9 }, { scale: 1.5, opacity: 0, duration: 0.55, ease: "power2.out", immediateRender: false }, 67.56);
     window.__timelines["gfx"] = tl;
   </script>
 </template>

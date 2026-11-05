@@ -48,6 +48,7 @@ BROLL = [
     ("b-drone0", "drone-b", T("loc", 4.75), T("loc", 7.00), 3.5, True),
     ("b-lots", "lot-tersedia", T("size", 1.00), T("size", 5.30), 0.7, False),  # lot labels near edges: no crop
     ("b-drone2", "drone-a", T("area", 1.00), T("area", 3.40), 8.0, True),
+    ("b-road", "road", T("road", 2.55), T("road", 5.35), 0.8, True),
     # location map: shown whole and uncropped (its own cards are the overlay)
     ("b-map", "map-lokasi", T("places", 1.40), T("places", 8.90), 0.0, False),
 ]
@@ -56,7 +57,7 @@ BROLL = [
 vids = []
 for sid, f, a, b, vol in SEGS:
     vids.append(
-        f'      <div id="w-{sid}" style="position:absolute; inset:0; z-index:1; overflow:hidden">'
+        f'      <div id="w-{sid}" style="position:absolute; inset:0; z-index:1; overflow:hidden; transform-origin: 50% 46%">'
         f'<video id="v-{sid}" class="clip" src="assets/video/{f}.mp4" data-start="{start[sid]}" '
         f'data-duration="{round(b - a, 3)}" data-media-start="{a}" data-track-index="1" playsinline '
         f'data-has-audio="true" data-volume="{vol}" data-fade-in="0.04" data-fade-out="0.06" '
@@ -79,28 +80,66 @@ def sfx(name, file, at, dur, vol):
                f'data-duration="{dur}" data-track-index="{5 + len(AUD) % 3}" data-volume="{vol}"></audio>')
 
 
+# hook
 sfx("hook", "whoosh-short", T("hook", 0.40), 0.57, 0.12)
+sfx("hk2", "pop", T("hook", 1.22), 0.72, 0.10)
+sfx("tanah", "impact-bass-1", T("hook", 2.38), 1.6, 0.16)
+# package
 sfx("kick", "whoosh-short", T("hook", 4.15), 0.57, 0.10)
+sfx("kk2", "click-soft", T("hook", 4.45), 0.36, 0.12)
 sfx("title", "whoosh", T("hook", 5.70), 0.57, 0.14)
-sfx("titlepop", "pop", T("hook", 6.05), 0.72, 0.12)
-sfx("locpin", "pop", T("loc", 5.05), 0.72, 0.12)
-sfx("land", "pop", T("size", 2.60), 0.72, 0.12)
-sfx("house", "pop", T("size", 6.20), 0.72, 0.12)
+sfx("pk1", "impact-bass-2", T("hook", 5.95) - 0.35, 1.8, 0.14)
+sfx("pk2", "pop", T("hook", 6.95), 0.72, 0.12)
+sfx("pk3", "click-soft", T("hook", 7.60), 0.36, 0.12)
+# location
+sfx("loccut", "whoosh-short", T("loc", 4.73), 0.57, 0.12)
+sfx("locpin", "pop", T("loc", 4.95), 0.72, 0.12)
+sfx("locping", "ping", T("loc", 5.45), 1.0, 0.08)
+# land + house size
+sfx("lotcut", "whoosh-short", T("size", 0.98), 0.57, 0.11)
+sfx("land", "pop", T("size", 2.55), 0.72, 0.12)
+sfx("landn", "ping", T("size", 3.20), 1.0, 0.08)
+sfx("house", "pop", T("size", 6.15), 0.72, 0.12)
+sfx("housen", "ping", T("size", 7.85), 1.0, 0.08)
+# custom design
 sfx("renders", "whoosh", T("custom", 4.00), 0.57, 0.13)
+sfx("cu1", "pop", T("custom", 4.08), 0.72, 0.11)
+sfx("rc2", "whoosh-short", T("custom", 4.98), 0.57, 0.09)
+sfx("cu2", "click-soft", T("custom", 5.30), 0.36, 0.12)
+sfx("rc3", "whoosh-short", T("custom", 5.96), 0.57, 0.09)
+# neighbourhood / flood / road
+sfx("nbcut", "whoosh-short", T("area", 0.98), 0.57, 0.11)
 sfx("nb", "pop", T("area", 2.05), 0.72, 0.11)
-sfx("flood", "pop", T("flood", 2.85), 0.72, 0.12)
-sfx("road", "pop", T("road", 3.40), 0.72, 0.12)
+sfx("flood", "chime", T("flood", 2.85), 1.6, 0.10)
+sfx("roadcut", "whoosh-short", T("road", 2.53), 0.57, 0.11)
+sfx("road", "pop", T("road", 3.38), 0.72, 0.12)
+# facilities checklist
 sfx("nh", "whoosh-short", T("near", 1.80), 0.57, 0.10)
 for i in range(4):
     sfx(f"li{i}", "click-soft", T("near", 2.30) + i * 0.28, 0.36, 0.13)
+    sfx(f"tk{i}", "click", T("near", 2.48) + i * 0.28, 0.36, 0.07)
+# location map: one pop per card as it appears in the map clip (3.5 / 4.4 / 5.3 s)
 sfx("map", "whoosh-short", T("places", 1.38), 0.57, 0.10)
-sfx("kanan", "pop", T("places", 8.95), 0.72, 0.11)
+sfx("mapzoom", "whoosh", T("places", 3.65), 0.57, 0.09)
+for i, m in enumerate([3.5, 4.4, 5.3]):
+    sfx(f"mc{i}", "pop", T("places", 1.40 + m), 0.72, 0.11)
+sfx("kanan", "whoosh-short", T("places", 8.92), 0.57, 0.10)
+sfx("kanan2", "pop", T("places", 8.98), 0.72, 0.10)
 sfx("kiri", "pop", T("places", 10.30), 0.72, 0.11)
+sfx("uitm", "ping", T("places", 11.76), 1.0, 0.07)
+# call to action
 sfx("lot", "impact-bass-1", T("cta", 0.30), 1.5, 0.16)
 sfx("siapa", "pop", T("cta", 1.23), 0.72, 0.11)
+sfx("berminat", "whoosh-short", T("cta", 3.06), 0.57, 0.10)
 sfx("ctapop", "pop", T("cta", 4.20), 0.72, 0.13)
+sfx("tap1", "click", T("cta", 4.85), 0.36, 0.14)
+sfx("tap2", "click", T("cta", 5.45), 0.36, 0.14)
 
 push = [(b[0], b[2], b[3]) for b in BROLL if b[5]]
+# quick punch-in on the talent at the key words, then ease back (scaled on the wrapper)
+PUNCH = [("hook", T("hook", 2.38), 0.95), ("size", T("size", 7.20), 1.1), ("flood", T("flood", 2.85), 1.1),
+         ("road", T("road", 2.40), 0.0), ("near", T("near", 2.30), 1.2), ("cta", T("cta", 0.30), 0.95), ("cta", T("cta", 4.20), 1.6)]
+PUNCH = [p for p in PUNCH if p[2] > 0]
 fades = [(b[0], b[2]) for b in BROLL]
 index = f'''<!doctype html>
 <html lang="ms" data-resolution="portrait">
@@ -129,6 +168,15 @@ index = f'''<!doctype html>
       {json.dumps(push)}.forEach(([id, s, e]) => {{
         tl.fromTo("#" + id, {{ scale: 1.0 }}, {{ scale: 1.06, duration: e - s, ease: "none" }}, s);
       }});
+      // punch-ins: snap closer on the key word, settle back
+      {json.dumps(PUNCH)}.forEach(([id, s, h]) => {{
+        tl.fromTo("#w-" + id, {{ scale: 1 }}, {{ scale: 1.1, duration: 0.28, ease: "power3.out" }}, s);
+        tl.fromTo("#w-" + id, {{ scale: 1.1 }}, {{ scale: 1, duration: 0.45, ease: "power2.inOut", immediateRender: false }}, s + h);
+      }});
+      // drone / road cutaways enter with a short zoom settle
+      {json.dumps(push)}.forEach(([id, s]) => {{
+        tl.fromTo("#" + id + "-w", {{ scale: 1.14 }}, {{ scale: 1, duration: 0.5, ease: "expo.out" }}, s);
+      }});
       // talent takes: a gentle push-in so cuts feel like camera moves
       {json.dumps([(s[0], start[s[0]], round(s[3] - s[2], 3)) for s in SEGS])}.forEach(([id, s, d]) => {{
         tl.fromTo("#v-" + id, {{ scale: 1.0 }}, {{ scale: 1.04, duration: d, ease: "none" }}, s);
@@ -146,6 +194,8 @@ def svg(body, size=56, stroke=CHR, sw=3.6, fill="none"):
             f'stroke-linecap="round" stroke-linejoin="round">{body}</svg>')
 
 
+HAND = f'<svg viewBox="0 0 64 72" width="78" height="88"><path d="M22 6c0-3 2-5 5-5s5 2 5 5v24l3-1c3-1 6 1 6 4l8-2c3 0 5 2 5 5v14c0 10-7 20-19 20h-6c-7 0-11-3-14-8L4 44c-2-3-1-6 2-7 2-1 5 0 6 2l10 10z" fill="{WHT}" stroke="{CHR}" stroke-width="3.5" stroke-linejoin="round"/></svg>'
+TICK = f'<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="{CHR}" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 10 17 19 7"/></svg>'
 ICON = {
     "pin": f'<svg viewBox="0 0 48 64" width="44" height="58"><path d="M24 1C11.3 1 1 11.3 1 24c0 16.5 23 39 23 39s23-22.5 23-39C47 11.3 36.7 1 24 1z" fill="{YEL}"/><circle cx="24" cy="24" r="8.5" fill="{CHR}"/></svg>',
     "hospital": svg('<rect x="7" y="7" width="34" height="34" rx="6"/><path d="M24 15v18M15 24h18"/>'),
@@ -175,7 +225,7 @@ def hide(sel):
 
 
 def tout(sel, at):
-    J.append(f'tl.to("{sel}", {{ opacity: 0, duration: 0.22, ease: "power2.in" }}, {round(at, 3)});')
+    J.append(f'tl.to("{sel}", {{ opacity: 0, y: -16, duration: 0.22, ease: "power2.in" }}, {round(at, 3)});')
 
 
 def block(bid, s, e, inner, top, height, cls=""):
@@ -212,7 +262,7 @@ tout("#g-kick", e - 0.12)
 s, e = T("hook", 5.75), T("hook", 8.55)
 block("g-pkg", s, e, '''<div class="lbl yl lg" id="pk1">PAKEJ BINA RUMAH</div>
       <div class="lbl dk lg" id="pk2"><span class="y">BERSERTA</span> TANAH</div>
-      <div class="lbl wh sm" id="pk3">MAHLIGAI IDAMAN</div>''', 700, 400, "col")
+      <div class="lbl wh sm" id="pk3">MAHLIGAI IDAMAN</div>''', 400, 400, "col")
 tin("#pk1", T("hook", 5.95), "scale")
 hide("#pk2"); tin("#pk2", T("hook", 6.95), "scale")
 hide("#pk3"); tin("#pk3", T("hook", 7.60), "up", 0.35)
@@ -220,9 +270,10 @@ tout("#g-pkg", e - 0.2)
 
 # SCENE 3 — location (over drone footage of the land)
 s, e = T("loc", 4.95), T("loc", 7.00)
-block("g-loc", s, e, f'''<div class="chip" id="lc"><div class="pin" id="lc-pin">{ICON["pin"]}</div><div><div class="ck">LOKASI TANAH</div><div class="cv">KAMPUNG WEK, MACHANG</div></div></div>''', 800, 170, "col")
+block("g-loc", s, e, f'''<div class="chip" id="lc"><div class="pin" id="lc-pin"><div class="ripple" id="lc-rip"></div>{ICON["pin"]}</div><div><div class="ck">LOKASI TANAH</div><div class="cv">KAMPUNG WEK, MACHANG</div></div></div>''', 400, 170, "col")
 tin("#lc", s, "scale")
 J.append(f'tl.fromTo("#lc-pin", {{ y: -26 }}, {{ y: 0, duration: 0.55, ease: "bounce.out" }}, {T("loc", 5.0)});')
+J.append(f'tl.fromTo("#lc-rip", {{ scale: 0.2, opacity: 0.9 }}, {{ scale: 1.6, opacity: 0, duration: 0.9, ease: "power2.out", repeat: 1, immediateRender: false }}, {T("loc", 5.3)});')
 tout("#g-loc", e - 0.22)
 
 # SCENE 4 — land size (over the lot plan, low in the safe box so the lot labels stay clear)
@@ -285,23 +336,26 @@ tout("#g-road", e - 0.2)
 # SCENE 10 — nearby facilities (held until the map)
 s, e = T("near", 1.80), T("places", 1.40)
 items = [("hospital", "HOSPITAL"), ("mart", "PASARAYA"), ("mosque", "MASJID"), ("school", "SEKOLAH")]
-grid = "".join(f'<div class="am" id="am{i}"><div class="ai">{ICON[k]}</div><span>{n}</span></div>' for i, (k, n) in enumerate(items))
+grid = "".join(f'<div class="am" id="am{i}"><div class="ai">{ICON[k]}</div><span>{n}</span><div class="tick" id="tk{i}">{TICK}</div></div>' for i, (k, n) in enumerate(items))
 block("g-near", s, e, f'''<div class="lbl yl md" id="nh">KEMUDAHAN BERDEKATAN</div><div class="grid">{grid}</div>''', 360, 360, "col")
 tin("#nh", s, "up")
 for i in range(4):
     hide(f"#am{i}")
     tin(f"#am{i}", T("near", 2.30) + i * 0.28, "scale", 0.4)
+    J.append(f'tl.fromTo("#tk{i}", {{ scale: 0, rotation: -40 }}, {{ scale: 1, rotation: 0, duration: 0.35, ease: "back.out(2.4)" }}, {round(T("near", 2.48) + i * 0.28, 3)});')
 tout("#g-near", e - 0.18)
 
 # SCENE 11 — landmarks: the location map carries SMK Hamzah 2 (and all three cards) uncropped;
 # back on Abe, the two directions he points to
 s, e = T("places", 8.90), T("places", 13.45)
-plc = [("kiri", "◀ KE KIRI", "UiTM MACHANG", "6 KM | 10 MINIT"), ("kanan", "KE KANAN ▶", "BANDAR MACHANG", "6 KM | 10 MINIT")]
+plc = [("kiri", '<span class="ar" id="ar-kiri">◀</span> KE KIRI', "UiTM MACHANG", "6 KM | 10 MINIT"), ("kanan", 'KE KANAN <span class="ar" id="ar-kanan">▶</span>', "BANDAR MACHANG", "6 KM | 10 MINIT")]
 cards = "".join(f'<div class="dir" id="d-{k}"><div class="dk2">{a}</div><div class="dn">{n}</div><div class="dd">{d}</div></div>' for k, a, n, d in plc)
 block("g-dir", s, e, f'<div class="dirs">{cards}</div>', 380, 200, "col")
 tin("#d-kanan", s + 0.05, "up")
 hide("#d-kiri"); tin("#d-kiri", T("places", 10.30), "up")
 J.append(f'tl.fromTo("#d-kiri .dn", {{ color: "{WHT}" }}, {{ color: "{YEL}", duration: 0.25 }}, {T("places", 11.76)});')
+J.append(f'tl.fromTo("#ar-kanan", {{ x: 0 }}, {{ x: 10, duration: 0.35, ease: "sine.inOut", yoyo: true, repeat: 5 }}, {round(s + 0.4, 3)});')
+J.append(f'tl.fromTo("#ar-kiri", {{ x: 0 }}, {{ x: -10, duration: 0.35, ease: "sine.inOut", yoyo: true, repeat: 5 }}, {T("places", 10.6)});')
 tout("#g-dir", e - 0.2)
 
 # SCENE 12 — call to action (no outro after the last line)
@@ -312,9 +366,16 @@ hide("#lt-s"); tin("#lt-s", T("cta", 1.23), "up")
 tout("#g-lot", e - 0.18)
 
 s, e = T("cta", 3.08), TOTAL
-block("g-cta", s, e, '''<div class="lbl dk lg" id="ct-k">BERMINAT?</div><div class="lbl yl lg" id="ct-b">PM KAMI SEGERA</div>''', 380, 280, "col")
+block("g-cta", s, e, f'''<div class="lbl dk lg" id="ct-k">BERMINAT?</div><div class="btnw"><div class="lbl yl lg" id="ct-b">PM KAMI SEGERA</div>
+      <div class="tapr" id="tap-r"></div><div class="hand" id="hand">{HAND}</div></div>''', 380, 300, "col")
 tin("#ct-k", s, "up")
 hide("#ct-b"); tin("#ct-b", T("cta", 4.20), "scale")
+hide("#hand")
+J.append(f'tl.fromTo("#hand", {{ opacity: 0, x: 60, y: 50 }}, {{ opacity: 1, x: 0, y: 0, duration: 0.4, ease: "power3.out" }}, {T("cta", 4.45)});')
+for k, at in enumerate([4.85, 5.45]):
+    J.append(f'tl.fromTo("#hand", {{ scale: 1 }}, {{ scale: 0.86, duration: 0.1, ease: "power2.in", yoyo: true, repeat: 1 }}, {T("cta", at)});')
+    J.append(f'tl.fromTo("#ct-b", {{ scale: 1 }}, {{ scale: 0.95, duration: 0.1, ease: "power2.in", yoyo: true, repeat: 1 }}, {T("cta", at)});')
+    J.append(f'tl.fromTo("#tap-r", {{ scale: 0.2, opacity: 0.9 }}, {{ scale: 1.5, opacity: 0, duration: 0.55, ease: "power2.out", immediateRender: false }}, {T("cta", at + 0.1)});')
 
 # safe-zone self check on reserved boxes (scale-in from 0.86 stays inside its box)
 for bid, top, h in BOXES:
@@ -365,6 +426,16 @@ CSS = f'''
     .dn {{ font-weight: 900; font-size: 44px; white-space: nowrap; margin-top: 8px; color: {WHT}; }}
     .dd {{ display: inline-block; margin-top: 10px; font-weight: 800; font-size: 28px; letter-spacing: .05em; color: {CHR};
       background: {YEL}; padding: 6px 14px 7px; border-radius: 6px; }}
+    .ripple, .tapr {{ position: absolute; border-radius: 50%; border: 4px solid {YEL}; opacity: 0; pointer-events: none; }}
+    .pin {{ position: relative; }}
+    .ripple {{ left: -18px; top: -14px; width: 80px; height: 80px; }}
+    .am {{ position: relative; }}
+    .tick {{ position: absolute; right: 14px; top: 50%; margin-top: -21px; width: 42px; height: 42px; border-radius: 50%; background: {YEL};
+      display: flex; align-items: center; justify-content: center; transform: scale(0); }}
+    .ar {{ display: inline-block; }}
+    .btnw {{ position: relative; }}
+    .tapr {{ left: 50%; top: 50%; width: 120px; height: 120px; margin: -60px 0 0 -60px; }}
+    .hand {{ position: absolute; right: -34px; top: 62px; opacity: 0; filter: drop-shadow(0 8px 14px rgba(0,0,0,.4)); }}
     .rbg {{ position: absolute; inset: 0; opacity: 0; }}
     .rbg img {{ width: 100%; height: 100%; object-fit: cover; filter: blur(28px); transform: scale(1.15); }}
     .rdim {{ position: absolute; inset: 0; background: rgba(23,23,23,.45); }}
