@@ -1,0 +1,155 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: Montserrat, sans-serif; color: #fff; }
+    .grp { position: absolute; left: 80px; right: 80px; }
+    .hk { white-space: nowrap; font-weight: 900; font-size: 72px; line-height: 1.02; letter-spacing: -.01em; color: #fff;
+      text-shadow: 0 4px 0 rgba(0,0,0,.28), 0 12px 34px rgba(0,0,0,.6); }
+    .hk.y { color: #F6C343; }
+    .hw { display: inline-block; opacity: 0; }
+    .kick { padding: 12px 30px 14px; border-radius: 999px; background: rgba(12,14,18,.78); font-weight: 700; font-size: 36px;
+      letter-spacing: .12em; color: #fff; white-space: nowrap; }
+    .kick b { color: #F6C343; font-weight: 900; }
+    .kick.big { font-size: 52px; padding: 14px 40px 16px; margin-top: 10px; }
+    .bigbox { margin-top: 20px; padding: 22px 46px 26px; border-radius: 26px; text-align: center; color: #14161B;
+      background: linear-gradient(100deg, rgba(255,255,255,0) 40%, rgba(255,255,255,.5) 50%, rgba(255,255,255,0) 60%) no-repeat, #F6C343;
+      background-size: 300% 100%, auto; background-position: 130% 0, 0 0; box-shadow: 0 22px 50px rgba(0,0,0,.42); }
+    .bigbox .l1 { font-weight: 900; font-size: 74px; line-height: 1.0; letter-spacing: .01em; white-space: nowrap; }
+    .bigbox .l2 { font-weight: 900; font-size: 74px; line-height: 1.0; letter-spacing: .01em; white-space: nowrap; color: #fff;
+      margin-top: 8px; display: inline-block; background: #14161B; padding: 6px 22px 10px; border-radius: 14px; }
+    .bigbox.sm { margin-top: 0; padding: 18px 40px 22px; }
+    .bigbox.sm .l1 { font-size: 70px; }
+    .chip { display: flex; align-items: center; gap: 20px; padding: 18px 36px 20px 26px; border-radius: 26px;
+      background: rgba(12,14,18,.82); border: 3px solid #F6C343; box-shadow: 0 18px 44px rgba(0,0,0,.4); }
+    .ck { font-weight: 800; font-size: 28px; letter-spacing: .24em; color: #F6C343; }
+    .cv { font-weight: 900; font-size: 50px; letter-spacing: .02em; white-space: nowrap; }
+    .stat { display: flex; align-items: center; gap: 26px; padding: 24px 44px 26px 28px; border-radius: 28px; background: #fff;
+      color: #14161B; box-shadow: 0 22px 50px rgba(0,0,0,.42); margin-top: 16px; }
+    .stat .si { width: 110px; height: 110px; border-radius: 22px; background: #F6C343; display: flex; align-items: center; justify-content: center; flex: none; }
+    .sk { font-weight: 800; font-size: 28px; letter-spacing: .14em; color: #5A5F68; }
+    .sv { font-weight: 900; font-size: 84px; line-height: 1.0; white-space: nowrap; }
+    .sv small { font-size: 40px; letter-spacing: .03em; color: #B88A0E; }
+    .row { display: flex; align-items: center; gap: 22px; padding: 18px 40px 20px 20px; border-radius: 999px; background: rgba(12,14,18,.82);
+      border: 3px solid #F6C343; box-shadow: 0 18px 44px rgba(0,0,0,.4); }
+    .row span { font-weight: 900; font-size: 46px; letter-spacing: .02em; white-space: nowrap; }
+    .ck2 { width: 64px; height: 64px; border-radius: 50%; background: #F6C343; display: flex; align-items: center; justify-content: center; flex: none; }
+    .hd { padding: 12px 34px 14px; border-radius: 16px; background: #F6C343; color: #14161B; font-weight: 900; font-size: 50px;
+      letter-spacing: .04em; white-space: nowrap; box-shadow: 0 16px 40px rgba(0,0,0,.4); }
+    .hd.sm { font-size: 36px; letter-spacing: .14em; padding: 10px 28px 12px; }
+    .grid { margin-top: 22px; display: grid; grid-template-columns: 410px 410px; gap: 18px; }
+    .am { display: flex; align-items: center; gap: 18px; padding: 14px 20px; border-radius: 20px; background: rgba(255,255,255,.95); color: #14161B;
+      box-shadow: 0 14px 34px rgba(0,0,0,.35); }
+    .am .ai { width: 76px; height: 76px; border-radius: 16px; background: #F6C343; display: flex; align-items: center; justify-content: center; flex: none; }
+    .am span { font-weight: 900; font-size: 38px; letter-spacing: .02em; }
+    .pl { display: flex; align-items: center; gap: 20px; width: 820px; padding: 16px 30px 18px 24px; border-radius: 22px;
+      background: rgba(12,14,18,.84); border-left: 10px solid #F6C343; box-shadow: 0 16px 40px rgba(0,0,0,.4); }
+    .pn { font-weight: 900; font-size: 46px; letter-spacing: .02em; white-space: nowrap; }
+    .pd { font-weight: 700; font-size: 28px; letter-spacing: .08em; color: #fff; margin-top: 2px; white-space: nowrap; }
+    .pd b { color: #F6C343; font-weight: 900; }
+    .rbg { position: absolute; inset: 0; opacity: 0; background: radial-gradient(ellipse at 50% 45%, #2A2D33 0%, #121418 70%); }
+    .rcard { position: absolute; left: 60px; top: 520px; width: 960px; height: 720px; border-radius: 28px; overflow: hidden; opacity: 0;
+      border: 4px solid #fff; box-shadow: 0 30px 70px rgba(0,0,0,.6); }
+    .rcard img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .cust { position: absolute; left: 0; right: 0; top: 1330px; display: flex; flex-direction: column; align-items: center; opacity: 0; }
+    .cs { margin-top: 18px; font-weight: 800; font-size: 44px; letter-spacing: .16em; color: #fff; white-space: nowrap;
+      text-shadow: 0 3px 12px rgba(0,0,0,.7); }
+    .cs.big { font-size: 50px; color: #fff; }
+    .logo { width: 190px; height: auto; filter: drop-shadow(0 8px 18px rgba(0,0,0,.45)); }
+    .btn { margin-top: 26px; padding: 26px 64px 28px; border-radius: 999px; background: #F6C343; color: #14161B; font-weight: 900;
+      font-size: 64px; letter-spacing: .05em; white-space: nowrap; }
+  </style>
+  <div id="root" data-composition-id="gfx" data-width="1080" data-height="1920" data-duration="69.28">
+    <div class="grp clip" id="g-hook" data-start="0.1" data-duration="3.65" style="top:190px; text-align:center"><div class="hk" style="font-size:88px"><span class="hw" id="hw1">NAK</span> <span class="hw" id="hw2">BINA</span> <span class="hw" id="hw3">RUMAH</span></div>
+      <div class="hk y"><span class="hw" id="hw4">TAPI</span> <span class="hw" id="hw5">TAK ADA</span> <span class="hw" id="hw6">TANAH?</span></div></div>
+    <div class="grp clip" id="g-pkg" data-start="4.2" data-duration="4.05" style="top:200px; display:flex; flex-direction:column; align-items:center"><div class="kick" id="pk-k"><b>MAHLIGAI IDAMAN</b> MENYEDIAKAN</div>
+      <div class="bigbox" id="pk-b"><div class="l1">PAKEJ BINA RUMAH</div><div class="l2">BERSERTA TANAH</div></div></div>
+    <div class="grp clip" id="g-loc" data-start="12.77" data-duration="2.08" style="top:210px; display:flex; justify-content:center"><div class="chip" id="lc"><svg viewBox="0 0 48 64" width="40" height="54"><path d="M24 1C11.3 1 1 11.3 1 24c0 16.5 23 39 23 39s23-22.5 23-39C47 11.3 36.7 1 24 1z" fill="#F6C343"/><circle cx="24" cy="24" r="8.5" fill="#14161B"/></svg><div><div class="ck">LOKASI</div><div class="cv">KAMPUNG WEK MACHANG</div></div></div></div>
+    <div class="grp clip" id="g-land" data-start="16.95" data-duration="4.15" style="top:1460px; display:flex; justify-content:center"><div class="stat" id="ld"><div class="si"><svg viewBox="0 0 48 48" width="70" height="70" fill="none" stroke="#14161B" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"><path d="M4 32 24 22l20 10-20 10z"/><path d="M24 22V6"/><path d="M24 6l12 4-12 4" fill="#14161B"/></svg></div><div><div class="sk">KELUASAN LOT BERMULA</div>
+      <div class="sv"><span id="n-land">5,101</span> <small>KPS</small></div></div></div></div>
+    <div class="grp clip" id="g-house" data-start="21.5" data-duration="2.98" style="top:200px; display:flex; justify-content:center"><div class="stat" id="hs"><div class="si"><svg viewBox="0 0 48 48" width="70" height="70" fill="none" stroke="#14161B" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"><path d="M4 22 24 6l20 16"/><path d="M9 19v24h30V19"/><path d="M20 43V31h8v12"/></svg></div><div><div class="sk">BOLEH BINA RUMAH BERMULA</div>
+      <div class="sv"><span id="n-house">1,400</span> <small>KPS KE ATAS</small></div></div></div></div>
+    <div class="clip" id="g-renders" data-start="28.58" data-duration="2.8" style="position:absolute; inset:0">
+      <div class="rbg"></div>
+      <div class="rcard" id="rc1"><img src="assets/img/house-a.jpg" alt="" /></div>
+      <div class="rcard" id="rc2"><img src="assets/img/house-b.jpg" alt="" /></div>
+      <div class="rcard" id="rc3"><img src="assets/img/house-c.jpg" alt="" /></div>
+      <div class="cust" id="cu"><div class="bigbox sm"><div class="l1">CUSTOM DESIGN</div></div><div class="cs">IKUT CITA RASA ANDA</div></div>
+    </div>
+    <div class="grp clip" id="g-list" data-start="33.33" data-duration="7.05" style="top:200px; display:flex; flex-direction:column; align-items:center; gap:22px"><div class="row" id="li1"><div class="ck2"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#14161B" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 L10 17 L19 7"/></svg></div><span>KAWASAN KEJIRANAN BANGLO</span></div>
+      <div class="row" id="li2"><div class="ck2"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#14161B" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5 L10 17 L19 7"/></svg></div><span>BEBAS BANJIR</span></div></div>
+    <div class="grp clip" id="g-road" data-start="40.88" data-duration="4.4" style="top:200px; display:flex; flex-direction:column; align-items:center"><div class="kick" id="rd-k">KELEBIHAN TANAH DI SINI</div>
+      <div class="stat" id="rd"><div class="si"><svg viewBox="0 0 48 48" width="70" height="70" fill="none" stroke="#14161B" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4 6 44M32 4l10 40"/><path d="M24 8v6M24 21v6M24 34v6"/></svg></div><div><div class="sk">AKSES</div><div class="sv">JALAN TAR <small>TERSEDIA</small></div></div></div></div>
+    <div class="grp clip" id="g-near" data-start="46.98" data-duration="6.13" style="top:170px; display:flex; flex-direction:column; align-items:center"><div class="hd" id="nh">KEMUDAHAN BERDEKATAN</div><div class="grid"><div class="am" id="am0"><div class="ai"><svg viewBox="0 0 48 48" width="52" height="52" fill="none" stroke="#14161B" stroke-width="3.6" stroke-linejoin="round"><rect x="7" y="7" width="34" height="34" rx="6"/><path d="M24 15v18M15 24h18" stroke-linecap="round"/></svg></div><span>HOSPITAL</span></div><div class="am" id="am1"><div class="ai"><svg viewBox="0 0 48 48" width="52" height="52" fill="none" stroke="#14161B" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9h6l5 22h21l4-15H14"/><circle cx="19" cy="39" r="3"/><circle cx="34" cy="39" r="3"/></svg></div><span>PASARAYA</span></div><div class="am" id="am2"><div class="ai"><svg viewBox="0 0 48 48" width="52" height="52" fill="none" stroke="#14161B" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 42V26c0-7 12-10 12-17 0 7 12 10 12 17v16z"/><path d="M5 42V20M43 42V20M5 20l0-5M43 20v-5"/><path d="M20 42v-8a4 4 0 0 1 8 0v8M2 42h44"/></svg></div><span>MASJID</span></div><div class="am" id="am3"><div class="ai"><svg viewBox="0 0 48 48" width="52" height="52" fill="none" stroke="#14161B" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18 24 8l21 10-21 10z"/><path d="M11 22v11c4 4 22 4 26 0V22"/><path d="M45 18v12"/></svg></div><span>SEKOLAH</span></div></div></div>
+    <div class="grp clip" id="g-places" data-start="53.41" data-duration="8.85" style="top:170px; display:flex; flex-direction:column; align-items:center; gap:18px"><div class="hd sm" id="ph">LOKASI STRATEGIK</div><div class="pl" id="pl-smk"><svg viewBox="0 0 48 64" width="40" height="54"><path d="M24 1C11.3 1 1 11.3 1 24c0 16.5 23 39 23 39s23-22.5 23-39C47 11.3 36.7 1 24 1z" fill="#F6C343"/><circle cx="24" cy="24" r="8.5" fill="#14161B"/></svg><div class="pt"><div class="pn">SMK HAMZAH 2</div><div class="pd"><b>2 KM | 4 MINIT</b></div></div></div><div class="pl" id="pl-bdr"><svg viewBox="0 0 48 64" width="40" height="54"><path d="M24 1C11.3 1 1 11.3 1 24c0 16.5 23 39 23 39s23-22.5 23-39C47 11.3 36.7 1 24 1z" fill="#F6C343"/><circle cx="24" cy="24" r="8.5" fill="#14161B"/></svg><div class="pt"><div class="pn">BANDAR MACHANG</div><div class="pd"><b>6 KM | 10 MINIT</b> · KE KANAN</div></div></div><div class="pl" id="pl-uitm"><svg viewBox="0 0 48 64" width="40" height="54"><path d="M24 1C11.3 1 1 11.3 1 24c0 16.5 23 39 23 39s23-22.5 23-39C47 11.3 36.7 1 24 1z" fill="#F6C343"/><circle cx="24" cy="24" r="8.5" fill="#14161B"/></svg><div class="pt"><div class="pn">UiTM MACHANG</div><div class="pd"><b>6 KM | 10 MINIT</b> · KE KIRI</div></div></div></div>
+    <div class="grp clip" id="g-lot" data-start="62.36" data-duration="2.6" style="top:200px; display:flex; flex-direction:column; align-items:center"><div class="bigbox" id="lt"><div class="l1" style="font-size:118px">LOT TERHAD</div></div><div class="cs big" id="lt-s">SIAPA CEPAT, DIA DAPAT</div></div>
+    <div class="grp clip" id="g-cta" data-start="64.96" data-duration="4.32" style="top:150px; display:flex; flex-direction:column; align-items:center"><img class="logo" id="ct-l" src="assets/logo.png" alt="" /><div class="kick big" id="ct-k">BERMINAT?</div><div class="btn" id="ct-b">PM KAMI SEGERA</div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#hw1", { opacity: 0, y: 26, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, 0.2);
+    tl.fromTo("#hw2", { opacity: 0, y: 26, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, 0.4);
+    tl.fromTo("#hw3", { opacity: 0, y: 26, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, 0.72);
+    tl.fromTo("#hw4", { opacity: 0, y: 26, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, 1.32);
+    tl.fromTo("#hw5", { opacity: 0, y: 26, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, 1.63);
+    tl.fromTo("#hw6", { opacity: 0, y: 26, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.2, ease: "power3.out" }, 2.15);
+    tl.to("#g-hook", { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power2.in" }, 3.53);
+    tl.fromTo("#pk-k", { opacity: 0, filter: 'blur(8px)' }, { opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 4.2);
+    tl.fromTo("#pk-b", { opacity: 0, scale: 0.82, filter: 'blur(10px)' }, { opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 5.48);
+    tl.fromTo("#pk-b", { backgroundPosition: "130% 0, 0 0" }, { backgroundPosition: "-30% 0, 0 0", duration: 0.9, ease: "sine.inOut" }, 6.1);
+    tl.to("#g-pkg", { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power2.in" }, 8.03);
+    tl.fromTo("#lc", { opacity: 0, y: 34, filter: 'blur(10px)' }, { opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 12.77);
+    tl.to("#g-loc", { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power2.in" }, 14.63);
+    tl.fromTo("#ld", { opacity: 0, scale: 0.82, filter: 'blur(10px)' }, { opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 16.95);
+    (() => { const o = { v: 0 }; tl.fromTo(o, { v: 0 }, { v: 5101, duration: 0.7, ease: "power3.out", onUpdate: () => { document.querySelector("#n-land").textContent = Math.round(o.v).toLocaleString("en-US"); } }, 16.95); })();
+    tl.to("#g-land", { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power2.in" }, 20.88);
+    tl.fromTo("#hs", { opacity: 0, scale: 0.82, filter: 'blur(10px)' }, { opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 21.5);
+    (() => { const o = { v: 0 }; tl.fromTo(o, { v: 0 }, { v: 1400, duration: 0.7, ease: "power3.out", onUpdate: () => { document.querySelector("#n-house").textContent = Math.round(o.v).toLocaleString("en-US"); } }, 21.5); })();
+    tl.to("#g-house", { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power2.in" }, 24.26);
+    tl.fromTo("#g-renders .rbg", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power1.out" }, 28.58);
+    tl.fromTo("#rc1", { opacity: 0, x: 160, scale: 0.96 }, { opacity: 1, x: 0, scale: 1, duration: 0.4, ease: "expo.out" }, 28.58);
+    tl.to("#rc1 img", { scale: 1.08, duration: 1.2, ease: "none" }, 28.58);
+    tl.to("#rc1", { opacity: 0, x: -160, duration: 0.3, ease: "power2.in" }, 29.36);
+    tl.fromTo("#rc2", { opacity: 0, x: 160, scale: 0.96 }, { opacity: 1, x: 0, scale: 1, duration: 0.4, ease: "expo.out" }, 29.51);
+    tl.to("#rc2 img", { scale: 1.08, duration: 1.2, ease: "none" }, 29.51);
+    tl.to("#rc2", { opacity: 0, x: -160, duration: 0.3, ease: "power2.in" }, 30.29);
+    tl.fromTo("#rc3", { opacity: 0, x: 160, scale: 0.96 }, { opacity: 1, x: 0, scale: 1, duration: 0.4, ease: "expo.out" }, 30.44);
+    tl.to("#rc3 img", { scale: 1.08, duration: 1.2, ease: "none" }, 30.44);
+    tl.fromTo("#cu", { opacity: 0, y: 34, filter: 'blur(10px)' }, { opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 28.73);
+    tl.to("#g-renders", { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power2.in" }, 31.18);
+    tl.fromTo("#li1", { opacity: 0, x: -200, filter: 'blur(10px)' }, { opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 33.33);
+    tl.set("#li2", { opacity: 0 }, 0);
+    tl.fromTo("#li2", { opacity: 0, x: -200, filter: 'blur(10px)' }, { opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 38.96);
+    tl.to("#g-list", { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power2.in" }, 40.16);
+    tl.fromTo("#rd-k", { opacity: 0, filter: 'blur(8px)' }, { opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 40.88);
+    tl.set("#rd", { opacity: 0 }, 0);
+    tl.fromTo("#rd", { opacity: 0, scale: 0.82, filter: 'blur(10px)' }, { opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 43.88);
+    tl.to("#g-road", { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power2.in" }, 45.06);
+    tl.fromTo("#nh", { opacity: 0, y: 34, filter: 'blur(10px)' }, { opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 46.98);
+    tl.set("#am0", { opacity: 0 }, 0);
+    tl.fromTo("#am0", { opacity: 0, scale: 0.82, filter: 'blur(10px)' }, { opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 47.23);
+    tl.set("#am1", { opacity: 0 }, 0);
+    tl.fromTo("#am1", { opacity: 0, scale: 0.82, filter: 'blur(10px)' }, { opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 47.45);
+    tl.set("#am2", { opacity: 0 }, 0);
+    tl.fromTo("#am2", { opacity: 0, scale: 0.82, filter: 'blur(10px)' }, { opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 47.67);
+    tl.set("#am3", { opacity: 0 }, 0);
+    tl.fromTo("#am3", { opacity: 0, scale: 0.82, filter: 'blur(10px)' }, { opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 47.89);
+    tl.to("#g-near", { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power2.in" }, 52.89);
+    tl.fromTo("#ph", { opacity: 0, filter: 'blur(8px)' }, { opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 53.41);
+    tl.set("#pl-smk", { opacity: 0 }, 0);
+    tl.fromTo("#pl-smk", { opacity: 0, x: -200, filter: 'blur(10px)' }, { opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 53.43);
+    tl.set("#pl-bdr", { opacity: 0 }, 0);
+    tl.fromTo("#pl-bdr", { opacity: 0, x: -200, filter: 'blur(10px)' }, { opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 56.93);
+    tl.set("#pl-uitm", { opacity: 0 }, 0);
+    tl.fromTo("#pl-uitm", { opacity: 0, x: -200, filter: 'blur(10px)' }, { opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 60.56);
+    tl.to("#g-places", { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power2.in" }, 62.04);
+    tl.fromTo("#lt", { opacity: 0, scale: 0.82, filter: 'blur(10px)' }, { opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 62.36);
+    tl.set("#lt-s", { opacity: 0 }, 0);
+    tl.fromTo("#lt-s", { opacity: 0, y: 34, filter: 'blur(10px)' }, { opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 63.49);
+    tl.to("#g-lot", { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power2.in" }, 64.74);
+    tl.fromTo("#ct-l", { opacity: 0, scale: 0.82, filter: 'blur(10px)' }, { opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 64.96);
+    tl.fromTo("#ct-k", { opacity: 0, y: 34, filter: 'blur(10px)' }, { opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 65.03);
+    tl.set("#ct-b", { opacity: 0 }, 0);
+    tl.fromTo("#ct-b", { opacity: 0, scale: 0.82, filter: 'blur(10px)' }, { opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 66.41);
+    tl.fromTo("#ct-b", { boxShadow: "0 0 0 0 rgba(246,195,67,.65), 0 18px 44px rgba(0,0,0,.45)" }, { boxShadow: "0 0 0 28px rgba(246,195,67,0), 0 18px 44px rgba(0,0,0,.45)", duration: 0.9, ease: "power1.out", repeat: 1 }, 66.91);
+    window.__timelines["gfx"] = tl;
+  </script>
+</template>
