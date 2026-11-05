@@ -10,11 +10,12 @@
       #root { position: relative; width: 100%; height: 100%; background: #101216; }
       .vw { position: absolute; inset: 0; z-index: 1; overflow: hidden; transform-origin: 50% 45%; }
       .vw.br { z-index: 2; }
+      .rb { position: absolute; left: -40px; right: -40px; mix-blend-mode: screen; opacity: 0; }
       .vw video { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="179.56" data-width="1080" data-height="1920">
+    <div id="root" data-composition-id="main" data-start="0" data-duration="180.61" data-width="1080" data-height="1920">
       <div class="vw" id="w-hook"><video id="v-hook" class="clip" src="assets/video/tour.mp4" data-start="0.0" data-duration="2.3" data-media-start="14.15" data-track-index="1" playsinline data-has-audio="true" data-volume="1" data-fade-in="0.03" data-fade-out="0.05"></video></div>
       <div class="vw" id="w-intro"><video id="v-intro" class="clip" src="assets/video/tour.mp4" data-start="2.3" data-duration="14.1" data-media-start="0.0" data-track-index="1" playsinline data-has-audio="true" data-volume="1" data-fade-in="0.03" data-fade-out="0.05"></video></div>
       <div class="vw" id="w-hitam"><video id="v-hitam" class="clip" src="assets/video/tour.mp4" data-start="16.4" data-duration="1.9" data-media-start="16.95" data-track-index="1" playsinline data-has-audio="true" data-volume="1" data-fade-in="0.03" data-fade-out="0.05"></video></div>
@@ -22,20 +23,37 @@
       <div class="vw" id="w-porch"><video id="v-porch" class="clip" src="assets/video/tour.mp4" data-start="29.66" data-duration="15.65" data-media-start="40.75" data-track-index="1" playsinline data-has-audio="true" data-volume="1" data-fade-in="0.03" data-fade-out="0.05"></video></div>
       <div class="vw" id="w-jom"><video id="v-jom" class="clip" src="assets/video/tour.mp4" data-start="45.31" data-duration="1.65" data-media-start="56.85" data-track-index="1" playsinline data-has-audio="true" data-volume="1" data-fade-in="0.03" data-fade-out="0.05"></video></div>
       <div class="vw" id="w-pintu"><video id="v-pintu" class="clip" src="assets/video/tour.mp4" data-start="46.96" data-duration="6.45" data-media-start="68.5" data-track-index="1" playsinline data-has-audio="true" data-volume="1" data-fade-in="0.03" data-fade-out="0.05"></video></div>
-      <div class="vw" id="w-sekuriti"><video id="v-sekuriti" class="clip" src="assets/video/tour.mp4" data-start="53.41" data-duration="6.25" data-media-start="75.62" data-track-index="1" playsinline data-has-audio="true" data-volume="1" data-fade-in="0.03" data-fade-out="0.05"></video></div>
-      <div class="vw" id="w-tamu"><video id="v-tamu" class="clip" src="assets/video/tour.mp4" data-start="59.66" data-duration="15.95" data-media-start="88.3" data-track-index="1" playsinline data-has-audio="true" data-volume="1" data-fade-in="0.03" data-fade-out="0.05"></video></div>
-      <div class="vw" id="w-makan"><video id="v-makan" class="clip" src="assets/video/tour.mp4" data-start="75.61" data-duration="11.15" data-media-start="112.35" data-track-index="1" playsinline data-has-audio="true" data-volume="1" data-fade-in="0.03" data-fade-out="0.05"></video></div>
-      <div class="vw" id="w-meja"><video id="v-meja" class="clip" src="assets/video/tour.mp4" data-start="86.76" data-duration="11.4" data-media-start="145.7" data-track-index="1" playsinline data-has-audio="true" data-volume="1" data-fade-in="0.03" data-fade-out="0.05"></video></div>
-      <div class="vw" id="w-dapur"><video id="v-dapur" class="clip" src="assets/video/tour.mp4" data-start="98.16" data-duration="81.4" data-media-start="161.7" data-track-index="1" playsinline data-has-audio="true" data-volume="1" data-fade-in="0.03" data-fade-out="0.05"></video></div>
+      <div class="vw" id="w-sek1"><video id="v-sek1" class="clip" src="assets/video/tour.mp4" data-start="53.41" data-duration="3.63" data-media-start="75.62" data-track-index="1" playsinline data-has-audio="true" data-volume="1" data-fade-in="0.03" data-fade-out="0.05"></video></div>
+      <div class="vw" id="w-sek2"><video id="v-sek2" class="clip" src="assets/video/tour.mp4" data-start="57.04" data-duration="2.35" data-media-start="79.52" data-track-index="1" playsinline data-has-audio="true" data-volume="1" data-fade-in="0.03" data-fade-out="0.05"></video></div>
+      <div class="vw" id="w-tamu"><video id="v-tamu" class="clip" src="assets/video/tour.mp4" data-start="59.39" data-duration="15.95" data-media-start="88.3" data-track-index="1" playsinline data-has-audio="true" data-volume="1" data-fade-in="0.03" data-fade-out="0.05"></video></div>
+      <div class="vw" id="w-makan"><video id="v-makan" class="clip" src="assets/video/tour.mp4" data-start="75.34" data-duration="11.15" data-media-start="112.35" data-track-index="1" playsinline data-has-audio="true" data-volume="1" data-fade-in="0.03" data-fade-out="0.05"></video></div>
+      <div class="vw" id="w-meja"><video id="v-meja" class="clip" src="assets/video/tour.mp4" data-start="86.49" data-duration="11.4" data-media-start="145.7" data-track-index="1" playsinline data-has-audio="true" data-volume="1" data-fade-in="0.03" data-fade-out="0.05"></video></div>
+      <div class="vw" id="w-dap1"><video id="v-dap1" class="clip" src="assets/video/tour.mp4" data-start="97.89" data-duration="3.45" data-media-start="161.7" data-track-index="1" playsinline data-has-audio="true" data-volume="1" data-fade-in="0.03" data-fade-out="0.05"></video></div>
+      <div class="vw" id="w-dap2"><video id="v-dap2" class="clip" src="assets/video/tour.mp4" data-start="101.34" data-duration="4.3" data-media-start="168.15" data-track-index="1" playsinline data-has-audio="true" data-volume="1" data-fade-in="0.03" data-fade-out="0.05"></video></div>
+      <div class="vw" id="w-dap3"><video id="v-dap3" class="clip" src="assets/video/tour.mp4" data-start="105.64" data-duration="16.92" data-media-start="173.38" data-track-index="1" playsinline data-has-audio="true" data-volume="1" data-fade-in="0.03" data-fade-out="0.05"></video></div>
+      <div class="vw" id="w-dmute"><video id="v-dmute" class="clip" src="assets/video/tour.mp4" data-start="122.56" data-duration="3.25" data-media-start="190.3" data-track-index="1" playsinline muted></video></div>
+      <div class="vw" id="w-dap4"><video id="v-dap4" class="clip" src="assets/video/tour.mp4" data-start="125.81" data-duration="27.9" data-media-start="193.55" data-track-index="1" playsinline data-has-audio="true" data-volume="1" data-fade-in="0.03" data-fade-out="0.05"></video></div>
+      <div class="vw" id="w-dap5"><video id="v-dap5" class="clip" src="assets/video/tour.mp4" data-start="153.71" data-duration="21.3" data-media-start="221.8" data-track-index="1" playsinline data-has-audio="true" data-volume="1" data-fade-in="0.03" data-fade-out="0.05"></video></div>
       <div class="vw br" id="w-b1"><video id="v-b1" class="clip" src="assets/video/tour.mp4" data-start="16.05" data-duration="1.5" data-media-start="33.2" data-track-index="2" muted playsinline></video></div>
       <div class="vw br" id="w-b2"><video id="v-b2" class="clip" src="assets/video/tour.mp4" data-start="29.16" data-duration="1.6" data-media-start="36.2" data-track-index="2" muted playsinline></video></div>
       <div class="vw br" id="w-b3"><video id="v-b3" class="clip" src="assets/video/tour.mp4" data-start="46.46" data-duration="1.7" data-media-start="64.0" data-track-index="2" muted playsinline></video></div>
-      <div class="vw br" id="w-b4"><video id="v-b4" class="clip" src="assets/video/tour.mp4" data-start="59.06" data-duration="2.0" data-media-start="85.6" data-track-index="2" muted playsinline></video></div>
-      <div class="vw br" id="w-b5"><video id="v-b5" class="clip" src="assets/video/tour.mp4" data-start="68.66" data-duration="1.6" data-media-start="87.0" data-track-index="2" muted playsinline></video></div>
-      <div class="vw br" id="w-b6"><video id="v-b6" class="clip" src="assets/video/tour.mp4" data-start="75.11" data-duration="1.7" data-media-start="107.0" data-track-index="2" muted playsinline></video></div>
-      <div class="vw br" id="w-b7"><video id="v-b7" class="clip" src="assets/video/tour.mp4" data-start="86.26" data-duration="1.6" data-media-start="124.8" data-track-index="2" muted playsinline></video></div>
-      <div class="vw br" id="w-b8"><video id="v-b8" class="clip" src="assets/video/tour.mp4" data-start="97.66" data-duration="1.6" data-media-start="158.2" data-track-index="2" muted playsinline></video></div>
-      <div id="gfx" data-composition-id="gfx" data-composition-src="compositions/gfx.html" data-start="0" data-duration="179.56" data-track-index="3" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:5"></div>
+      <div class="vw br" id="w-b4"><video id="v-b4" class="clip" src="assets/video/tour.mp4" data-start="58.79" data-duration="2.0" data-media-start="85.6" data-track-index="2" muted playsinline></video></div>
+      <div class="vw br" id="w-b5"><video id="v-b5" class="clip" src="assets/video/tour.mp4" data-start="68.39" data-duration="1.6" data-media-start="87.0" data-track-index="2" muted playsinline></video></div>
+      <div class="vw br" id="w-b6"><video id="v-b6" class="clip" src="assets/video/tour.mp4" data-start="74.84" data-duration="1.7" data-media-start="107.0" data-track-index="2" muted playsinline></video></div>
+      <div class="vw br" id="w-b7"><video id="v-b7" class="clip" src="assets/video/tour.mp4" data-start="85.99" data-duration="1.6" data-media-start="124.8" data-track-index="2" muted playsinline></video></div>
+      <div class="vw br" id="w-b8"><video id="v-b8" class="clip" src="assets/video/tour.mp4" data-start="97.39" data-duration="1.6" data-media-start="158.2" data-track-index="2" muted playsinline></video></div>
+      <div class="vw br" id="w-b9"><video id="v-b9" class="clip" src="assets/video/tour.mp4" data-start="100.84" data-duration="1.6" data-media-start="160.0" data-track-index="2" muted playsinline></video></div>
+      <div class="vw gs" id="gs0" style="z-index:3; clip-path: inset(0px 0 1660px 0)"><video id="gv0" class="clip" src="assets/video/tour.mp4" data-start="2.08" data-duration="0.45" data-media-start="16.23" data-track-index="2" muted playsinline></video></div>
+      <div class="vw gs" id="gs1" style="z-index:3; clip-path: inset(260px 0 1400px 0)"><video id="gv1" class="clip" src="assets/video/tour.mp4" data-start="2.08" data-duration="0.45" data-media-start="0.012" data-track-index="2" muted playsinline></video></div>
+      <div class="vw gs" id="gs2" style="z-index:3; clip-path: inset(520px 0 1220px 0)"><video id="gv2" class="clip" src="assets/video/tour.mp4" data-start="2.08" data-duration="0.45" data-media-start="16.206" data-track-index="2" muted playsinline></video></div>
+      <div class="vw gs" id="gs3" style="z-index:3; clip-path: inset(700px 0 940px 0)"><video id="gv3" class="clip" src="assets/video/tour.mp4" data-start="2.08" data-duration="0.45" data-media-start="0.036" data-track-index="2" muted playsinline></video></div>
+      <div class="vw gs" id="gs4" style="z-index:3; clip-path: inset(980px 0 740px 0)"><video id="gv4" class="clip" src="assets/video/tour.mp4" data-start="2.08" data-duration="0.45" data-media-start="16.182" data-track-index="2" muted playsinline></video></div>
+      <div class="vw gs" id="gs5" style="z-index:3; clip-path: inset(1180px 0 460px 0)"><video id="gv5" class="clip" src="assets/video/tour.mp4" data-start="2.08" data-duration="0.45" data-media-start="0.06" data-track-index="2" muted playsinline></video></div>
+      <div class="vw gs" id="gs6" style="z-index:3; clip-path: inset(1460px 0 220px 0)"><video id="gv6" class="clip" src="assets/video/tour.mp4" data-start="2.08" data-duration="0.45" data-media-start="16.158" data-track-index="2" muted playsinline></video></div>
+      <div class="vw gs" id="gs7" style="z-index:3; clip-path: inset(1700px 0 0px 0)"><video id="gv7" class="clip" src="assets/video/tour.mp4" data-start="2.08" data-duration="0.45" data-media-start="0.084" data-track-index="2" muted playsinline></video></div>
+      <div id="g-rgb" class="clip" data-start="2.08" data-duration="0.45" data-track-index="2" style="position:absolute; inset:0; z-index:4; pointer-events:none"><div class="rb" id="rb0"></div><div class="rb" id="rb1"></div><div class="rb" id="rb2"></div><div class="rb" id="rb3"></div><div class="rb" id="rb4"></div><div class="rb" id="rb5"></div></div>
+      <div id="outro" data-composition-id="outro" data-composition-src="compositions/outro.html" data-start="175.01" data-duration="5.6" data-track-index="4" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:6"></div>
+      <div id="gfx" data-composition-id="gfx" data-composition-src="compositions/gfx.html" data-start="0" data-duration="180.61" data-track-index="3" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:5"></div>
       <audio id="sx-hook" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="0.12" data-duration="0.57" data-track-index="5" data-volume="0.14"></audio>
       <audio id="sx-title" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="11.15" data-duration="0.57" data-track-index="6" data-volume="0.12"></audio>
       <audio id="sx-loc" class="clip" src="assets/sfx/pop.mp3" data-start="14.92" data-duration="0.72" data-track-index="7" data-volume="0.1"></audio>
@@ -47,26 +65,103 @@
       <audio id="sx-cars" class="clip" src="assets/sfx/chime.mp3" data-start="34.66" data-duration="1.2" data-track-index="7" data-volume="0.07"></audio>
       <audio id="sx-family" class="clip" src="assets/sfx/pop.mp3" data-start="39.01" data-duration="0.72" data-track-index="5" data-volume="0.1"></audio>
       <audio id="sx-door" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="54.09" data-duration="0.57" data-track-index="6" data-volume="0.12"></audio>
-      <audio id="sx-tamu" class="clip" src="assets/sfx/click-soft.mp3" data-start="65.26" data-duration="0.36" data-track-index="7" data-volume="0.18"></audio>
-      <audio id="sx-chand" class="clip" src="assets/sfx/chime.mp3" data-start="69.31" data-duration="1.2" data-track-index="5" data-volume="0.06"></audio>
-      <audio id="sx-ceil" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="70.91" data-duration="0.57" data-track-index="6" data-volume="0.1"></audio>
-      <audio id="sx-floor" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="85.26" data-duration="0.57" data-track-index="7" data-volume="0.1"></audio>
-      <audio id="sx-meja" class="clip" src="assets/sfx/click-soft.mp3" data-start="88.46" data-duration="0.36" data-track-index="5" data-volume="0.18"></audio>
-      <audio id="sx-seat" class="clip" src="assets/sfx/chime.mp3" data-start="97.51" data-duration="1.2" data-track-index="6" data-volume="0.07"></audio>
-      <audio id="sx-kering" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="106.06" data-duration="0.57" data-track-index="7" data-volume="0.12"></audio>
-      <audio id="sx-basah" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="128.86" data-duration="0.57" data-track-index="5" data-volume="0.12"></audio>
-      <audio id="sx-ten" class="clip" src="assets/sfx/click-soft.mp3" data-start="134.61" data-duration="0.36" data-track-index="6" data-volume="0.18"></audio>
-      <audio id="sx-putih" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="142.31" data-duration="0.57" data-track-index="7" data-volume="0.1"></audio>
-      <audio id="sx-porchdoor" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="154.16" data-duration="0.57" data-track-index="5" data-volume="0.12"></audio>
-      <audio id="sx-food" class="clip" src="assets/sfx/pop.mp3" data-start="162.91" data-duration="0.72" data-track-index="6" data-volume="0.1"></audio>
+      <audio id="sx-tamu" class="clip" src="assets/sfx/click-soft.mp3" data-start="64.99" data-duration="0.36" data-track-index="7" data-volume="0.18"></audio>
+      <audio id="sx-chand" class="clip" src="assets/sfx/chime.mp3" data-start="69.04" data-duration="1.2" data-track-index="5" data-volume="0.06"></audio>
+      <audio id="sx-ceil" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="70.64" data-duration="0.57" data-track-index="6" data-volume="0.1"></audio>
+      <audio id="sx-floor" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="84.99" data-duration="0.57" data-track-index="7" data-volume="0.1"></audio>
+      <audio id="sx-meja" class="clip" src="assets/sfx/click-soft.mp3" data-start="88.19" data-duration="0.36" data-track-index="5" data-volume="0.18"></audio>
+      <audio id="sx-seat" class="clip" src="assets/sfx/chime.mp3" data-start="97.24" data-duration="1.2" data-track-index="6" data-volume="0.07"></audio>
+      <audio id="sx-kering" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="102.79" data-duration="0.57" data-track-index="7" data-volume="0.12"></audio>
+      <audio id="sx-basah" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="124.66" data-duration="0.57" data-track-index="5" data-volume="0.12"></audio>
+      <audio id="sx-ten" class="clip" src="assets/sfx/click-soft.mp3" data-start="130.41" data-duration="0.36" data-track-index="6" data-volume="0.18"></audio>
+      <audio id="sx-putih" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="138.11" data-duration="0.57" data-track-index="7" data-volume="0.1"></audio>
+      <audio id="sx-porchdoor" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="149.96" data-duration="0.57" data-track-index="5" data-volume="0.12"></audio>
+      <audio id="sx-food" class="clip" src="assets/sfx/pop.mp3" data-start="158.36" data-duration="0.72" data-track-index="6" data-volume="0.1"></audio>
+      <audio id="sx-glitch" class="clip" src="assets/sfx/glitch-1.mp3" data-start="2.08" data-duration="0.5" data-track-index="7" data-volume="0.22"></audio>
+      <audio id="sx-o-whoosh" class="clip" src="assets/sfx/whoosh.mp3" data-start="174.96" data-duration="0.57" data-track-index="5" data-volume="0.22"></audio>
+      <audio id="sx-o-c1" class="clip" src="assets/sfx/pop.mp3" data-start="175.46" data-duration="0.72" data-track-index="6" data-volume="0.14"></audio>
+      <audio id="sx-o-c2" class="clip" src="assets/sfx/pop.mp3" data-start="175.81" data-duration="0.72" data-track-index="7" data-volume="0.14"></audio>
+      <audio id="sx-o-head" class="clip" src="assets/sfx/impact-bass-1.mp3" data-start="176.46" data-duration="1.5" data-track-index="5" data-volume="0.26"></audio>
+      <audio id="sx-o-btn" class="clip" src="assets/sfx/click-soft.mp3" data-start="177.26" data-duration="0.36" data-track-index="6" data-volume="0.2"></audio>
+      <audio id="sx-o-chime" class="clip" src="assets/sfx/chime.mp3" data-start="177.61" data-duration="1.2" data-track-index="7" data-volume="0.08"></audio>
     </div>
     <script>
       const tl = gsap.timeline({ paused: true });
-      [["hook", 0.0, 2.3, 1.0, 1.04], ["intro", 2.3, 14.1, 1.06, 1.1], ["hitam", 16.4, 1.9, 1.0, 1.04], ["luar", 18.3, 11.36, 1.06, 1.1], ["porch", 29.66, 15.65, 1.0, 1.04], ["jom", 45.31, 1.65, 1.06, 1.1], ["pintu", 46.96, 6.45, 1.0, 1.04], ["sekuriti", 53.41, 6.25, 1.06, 1.1], ["tamu", 59.66, 15.95, 1.0, 1.04], ["makan", 75.61, 11.15, 1.06, 1.1], ["meja", 86.76, 11.4, 1.0, 1.04], ["dapur", 98.16, 81.4, 1.06, 1.1]].forEach(([id, s, d, a, b]) => tl.fromTo("#w-" + id, { scale: a }, { scale: b, duration: d, ease: "none" }, s));
-      [["b1", 16.05, 1.5], ["b2", 29.16, 1.6], ["b3", 46.46, 1.7], ["b4", 59.06, 2.0], ["b5", 68.66, 1.6], ["b6", 75.11, 1.7], ["b7", 86.26, 1.6], ["b8", 97.66, 1.6]].forEach(([id, s, d]) => {
+      [["hook", 0.0, 2.3, 1.0, 1.04], ["intro", 2.3, 14.1, 1.06, 1.1], ["hitam", 16.4, 1.9, 1.0, 1.04], ["luar", 18.3, 11.36, 1.06, 1.1], ["porch", 29.66, 15.65, 1.0, 1.04], ["jom", 45.31, 1.65, 1.06, 1.1], ["pintu", 46.96, 6.45, 1.0, 1.04], ["sek1", 53.41, 3.63, 1.06, 1.1], ["sek2", 57.04, 2.35, 1.0, 1.04], ["tamu", 59.39, 15.95, 1.06, 1.1], ["makan", 75.34, 11.15, 1.0, 1.04], ["meja", 86.49, 11.4, 1.06, 1.1], ["dap1", 97.89, 3.45, 1.0, 1.04], ["dap2", 101.34, 4.3, 1.06, 1.1], ["dap3", 105.64, 16.92, 1.0, 1.0141], ["dmute", 122.56, 3.25, 1.0141, 1.0168], ["dap4", 125.81, 27.9, 1.0168, 1.04], ["dap5", 153.71, 21.3, 1.06, 1.1]].forEach(([id, s, d, a, b]) => tl.fromTo("#w-" + id, { scale: a }, { scale: b, duration: d, ease: "none" }, s));
+      [["b1", 16.05, 1.5], ["b2", 29.16, 1.6], ["b3", 46.46, 1.7], ["b4", 58.79, 2.0], ["b5", 68.39, 1.6], ["b6", 74.84, 1.7], ["b7", 85.99, 1.6], ["b8", 97.39, 1.6], ["b9", 100.84, 1.6]].forEach(([id, s, d]) => {
         tl.fromTo("#w-" + id, { opacity: 0, scale: 1.04 }, { opacity: 1, scale: 1.0, duration: 0.2, ease: "power2.out" }, s);
         tl.to("#w-" + id, { scale: 1.06, duration: d - 0.2, ease: "none" }, s + 0.2);
       });
+      tl.set("#gs0", { x: -60 }, 2.08);
+      tl.set("#gs0", { x: 40 }, 2.17);
+      tl.set("#gs0", { x: -25 }, 2.26);
+      tl.set("#gs0", { x: 70 }, 2.35);
+      tl.set("#gs0", { x: 0 }, 2.44);
+      tl.set("#gs1", { x: 35 }, 2.08);
+      tl.set("#gs1", { x: -80 }, 2.17);
+      tl.set("#gs1", { x: 50 }, 2.26);
+      tl.set("#gs1", { x: -20 }, 2.35);
+      tl.set("#gs1", { x: 0 }, 2.44);
+      tl.set("#gs2", { x: -90 }, 2.08);
+      tl.set("#gs2", { x: 20 }, 2.17);
+      tl.set("#gs2", { x: 60 }, 2.26);
+      tl.set("#gs2", { x: -45 }, 2.35);
+      tl.set("#gs2", { x: 0 }, 2.44);
+      tl.set("#gs3", { x: 70 }, 2.08);
+      tl.set("#gs3", { x: -30 }, 2.17);
+      tl.set("#gs3", { x: -70 }, 2.26);
+      tl.set("#gs3", { x: 25 }, 2.35);
+      tl.set("#gs3", { x: 0 }, 2.44);
+      tl.set("#gs4", { x: -40 }, 2.08);
+      tl.set("#gs4", { x: 85 }, 2.17);
+      tl.set("#gs4", { x: -15 }, 2.26);
+      tl.set("#gs4", { x: 50 }, 2.35);
+      tl.set("#gs4", { x: 0 }, 2.44);
+      tl.set("#gs5", { x: 55 }, 2.08);
+      tl.set("#gs5", { x: -60 }, 2.17);
+      tl.set("#gs5", { x: 30 }, 2.26);
+      tl.set("#gs5", { x: -80 }, 2.35);
+      tl.set("#gs5", { x: 0 }, 2.44);
+      tl.set("#gs6", { x: -75 }, 2.08);
+      tl.set("#gs6", { x: 45 }, 2.17);
+      tl.set("#gs6", { x: -50 }, 2.26);
+      tl.set("#gs6", { x: 15 }, 2.35);
+      tl.set("#gs6", { x: 0 }, 2.44);
+      tl.set("#gs7", { x: 30 }, 2.08);
+      tl.set("#gs7", { x: -20 }, 2.17);
+      tl.set("#gs7", { x: 80 }, 2.26);
+      tl.set("#gs7", { x: -35 }, 2.35);
+      tl.set("#gs7", { x: 0 }, 2.44);
+      tl.set("#rb0", { top: 140, height: 28, background: "rgba(255,40,80,.55)", x: 0, opacity: 1 }, 2.08);
+      tl.set("#rb0", { x: -17, opacity: 0.65 }, 2.17);
+      tl.set("#rb0", { x: 36, opacity: 0.9 }, 2.26);
+      tl.set("#rb0", { x: -51, opacity: 0.4 }, 2.35);
+      tl.set("#rb0", { x: 2, opacity: 0.65 }, 2.44);
+      tl.set("#rb1", { top: 610, height: 18, background: "rgba(0,230,255,.5)", x: 0, opacity: 1 }, 2.08);
+      tl.set("#rb1", { x: 20, opacity: 0.9 }, 2.17);
+      tl.set("#rb1", { x: -67, opacity: 0.4 }, 2.26);
+      tl.set("#rb1", { x: -14, opacity: 0.65 }, 2.35);
+      tl.set("#rb1", { x: 39, opacity: 0.9 }, 2.44);
+      tl.set("#rb2", { top: 930, height: 40, background: "rgba(255,40,80,.45)", x: 0, opacity: 1 }, 2.08);
+      tl.set("#rb2", { x: 57, opacity: 0.4 }, 2.17);
+      tl.set("#rb2", { x: -30, opacity: 0.65 }, 2.26);
+      tl.set("#rb2", { x: 23, opacity: 0.9 }, 2.35);
+      tl.set("#rb2", { x: -64, opacity: 0.4 }, 2.44);
+      tl.set("#rb3", { top: 1240, height: 16, background: "rgba(0,230,255,.55)", x: 0, opacity: 1 }, 2.08);
+      tl.set("#rb3", { x: -46, opacity: 0.65 }, 2.17);
+      tl.set("#rb3", { x: 7, opacity: 0.9 }, 2.26);
+      tl.set("#rb3", { x: 60, opacity: 0.4 }, 2.35);
+      tl.set("#rb3", { x: -27, opacity: 0.65 }, 2.44);
+      tl.set("#rb4", { top: 1520, height: 34, background: "rgba(246,195,67,.5)", x: 0, opacity: 1 }, 2.08);
+      tl.set("#rb4", { x: -9, opacity: 0.9 }, 2.17);
+      tl.set("#rb4", { x: 44, opacity: 0.4 }, 2.26);
+      tl.set("#rb4", { x: -43, opacity: 0.65 }, 2.35);
+      tl.set("#rb4", { x: 10, opacity: 0.9 }, 2.44);
+      tl.set("#rb5", { top: 1760, height: 22, background: "rgba(255,40,80,.5)", x: 0, opacity: 1 }, 2.08);
+      tl.set("#rb5", { x: 28, opacity: 0.4 }, 2.17);
+      tl.set("#rb5", { x: -59, opacity: 0.65 }, 2.26);
+      tl.set("#rb5", { x: -6, opacity: 0.9 }, 2.35);
+      tl.set("#rb5", { x: 47, opacity: 0.4 }, 2.44);
       window.__timelines["main"] = tl;
     </script>
   </body>

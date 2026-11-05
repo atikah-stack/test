@@ -16,16 +16,27 @@ SEGS = [  # (id, src_in, src_out)
     ("porch", 40.75, 56.40),  # porch, family gathering, "bahagian dalam lagi menarik"
     ("jom", 56.85, 58.50),    # "Jom kita house tour sama-sama"
     ("pintu", 68.50, 74.95),  # entrance
-    ("sekuriti", 75.62, 81.87),
+    ("sek1", 75.62, 79.25),   # stutter "tu-" removed
+    ("sek2", 79.52, 81.87),
     ("tamu", 88.30, 104.25),
     ("makan", 112.35, 123.50),
     ("meja", 145.70, 157.10),
-    ("dapur", 161.70, 243.10),  # pantry -> sliding door -> wet kitchen -> porch door
+    ("dap1", 161.70, 165.15),   # "Okey, sebelum kita pergi ke bahagian ruangan dapur, kan?"
+    ("dap2", 168.15, 172.45),   # pantry ("kita dah ada dah" removed)
+    ("dap3", 173.38, 190.30),   # stray "ia..." before "Dan ia berdekatan" removed
+    ("dmute", 190.30, 193.55),  # repeated "Jom kita tengok" silenced; door still opens on screen
+    ("dap4", 193.55, 221.45),
+    ("dap5", 221.80, 243.10),   # repeated "cerita" removed
 ]
+MUTED = {"dmute"}
+GROUPS = [["hook"], ["intro"], ["hitam"], ["luar"], ["porch"], ["jom"], ["pintu"], ["sek1"], ["sek2"], ["tamu"], ["makan"],
+          ["meja"], ["dap1"], ["dap2"], ["dap3", "dmute", "dap4"], ["dap5"]]
+OUTRO = 5.6
 start, t = {}, 0.0
 for sid, a, b in SEGS:
     start[sid] = round(t, 3); t += b - a
-TOTAL = round(t, 3)
+TALK = round(t, 3)
+TOTAL = round(t + OUTRO, 3)
 
 
 def src(s):
@@ -47,7 +58,8 @@ BROLL = [
     ("b5", src(97.3), 1.6, 87.0),               # chandelier (out of frame in the talking shot)
     ("b6", cut("makan") - 0.5, 1.7, 107.0),     # living room pan
     ("b7", cut("meja") - 0.5, 1.6, 124.8),      # dining feature wall
-    ("b8", cut("dapur") - 0.5, 1.6, 158.2),     # dining -> pantry
+    ("b8", cut("dap1") - 0.5, 1.6, 158.2),      # dining -> pantry
+    ("b9", cut("dap2") - 0.5, 1.6, 160.0),      # covers the removed "kita dah ada dah"
 ]
 
 # ---------------- captions (source start, text) ----------------
@@ -69,7 +81,7 @@ CAP = [
     (56.88, "Jom kita house tour sama-sama!"),
     (68.51, "Bahagian pintu ni sangat-sangat cantik"), (70.93, "dan inilah masa yang ditunggu-tunggu,"),
     (73.17, "kita nak ke bahagian dalam."),
-    (75.66, "Tengoklah pintu sekuriti dia,"), (78.00, "sangat-sangat tertawan, tuan-puan,"),
+    (75.66, "Tengoklah pintu sekuriti dia,"), (78.00, "sangat-sangat tertawan,"), (79.52, "tuan-puan,"),
     (80.39, "menggunakan warna hitam."),
     (88.34, "Inilah dia bahagian ruang yang pertama."), (91.70, "Ruang tamu yang mana berkeluasan"),
     (93.87, "15 x 17 kaki persegi,"), (97.22, "lengkap dengan lampu chandelier,"),
@@ -79,19 +91,18 @@ CAP = [
     (145.76, "Dengan keluasan"), (147.34, "16 x 8 kaki persegi sahaja,"),
     (150.21, "boleh memuatkan meja makan macam ni"), (152.90, "yang mempunyai 6, 7, 8 seater."),
     (161.73, "Okey, sebelum kita pergi"), (163.20, "ke bahagian ruangan dapur, kan?"),
-    (165.69, "Kita dah ada di bahagian sini,"), (168.25, "macam pantry pun ya,"), (169.55, "ataupun dapur kering"),
+    (168.25, "macam pantry pun ya,"), (169.55, "ataupun dapur kering"),
     (170.91, "yang sangat-sangat cantik."), (173.51, "Dan ia berdekatan dengan ruang makan."),
     (176.11, "Jadi senang kalau nak ambil makanan ke,"), (178.31, "nak hidang makanan ke,"),
     (179.38, "semua diletakkan di bahagian sini sahaja."),
     (182.51, "Untuk memasak di mana?"), (184.36, "Di sini. Jom kita tengok."),
     (185.51, "Okey, dipisahkan dengan"), (187.16, "satu pintu sliding macam ini,"), (189.36, "sangat estetik."),
-    (190.36, "Jom kita tengok."),
     (193.81, "Inilah dia, tuan-puan,"), (196.01, "dapur basah yang berkeluasan"), (198.10, "10 x 10 kaki je,"),
     (199.96, "tak besar sangat,"), (200.81, "tapi sungguh menawan,"), (202.86, "sungguh cantik"),
     (204.08, "dengan pemilihan warna putih."), (205.81, "Warna putih,"), (206.77, "walaupun ruangnya sangat kecil,"),
     (209.38, "tapi menampakkan ia lebih luas"), (211.89, "dan sangat menenangkan warnanya."),
     (214.81, "Dan ini pintu sekuriti"), (216.38, "yang mana kita boleh akses"), (218.25, "ke bahagian ruangan porch"),
-    (220.05, "yang saya cerita awal tadi, tuan-puan."), (222.81, "Jadi senang kalau ada"),
+    (220.05, "yang saya cerita"), (221.80, "awal tadi, tuan-puan."), (222.81, "Jadi senang kalau ada"),
     (224.28, "family gathering ke apa,"), (225.91, "segala makanan ataupun barang"),
     (228.06, "boleh dibawa melalui pintu ini sahaja."), (231.02, "Betul tak?"), (231.81, "Siapa setuju,"),
     (232.95, "rumah yang konsep split level ini"), (235.85, "lebih senang kalau kita letak"),
@@ -120,8 +131,8 @@ for i, (s, txt) in enumerate(CAP):
 V = []
 for k, (sid, a, b) in enumerate(SEGS):
     V.append(f'      <div class="vw" id="w-{sid}"><video id="v-{sid}" class="clip" src="assets/video/tour.mp4" data-start="{start[sid]}" '
-             f'data-duration="{round(b - a, 3)}" data-media-start="{a}" data-track-index="1" playsinline data-has-audio="true" '
-             f'data-volume="1" data-fade-in="0.03" data-fade-out="0.05"></video></div>')
+             f'data-duration="{round(b - a, 3)}" data-media-start="{a}" data-track-index="1" playsinline '
+             + ('muted' if sid in MUTED else 'data-has-audio="true" data-volume="1" data-fade-in="0.03" data-fade-out="0.05"') + '></video></div>')
 for bid, s, d, m in BROLL:
     V.append(f'      <div class="vw br" id="w-{bid}"><video id="v-{bid}" class="clip" src="assets/video/tour.mp4" data-start="{round(s, 3)}" '
              f'data-duration="{d}" data-media-start="{m}" data-track-index="2" muted playsinline></video></div>')
@@ -155,9 +166,47 @@ sfx("food", "pop", src(226.45), 0.72, 0.1)
 
 # gentle push in each kept stretch; same-shot jump cuts get a small punch so they read as intended
 pushes = []
-for k, (sid, a, b) in enumerate(SEGS):
+seg = {x[0]: x for x in SEGS}
+for k, grp_ids in enumerate(GROUPS):
     s0 = 1.0 if k % 2 == 0 else 1.06
-    pushes.append((sid, start[sid], round(b - a, 3), s0, s0 + 0.04))
+    g0, g1 = seg[grp_ids[0]][1], seg[grp_ids[-1]][2]
+    sc = lambda x: round(s0 + 0.04 * (x - g0) / (g1 - g0), 4)
+    for sid in grp_ids:
+        _, a, b = seg[sid]
+        pushes.append((sid, start[sid], round(b - a, 3), sc(a), sc(b)))
+
+# ---- glitch transition from the hook into the body (0.45 s around the cut) ----
+GC = cut("intro"); G0 = round(GC - 0.22, 3); GD = 0.45
+bands = [(0, 260), (260, 520), (520, 700), (700, 980), (980, 1180), (1180, 1460), (1460, 1700), (1700, 1920)]
+gl = []
+for i, (y0, y1) in enumerate(bands):
+    srcm, ms = ("hook", round(16.45 - 0.22 - i * 0.012, 3)) if i % 2 == 0 else ("intro", round(i * 0.012, 3))
+    gl.append(f'      <div class="vw gs" id="gs{i}" style="z-index:3; clip-path: inset({y0}px 0 {1920 - y1}px 0)">'
+              f'<video id="gv{i}" class="clip" src="assets/video/tour.mp4" data-start="{G0}" data-duration="{GD}" data-media-start="{ms}" '
+              f'data-track-index="2" muted playsinline></video></div>')
+gl.append(f'      <div id="g-rgb" class="clip" data-start="{G0}" data-duration="{GD}" data-track-index="2" style="position:absolute; inset:0; z-index:4; pointer-events:none">'
+          + "".join(f'<div class="rb" id="rb{i}"></div>' for i in range(6)) + '</div>')
+GLITCH = "\n".join(gl)
+OFF = [[-60, 40, -25, 70, 0], [35, -80, 50, -20, 0], [-90, 20, 60, -45, 0], [70, -30, -70, 25, 0],
+       [-40, 85, -15, 50, 0], [55, -60, 30, -80, 0], [-75, 45, -50, 15, 0], [30, -20, 80, -35, 0]]
+RB = [(140, 28, "rgba(255,40,80,.55)"), (610, 18, "rgba(0,230,255,.5)"), (930, 40, "rgba(255,40,80,.45)"),
+      (1240, 16, "rgba(0,230,255,.55)"), (1520, 34, "rgba(246,195,67,.5)"), (1760, 22, "rgba(255,40,80,.5)")]
+gjs = []
+for i, offs in enumerate(OFF):
+    for k, ox in enumerate(offs):
+        gjs.append(f'tl.set("#gs{i}", {{ x: {ox} }}, {round(G0 + k * 0.09, 3)});')
+for i, (y, h, c) in enumerate(RB):
+    gjs.append(f'tl.set("#rb{i}", {{ top: {y}, height: {h}, background: "{c}", x: 0, opacity: 1 }}, {G0});')
+    for k in range(1, 5):
+        gjs.append(f'tl.set("#rb{i}", {{ x: {((i * 37 + k * 53) % 140) - 70}, opacity: {0.4 + ((i + k) % 3) * 0.25} }}, {round(G0 + k * 0.09, 3)});')
+GLITCH_JS = "\n".join("      " + j for j in gjs)
+sfx("glitch", "glitch-1", G0, 0.5, 0.22)
+sfx("o-whoosh", "whoosh", TALK - 0.05, 0.57, 0.22)
+sfx("o-c1", "pop", TALK + 0.45, 0.72, 0.14)
+sfx("o-c2", "pop", TALK + 0.8, 0.72, 0.14)
+sfx("o-head", "impact-bass-1", TALK + 1.45, 1.5, 0.26)
+sfx("o-btn", "click-soft", TALK + 2.25, 0.36, 0.2)
+sfx("o-chime", "chime", TALK + 2.6, 1.2, 0.08)
 
 index = f'''<!doctype html>
 <html lang="ms" data-resolution="portrait">
@@ -171,12 +220,15 @@ index = f'''<!doctype html>
       #root {{ position: relative; width: 100%; height: 100%; background: #101216; }}
       .vw {{ position: absolute; inset: 0; z-index: 1; overflow: hidden; transform-origin: 50% 45%; }}
       .vw.br {{ z-index: 2; }}
+      .rb {{ position: absolute; left: -40px; right: -40px; mix-blend-mode: screen; opacity: 0; }}
       .vw video {{ position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }}
     </style>
   </head>
   <body>
     <div id="root" data-composition-id="main" data-start="0" data-duration="{TOTAL}" data-width="1080" data-height="1920">
 {chr(10).join(V)}
+{GLITCH}
+      <div id="outro" data-composition-id="outro" data-composition-src="compositions/outro.html" data-start="{TALK}" data-duration="{OUTRO}" data-track-index="4" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:6"></div>
       <div id="gfx" data-composition-id="gfx" data-composition-src="compositions/gfx.html" data-start="0" data-duration="{TOTAL}" data-track-index="3" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:5"></div>
 {chr(10).join(SFX)}
     </div>
@@ -187,6 +239,7 @@ index = f'''<!doctype html>
         tl.fromTo("#w-" + id, {{ opacity: 0, scale: 1.04 }}, {{ opacity: 1, scale: 1.0, duration: 0.2, ease: "power2.out" }}, s);
         tl.to("#w-" + id, {{ scale: 1.06, duration: d - 0.2, ease: "none" }}, s + 0.2);
       }});
+{GLITCH_JS}
       window.__timelines["main"] = tl;
     </script>
   </body>
@@ -218,12 +271,15 @@ for i, (s, e, txt) in enumerate(caps):
     js(f'tl.fromTo("#ct{i}", {{ opacity: 0, y: 14, scale: 0.97 }}, {{ opacity: 1, y: 0, scale: 1, duration: 0.14, ease: "power3.out" }}, {s});')
 
 # --- hook
-s, e = 0.05, cut("intro") + 0.6
+s, e = 0.05, cut("intro") + 0.12
 grp("g-hook", s, e, '<div class="hk w" id="hk1">PORCH MUAT</div><div class="hk y" id="hk2">4 KERETA?!</div>',
     "left:60px; right:60px; top:300px; text-align:center")
 js(f'tl.fromTo("#hk1", {{ opacity: 0, y: 40, filter: "blur(10px)" }}, {{ opacity: 1, y: 0, filter: "blur(0px)", duration: 0.35, ease: "expo.out" }}, 0.1);')
 js(f'tl.fromTo("#hk2", {{ opacity: 0, scale: 1.5, filter: "blur(12px)" }}, {{ opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.4, ease: "expo.out" }}, 0.55);')
-js(f'tl.to("#g-hook", {{ opacity: 0, y: -30, duration: 0.25, ease: "power2.in" }}, {round(e - 0.25, 3)});')
+for k, (dx, sh) in enumerate([(-14, 1), (18, 1), (-8, 1), (24, 1), (0, 0)]):
+    ts = "6px 0 0 rgba(255,40,80,.9), -6px 0 0 rgba(0,230,255,.9)" if sh else "0 6px 0 rgba(0,0,0,.25), 0 14px 40px rgba(0,0,0,.6)"
+    js(f'tl.set(["#hk1", "#hk2"], {{ x: {dx}, textShadow: "{ts}" }}, {round(cut("intro") - 0.22 + k * 0.07, 3)});')
+js(f'tl.to("#g-hook", {{ opacity: 0, duration: 0.08, ease: "none" }}, {round(e - 0.08, 3)});')
 
 # --- 1. exterior: title + location, then HITAM • PREMIUM
 s, e = src(8.85), src(14.1)
@@ -285,21 +341,19 @@ js(f'tl.to("#g-ceil", {{ opacity: 0, duration: 0.2, ease: "power2.in" }}, {round
 # --- 5. dining: floor emphasis, size, seats
 s, e = src(122.0), src(123.45)
 el(f'<div class="g clip" id="g-floor" data-start="{s}" data-duration="{round(e - s, 3)}" style="inset:0">'
-   '<div class="sweep" id="fsw"></div>'
-   '<svg class="ln" viewBox="0 0 1080 1920"><path id="fl" d="M150 1250 L110 1640" pathLength="100"/><circle id="fd" cx="110" cy="1640" r="12"/></svg>'
-   '<div class="lbl" id="flb" style="left:70px; top:1150px">LANTAI</div></div>')
-js(f'tl.fromTo("#fsw", {{ opacity: 0, x: -500 }}, {{ opacity: 1, x: 700, duration: 1.2, ease: "sine.inOut" }}, {s});')
+   '<svg class="ln" viewBox="0 0 1080 1920"><path id="fl" d="M330 1010 L330 700" pathLength="100"/><circle id="fd" cx="330" cy="700" r="12"/></svg>'
+   '<div class="lbl" id="flb" style="left:120px; top:1000px">3D WALL PANEL</div></div>')
 win("#flb", s, e, "up", out=False)
 js(f'tl.fromTo("#fl", {{ strokeDashoffset: 100 }}, {{ strokeDashoffset: 0, duration: 0.3, ease: "power2.out" }}, {round(s + 0.1, 3)});')
-js(f'tl.fromTo("#fd", {{ scale: 0, transformOrigin: "110px 1640px" }}, {{ scale: 1, duration: 0.25, ease: "back.out(2)" }}, {round(s + 0.3, 3)});')
+js(f'tl.fromTo("#fd", {{ scale: 0, transformOrigin: "330px 700px" }}, {{ scale: 1, duration: 0.25, ease: "back.out(2)" }}, {round(s + 0.3, 3)});')
 s, e = src(147.35), src(152.85)
 grp("g-meja", s, e, '<div class="size"><div class="sk">RUANG MAKAN</div><div class="sv">16 × 8 <small>KAKI</small></div></div>',
     "left:90px; right:90px; top:250px; display:flex; justify-content:center")
 win("#g-meja .size", s, e, "pop")
 s, e = src(156.40), src(157.10) + 0.0
-grp("g-seat", s, cut("dapur") + 1.2, f'<div class="card"><div class="ic">{CHAIR}</div><div class="ct"><span class="dk">8</span> TEMPAT DUDUK</div></div>',
+grp("g-seat", s, cut("dap1") + 1.2, f'<div class="card"><div class="ic">{CHAIR}</div><div class="ct"><span class="dk">8</span> TEMPAT DUDUK</div></div>',
     "left:90px; right:90px; top:260px; display:flex; justify-content:center")
-win("#g-seat .card", s, cut("dapur") + 1.2, "pop")
+win("#g-seat .card", s, cut("dap1") + 1.2, "pop")
 
 # --- 6. pantry
 s, e = src(169.55), src(176.0)
@@ -329,7 +383,7 @@ el(f'<div class="g clip" id="g-pdoor" data-start="{s}" data-duration="{round(e -
    '<div class="lbl big" id="pdl" style="left:0; right:0; top:300px; margin:0 auto; width:max-content">AKSES TERUS KE <span class="y2">PORCH</span></div></div>')
 js(f'tl.fromTo("#pdo", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.3, ease: "power2.out" }}, {s});')
 # measured door frame (left, width) at film times on the rendered frames
-KF = [(154.21, 424, 476), (154.5, 424, 476), (155.3, 465, 465), (156.1, 471, 437), (156.9, 424, 477), (157.7, 397, 438), (158.5, 412, 417), (159.06, 412, 417)]
+KF = [(src(t), x, w) for t, x, w in [(217.75, 424, 476), (218.04, 424, 476), (218.84, 465, 465), (219.64, 471, 437), (220.44, 424, 477), (221.24, 397, 438), (222.04, 412, 417), (222.6, 412, 417)]]
 js(f'tl.set("#pdo", {{ attr: {{ x: {KF[0][1]}, width: {KF[0][2]} }} }}, {KF[0][0]});')
 for (t0, x0, w0), (t1, x1, w1) in zip(KF, KF[1:]):
     js(f'tl.to("#pdo", {{ attr: {{ x: {x1}, width: {w1} }}, duration: {round(t1 - t0, 3)}, ease: "sine.inOut" }}, {t0});')
@@ -339,6 +393,17 @@ s, e = src(226.4), src(231.0)
 grp("g-food", s, e, f'<div class="card"><div class="ic">{DISH}</div><div class="ct">MAKANAN &amp; BARANG<br><span class="dk">TERUS KE PORCH</span></div></div>',
     "left:90px; right:90px; top:260px; display:flex; justify-content:center")
 win("#g-food .card", s, e, "pop")
+# --- 9. comment prompt on "Betul tak? Siapa setuju..." (the door idea is for split level homes)
+s, e = src(231.0), src(243.1)
+grp("g-komen", s, e, '<div class="cm" id="cm1"><div class="cmq">SETUJU <span class="y">TAK?</span></div>'
+    '<div class="cmb">PINTU AKSES TERUS KE PORCH</div><div class="cms">IDEA KHAS UNTUK RUMAH <span class="y">SPLIT LEVEL</span></div>'
+    '<div class="cmc" id="cm2"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#14161B" stroke-width="2.6" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></svg>KOMEN DI BAWAH</div></div>',
+    "left:90px; right:90px; top:220px; display:flex; justify-content:center")
+win("#cm1", s, e, "pop")
+js('tl.set("#cm2", { opacity: 0 }, 0);')
+win("#cm2", src(232.4), e, "up", out=False)
+js(f'tl.fromTo("#cm2", {{ scale: 1 }}, {{ scale: 1.06, duration: 0.45, ease: "sine.inOut", yoyo: true, repeat: 3 }}, {round(src(233.5), 3)});')
+
 
 CSS = '''
     #root { position: absolute; inset: 0; overflow: hidden; font-family: Montserrat, sans-serif; color: #fff; }
@@ -372,7 +437,7 @@ CSS = '''
       box-shadow: 0 18px 44px rgba(0,0,0,.4); border-bottom: 10px solid #F6C343; }
     .size .sk { font-weight: 800; font-size: 30px; letter-spacing: .2em; color: #6B6F76; }
     .size .sv { font-weight: 900; font-size: 104px; line-height: 1.0; white-space: nowrap; }
-    .size .sv small { font-size: 46px; color: #B88A0E; letter-spacing: .06em; }
+    .size .sv small { font-size: 46px; color: #8A6500; letter-spacing: .06em; }
     .ln { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
     .ln path { fill: none; stroke: #F6C343; stroke-width: 6; stroke-linecap: round; stroke-dasharray: 100 120; stroke-dashoffset: 100;
       filter: drop-shadow(0 2px 4px rgba(0,0,0,.5)); }
@@ -383,6 +448,13 @@ CSS = '''
     .lbl .y2 { color: #F6C343; }
     .sweep { position: absolute; left: 0; top: 1520px; width: 420px; height: 400px; opacity: 0;
       background: linear-gradient(100deg, rgba(246,195,67,0), rgba(246,195,67,.28) 50%, rgba(246,195,67,0)); }
+    .cm { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 26px 40px 30px; border-radius: 30px;
+      background: rgba(10,12,16,.78); border: 3px solid #F6C343; box-shadow: 0 20px 50px rgba(0,0,0,.45); opacity: 0; }
+    .cmq { font-weight: 900; font-size: 84px; line-height: 1; white-space: nowrap; }
+    .cmb { font-weight: 900; font-size: 44px; white-space: nowrap; color: #fff; }
+    .cms { font-weight: 800; font-size: 32px; letter-spacing: .08em; white-space: nowrap; color: #D9DCE1; }
+    .cmc { margin-top: 10px; display: flex; align-items: center; gap: 14px; padding: 14px 34px 16px; border-radius: 999px; background: #F6C343;
+      color: #14161B; font-weight: 900; font-size: 44px; letter-spacing: .04em; white-space: nowrap; }
     .ln rect.ol { fill: none; stroke: #F6C343; stroke-width: 5; filter: drop-shadow(0 0 8px rgba(246,195,67,.6)); opacity: 0; }
 '''
 gfx = f'''<template>
