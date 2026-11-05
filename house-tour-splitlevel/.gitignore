@@ -1,3 +1,6 @@
 .hyperframes/
 renders/
 node_modules/
+assets/shots/full.mp4
+assets/src/original.mov
+assets/src/*.wav
