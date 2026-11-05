@@ -16,8 +16,7 @@ SEGS = [  # (id, src_in, src_out)
     ("porch", 40.75, 56.40),  # porch, family gathering, "bahagian dalam lagi menarik"
     ("jom", 56.85, 58.50),    # "Jom kita house tour sama-sama"
     ("pintu", 68.50, 74.95),  # entrance
-    ("sek1", 75.62, 79.25),   # stutter "tu-" removed
-    ("sek2", 79.52, 81.87),
+    ("sekuriti", 75.62, 81.87),
     ("tamu", 88.30, 104.25),
     ("makan", 112.35, 123.50),
     ("meja", 145.70, 157.10),
@@ -29,7 +28,7 @@ SEGS = [  # (id, src_in, src_out)
     ("dap5", 221.80, 243.10),   # repeated "cerita" removed
 ]
 MUTED = {"dmute"}
-GROUPS = [["hook"], ["intro"], ["hitam"], ["luar"], ["porch"], ["jom"], ["pintu"], ["sek1"], ["sek2"], ["tamu"], ["makan"],
+GROUPS = [["hook"], ["intro"], ["hitam"], ["luar"], ["porch"], ["jom"], ["pintu"], ["sekuriti"], ["tamu"], ["makan"],
           ["meja"], ["dap1"], ["dap2"], ["dap3", "dmute", "dap4"], ["dap5"]]
 OUTRO = 5.6
 start, t = {}, 0.0
@@ -81,7 +80,7 @@ CAP = [
     (56.88, "Jom kita house tour sama-sama!"),
     (68.51, "Bahagian pintu ni sangat-sangat cantik"), (70.93, "dan inilah masa yang ditunggu-tunggu,"),
     (73.17, "kita nak ke bahagian dalam."),
-    (75.66, "Tengoklah pintu sekuriti dia,"), (78.00, "sangat-sangat tertawan,"), (79.52, "tuan-puan,"),
+    (75.66, "Tengoklah pintu sekuriti dia,"), (78.00, "sangat-sangat tertawan, tuan-puan,"),
     (80.39, "menggunakan warna hitam."),
     (88.34, "Inilah dia bahagian ruang yang pertama."), (91.70, "Ruang tamu yang mana berkeluasan"),
     (93.87, "15 x 17 kaki persegi,"), (97.22, "lengkap dengan lampu chandelier,"),
