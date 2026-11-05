@@ -1,0 +1,2672 @@
+[
+  {
+    "text": "Tak",
+    "start": 0,
+    "end": 0.19,
+    "id": "w0"
+  },
+  {
+    "text": "tahulah",
+    "start": 0.2,
+    "end": 0.58,
+    "id": "w1"
+  },
+  {
+    "text": "nak",
+    "start": 0.67,
+    "end": 0.81,
+    "id": "w2"
+  },
+  {
+    "text": "gambarkan",
+    "start": 0.81,
+    "end": 1.37,
+    "id": "w3"
+  },
+  {
+    "text": "macam",
+    "start": 1.37,
+    "end": 1.7,
+    "id": "w4"
+  },
+  {
+    "text": "mana",
+    "start": 1.7,
+    "end": 2,
+    "id": "w5"
+  },
+  {
+    "text": "betapa",
+    "start": 2,
+    "end": 2.54,
+    "id": "w6"
+  },
+  {
+    "text": "bahagiannya",
+    "start": 2.64,
+    "end": 3.63,
+    "id": "w7"
+  },
+  {
+    "text": "tuan",
+    "start": 3.75,
+    "end": 4.03,
+    "id": "w8"
+  },
+  {
+    "text": "rumah",
+    "start": 4.03,
+    "end": 4.42,
+    "id": "w9"
+  },
+  {
+    "text": "ini",
+    "start": 4.42,
+    "end": 4.51,
+    "id": "w10"
+  },
+  {
+    "text": "apabila",
+    "start": 4.68,
+    "end": 5.25,
+    "id": "w11"
+  },
+  {
+    "text": "mendapat",
+    "start": 5.35,
+    "end": 6.1,
+    "id": "w12"
+  },
+  {
+    "text": "banglu",
+    "start": 6.1,
+    "end": 6.67,
+    "id": "w13"
+  },
+  {
+    "text": "idaman",
+    "start": 6.67,
+    "end": 7.22,
+    "id": "w14"
+  },
+  {
+    "text": "beliau",
+    "start": 7.32,
+    "end": 7.87,
+    "id": "w15"
+  },
+  {
+    "text": "tuan-puan.",
+    "start": 7.95,
+    "end": 8.31,
+    "id": "w16"
+  },
+  {
+    "text": "Banglu",
+    "start": 8.32,
+    "end": 8.66,
+    "id": "w17"
+  },
+  {
+    "text": "yang",
+    "start": 8.8,
+    "end": 8.89,
+    "id": "w18"
+  },
+  {
+    "text": "berkonsep",
+    "start": 8.89,
+    "end": 9.38,
+    "id": "w19"
+  },
+  {
+    "text": "speed",
+    "start": 9.38,
+    "end": 9.66,
+    "id": "w20"
+  },
+  {
+    "text": "level",
+    "start": 9.66,
+    "end": 9.94,
+    "id": "w21"
+  },
+  {
+    "text": "ini",
+    "start": 9.94,
+    "end": 10.14,
+    "id": "w22"
+  },
+  {
+    "text": "telah",
+    "start": 10.23,
+    "end": 10.44,
+    "id": "w23"
+  },
+  {
+    "text": "bersiap",
+    "start": 10.44,
+    "end": 10.83,
+    "id": "w24"
+  },
+  {
+    "text": "dibina",
+    "start": 10.83,
+    "end": 11.2,
+    "id": "w25"
+  },
+  {
+    "text": "oleh",
+    "start": 11.2,
+    "end": 11.48,
+    "id": "w26"
+  },
+  {
+    "text": "maliga",
+    "start": 11.48,
+    "end": 11.92,
+    "id": "w27"
+  },
+  {
+    "text": "idaman",
+    "start": 11.92,
+    "end": 12.48,
+    "id": "w28"
+  },
+  {
+    "text": "di",
+    "start": 12.48,
+    "end": 12.82,
+    "id": "w29"
+  },
+  {
+    "text": "Kemaman",
+    "start": 13.21,
+    "end": 13.5,
+    "id": "w30"
+  },
+  {
+    "text": "Terengganu.",
+    "start": 13.5,
+    "end": 14.08,
+    "id": "w31"
+  },
+  {
+    "text": "Besar",
+    "start": 14.08,
+    "end": 14.51,
+    "id": "w32"
+  },
+  {
+    "text": "tuan-puan.",
+    "start": 14.56,
+    "end": 15.48,
+    "id": "w33"
+  },
+  {
+    "text": "Sangat-sangat",
+    "start": 15.48,
+    "end": 16.16,
+    "id": "w34"
+  },
+  {
+    "text": "mewah.",
+    "start": 16.16,
+    "end": 16.62,
+    "id": "w35"
+  },
+  {
+    "text": "Bermain",
+    "start": 16.64,
+    "end": 17.22,
+    "id": "w36"
+  },
+  {
+    "text": "dengan",
+    "start": 17.31,
+    "end": 17.77,
+    "id": "w37"
+  },
+  {
+    "text": "warna",
+    "start": 17.77,
+    "end": 18.15,
+    "id": "w38"
+  },
+  {
+    "text": "hitam",
+    "start": 18.22,
+    "end": 18.68,
+    "id": "w39"
+  },
+  {
+    "text": "menampakkan",
+    "start": 18.68,
+    "end": 19.52,
+    "id": "w40"
+  },
+  {
+    "text": "lagi",
+    "start": 19.52,
+    "end": 19.95,
+    "id": "w41"
+  },
+  {
+    "text": "banglu",
+    "start": 19.95,
+    "end": 20.59,
+    "id": "w42"
+  },
+  {
+    "text": "ini",
+    "start": 20.59,
+    "end": 20.91,
+    "id": "w43"
+  },
+  {
+    "text": "sangat-sangat",
+    "start": 20.91,
+    "end": 22.28,
+    "id": "w44"
+  },
+  {
+    "text": "premium.",
+    "start": 22.28,
+    "end": 23.16,
+    "id": "w45"
+  },
+  {
+    "text": "Dekat",
+    "start": 23.16,
+    "end": 23.5,
+    "id": "w46"
+  },
+  {
+    "text": "bahagian",
+    "start": 23.64,
+    "end": 24.07,
+    "id": "w47"
+  },
+  {
+    "text": "luar",
+    "start": 24.07,
+    "end": 24.32,
+    "id": "w48"
+  },
+  {
+    "text": "dia",
+    "start": 24.34,
+    "end": 24.56,
+    "id": "w49"
+  },
+  {
+    "text": "dah",
+    "start": 24.56,
+    "end": 24.77,
+    "id": "w50"
+  },
+  {
+    "text": "pun,",
+    "start": 24.77,
+    "end": 25.08,
+    "id": "w51"
+  },
+  {
+    "text": "dah",
+    "start": 25.08,
+    "end": 25.36,
+    "id": "w52"
+  },
+  {
+    "text": "cukup",
+    "start": 25.36,
+    "end": 25.82,
+    "id": "w53"
+  },
+  {
+    "text": "tertawan.",
+    "start": 25.82,
+    "end": 26.79,
+    "id": "w54"
+  },
+  {
+    "text": "Lengkap",
+    "start": 26.88,
+    "end": 27.41,
+    "id": "w55"
+  },
+  {
+    "text": "adanya",
+    "start": 27.41,
+    "end": 27.86,
+    "id": "w56"
+  },
+  {
+    "text": "landscape",
+    "start": 27.86,
+    "end": 28.55,
+    "id": "w57"
+  },
+  {
+    "text": "macam",
+    "start": 28.55,
+    "end": 28.93,
+    "id": "w58"
+  },
+  {
+    "text": "ni",
+    "start": 28.93,
+    "end": 29.08,
+    "id": "w59"
+  },
+  {
+    "text": "dan",
+    "start": 29.08,
+    "end": 29.26,
+    "id": "w60"
+  },
+  {
+    "text": "kekemasan",
+    "start": 29.34,
+    "end": 29.99,
+    "id": "w61"
+  },
+  {
+    "text": "lantai",
+    "start": 29.99,
+    "end": 30.44,
+    "id": "w62"
+  },
+  {
+    "text": "menggunakan",
+    "start": 30.44,
+    "end": 31.28,
+    "id": "w63"
+  },
+  {
+    "text": "imprin.",
+    "start": 31.28,
+    "end": 32.08,
+    "id": "w64"
+  },
+  {
+    "text": "Jadi",
+    "start": 32.08,
+    "end": 32.28,
+    "id": "w65"
+  },
+  {
+    "text": "untuk",
+    "start": 32.28,
+    "end": 32.56,
+    "id": "w66"
+  },
+  {
+    "text": "video",
+    "start": 32.56,
+    "end": 32.83,
+    "id": "w67"
+  },
+  {
+    "text": "kalau",
+    "start": 32.83,
+    "end": 33.1,
+    "id": "w68"
+  },
+  {
+    "text": "anda",
+    "start": 33.1,
+    "end": 33.31,
+    "id": "w69"
+  },
+  {
+    "text": "nak",
+    "start": 33.31,
+    "end": 33.47,
+    "id": "w70"
+  },
+  {
+    "text": "cakap",
+    "start": 33.47,
+    "end": 33.73,
+    "id": "w71"
+  },
+  {
+    "text": "house",
+    "start": 33.73,
+    "end": 34,
+    "id": "w72"
+  },
+  {
+    "text": "tu,",
+    "start": 34,
+    "end": 34.35,
+    "id": "w73"
+  },
+  {
+    "text": "rumah",
+    "start": 34.35,
+    "end": 34.81,
+    "id": "w74"
+  },
+  {
+    "text": "ni",
+    "start": 34.9,
+    "end": 35.02,
+    "id": "w75"
+  },
+  {
+    "text": "secara",
+    "start": 35.02,
+    "end": 35.59,
+    "id": "w76"
+  },
+  {
+    "text": "keseluruhan.",
+    "start": 35.59,
+    "end": 36.96,
+    "id": "w77"
+  },
+  {
+    "text": "Yang",
+    "start": 36.96,
+    "end": 37.16,
+    "id": "w78"
+  },
+  {
+    "text": "mana",
+    "start": 37.16,
+    "end": 37.44,
+    "id": "w79"
+  },
+  {
+    "text": "dekat",
+    "start": 37.44,
+    "end": 37.54,
+    "id": "w80"
+  },
+  {
+    "text": "bahagian",
+    "start": 37.63,
+    "end": 38.01,
+    "id": "w81"
+  },
+  {
+    "text": "luar",
+    "start": 38.01,
+    "end": 38.21,
+    "id": "w82"
+  },
+  {
+    "text": "ni",
+    "start": 38.21,
+    "end": 38.31,
+    "id": "w83"
+  },
+  {
+    "text": "tuan-puan",
+    "start": 38.31,
+    "end": 38.78,
+    "id": "w84"
+  },
+  {
+    "text": "kita",
+    "start": 38.87,
+    "end": 39.27,
+    "id": "w85"
+  },
+  {
+    "text": "ada",
+    "start": 39.27,
+    "end": 39.63,
+    "id": "w86"
+  },
+  {
+    "text": "satu",
+    "start": 39.63,
+    "end": 40.12,
+    "id": "w87"
+  },
+  {
+    "text": "ruang",
+    "start": 40.12,
+    "end": 42.73,
+    "id": "w88"
+  },
+  {
+    "text": "puas",
+    "start": 42.83,
+    "end": 42.89,
+    "id": "w89"
+  },
+  {
+    "text": "yang",
+    "start": 42.89,
+    "end": 43.01,
+    "id": "w90"
+  },
+  {
+    "text": "sangat",
+    "start": 43.06,
+    "end": 43.27,
+    "id": "w91"
+  },
+  {
+    "text": "besar",
+    "start": 43.27,
+    "end": 43.48,
+    "id": "w92"
+  },
+  {
+    "text": "boleh",
+    "start": 43.48,
+    "end": 43.69,
+    "id": "w93"
+  },
+  {
+    "text": "memuatkan",
+    "start": 43.69,
+    "end": 44.08,
+    "id": "w94"
+  },
+  {
+    "text": "sehingga",
+    "start": 44.08,
+    "end": 44.4,
+    "id": "w95"
+  },
+  {
+    "text": "empat",
+    "start": 44.4,
+    "end": 44.98,
+    "id": "w96"
+  },
+  {
+    "text": "kenderaan",
+    "start": 44.98,
+    "end": 46.01,
+    "id": "w97"
+  },
+  {
+    "text": "dan",
+    "start": 46.04,
+    "end": 46.25,
+    "id": "w98"
+  },
+  {
+    "text": "sesuai",
+    "start": 46.48,
+    "end": 46.62,
+    "id": "w99"
+  },
+  {
+    "text": "juga",
+    "start": 46.71,
+    "end": 46.98,
+    "id": "w100"
+  },
+  {
+    "text": "untuk",
+    "start": 46.98,
+    "end": 47.35,
+    "id": "w101"
+  },
+  {
+    "text": "mereka",
+    "start": 47.35,
+    "end": 47.79,
+    "id": "w102"
+  },
+  {
+    "text": "yang",
+    "start": 47.79,
+    "end": 48.08,
+    "id": "w103"
+  },
+  {
+    "text": "berkeluarga",
+    "start": 48.08,
+    "end": 48.77,
+    "id": "w104"
+  },
+  {
+    "text": "besar",
+    "start": 48.86,
+    "end": 49.32,
+    "id": "w105"
+  },
+  {
+    "text": "untuk",
+    "start": 49.32,
+    "end": 49.64,
+    "id": "w106"
+  },
+  {
+    "text": "membuat",
+    "start": 49.64,
+    "end": 50.09,
+    "id": "w107"
+  },
+  {
+    "text": "family",
+    "start": 50.09,
+    "end": 50.48,
+    "id": "w108"
+  },
+  {
+    "text": "gathering",
+    "start": 50.48,
+    "end": 51.03,
+    "id": "w109"
+  },
+  {
+    "text": "dekat",
+    "start": 51.14,
+    "end": 51.39,
+    "id": "w110"
+  },
+  {
+    "text": "bawah",
+    "start": 51.39,
+    "end": 51.71,
+    "id": "w111"
+  },
+  {
+    "text": "ni.",
+    "start": 51.71,
+    "end": 52.08,
+    "id": "w112"
+  },
+  {
+    "text": "Okay,",
+    "start": 52.08,
+    "end": 52.53,
+    "id": "w113"
+  },
+  {
+    "text": "bahagian",
+    "start": 52.56,
+    "end": 53.12,
+    "id": "w114"
+  },
+  {
+    "text": "luar",
+    "start": 53.12,
+    "end": 53.42,
+    "id": "w115"
+  },
+  {
+    "text": "kita",
+    "start": 53.42,
+    "end": 53.72,
+    "id": "w116"
+  },
+  {
+    "text": "dah",
+    "start": 53.72,
+    "end": 53.9,
+    "id": "w117"
+  },
+  {
+    "text": "tengok,",
+    "start": 53.99,
+    "end": 54.46,
+    "id": "w118"
+  },
+  {
+    "text": "di",
+    "start": 54.54,
+    "end": 54.62,
+    "id": "w119"
+  },
+  {
+    "text": "bahagian",
+    "start": 54.72,
+    "end": 55.27,
+    "id": "w120"
+  },
+  {
+    "text": "dalam",
+    "start": 55.34,
+    "end": 55.66,
+    "id": "w121"
+  },
+  {
+    "text": "lagi",
+    "start": 55.66,
+    "end": 55.96,
+    "id": "w122"
+  },
+  {
+    "text": "menarik.",
+    "start": 55.96,
+    "end": 56.59,
+    "id": "w123"
+  },
+  {
+    "text": "Jom",
+    "start": 56.7,
+    "end": 57.02,
+    "id": "w124"
+  },
+  {
+    "text": "kita",
+    "start": 57.02,
+    "end": 57.32,
+    "id": "w125"
+  },
+  {
+    "text": "house",
+    "start": 57.32,
+    "end": 57.69,
+    "id": "w126"
+  },
+  {
+    "text": "tour",
+    "start": 57.69,
+    "end": 57.99,
+    "id": "w127"
+  },
+  {
+    "text": "sama-sama.",
+    "start": 57.99,
+    "end": 58.84,
+    "id": "w128"
+  },
+  {
+    "text": "Assalamualaikum.",
+    "start": 58.84,
+    "end": 61.32,
+    "id": "w129"
+  },
+  {
+    "text": "Lihatlah,",
+    "start": 61.32,
+    "end": 62.43,
+    "id": "w130"
+  },
+  {
+    "text": "bahagian",
+    "start": 62.43,
+    "end": 63.31,
+    "id": "w131"
+  },
+  {
+    "text": "antrens",
+    "start": 63.31,
+    "end": 64.08,
+    "id": "w132"
+  },
+  {
+    "text": "dia",
+    "start": 64.08,
+    "end": 64.41,
+    "id": "w133"
+  },
+  {
+    "text": "sangat",
+    "start": 64.41,
+    "end": 65.08,
+    "id": "w134"
+  },
+  {
+    "text": "sesuai",
+    "start": 65.08,
+    "end": 65.74,
+    "id": "w135"
+  },
+  {
+    "text": "untuk...",
+    "start": 65.74,
+    "end": 68.16,
+    "id": "w136"
+  },
+  {
+    "text": "Bahagian",
+    "start": 68.16,
+    "end": 68.72,
+    "id": "w137"
+  },
+  {
+    "text": "antrens",
+    "start": 68.72,
+    "end": 69.21,
+    "id": "w138"
+  },
+  {
+    "text": "dia",
+    "start": 69.21,
+    "end": 69.42,
+    "id": "w139"
+  },
+  {
+    "text": "sangat-sangat",
+    "start": 69.42,
+    "end": 70.34,
+    "id": "w140"
+  },
+  {
+    "text": "cantik",
+    "start": 70.34,
+    "end": 70.84,
+    "id": "w141"
+  },
+  {
+    "text": "dan",
+    "start": 70.84,
+    "end": 71.04,
+    "id": "w142"
+  },
+  {
+    "text": "inilah",
+    "start": 71.04,
+    "end": 71.44,
+    "id": "w143"
+  },
+  {
+    "text": "masa",
+    "start": 71.44,
+    "end": 71.71,
+    "id": "w144"
+  },
+  {
+    "text": "yang",
+    "start": 71.71,
+    "end": 71.98,
+    "id": "w145"
+  },
+  {
+    "text": "ditunggu-tunggu,",
+    "start": 71.98,
+    "end": 73.15,
+    "id": "w146"
+  },
+  {
+    "text": "kita",
+    "start": 73.26,
+    "end": 73.57,
+    "id": "w147"
+  },
+  {
+    "text": "nak",
+    "start": 73.57,
+    "end": 73.84,
+    "id": "w148"
+  },
+  {
+    "text": "ke",
+    "start": 73.84,
+    "end": 73.92,
+    "id": "w149"
+  },
+  {
+    "text": "bahagian",
+    "start": 74.03,
+    "end": 74.72,
+    "id": "w150"
+  },
+  {
+    "text": "dalam.",
+    "start": 74.81,
+    "end": 75.51,
+    "id": "w151"
+  },
+  {
+    "text": "Tengoklah",
+    "start": 75.52,
+    "end": 76.24,
+    "id": "w152"
+  },
+  {
+    "text": "pintu",
+    "start": 76.24,
+    "end": 76.64,
+    "id": "w153"
+  },
+  {
+    "text": "seguriti",
+    "start": 76.64,
+    "end": 77.28,
+    "id": "w154"
+  },
+  {
+    "text": "dia",
+    "start": 77.28,
+    "end": 77.52,
+    "id": "w155"
+  },
+  {
+    "text": "sangat-sangat",
+    "start": 77.52,
+    "end": 78.56,
+    "id": "w156"
+  },
+  {
+    "text": "tertawan",
+    "start": 78.56,
+    "end": 79.15,
+    "id": "w157"
+  },
+  {
+    "text": "tuan-puan",
+    "start": 79.27,
+    "end": 79.92,
+    "id": "w158"
+  },
+  {
+    "text": "menggunakan",
+    "start": 79.92,
+    "end": 80.8,
+    "id": "w159"
+  },
+  {
+    "text": "warna",
+    "start": 80.8,
+    "end": 81.2,
+    "id": "w160"
+  },
+  {
+    "text": "hitam.",
+    "start": 81.2,
+    "end": 81.96,
+    "id": "w161"
+  },
+  {
+    "text": "Assalamualaikum.",
+    "start": 82.44,
+    "end": 85.04,
+    "id": "w162"
+  },
+  {
+    "text": "Inilah",
+    "start": 85.04,
+    "end": 86.107,
+    "id": "w163"
+  },
+  {
+    "text": "dia",
+    "start": 86.107,
+    "end": 87.173,
+    "id": "w164"
+  },
+  {
+    "text": "bahagian",
+    "start": 87.173,
+    "end": 88.24,
+    "id": "w165"
+  },
+  {
+    "text": "ruang",
+    "start": 88.24,
+    "end": 88.26,
+    "id": "w166"
+  },
+  {
+    "text": "yang",
+    "start": 88.72,
+    "end": 88.82,
+    "id": "w167"
+  },
+  {
+    "text": "pertama,",
+    "start": 88.91,
+    "end": 90.17,
+    "id": "w168"
+  },
+  {
+    "text": "ruang",
+    "start": 90.17,
+    "end": 90.9,
+    "id": "w169"
+  },
+  {
+    "text": "tamu",
+    "start": 90.9,
+    "end": 91.43,
+    "id": "w170"
+  },
+  {
+    "text": "yang",
+    "start": 91.5,
+    "end": 92.07,
+    "id": "w171"
+  },
+  {
+    "text": "mana",
+    "start": 92.07,
+    "end": 92.66,
+    "id": "w172"
+  },
+  {
+    "text": "berkeluargan",
+    "start": 92.66,
+    "end": 94.41,
+    "id": "w173"
+  },
+  {
+    "text": "15x17",
+    "start": 94.41,
+    "end": 96.48,
+    "id": "w174"
+  },
+  {
+    "text": "kaki",
+    "start": 96.48,
+    "end": 96.58,
+    "id": "w175"
+  },
+  {
+    "text": "persegi",
+    "start": 96.58,
+    "end": 96.8,
+    "id": "w176"
+  },
+  {
+    "text": "lengkap",
+    "start": 96.8,
+    "end": 97.38,
+    "id": "w177"
+  },
+  {
+    "text": "dengan",
+    "start": 97.47,
+    "end": 97.97,
+    "id": "w178"
+  },
+  {
+    "text": "lapu",
+    "start": 97.97,
+    "end": 98.31,
+    "id": "w179"
+  },
+  {
+    "text": "cendilia,",
+    "start": 98.39,
+    "end": 99.18,
+    "id": "w180"
+  },
+  {
+    "text": "ceiling",
+    "start": 99.26,
+    "end": 99.86,
+    "id": "w181"
+  },
+  {
+    "text": "double",
+    "start": 99.86,
+    "end": 100.4,
+    "id": "w182"
+  },
+  {
+    "text": "layer",
+    "start": 100.4,
+    "end": 100.88,
+    "id": "w183"
+  },
+  {
+    "text": "dan",
+    "start": 100.88,
+    "end": 101.16,
+    "id": "w184"
+  },
+  {
+    "text": "susun",
+    "start": 101.16,
+    "end": 101.55,
+    "id": "w185"
+  },
+  {
+    "text": "atur",
+    "start": 101.69,
+    "end": 101.98,
+    "id": "w186"
+  },
+  {
+    "text": "sofa",
+    "start": 101.98,
+    "end": 102.35,
+    "id": "w187"
+  },
+  {
+    "text": "yang",
+    "start": 102.35,
+    "end": 102.72,
+    "id": "w188"
+  },
+  {
+    "text": "cukup-cukup",
+    "start": 102.72,
+    "end": 103.72,
+    "id": "w189"
+  },
+  {
+    "text": "sempurna.",
+    "start": 103.72,
+    "end": 104.6,
+    "id": "w190"
+  },
+  {
+    "text": "Okay,",
+    "start": 104.6,
+    "end": 105.714,
+    "id": "w191"
+  },
+  {
+    "text": "seterusnya",
+    "start": 105.714,
+    "end": 106.829,
+    "id": "w192"
+  },
+  {
+    "text": "ini",
+    "start": 106.829,
+    "end": 107.943,
+    "id": "w193"
+  },
+  {
+    "text": "pun",
+    "start": 107.943,
+    "end": 109.057,
+    "id": "w194"
+  },
+  {
+    "text": "tuan-puan",
+    "start": 109.057,
+    "end": 110.171,
+    "id": "w195"
+  },
+  {
+    "text": "bahagian",
+    "start": 110.171,
+    "end": 111.286,
+    "id": "w196"
+  },
+  {
+    "text": "ruang",
+    "start": 111.286,
+    "end": 112.4,
+    "id": "w197"
+  },
+  {
+    "text": "makan,",
+    "start": 112.4,
+    "end": 113.29,
+    "id": "w198"
+  },
+  {
+    "text": "ruang",
+    "start": 113.29,
+    "end": 114.14,
+    "id": "w199"
+  },
+  {
+    "text": "makan",
+    "start": 114.14,
+    "end": 114.94,
+    "id": "w200"
+  },
+  {
+    "text": "ni",
+    "start": 115.04,
+    "end": 115.34,
+    "id": "w201"
+  },
+  {
+    "text": "kan",
+    "start": 115.34,
+    "end": 115.85,
+    "id": "w202"
+  },
+  {
+    "text": "yang",
+    "start": 115.85,
+    "end": 116.54,
+    "id": "w203"
+  },
+  {
+    "text": "paling",
+    "start": 116.54,
+    "end": 117.57,
+    "id": "w204"
+  },
+  {
+    "text": "saya",
+    "start": 117.57,
+    "end": 118.16,
+    "id": "w205"
+  },
+  {
+    "text": "tengok,",
+    "start": 118.27,
+    "end": 119.75,
+    "id": "w206"
+  },
+  {
+    "text": "paling",
+    "start": 120.28,
+    "end": 120.38,
+    "id": "w207"
+  },
+  {
+    "text": "menarik",
+    "start": 120.47,
+    "end": 121.05,
+    "id": "w208"
+  },
+  {
+    "text": "adalah",
+    "start": 121.05,
+    "end": 121.62,
+    "id": "w209"
+  },
+  {
+    "text": "di",
+    "start": 121.71,
+    "end": 121.82,
+    "id": "w210"
+  },
+  {
+    "text": "bahagian",
+    "start": 121.82,
+    "end": 122.53,
+    "id": "w211"
+  },
+  {
+    "text": "lantai",
+    "start": 122.62,
+    "end": 123.16,
+    "id": "w212"
+  },
+  {
+    "text": "ini.",
+    "start": 123.16,
+    "end": 123.8,
+    "id": "w213"
+  },
+  {
+    "text": "Berapa",
+    "start": 123.8,
+    "end": 124.733,
+    "id": "w214"
+  },
+  {
+    "text": "yang",
+    "start": 124.733,
+    "end": 125.667,
+    "id": "w215"
+  },
+  {
+    "text": "terluasnya",
+    "start": 125.667,
+    "end": 126.6,
+    "id": "w216"
+  },
+  {
+    "text": "ni?",
+    "start": 126.6,
+    "end": 127.05,
+    "id": "w217"
+  },
+  {
+    "text": "Sekejap,",
+    "start": 127.08,
+    "end": 128.22,
+    "id": "w218"
+  },
+  {
+    "text": "saya",
+    "start": 128.22,
+    "end": 128.74,
+    "id": "w219"
+  },
+  {
+    "text": "tengok.",
+    "start": 128.74,
+    "end": 129.92,
+    "id": "w220"
+  },
+  {
+    "text": "16x8,",
+    "start": 134,
+    "end": 143.36,
+    "id": "w221"
+  },
+  {
+    "text": "dengan",
+    "start": 143.36,
+    "end": 144.39,
+    "id": "w222"
+  },
+  {
+    "text": "keluasan",
+    "start": 144.39,
+    "end": 145.75,
+    "id": "w223"
+  },
+  {
+    "text": "16x8",
+    "start": 145.75,
+    "end": 147.46,
+    "id": "w224"
+  },
+  {
+    "text": "kaki",
+    "start": 147.46,
+    "end": 148.11,
+    "id": "w225"
+  },
+  {
+    "text": "persegi",
+    "start": 148.16,
+    "end": 149.25,
+    "id": "w226"
+  },
+  {
+    "text": "sahaja",
+    "start": 149.33,
+    "end": 149.95,
+    "id": "w227"
+  },
+  {
+    "text": "boleh",
+    "start": 150.56,
+    "end": 150.67,
+    "id": "w228"
+  },
+  {
+    "text": "memuatkan",
+    "start": 150.67,
+    "end": 151.16,
+    "id": "w229"
+  },
+  {
+    "text": "meja",
+    "start": 151.16,
+    "end": 151.44,
+    "id": "w230"
+  },
+  {
+    "text": "makan",
+    "start": 151.44,
+    "end": 151.75,
+    "id": "w231"
+  },
+  {
+    "text": "macam",
+    "start": 151.8,
+    "end": 152.34,
+    "id": "w232"
+  },
+  {
+    "text": "ni",
+    "start": 152.34,
+    "end": 152.56,
+    "id": "w233"
+  },
+  {
+    "text": "yang",
+    "start": 152.56,
+    "end": 153,
+    "id": "w234"
+  },
+  {
+    "text": "mempunyai",
+    "start": 153,
+    "end": 153.94,
+    "id": "w235"
+  },
+  {
+    "text": "6-7-8",
+    "start": 154.25,
+    "end": 155.82,
+    "id": "w236"
+  },
+  {
+    "text": "sita.",
+    "start": 155.82,
+    "end": 157.04,
+    "id": "w237"
+  },
+  {
+    "text": "Okay,",
+    "start": 161.88,
+    "end": 162.31,
+    "id": "w238"
+  },
+  {
+    "text": "sebelum",
+    "start": 162.36,
+    "end": 162.82,
+    "id": "w239"
+  },
+  {
+    "text": "kita",
+    "start": 162.82,
+    "end": 163.11,
+    "id": "w240"
+  },
+  {
+    "text": "pergi",
+    "start": 163.11,
+    "end": 163.48,
+    "id": "w241"
+  },
+  {
+    "text": "ke",
+    "start": 163.48,
+    "end": 163.62,
+    "id": "w242"
+  },
+  {
+    "text": "bahagian",
+    "start": 163.62,
+    "end": 164.2,
+    "id": "w243"
+  },
+  {
+    "text": "ruangan",
+    "start": 164.2,
+    "end": 164.71,
+    "id": "w244"
+  },
+  {
+    "text": "dapur",
+    "start": 164.71,
+    "end": 165.06,
+    "id": "w245"
+  },
+  {
+    "text": "lah",
+    "start": 165.06,
+    "end": 165.28,
+    "id": "w246"
+  },
+  {
+    "text": "kan,",
+    "start": 165.28,
+    "end": 165.74,
+    "id": "w247"
+  },
+  {
+    "text": "kita",
+    "start": 165.74,
+    "end": 166.03,
+    "id": "w248"
+  },
+  {
+    "text": "dah",
+    "start": 166.03,
+    "end": 166.25,
+    "id": "w249"
+  },
+  {
+    "text": "ada",
+    "start": 166.25,
+    "end": 166.38,
+    "id": "w250"
+  },
+  {
+    "text": "dah",
+    "start": 166.57,
+    "end": 166.63,
+    "id": "w251"
+  },
+  {
+    "text": "di",
+    "start": 166.77,
+    "end": 166.84,
+    "id": "w252"
+  },
+  {
+    "text": "bahagian",
+    "start": 166.84,
+    "end": 167.42,
+    "id": "w253"
+  },
+  {
+    "text": "sini,",
+    "start": 167.42,
+    "end": 167.92,
+    "id": "w254"
+  },
+  {
+    "text": "macam",
+    "start": 167.92,
+    "end": 168.12,
+    "id": "w255"
+  },
+  {
+    "text": "pantry",
+    "start": 168.4,
+    "end": 168.75,
+    "id": "w256"
+  },
+  {
+    "text": "pun",
+    "start": 168.75,
+    "end": 168.97,
+    "id": "w257"
+  },
+  {
+    "text": "ya",
+    "start": 168.97,
+    "end": 169.08,
+    "id": "w258"
+  },
+  {
+    "text": "ataupun",
+    "start": 169.1,
+    "end": 169.64,
+    "id": "w259"
+  },
+  {
+    "text": "dapur",
+    "start": 169.64,
+    "end": 170.01,
+    "id": "w260"
+  },
+  {
+    "text": "kering",
+    "start": 170.01,
+    "end": 170.45,
+    "id": "w261"
+  },
+  {
+    "text": "yang",
+    "start": 170.45,
+    "end": 170.75,
+    "id": "w262"
+  },
+  {
+    "text": "mana",
+    "start": 170.75,
+    "end": 171.05,
+    "id": "w263"
+  },
+  {
+    "text": "sangat-sangat",
+    "start": 171.05,
+    "end": 172.01,
+    "id": "w264"
+  },
+  {
+    "text": "cantik",
+    "start": 172.01,
+    "end": 172.42,
+    "id": "w265"
+  },
+  {
+    "text": "dan",
+    "start": 172.81,
+    "end": 172.91,
+    "id": "w266"
+  },
+  {
+    "text": "ia",
+    "start": 173.02,
+    "end": 173.31,
+    "id": "w267"
+  },
+  {
+    "text": "berdekatan",
+    "start": 173.31,
+    "end": 174.84,
+    "id": "w268"
+  },
+  {
+    "text": "lah",
+    "start": 174.84,
+    "end": 175.12,
+    "id": "w269"
+  },
+  {
+    "text": "dengan",
+    "start": 175.12,
+    "end": 175.48,
+    "id": "w270"
+  },
+  {
+    "text": "ruang",
+    "start": 175.48,
+    "end": 175.79,
+    "id": "w271"
+  },
+  {
+    "text": "makan.",
+    "start": 175.79,
+    "end": 176.2,
+    "id": "w272"
+  },
+  {
+    "text": "Jadi",
+    "start": 176.2,
+    "end": 176.43,
+    "id": "w273"
+  },
+  {
+    "text": "senang",
+    "start": 176.6,
+    "end": 176.77,
+    "id": "w274"
+  },
+  {
+    "text": "kalau",
+    "start": 176.77,
+    "end": 177.06,
+    "id": "w275"
+  },
+  {
+    "text": "nak",
+    "start": 177.06,
+    "end": 177.23,
+    "id": "w276"
+  },
+  {
+    "text": "ambil",
+    "start": 177.23,
+    "end": 177.51,
+    "id": "w277"
+  },
+  {
+    "text": "makanan",
+    "start": 177.51,
+    "end": 177.91,
+    "id": "w278"
+  },
+  {
+    "text": "ke,",
+    "start": 177.91,
+    "end": 178.13,
+    "id": "w279"
+  },
+  {
+    "text": "nak",
+    "start": 178.13,
+    "end": 178.3,
+    "id": "w280"
+  },
+  {
+    "text": "hidang",
+    "start": 178.3,
+    "end": 178.58,
+    "id": "w281"
+  },
+  {
+    "text": "makanan",
+    "start": 178.66,
+    "end": 179.04,
+    "id": "w282"
+  },
+  {
+    "text": "ke,",
+    "start": 179.04,
+    "end": 179.36,
+    "id": "w283"
+  },
+  {
+    "text": "semua",
+    "start": 179.36,
+    "end": 179.72,
+    "id": "w284"
+  },
+  {
+    "text": "diletakkan",
+    "start": 179.72,
+    "end": 180.44,
+    "id": "w285"
+  },
+  {
+    "text": "di",
+    "start": 180.44,
+    "end": 180.58,
+    "id": "w286"
+  },
+  {
+    "text": "bahagian",
+    "start": 180.58,
+    "end": 181.16,
+    "id": "w287"
+  },
+  {
+    "text": "sini",
+    "start": 181.16,
+    "end": 181.45,
+    "id": "w288"
+  },
+  {
+    "text": "sahaja.",
+    "start": 181.45,
+    "end": 182.16,
+    "id": "w289"
+  },
+  {
+    "text": "Untuk",
+    "start": 182.16,
+    "end": 182.57,
+    "id": "w290"
+  },
+  {
+    "text": "memasak",
+    "start": 182.64,
+    "end": 183.14,
+    "id": "w291"
+  },
+  {
+    "text": "di",
+    "start": 183.14,
+    "end": 183.3,
+    "id": "w292"
+  },
+  {
+    "text": "mana?",
+    "start": 183.3,
+    "end": 183.92,
+    "id": "w293"
+  },
+  {
+    "text": "Di",
+    "start": 183.92,
+    "end": 184.2,
+    "id": "w294"
+  },
+  {
+    "text": "sini.",
+    "start": 184.2,
+    "end": 185.2,
+    "id": "w295"
+  },
+  {
+    "text": "Jom",
+    "start": 185.2,
+    "end": 185.32,
+    "id": "w296"
+  },
+  {
+    "text": "kita",
+    "start": 185.32,
+    "end": 185.49,
+    "id": "w297"
+  },
+  {
+    "text": "tengok.",
+    "start": 185.49,
+    "end": 185.79,
+    "id": "w298"
+  },
+  {
+    "text": "Okey,",
+    "start": 185.88,
+    "end": 186.34,
+    "id": "w299"
+  },
+  {
+    "text": "dipisahkan",
+    "start": 186.36,
+    "end": 187.04,
+    "id": "w300"
+  },
+  {
+    "text": "dengan",
+    "start": 187.1,
+    "end": 187.57,
+    "id": "w301"
+  },
+  {
+    "text": "satu",
+    "start": 187.57,
+    "end": 187.88,
+    "id": "w302"
+  },
+  {
+    "text": "pintu",
+    "start": 187.88,
+    "end": 188.26,
+    "id": "w303"
+  },
+  {
+    "text": "sliding",
+    "start": 188.26,
+    "end": 188.81,
+    "id": "w304"
+  },
+  {
+    "text": "macam",
+    "start": 188.81,
+    "end": 189.2,
+    "id": "w305"
+  },
+  {
+    "text": "ni,",
+    "start": 189.2,
+    "end": 189.5,
+    "id": "w306"
+  },
+  {
+    "text": "sangat",
+    "start": 189.5,
+    "end": 189.97,
+    "id": "w307"
+  },
+  {
+    "text": "estetik.",
+    "start": 189.97,
+    "end": 190.73,
+    "id": "w308"
+  },
+  {
+    "text": "Jom",
+    "start": 190.77,
+    "end": 190.87,
+    "id": "w309"
+  },
+  {
+    "text": "kita",
+    "start": 190.98,
+    "end": 191.26,
+    "id": "w310"
+  },
+  {
+    "text": "tengok.",
+    "start": 191.26,
+    "end": 192.12,
+    "id": "w311"
+  },
+  {
+    "text": "Inilah",
+    "start": 192.12,
+    "end": 193.12,
+    "id": "w312"
+  },
+  {
+    "text": "dia",
+    "start": 193.12,
+    "end": 194.12,
+    "id": "w313"
+  },
+  {
+    "text": "tuan-puan,",
+    "start": 194.12,
+    "end": 194.35,
+    "id": "w314"
+  },
+  {
+    "text": "dapur",
+    "start": 194.35,
+    "end": 194.9,
+    "id": "w315"
+  },
+  {
+    "text": "basah",
+    "start": 194.9,
+    "end": 195.46,
+    "id": "w316"
+  },
+  {
+    "text": "yang",
+    "start": 195.46,
+    "end": 195.91,
+    "id": "w317"
+  },
+  {
+    "text": "berkeluasan",
+    "start": 195.91,
+    "end": 197.14,
+    "id": "w318"
+  },
+  {
+    "text": "10x10",
+    "start": 197.14,
+    "end": 198.61,
+    "id": "w319"
+  },
+  {
+    "text": "kaki",
+    "start": 198.61,
+    "end": 199.06,
+    "id": "w320"
+  },
+  {
+    "text": "sahaja,",
+    "start": 199.06,
+    "end": 200.12,
+    "id": "w321"
+  },
+  {
+    "text": "tak",
+    "start": 200.12,
+    "end": 200.36,
+    "id": "w322"
+  },
+  {
+    "text": "besar",
+    "start": 200.36,
+    "end": 200.67,
+    "id": "w323"
+  },
+  {
+    "text": "sangat",
+    "start": 200.77,
+    "end": 201.24,
+    "id": "w324"
+  },
+  {
+    "text": "tapi",
+    "start": 201.24,
+    "end": 201.64,
+    "id": "w325"
+  },
+  {
+    "text": "sungguh",
+    "start": 201.64,
+    "end": 202.08,
+    "id": "w326"
+  },
+  {
+    "text": "menawan,",
+    "start": 202.08,
+    "end": 202.68,
+    "id": "w327"
+  },
+  {
+    "text": "sungguh",
+    "start": 202.68,
+    "end": 203.22,
+    "id": "w328"
+  },
+  {
+    "text": "cantik",
+    "start": 203.22,
+    "end": 203.69,
+    "id": "w329"
+  },
+  {
+    "text": "dengan",
+    "start": 203.69,
+    "end": 204.17,
+    "id": "w330"
+  },
+  {
+    "text": "pemilihan",
+    "start": 204.17,
+    "end": 204.87,
+    "id": "w331"
+  },
+  {
+    "text": "warna",
+    "start": 204.87,
+    "end": 205.22,
+    "id": "w332"
+  },
+  {
+    "text": "putih.",
+    "start": 205.32,
+    "end": 205.96,
+    "id": "w333"
+  },
+  {
+    "text": "Warna",
+    "start": 205.96,
+    "end": 206.31,
+    "id": "w334"
+  },
+  {
+    "text": "putih",
+    "start": 206.43,
+    "end": 206.7,
+    "id": "w335"
+  },
+  {
+    "text": "walaupun",
+    "start": 206.7,
+    "end": 207.18,
+    "id": "w336"
+  },
+  {
+    "text": "ruangnya",
+    "start": 207.24,
+    "end": 207.88,
+    "id": "w337"
+  },
+  {
+    "text": "sangat",
+    "start": 207.88,
+    "end": 208.32,
+    "id": "w338"
+  },
+  {
+    "text": "kecil",
+    "start": 208.34,
+    "end": 208.73,
+    "id": "w339"
+  },
+  {
+    "text": "tapi",
+    "start": 208.78,
+    "end": 209.16,
+    "id": "w340"
+  },
+  {
+    "text": "menampakkan",
+    "start": 209.16,
+    "end": 209.84,
+    "id": "w341"
+  },
+  {
+    "text": "ia",
+    "start": 209.84,
+    "end": 210,
+    "id": "w342"
+  },
+  {
+    "text": "lebih",
+    "start": 210,
+    "end": 210.75,
+    "id": "w343"
+  },
+  {
+    "text": "luas",
+    "start": 210.75,
+    "end": 211.36,
+    "id": "w344"
+  },
+  {
+    "text": "dan",
+    "start": 211.36,
+    "end": 211.72,
+    "id": "w345"
+  },
+  {
+    "text": "sangat",
+    "start": 211.82,
+    "end": 212.55,
+    "id": "w346"
+  },
+  {
+    "text": "menenangkan",
+    "start": 212.55,
+    "end": 213.98,
+    "id": "w347"
+  },
+  {
+    "text": "warnanya.",
+    "start": 213.98,
+    "end": 215.08,
+    "id": "w348"
+  },
+  {
+    "text": "Dan",
+    "start": 215.08,
+    "end": 215.33,
+    "id": "w349"
+  },
+  {
+    "text": "ini",
+    "start": 215.56,
+    "end": 215.58,
+    "id": "w350"
+  },
+  {
+    "text": "pintu",
+    "start": 215.58,
+    "end": 216,
+    "id": "w351"
+  },
+  {
+    "text": "sekuriti",
+    "start": 216,
+    "end": 216.59,
+    "id": "w352"
+  },
+  {
+    "text": "yang",
+    "start": 216.67,
+    "end": 217.01,
+    "id": "w353"
+  },
+  {
+    "text": "mana",
+    "start": 217.01,
+    "end": 217.35,
+    "id": "w354"
+  },
+  {
+    "text": "kita",
+    "start": 217.35,
+    "end": 217.62,
+    "id": "w355"
+  },
+  {
+    "text": "boleh",
+    "start": 217.72,
+    "end": 218.11,
+    "id": "w356"
+  },
+  {
+    "text": "akses",
+    "start": 218.11,
+    "end": 218.53,
+    "id": "w357"
+  },
+  {
+    "text": "ke",
+    "start": 218.53,
+    "end": 218.7,
+    "id": "w358"
+  },
+  {
+    "text": "bahagian",
+    "start": 218.7,
+    "end": 219.37,
+    "id": "w359"
+  },
+  {
+    "text": "ruangan",
+    "start": 219.37,
+    "end": 219.59,
+    "id": "w360"
+  },
+  {
+    "text": "posh",
+    "start": 219.97,
+    "end": 220.29,
+    "id": "w361"
+  },
+  {
+    "text": "yang",
+    "start": 220.29,
+    "end": 220.63,
+    "id": "w362"
+  },
+  {
+    "text": "saya",
+    "start": 220.63,
+    "end": 220.97,
+    "id": "w363"
+  },
+  {
+    "text": "cerita",
+    "start": 220.97,
+    "end": 221.47,
+    "id": "w364"
+  },
+  {
+    "text": "awal",
+    "start": 221.47,
+    "end": 221.81,
+    "id": "w365"
+  },
+  {
+    "text": "tadi",
+    "start": 221.81,
+    "end": 222.15,
+    "id": "w366"
+  },
+  {
+    "text": "tuan-puan.",
+    "start": 222.15,
+    "end": 223.32,
+    "id": "w367"
+  },
+  {
+    "text": "Jadi",
+    "start": 223.32,
+    "end": 223.64,
+    "id": "w368"
+  },
+  {
+    "text": "senang",
+    "start": 223.8,
+    "end": 224.12,
+    "id": "w369"
+  },
+  {
+    "text": "kalau",
+    "start": 224.12,
+    "end": 224.47,
+    "id": "w370"
+  },
+  {
+    "text": "ada",
+    "start": 224.5,
+    "end": 224.76,
+    "id": "w371"
+  },
+  {
+    "text": "family",
+    "start": 224.76,
+    "end": 225.24,
+    "id": "w372"
+  },
+  {
+    "text": "gathering",
+    "start": 225.24,
+    "end": 225.97,
+    "id": "w373"
+  },
+  {
+    "text": "ke",
+    "start": 225.97,
+    "end": 226.05,
+    "id": "w374"
+  },
+  {
+    "text": "apa,",
+    "start": 226.14,
+    "end": 226.52,
+    "id": "w375"
+  },
+  {
+    "text": "segala",
+    "start": 226.59,
+    "end": 226.95,
+    "id": "w376"
+  },
+  {
+    "text": "makanan",
+    "start": 227.07,
+    "end": 227.57,
+    "id": "w377"
+  },
+  {
+    "text": "ataupun",
+    "start": 227.57,
+    "end": 227.83,
+    "id": "w378"
+  },
+  {
+    "text": "barang",
+    "start": 228.21,
+    "end": 228.61,
+    "id": "w379"
+  },
+  {
+    "text": "boleh",
+    "start": 228.61,
+    "end": 229.01,
+    "id": "w380"
+  },
+  {
+    "text": "dibawa",
+    "start": 229.01,
+    "end": 229.49,
+    "id": "w381"
+  },
+  {
+    "text": "melalui",
+    "start": 229.49,
+    "end": 230.05,
+    "id": "w382"
+  },
+  {
+    "text": "pintu",
+    "start": 230.05,
+    "end": 230.45,
+    "id": "w383"
+  },
+  {
+    "text": "ini",
+    "start": 230.45,
+    "end": 230.67,
+    "id": "w384"
+  },
+  {
+    "text": "sahaja.",
+    "start": 230.74,
+    "end": 231.56,
+    "id": "w385"
+  },
+  {
+    "text": "Betul",
+    "start": 231.56,
+    "end": 231.82,
+    "id": "w386"
+  },
+  {
+    "text": "tak?",
+    "start": 231.82,
+    "end": 232.15,
+    "id": "w387"
+  },
+  {
+    "text": "Siapa",
+    "start": 232.16,
+    "end": 232.66,
+    "id": "w388"
+  },
+  {
+    "text": "setuju,",
+    "start": 232.66,
+    "end": 233.46,
+    "id": "w389"
+  },
+  {
+    "text": "rumah",
+    "start": 233.46,
+    "end": 233.96,
+    "id": "w390"
+  },
+  {
+    "text": "yang",
+    "start": 233.96,
+    "end": 234.36,
+    "id": "w391"
+  },
+  {
+    "text": "konsep",
+    "start": 234.36,
+    "end": 234.89,
+    "id": "w392"
+  },
+  {
+    "text": "split",
+    "start": 234.98,
+    "end": 235.46,
+    "id": "w393"
+  },
+  {
+    "text": "level",
+    "start": 235.46,
+    "end": 235.96,
+    "id": "w394"
+  },
+  {
+    "text": "ni",
+    "start": 235.96,
+    "end": 236.16,
+    "id": "w395"
+  },
+  {
+    "text": "lebih",
+    "start": 236.16,
+    "end": 236.65,
+    "id": "w396"
+  },
+  {
+    "text": "senang",
+    "start": 236.65,
+    "end": 237.26,
+    "id": "w397"
+  },
+  {
+    "text": "kalau",
+    "start": 237.26,
+    "end": 237.76,
+    "id": "w398"
+  },
+  {
+    "text": "kita",
+    "start": 237.76,
+    "end": 238.16,
+    "id": "w399"
+  },
+  {
+    "text": "letak",
+    "start": 238.16,
+    "end": 238.66,
+    "id": "w400"
+  },
+  {
+    "text": "satu",
+    "start": 238.66,
+    "end": 239.06,
+    "id": "w401"
+  },
+  {
+    "text": "pintu",
+    "start": 239.06,
+    "end": 239.51,
+    "id": "w402"
+  },
+  {
+    "text": "di",
+    "start": 239.58,
+    "end": 239.76,
+    "id": "w403"
+  },
+  {
+    "text": "bagian",
+    "start": 239.76,
+    "end": 240.36,
+    "id": "w404"
+  },
+  {
+    "text": "sini",
+    "start": 240.36,
+    "end": 240.74,
+    "id": "w405"
+  },
+  {
+    "text": "akses",
+    "start": 240.76,
+    "end": 241.21,
+    "id": "w406"
+  },
+  {
+    "text": "untuk",
+    "start": 241.3,
+    "end": 241.76,
+    "id": "w407"
+  },
+  {
+    "text": "keluar",
+    "start": 241.76,
+    "end": 242.3,
+    "id": "w408"
+  },
+  {
+    "text": "rumah.",
+    "start": 242.38,
+    "end": 243.2,
+    "id": "w409"
+  },
+  {
+    "text": "Roll.",
+    "start": 245.2,
+    "end": 246.2,
+    "id": "w410"
+  },
+  {
+    "text": "Seterusnya,",
+    "start": 246.2,
+    "end": 246.867,
+    "id": "w411"
+  },
+  {
+    "text": "di",
+    "start": 246.867,
+    "end": 247.533,
+    "id": "w412"
+  },
+  {
+    "text": "bahagian",
+    "start": 247.533,
+    "end": 248.2,
+    "id": "w413"
+  },
+  {
+    "text": "bawah",
+    "start": 248.2,
+    "end": 248.52,
+    "id": "w414"
+  },
+  {
+    "text": "ni",
+    "start": 248.68,
+    "end": 248.7,
+    "id": "w415"
+  },
+  {
+    "text": "ada",
+    "start": 248.7,
+    "end": 248.96,
+    "id": "w416"
+  },
+  {
+    "text": "berapa",
+    "start": 248.96,
+    "end": 249.48,
+    "id": "w417"
+  },
+  {
+    "text": "bilik",
+    "start": 249.48,
+    "end": 249.91,
+    "id": "w418"
+  },
+  {
+    "text": "tidur,",
+    "start": 249.91,
+    "end": 250.51,
+    "id": "w419"
+  },
+  {
+    "text": "kalau",
+    "start": 250.51,
+    "end": 250.93,
+    "id": "w420"
+  },
+  {
+    "text": "nak",
+    "start": 251.02,
+    "end": 251.21,
+    "id": "w421"
+  },
+  {
+    "text": "tengok,",
+    "start": 251.21,
+    "end": 251.83,
+    "id": "w422"
+  },
+  {
+    "text": "kalau",
+    "start": 251.96,
+    "end": 252.34,
+    "id": "w423"
+  },
+  {
+    "text": "nak",
+    "start": 252.34,
+    "end": 252.6,
+    "id": "w424"
+  },
+  {
+    "text": "tahu",
+    "start": 252.6,
+    "end": 252.71,
+    "id": "w425"
+  },
+  {
+    "text": "berapa",
+    "start": 253.09,
+    "end": 253.47,
+    "id": "w426"
+  },
+  {
+    "text": "bilik",
+    "start": 253.47,
+    "end": 253.9,
+    "id": "w427"
+  },
+  {
+    "text": "tidur",
+    "start": 253.9,
+    "end": 254.33,
+    "id": "w428"
+  },
+  {
+    "text": "tuan-puan",
+    "start": 254.33,
+    "end": 255.09,
+    "id": "w429"
+  },
+  {
+    "text": "boleh",
+    "start": 255.09,
+    "end": 255.53,
+    "id": "w430"
+  },
+  {
+    "text": "komen",
+    "start": 255.53,
+    "end": 255.97,
+    "id": "w431"
+  },
+  {
+    "text": "part",
+    "start": 255.97,
+    "end": 256.3,
+    "id": "w432"
+  },
+  {
+    "text": "2",
+    "start": 256.39,
+    "end": 256.58,
+    "id": "w433"
+  },
+  {
+    "text": "kita",
+    "start": 256.58,
+    "end": 256.93,
+    "id": "w434"
+  },
+  {
+    "text": "tengok",
+    "start": 256.93,
+    "end": 257.42,
+    "id": "w435"
+  },
+  {
+    "text": "di",
+    "start": 257.48,
+    "end": 257.61,
+    "id": "w436"
+  },
+  {
+    "text": "video",
+    "start": 257.79,
+    "end": 258.06,
+    "id": "w437"
+  },
+  {
+    "text": "selanjutnya,",
+    "start": 258.06,
+    "end": 259.18,
+    "id": "w438"
+  },
+  {
+    "text": "okey.",
+    "start": 259.18,
+    "end": 260.28,
+    "id": "w439"
+  },
+  {
+    "text": "Bye",
+    "start": 260.28,
+    "end": 260.6,
+    "id": "w440"
+  },
+  {
+    "text": "bye.",
+    "start": 260.76,
+    "end": 261.28,
+    "id": "w441"
+  },
+  {
+    "text": "Cantiknya.",
+    "start": 261.76,
+    "end": 263.28,
+    "id": "w442"
+  },
+  {
+    "text": "Dah,",
+    "start": 263.74,
+    "end": 264.04,
+    "id": "w443"
+  },
+  {
+    "text": "habis.",
+    "start": 264.04,
+    "end": 265.28,
+    "id": "w444"
+  }
+]
