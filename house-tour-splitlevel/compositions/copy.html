@@ -11,25 +11,25 @@
     .chip-in b { color: var(--gold); font-weight: 800; }
   </style>
   <div id="root" data-composition-id="copy" data-width="1080" data-height="1920">
-    <div id="grad" class="clip" data-start="0" data-duration="3.35" data-layout-ignore></div>
-    <div id="hook" class="clip" data-start="0" data-duration="3.35">
-      <span class="hl1" id="hook-1">KENAPA BUKAN</span>
-      <span class="hl2" id="hook-2">2 TINGKAT?</span>
+    <div id="grad" class="clip" data-start="0" data-duration="3.2" data-layout-ignore></div>
+    <div id="hook" class="clip" data-start="0" data-duration="3.2">
+      <span class="hl1" id="hook-1">BANGLO MEWAH</span>
+      <span class="hl2" id="hook-2">SPLIT LEVEL</span>
     </div>
 
-    <div id="sp-grad" class="clip" style="position: absolute; left: 0; top: 0; width: 1080px; height: 560px; background: linear-gradient(180deg, rgba(10,14,24,0.45) 0%, rgba(10,14,24,0) 100%)" data-start="13.5" data-duration="8.1" data-layout-ignore></div>
-    <div id="s1" class="chip clip" data-start="13.55" data-duration="3.1"><span class="chip-in"><b>2,662</b> kaki persegi</span></div>
-    <div id="s2" class="chip clip" data-start="17.47" data-duration="1.22"><span class="chip-in"><b>4</b> bilik tidur</span></div>
-    <div id="s3" class="chip clip" data-start="18.69" data-duration="0.94"><span class="chip-in"><b>3</b> bilik air</span></div>
-    <div id="s4" class="chip clip" data-start="19.63" data-duration="1.95"><span class="chip-in"><b>1</b> bilik utiliti</span></div>
+    <div id="sp-grad" class="clip" style="position: absolute; left: 0; top: 0; width: 1080px; height: 560px; background: linear-gradient(180deg, rgba(10,14,24,0.45) 0%, rgba(10,14,24,0) 100%)" data-start="13.7" data-duration="8.2" data-layout-ignore></div>
+    <div id="s1" class="chip clip" data-start="13.76" data-duration="3.06"><span class="chip-in"><b>2,662</b> kaki persegi</span></div>
+    <div id="s2" class="chip clip" data-start="17.62" data-duration="1.22"><span class="chip-in"><b>4</b> bilik tidur</span></div>
+    <div id="s3" class="chip clip" data-start="18.84" data-duration="1.12"><span class="chip-in"><b>3</b> bilik air</span></div>
+    <div id="s4" class="chip clip" data-start="19.96" data-duration="1.94"><span class="chip-in"><b>1</b> bilik utiliti</span></div>
   </div>
   <script>
     const tl = gsap.timeline({ paused: true });
     tl.fromTo("#grad", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0);
     tl.fromTo("#hook-1", { opacity: 0, y: -24 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.0);
     tl.fromTo("#hook-2", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.8)" }, 0.25);
-    tl.fromTo("#sp-grad", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 13.5);
-    [["#s1", 13.55], ["#s2", 17.47], ["#s3", 18.69], ["#s4", 19.63]].forEach(([id, t]) => {
+    tl.fromTo("#sp-grad", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 13.7);
+    [["#s1", 13.76], ["#s2", 17.62], ["#s3", 18.84], ["#s4", 19.96]].forEach(([id, t]) => {
       tl.fromTo(id + " .chip-in", { opacity: 0, y: 18, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "power3.out" }, t);
     });
     window.__timelines["copy"] = tl;

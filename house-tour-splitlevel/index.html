@@ -13,25 +13,21 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="28.05" data-width="1080" data-height="1920">
-      <!-- hook: "Banglo berkonsepkan split level, besar kan?" -->
-      <div id="cam-a" class="cam" style="z-index: 1"><video id="v-a" class="clip shot" src="assets/shots/a_hook.mp4" data-start="0" data-duration="3.35" data-media-start="0" data-track-index="1" data-has-audio="true" data-volume="1" playsinline></video></div>
-      <!-- "Pernah tak tuan-puan…" -->
-      <div id="cam-b" class="cam" style="z-index: 2"><video id="v-b" class="clip shot" src="assets/shots/b_intro.mp4" data-start="3.35" data-duration="9.45" data-media-start="0" data-track-index="2" data-has-audio="true" data-volume="1" playsinline></video></div>
-      <!-- saiz & bilik -->
-      <div id="cam-c" class="cam" style="z-index: 3"><video id="v-c" class="clip shot" src="assets/shots/c_specs.mp4" data-start="12.8" data-duration="8.85" data-media-start="0" data-track-index="1" data-has-audio="true" data-volume="1" playsinline></video></div>
-      <!-- "Hari ini… Jom!" -->
-      <div id="cam-d" class="cam" style="z-index: 4"><video id="v-d" class="clip shot" src="assets/shots/d_jom.mp4" data-start="21.65" data-duration="6.4" data-media-start="0" data-track-index="2" data-has-audio="true" data-volume="1" playsinline></video></div>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="28.8" data-width="1080" data-height="1920">
+      <!-- footage asal penuh, susunan asal -->
+      <div id="cam" class="cam" style="z-index: 1"><video id="v-full" class="clip shot" src="assets/shots/full.mp4" data-start="0" data-duration="28.8" data-media-start="0" data-track-index="1" data-has-audio="true" data-volume="1" playsinline></video></div>
 
-      <div id="copy" data-composition-id="copy" data-composition-src="compositions/copy.html" data-start="0" data-duration="28.05" data-track-index="5" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 40"></div>
-      <div id="subs" data-composition-id="subs" data-composition-src="compositions/subs.html" data-start="0" data-duration="28.05" data-track-index="6" data-track-kind="captions" data-width="1080" data-height="1920" style="z-index: 41"></div>
+      <div id="copy" data-composition-id="copy" data-composition-src="compositions/copy.html" data-start="0" data-duration="28.8" data-track-index="5" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 40"></div>
+      <div id="subs" data-composition-id="subs" data-composition-src="compositions/subs.html" data-start="0" data-duration="28.8" data-track-index="6" data-track-kind="captions" data-width="1080" data-height="1920" style="z-index: 41"></div>
     </div>
     <script>
       const tl = gsap.timeline({ paused: true });
-      tl.fromTo("#cam-a", { scale: 1.0 }, { scale: 1.08, duration: 3.35, ease: "sine.out" }, 0);
-      tl.fromTo("#cam-b", { scale: 1.06 }, { scale: 1.0, duration: 9.45, ease: "sine.inOut" }, 3.35);
-      tl.fromTo("#cam-c", { scale: 1.0 }, { scale: 1.07, duration: 8.85, ease: "none" }, 12.8);
-      tl.fromTo("#cam-d", { scale: 1.08 }, { scale: 1.0, duration: 6.4, ease: "sine.out" }, 21.65);
+      // gentle zoom-ins, with a soft punch-in on "split level" and on the specs
+      tl.fromTo("#cam", { scale: 1.0 }, { scale: 1.05, duration: 9.55, ease: "none" }, 0);
+      tl.to("#cam", { scale: 1.1, duration: 0.5, ease: "power2.out" }, 9.6);
+      tl.to("#cam", { scale: 1.04, duration: 0.9, ease: "sine.inOut" }, 12.4);
+      tl.to("#cam", { scale: 1.08, duration: 8.5, ease: "none" }, 13.3);
+      tl.to("#cam", { scale: 1.02, duration: 6.9, ease: "sine.inOut" }, 21.9);
       window.__timelines["main"] = tl;
     </script>
   </body>
