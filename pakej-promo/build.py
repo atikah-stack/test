@@ -75,7 +75,11 @@ AUD = [f'      <audio id="bgm" class="clip" src="assets/bgm/track.mp3" data-star
        f'data-track-index="4" data-volume="0.10" data-fade-out="1.2"></audio>']
 
 
+SFX_GAIN = 2.2   # SFX sit clearly above the voice for an interactive feel
+
+
 def sfx(name, file, at, dur, vol):
+    vol = round(min(vol * SFX_GAIN, 0.42), 3)
     AUD.append(f'      <audio id="sx-{name}" class="clip" src="assets/sfx/{file}.mp3" data-start="{round(at, 3)}" '
                f'data-duration="{dur}" data-track-index="{5 + len(AUD) % 3}" data-volume="{vol}"></audio>')
 
