@@ -21,11 +21,10 @@
     <div id="c13" class="cap clip" data-start="23.58" data-duration="1.0"><span class="cap-in">tuan-puan semua merasai</span></div>
     <div id="c14" class="cap clip" data-start="24.58" data-duration="2.1"><span class="cap-in">keindahan bahagian</span></div>
     <div id="c15" class="cap clip" data-start="26.68" data-duration="1.02"><span class="cap-in">dalam rumah ini.</span></div>
-    <div id="c16" class="cap clip" data-start="27.7" data-duration="1.1"><span class="cap-in">Jom!</span></div>
   </div>
   <script>
     const tl = gsap.timeline({ paused: true });
-    [["#c0",0.0],["#c1",0.9],["#c2",2.26],["#c3",4.14],["#c4",5.26],["#c5",7.08],["#c6",9.6],["#c7",10.9],["#c8",13.02],["#c9",16.82],["#c10",18.84],["#c11",19.78],["#c12",22.46],["#c13",23.58],["#c14",24.58],["#c15",26.68],["#c16",27.7]].forEach(([id, t]) => {
+    [["#c0",0.0],["#c1",0.9],["#c2",2.26],["#c3",4.14],["#c4",5.26],["#c5",7.08],["#c6",9.6],["#c7",10.9],["#c8",13.02],["#c9",16.82],["#c10",18.84],["#c11",19.78],["#c12",22.46],["#c13",23.58],["#c14",24.58],["#c15",26.68]].forEach(([id, t]) => {
       tl.fromTo(id + " .cap-in", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.15, ease: "power2.out" }, t);
     });
     window.__timelines["subs"] = tl;
