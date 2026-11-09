@@ -1,0 +1,34 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: "Montserrat", sans-serif; }
+    /* bottom of the box stays above the 20% bottom no-go zone (y 1536) */
+    .cap { position: absolute; left: 50%; top: 1360px; width: 920px; margin-left: -460px; text-align: center; }
+    .cap-in { display: inline-block; padding: 14px 28px 16px; border-radius: 20px; background: rgba(0, 0, 0, 0.62); color: #fff; font-weight: 700; font-size: 46px; line-height: 1.2; }
+    .cap-in b { color: #f6c33b; font-weight: 800; }
+  </style>
+  <div id="root" data-composition-id="subs" data-width="1080" data-height="1920">
+    <div id="c0" class="cap clip" data-start="0.0" data-duration="1.1"><span class="cap-in">Kami bawakan kepada anda</span></div>
+    <div id="c1" class="cap clip" data-start="1.1" data-duration="2.3"><span class="cap-in">banglo berkonsepkan <b>split level</b></span></div>
+    <div id="c2" class="cap clip" data-start="3.4" data-duration="2.02"><span class="cap-in">yang mana <b>sangat-sangat besar</b>.</span></div>
+    <div id="c3" class="cap clip" data-start="5.58" data-duration="1.26"><span class="cap-in">Dekat bahagian sini</span></div>
+    <div id="c4" class="cap clip" data-start="6.84" data-duration="2.3"><span class="cap-in">ada satu ruang <b>porch</b></span></div>
+    <div id="c5" class="cap clip" data-start="9.14" data-duration="1.26"><span class="cap-in">yang mana sesuai untuk mereka</span></div>
+    <div id="c6" class="cap clip" data-start="10.4" data-duration="2.42"><span class="cap-in">yang ingin membuat <b>family gathering</b>.</span></div>
+    <div id="c7" class="cap clip" data-start="12.82" data-duration="0.87"><span class="cap-in">Okey, <b>besar kan?</b></span></div>
+    <div id="c8" class="cap clip" data-start="13.77" data-duration="1.38"><span class="cap-in">Banglo ni berkeluasan</span></div>
+    <div id="c9" class="cap clip" data-start="15.15" data-duration="2.86"><span class="cap-in"><b>2,662</b> kaki persegi,</span></div>
+    <div id="c10" class="cap clip" data-start="18.05" data-duration="2.34"><span class="cap-in">mempunyai <b>4</b> bilik tidur,</span></div>
+    <div id="c11" class="cap clip" data-start="20.43" data-duration="0.62"><span class="cap-in"><b>1</b> bilik utiliti</span></div>
+    <div id="c12" class="cap clip" data-start="21.05" data-duration="1.62"><span class="cap-in">dan <b>3</b> bilik air.</span></div>
+    <div id="c13" class="cap clip" data-start="22.81" data-duration="1.56"><span class="cap-in">Nak tengok tak bahagian dalam ni</span></div>
+    <div id="c14" class="cap clip" data-start="24.37" data-duration="0.48"><span class="cap-in">macam mana?</span></div>
+    <div id="c15" class="cap clip" data-start="24.89" data-duration="1.61"><span class="cap-in">Kalau nak tengok, jom ikut <b>Aisyah</b>.</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    [["#c0",0.0],["#c1",1.1],["#c2",3.4],["#c3",5.58],["#c4",6.84],["#c5",9.14],["#c6",10.4],["#c7",12.82],["#c8",13.77],["#c9",15.15],["#c10",18.05],["#c11",20.43],["#c12",21.05],["#c13",22.81],["#c14",24.37],["#c15",24.89]].forEach(([id, t]) => {
+      tl.fromTo(id + " .cap-in", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.15, ease: "power2.out" }, t);
+    });
+    window.__timelines["subs"] = tl;
+  </script>
+</template>

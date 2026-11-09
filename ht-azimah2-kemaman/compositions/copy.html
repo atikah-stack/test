@@ -1,0 +1,111 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: "Montserrat", sans-serif; color: #fff; --gold: #f6c33b; }
+    .center { position: absolute; left: 50%; width: 960px; margin-left: -480px; text-align: center; }
+    /* heading */
+    #hgrad { position: absolute; left: 0; top: 0; width: 1080px; height: 760px; background: linear-gradient(180deg, rgba(8,12,22,0.5) 0%, rgba(8,12,22,0.22) 60%, rgba(8,12,22,0) 100%); }
+    #head { top: 330px; }
+    .h1, .h2 { display: block; font-weight: 800; line-height: 1.08; letter-spacing: -0.005em; text-shadow: 0 6px 22px rgba(0,0,0,0.5), 0 2px 4px rgba(0,0,0,0.35); }
+    .h1 { font-size: 66px; white-space: nowrap; }
+    .h2 { font-size: 70px; color: var(--gold); white-space: nowrap; }
+    .eyes { display: inline-block; width: 1.05em; height: 0.62em; margin-left: 0.18em; vertical-align: 0.04em; }
+    /* pills & labels */
+    .pill { display: inline-flex; align-items: center; gap: 18px; padding: 16px 34px; border-radius: 999px; background: rgba(10,14,24,0.7); box-shadow: 0 10px 30px rgba(0,0,0,0.35); font-weight: 800; font-size: 56px; line-height: 1; white-space: nowrap; }
+    .pill.gold { background: var(--gold); color: #111; }
+    #split { top: 340px; }
+    #porch { position: absolute; left: 70px; top: 560px; }
+    #porch-line { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+    #family { position: absolute; left: 70px; top: 668px; }
+    .fam { display: inline-flex; align-items: center; gap: 14px; padding: 12px 24px 12px 14px; border-radius: 999px; background: rgba(10,14,24,0.7); font-weight: 800; font-size: 34px; letter-spacing: 0.01em; white-space: nowrap; }
+    .fam svg { width: 58px; height: 58px; flex: none; }
+    #besar { top: 470px; }
+    #besar .pill { font-size: 84px; padding: 20px 46px; }
+    /* 2,662 card */
+    #area { top: 360px; }
+    #area-in { display: inline-block; padding: 26px 56px 30px; border-radius: 36px; background: rgba(10,14,24,0.72); box-shadow: 0 14px 40px rgba(0,0,0,0.4); }
+    #area-num { display: block; font-weight: 900; font-size: 150px; line-height: 1; color: var(--gold); font-variant-numeric: tabular-nums; }
+    #area-lbl { display: block; margin-top: 10px; font-weight: 800; font-size: 50px; letter-spacing: 0.04em; }
+    /* spec cards */
+    .spec { position: absolute; left: 50%; width: 700px; margin-left: -350px; }
+    .spec-in { display: flex; align-items: center; gap: 24px; padding: 14px 30px 14px 14px; border-radius: 30px; background: rgba(10,14,24,0.74); box-shadow: 0 10px 30px rgba(0,0,0,0.35); font-weight: 800; font-size: 50px; line-height: 1; white-space: nowrap; }
+    .spec-in b { color: var(--gold); font-weight: 900; font-size: 64px; }
+    .ico { width: 92px; height: 92px; border-radius: 24px; background: var(--gold); display: flex; align-items: center; justify-content: center; flex: none; }
+    .ico svg { width: 58px; height: 58px; }
+    #sp1 { top: 360px; } #sp2 { top: 490px; } #sp3 { top: 620px; }
+    #jom { top: 470px; }
+    #jom .pill { font-size: 76px; padding: 22px 48px; }
+  </style>
+  <div id="root" data-composition-id="copy" data-width="1080" data-height="1920">
+    <!-- HEADING 0–3.4 s -->
+    <div id="hgrad" class="clip" data-start="0" data-duration="3.4" data-layout-ignore></div>
+    <div id="head" class="center clip" data-start="0" data-duration="3.4">
+      <div id="head-in">
+        <span class="h1">2,662 KAKI PERSEGI!</span>
+        <span class="h2">JOM TENGOK DALAM<svg class="eyes" viewBox="0 0 42 24" aria-hidden="true"><ellipse cx="10" cy="12" rx="9" ry="11" fill="#fff"/><ellipse cx="32" cy="12" rx="9" ry="11" fill="#fff"/><circle cx="12.5" cy="13" r="4.6" fill="#1b1b1b"/><circle cx="34.5" cy="13" r="4.6" fill="#1b1b1b"/></svg></span>
+      </div>
+    </div>
+
+    <!-- SPLIT LEVEL -->
+    <div id="split" class="center clip" data-start="3.4" data-duration="2.1"><span id="split-in" class="pill gold">SPLIT LEVEL</span></div>
+
+    <!-- PORCH LUAS + garis penunjuk -->
+    <svg id="porch-line" class="clip" data-start="8.3" data-duration="4.5" data-layout-ignore viewBox="0 0 1080 1920" aria-hidden="true">
+      <path id="porch-path" d="M 250 652 C 200 780, 230 950, 290 1080" fill="none" stroke="#f6c33b" stroke-width="7" stroke-linecap="round"/>
+      <circle id="porch-dot" cx="290" cy="1080" r="14" fill="#f6c33b" stroke="#fff" stroke-width="5"/>
+    </svg>
+    <div id="porch" class="clip" data-start="8.3" data-duration="4.5"><span id="porch-in" class="pill gold">PORCH LUAS</span></div>
+    <div id="family" class="clip" data-start="11.4" data-duration="1.4">
+      <span id="family-in" class="fam"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="14" cy="11" r="6" fill="#f6c33b"/><path d="M5 40v-12a9 9 0 0 1 18 0v12z" fill="#f6c33b"/><circle cx="34" cy="11" r="6" fill="#f6c33b"/><path d="M25 40v-12a9 9 0 0 1 18 0v12z" fill="#f6c33b"/><circle cx="24" cy="25" r="4.5" fill="#fff"/><path d="M17.5 44v-8a6.5 6.5 0 0 1 13 0v8z" fill="#fff"/></svg>SESUAI UNTUK FAMILY GATHERING</span>
+    </div>
+
+    <!-- BESAR KAN? -->
+    <div id="besar" class="center clip" data-start="12.85" data-duration="1.25"><span id="besar-in" class="pill gold">BESAR KAN?</span></div>
+
+    <!-- 2,662 KAKI PERSEGI (count-up) -->
+    <div id="area" class="center clip" data-start="15.15" data-duration="3.95">
+      <div id="area-in"><span id="area-num">2,662</span><span id="area-lbl">KAKI PERSEGI</span></div>
+    </div>
+
+    <!-- SPESIFIKASI -->
+    <div id="sp1" class="spec clip" data-start="19.23" data-duration="3.54"><div class="spec-in"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#111" d="M2 19V6h2.4v7.2H11V8h7.5A3.5 3.5 0 0 1 22 11.5V19h-2.4v-2.6H4.4V19zM7.6 12.2a2.4 2.4 0 1 1 0-4.8 2.4 2.4 0 0 1 0 4.8z"/></svg></span><span><b>4</b> BILIK TIDUR</span></div></div>
+    <div id="sp2" class="spec clip" data-start="20.43" data-duration="2.34"><div class="spec-in"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#111" fill-rule="evenodd" d="M3 4h18v5H3zm2 6h14v10H5zm4.5 3a1 1 0 0 0 0 2h5a1 1 0 0 0 0-2zM9.5 6a1 1 0 0 0 0 1.6h5a1 1 0 0 0 0-1.6z"/></svg></span><span><b>1</b> BILIK UTILITI</span></div></div>
+    <div id="sp3" class="spec clip" data-start="21.35" data-duration="1.42"><div class="spec-in"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#111" d="M9 2.5A4.5 4.5 0 0 1 13.5 7v.6h-2V7a2.5 2.5 0 0 0-5 0v14h-2V7A4.5 4.5 0 0 1 9 2.5zM10 9h9a.8.8 0 0 1 .8.8v.4H9.2v-.4A.8.8 0 0 1 10 9z"/><circle cx="11" cy="13" r="1.1" fill="#111"/><circle cx="14.5" cy="13" r="1.1" fill="#111"/><circle cx="18" cy="13" r="1.1" fill="#111"/><circle cx="12.7" cy="16.4" r="1.1" fill="#111"/><circle cx="16.3" cy="16.4" r="1.1" fill="#111"/><circle cx="14.5" cy="19.8" r="1.1" fill="#111"/></svg></span><span><b>3</b> BILIK AIR</span></div></div>
+
+    <!-- JOM IKUT AISYAH! -->
+    <div id="jom" class="center clip" data-start="25.63" data-duration="0.87"><span id="jom-in" class="pill gold">JOM IKUT AISYAH!</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // heading: soft pop-in, small scale
+    tl.fromTo("#hgrad", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0);
+    tl.fromTo("#head-in", { opacity: 0, scale: 0.86, y: 14 }, { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "back.out(1.7)" }, 0.05);
+    tl.to("#head-in", { opacity: 0, scale: 0.96, duration: 0.3, ease: "sine.in" }, 3.05);
+    tl.to("#hgrad", { opacity: 0, duration: 0.3 }, 3.05);
+    const popIn = (sel, t, out) => {
+      tl.fromTo(sel, { opacity: 0, scale: 0.55 }, { opacity: 1, scale: 1, duration: 0.38, ease: "back.out(2.4)" }, t);
+      if (out != null) tl.to(sel, { opacity: 0, scale: 0.92, duration: 0.25, ease: "sine.in" }, out - 0.3);
+    };
+    popIn("#split-in", 3.4, 5.5);
+    // porch: label, then line draws to the porch
+    popIn("#porch-in", 8.3, 12.8);
+    tl.fromTo("#porch-path", { strokeDasharray: 620, strokeDashoffset: 620 }, { strokeDashoffset: 0, duration: 0.55, ease: "power2.out" }, 8.45);
+    tl.fromTo("#porch-dot", { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.3, ease: "back.out(3)" }, 8.9);
+    tl.to("#porch-line", { opacity: 0, duration: 0.25 }, 12.5);
+    popIn("#family-in", 11.4, 12.8);
+    popIn("#besar-in", 12.85, 14.1);
+    // 2,662 count-up, stops exactly on 2,662 and holds
+    tl.fromTo("#area-in", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, 15.15);
+    const counter = { v: 0 };
+    const num = document.querySelector("#area-num");
+    tl.fromTo(counter, { v: 0 }, { v: 2662, duration: 1.3, ease: "power2.out", onUpdate: () => { num.textContent = Math.round(counter.v).toLocaleString("en-US"); } }, 15.15);
+    tl.set(counter, { v: 2662, onComplete: () => { num.textContent = "2,662"; } }, 16.45);
+    tl.fromTo("#area-num", { scale: 1 }, { scale: 1.12, duration: 0.15, ease: "power2.out", yoyo: true, repeat: 1 }, 16.45);
+    tl.to("#area-in", { opacity: 0, scale: 0.94, duration: 0.25, ease: "sine.in" }, 18.8);
+    // specs one by one, stacked
+    popIn("#sp1 .spec-in", 19.23, null);
+    popIn("#sp2 .spec-in", 20.43, null);
+    popIn("#sp3 .spec-in", 21.35, null);
+    popIn("#jom-in", 25.63, null);
+    window.__timelines["copy"] = tl;
+  </script>
+</template>

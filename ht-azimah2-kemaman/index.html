@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ms">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; }
+      .cam { position: absolute; inset: 0; transform-origin: 50% 50%; }
+      .shot { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="26.5" data-width="1080" data-height="1920">
+      <!-- talent: "Kami bawakan…" hingga "…family gathering." -->
+      <div id="cam1" class="cam" style="z-index: 1"><video id="v1" class="clip shot" src="assets/shots/s1.mp4" data-start="0" data-duration="12.82" data-media-start="0" data-track-index="1" muted playsinline></video></div>
+      <!-- talent: "Okey, besar kan?" hingga spesifikasi -->
+      <div id="cam2" class="cam" style="z-index: 2"><video id="v2a" class="clip shot" src="assets/shots/s2.mp4" data-start="12.82" data-duration="6.41" data-media-start="0" data-track-index="2" muted playsinline></video></div>
+      <!-- bilik sebenar rumah ini, ikut sebutan -->
+      <div id="cam-bed" class="cam" style="z-index: 3"><video id="vbed" class="clip shot" src="assets/shots/c_bed.mp4" data-start="19.23" data-duration="1.2" data-media-start="0" data-track-index="1" muted playsinline></video></div>
+      <div id="cam-util" class="cam" style="z-index: 4"><video id="vutil" class="clip shot" src="assets/shots/c_util.mp4" data-start="20.43" data-duration="0.92" data-media-start="0" data-track-index="2" muted playsinline></video></div>
+      <div id="cam-bath" class="cam" style="z-index: 5"><video id="vbath" class="clip shot" src="assets/shots/c_bath.mp4" data-start="21.35" data-duration="1.42" data-media-start="0" data-track-index="1" muted playsinline></video></div>
+      <!-- kembali kepada talent: "Nak tengok tak…" -->
+      <div id="cam2b" class="cam" style="z-index: 6"><video id="v2b" class="clip shot" src="assets/shots/s2.mp4" data-start="22.77" data-duration="3.73" data-media-start="9.95" data-track-index="2" muted playsinline></video></div>
+
+      <!-- suara asal talent (disambung tanpa jeda) -->
+      <audio id="narration" class="clip" src="assets/shots/narration.m4a" data-start="0" data-duration="26.5" data-fade-out="0.2" data-track-index="8" data-volume="1"></audio>
+      <!-- SFX (Pixabay) -->
+      <audio id="fx-whoosh" class="clip" src="assets/shots/whoosh-short.mp3" data-start="0.05" data-duration="0.57" data-track-index="9" data-volume="0.3"></audio>
+      <audio id="fx-pop1" class="clip" src="assets/shots/pop.mp3" data-start="3.4" data-duration="0.72" data-track-index="10" data-volume="0.3"></audio>
+      <audio id="fx-pop2" class="clip" src="assets/shots/pop.mp3" data-start="8.3" data-duration="0.72" data-track-index="9" data-volume="0.3"></audio>
+      <audio id="fx-pop3" class="clip" src="assets/shots/pop.mp3" data-start="11.4" data-duration="0.72" data-track-index="10" data-volume="0.28"></audio>
+      <audio id="fx-pop4" class="clip" src="assets/shots/pop.mp3" data-start="12.85" data-duration="0.72" data-track-index="9" data-volume="0.3"></audio>
+      <audio id="fx-click" class="clip" src="assets/shots/click-soft.mp3" data-start="15.15" data-duration="0.4" data-track-index="10" data-volume="0.3"></audio>
+      <audio id="fx-chime" class="clip" src="assets/shots/chime.mp3" data-start="16.45" data-duration="2.0" data-track-index="9" data-volume="0.22"></audio>
+      <audio id="fx-pop5" class="clip" src="assets/shots/pop.mp3" data-start="19.23" data-duration="0.72" data-track-index="10" data-volume="0.3"></audio>
+      <audio id="fx-pop6" class="clip" src="assets/shots/pop.mp3" data-start="20.43" data-duration="0.72" data-track-index="9" data-volume="0.3"></audio>
+      <audio id="fx-pop7" class="clip" src="assets/shots/pop.mp3" data-start="21.35" data-duration="0.72" data-track-index="10" data-volume="0.3"></audio>
+      <audio id="fx-pop8" class="clip" src="assets/shots/pop.mp3" data-start="25.63" data-duration="0.72" data-track-index="9" data-volume="0.32"></audio>
+
+      <div id="copy" data-composition-id="copy" data-composition-src="compositions/copy.html" data-start="0" data-duration="26.5" data-track-index="5" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 40"></div>
+      <div id="subs" data-composition-id="subs" data-composition-src="compositions/subs.html" data-start="0" data-duration="26.5" data-track-index="6" data-track-kind="captions" data-width="1080" data-height="1920" style="z-index: 41"></div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      // gentle zoom on the split-level line, then hold
+      tl.fromTo("#cam1", { scale: 1.0 }, { scale: 1.05, duration: 5.3, ease: "sine.inOut" }, 0.1);
+      tl.to("#cam1", { scale: 1.02, duration: 7.4, ease: "sine.inOut" }, 5.4);
+      // light punch-in on "Okey, besar kan?"
+      tl.fromTo("#cam2", { scale: 1.12 }, { scale: 1.12, duration: 0.9, ease: "none" }, 12.82);
+      tl.to("#cam2", { scale: 1.02, duration: 0.6, ease: "power2.inOut" }, 13.72);
+      tl.fromTo("#cam-bed", { scale: 1.0 }, { scale: 1.04, duration: 1.2, ease: "none" }, 19.23);
+      tl.fromTo("#cam-util", { scale: 1.0 }, { scale: 1.04, duration: 0.92, ease: "none" }, 20.43);
+      tl.fromTo("#cam-bath", { scale: 1.0 }, { scale: 1.04, duration: 1.42, ease: "none" }, 21.35);
+      tl.fromTo("#cam2b", { scale: 1.02 }, { scale: 1.05, duration: 3.73, ease: "none" }, 22.77);
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
