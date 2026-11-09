@@ -1,0 +1,32 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Montserrat",sans-serif; color:#fff; }
+    .y { color:#f6c343; }
+    .hd { position:absolute; left:100px; right:100px; text-align:center; font-weight:800; line-height:1.04; letter-spacing:0.005em;
+      text-shadow:0 4px 18px rgba(0,0,0,.55), 0 2px 4px rgba(0,0,0,.45); }
+    .hd div { display:block; }
+    .glow { position:absolute; left:40px; right:40px; height:300px; border-radius:50%; pointer-events:none;
+      background:radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0,0,0,.5) 0%, rgba(0,0,0,.28) 50%, rgba(0,0,0,0) 100%); }
+
+    .tag { position:absolute; left:50%; top:1090px; transform:translateX(-50%); display:flex; align-items:stretch; }
+    .bg { position:absolute; inset:-6px -16px; border-radius:22px; background:rgba(0,0,0,.5); z-index:-1; }
+    .bar { width:10px; border-radius:6px; background:#f6c343; margin-right:20px; }
+    .tb { padding:14px 26px 16px 2px; }
+    .nm { font-weight:800; font-size:44px; line-height:1.08; white-space:nowrap; text-shadow:0 3px 12px rgba(0,0,0,.5); }
+    .lb { font-weight:700; font-size:30px; color:#f6c343; margin-top:6px; white-space:nowrap; }</style>
+  <div id="root" data-composition-id="nametag" data-width="1080" data-height="1920">
+    <div id="nt" class="tag clip" data-start="0" data-duration="3.3" data-track-index="0">
+      <div id="nt-bg" class="bg"></div><div id="nt-bar" class="bar"></div>
+      <div class="tb"><div id="nt-nm" class="nm">ENCIK UMAR HANIF SAFIEN</div><div id="nt-lb" class="lb">Klien Mahligai Idaman</div></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#nt-bg", { opacity:0, scaleX:0.9 }, { opacity:1, scaleX:1, duration:0.45, ease:"power2.out" }, 0);
+    tl.fromTo("#nt-bar", { scaleY:0 }, { scaleY:1, duration:0.4, ease:"power2.out" }, 0.05);
+    tl.fromTo("#nt-nm", { opacity:0, x:-22 }, { opacity:1, x:0, duration:0.5, ease:"power3.out" }, 0.1);
+    tl.fromTo("#nt-lb", { opacity:0, x:-16 }, { opacity:1, x:0, duration:0.5, ease:"power3.out" }, 0.25);
+    tl.to("#nt", { opacity:0, duration:0.35, ease:"sine.in" }, 2.9);
+    window.__timelines["nametag"] = tl;
+  </script>
+</template>
