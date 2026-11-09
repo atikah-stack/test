@@ -75,6 +75,14 @@ for i, (sid, src, ms, dur, rate, vol) in enumerate(SHOTS):
         tag = f'<div id="{sid}-turn" class="turn" style="z-index:{i + 1}">{tag}</div>'
     rows.append("      " + tag)
 
+# Slow-motion shots are muted on the video; keep their natural room sound at normal speed instead.
+for i, (sid, src, ms, dur, rate, vol) in enumerate(SHOTS):
+    if vol is None:
+        rows.append(
+            f'      <audio id="a-{sid}" class="clip" src="assets/src/{src}" data-start="{round(times[i] + FADE, 2)}" '
+            f'data-duration="{round(dur - FADE, 2)}" data-media-start="{round(ms + FADE, 2)}" data-volume="0.5" data-track-index="11"></audio>'
+        )
+
 for aid, f, s, d, v in SFX:
     rows.append(
         f'      <audio id="{aid}" class="clip" src="assets/sfx/{f}" data-start="{round(s, 2)}" '
