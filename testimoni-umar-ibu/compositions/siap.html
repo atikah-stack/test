@@ -13,12 +13,12 @@
       box-shadow:0 10px 26px rgba(0,0,0,.3); }
     .lb svg { width:44px; height:44px; }</style>
   <div id="root" data-composition-id="siap" data-width="1080" data-height="1920">
-    <div id="sp" class="lb clip" data-start="0" data-duration="2.75" data-track-index="0"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#1a1a1a" d="M12 3 2 11h3v9h5v-6h4v6h5v-9h3z"/></svg>SIAP DIBINA</div>
+    <div id="sp" class="lb clip" data-start="0" data-duration="2.5" data-track-index="0"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#1a1a1a" d="M12 3 2 11h3v9h5v-6h4v6h5v-9h3z"/></svg>SIAP DIBINA</div>
   </div>
   <script>
     const tl = gsap.timeline({ paused: true });
     tl.fromTo("#sp", { opacity:0, y:-14, scale:0.9 }, { opacity:1, y:0, scale:1, duration:0.45, ease:"back.out(1.8)" }, 0);
-    tl.to("#sp", { opacity:0, duration:0.35, ease:"sine.in" }, 2.35);
+    tl.to("#sp", { opacity:0, duration:0.35, ease:"sine.in" }, 2.1);
     window.__timelines["siap"] = tl;
   </script>
 </template>
