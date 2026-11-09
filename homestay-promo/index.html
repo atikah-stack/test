@@ -6,13 +6,14 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
-      html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #1A1014; }
-      #root { position: relative; width: 100%; height: 100%; background: #1A1014; }
+      html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #0E141D; }
+      #root { position: relative; width: 100%; height: 100%; background: #0E141D; }
     </style>
   </head>
   <body>
     <div id="root" data-composition-id="main" data-start="0" data-duration="79.45" data-width="1080" data-height="1920">
       <div id="w-talent" style="position:absolute; inset:0; z-index:1; overflow:hidden; transform-origin: 50% 45%"><video id="v-talent" class="clip" src="assets/video/talent.mp4" data-start="0" data-duration="79.45" data-media-start="0" data-track-index="1" playsinline data-has-audio="true" data-volume="1" style="position:absolute; left:0; top:0; width:1080px; height:1920px; object-fit:cover"></video></div>
+      <div id="shade" style="position:absolute; inset:0; z-index:1; pointer-events:none; background: linear-gradient(180deg, rgba(14,22,34,.62) 0%, rgba(14,22,34,.45) 30%, rgba(14,22,34,0) 52%)"></div>
       <div id="b-estate1-w" style="position:absolute; inset:0; z-index:2; overflow:hidden"><video id="b-estate1" src="assets/video/drone-estate.mp4" data-start="13.4" data-duration="3.5" data-media-start="0.5" data-track-index="2" class="clip" muted playsinline style="position:absolute; left:0; top:0; width:1080px; height:1920px; object-fit:cover"></video></div>
       <div id="b-hills-w" style="position:absolute; inset:0; z-index:2; overflow:hidden"><video id="b-hills" src="assets/video/drone-hills.mp4" data-start="18.0" data-duration="5.1" data-media-start="1.0" data-track-index="2" class="clip" muted playsinline style="position:absolute; left:0; top:0; width:1080px; height:1920px; object-fit:cover"></video></div>
       <div id="b-lots-w" style="position:absolute; inset:0; z-index:2; overflow:hidden"><video id="b-lots" src="assets/video/lot-tersedia.mp4" data-start="26.7" data-duration="4.3" data-media-start="0.3" data-track-index="2" class="clip" muted playsinline style="position:absolute; left:0; top:0; width:1080px; height:1920px; object-fit:cover"></video></div>
@@ -89,7 +90,12 @@
         tl.fromTo("#" + id + "-w", { scale: 1.14 }, { scale: 1, duration: 0.5, ease: "expo.out" }, s);
         tl.fromTo("#" + id, { scale: 1.0 }, { scale: 1.07, duration: e - s, ease: "none" }, s);
       });
-      // presenter stays unscaled: the subtitle box must keep covering the captions burned into the take
+      // presenter: slow push across the take, punch-ins on key words
+      tl.fromTo("#v-talent", { scale: 1.0 }, { scale: 1.05, duration: 79.45, ease: "none" }, 0);
+      [[49.6, 1.0], [63.49, 1.4]].forEach(([s, h]) => {
+        tl.fromTo("#w-talent", { scale: 1 }, { scale: 1.1, duration: 0.28, ease: "power3.out" }, s);
+        tl.fromTo("#w-talent", { scale: 1.1 }, { scale: 1, duration: 0.45, ease: "power2.inOut", immediateRender: false }, s + h);
+      });
       window.__timelines["main"] = tl;
     </script>
   </body>

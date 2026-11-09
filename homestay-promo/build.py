@@ -2,17 +2,16 @@
 """Generates index.html and compositions/gfx.html for the Mahligai Idaman
 "Pakej Tanah & Bina Rumah (Homestay)" video (1080x1920).
 
-The presenter take (Google Drive original, 720p upscaled to 1080p) plays the whole way
+The presenter take (Google Drive original, 1080x1920, no burned-in captions) plays the whole way
 with its own sound. B-roll (drone, lot plan, renders) sits on top, muted. All times are
 seconds of the presenter take, from a whisper pass checked against the user's transcript.
 
 Safe zone: the top and bottom 20% (Y < 384 and Y > 1536) carry no text, icons or
-graphics. Subtitles sit in a box at Y 1390-1530, which also covers the CapCut captions
-that are burned into the source take.
+graphics. Subtitles are short phrases in a dark pill at Y 1395-1495.
 """
 import json
 
-MAR, MAR_D, YEL, WHT, INK = "#7A1530", "#4A0C1C", "#FFD400", "#FFFFFF", "#1A1014"
+MAR, MAR_D, YEL, WHT, INK = "#1B2A3F", "#101A28", "#F7C531", "#FFFFFF", "#0E141D"   # navy / yellow / white, after the reference thumbnail
 SAFE_TOP, SAFE_BOT = 384, 1536
 TOTAL = 79.45
 
@@ -115,7 +114,7 @@ for name, f, at, d, v in [
 ]:
     sfx(name, f, at, d, v)
 
-PUNCH = [(3.36, 0.9), (32.19, 0.0), (49.60, 1.0), (63.49, 1.4), (77.75, 1.2)]
+PUNCH = [(32.19, 0.0), (49.60, 1.0), (63.49, 1.4)]
 PUNCH = [p for p in PUNCH if p[1] > 0]
 push = [(b[0], b[2], b[3]) for b in BROLL if b[5]]
 fades = [(b[0], b[2]) for b in BROLL]
@@ -134,7 +133,9 @@ index = f'''<!doctype html>
   </head>
   <body>
     <div id="root" data-composition-id="main" data-start="0" data-duration="{TOTAL}" data-width="1080" data-height="1920">
-{chr(10).join(vids)}
+{chr(10).join(vids[:1])}
+      <div id="shade" style="position:absolute; inset:0; z-index:1; pointer-events:none; background: linear-gradient(180deg, rgba(14,22,34,.62) 0%, rgba(14,22,34,.45) 30%, rgba(14,22,34,0) 52%)"></div>
+{chr(10).join(vids[1:])}
       <div id="gfx" data-composition-id="gfx" data-composition-src="compositions/gfx.html" data-start="0" data-duration="{TOTAL}" data-track-index="3" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:5"></div>
 {chr(10).join(AUD)}
     </div>
@@ -147,7 +148,12 @@ index = f'''<!doctype html>
         tl.fromTo("#" + id + "-w", {{ scale: 1.14 }}, {{ scale: 1, duration: 0.5, ease: "expo.out" }}, s);
         tl.fromTo("#" + id, {{ scale: 1.0 }}, {{ scale: 1.07, duration: e - s, ease: "none" }}, s);
       }});
-      // presenter stays unscaled: the subtitle box must keep covering the captions burned into the take
+      // presenter: slow push across the take, punch-ins on key words
+      tl.fromTo("#v-talent", {{ scale: 1.0 }}, {{ scale: 1.05, duration: {TOTAL}, ease: "none" }}, 0);
+      {json.dumps(PUNCH)}.forEach(([s, h]) => {{
+        tl.fromTo("#w-talent", {{ scale: 1 }}, {{ scale: 1.1, duration: 0.28, ease: "power3.out" }}, s);
+        tl.fromTo("#w-talent", {{ scale: 1.1 }}, {{ scale: 1, duration: 0.45, ease: "power2.inOut", immediateRender: false }}, s + h);
+      }});
       window.__timelines["main"] = tl;
     </script>
   </body>
@@ -219,12 +225,11 @@ def hl(text):
 
 
 # --- 1. hook: NAK BUAT HOMESTAY?
-block("g-hook", 0.30, 3.95, f'''<div class="ic-house" id="hk-i">{ICON["house"]}</div>
+block("g-hook", 0.30, 3.95, f'''<img class="logo" id="hk-i" style="width:150px" src="assets/img/logo.png" alt="" />
       <div class="lbl mr sm" id="hk0">CARI TANAH?</div>
       <div class="lbl wh lg" id="hk1">NAK BUAT</div>
-      <div class="lbl yl xl" id="hk2">HOMESTAY?</div>''', 400, 400)
+      <div class="lbl yl xl" id="hk2" style="font-size:104px">HOMESTAY?</div>''', 388, 370)
 tin("#hk-i", 0.30, "pop")
-J.append('tl.fromTo("#hk-i path", { strokeDasharray: 120, strokeDashoffset: 120 }, { strokeDashoffset: 0, duration: 1.2, ease: "power2.out" }, 0.35);')
 for k, at in [("hk0", 2.31), ("hk1", 2.80), ("hk2", 3.36)]:
     hide(f"#{k}"); tin(f"#{k}", at, "pop", 0.4)
 tout("#g-hook", 3.72)
@@ -235,7 +240,7 @@ coins = "".join(f'<div class="coin" id="coin{i}" style="bottom:{i * 20}px"></div
 block("g-inc", 4.00, 6.20, f'''<div class="incw"><div class="coins">{coins}</div><div class="bars">{bars}
       <svg class="arrow" viewBox="0 0 240 200" width="240" height="200"><path id="arr" d="M10 180 L80 120 L130 140 L225 30" fill="none" stroke="{YEL}" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
       <path id="arrh" d="M190 26 L228 26 L228 64" fill="none" stroke="{YEL}" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
-      <div class="lbl mr md" id="inc-t">TAMBAH <span class="y">SUMBER PENDAPATAN</span></div>''', 400, 360)
+      <div class="lbl mr md" id="inc-t" style="font-size:50px">TAMBAH <span class="y">SUMBER PENDAPATAN</span></div>''', 400, 360)
 tin("#g-inc .incw", 4.0, "fade", 0.3)
 for i in range(5):
     J.append(f'tl.fromTo("#coin{i}", {{ y: -260, opacity: 0 }}, {{ y: 0, opacity: 1, duration: 0.35, ease: "bounce.out" }}, {round(4.15 + i * 0.12, 3)});')
@@ -276,7 +281,7 @@ tout("#g-strat", 16.68)
 
 # --- 5. view cantik (over hills drone)
 block("g-view", 19.10, 23.10, f'''<div class="ic-m" id="vw-i">{ICON["mount"]}</div>
-      <div class="lbl mr lg" id="vw1">VIEW <span class="y">CANTIK</span> &amp; ALAMI</div>
+      <div class="lbl mr lg" id="vw1" style="font-size:66px">VIEW <span class="y">CANTIK</span> &amp; ALAMI</div>
       <div class="lbl wh md" id="vw2">HUTAN BUKIT-BUKAU</div>''', 420, 360)
 tin("#vw-i", 19.10, "pop")
 J.append('tl.fromTo("#vw-i path, #vw-i circle", { strokeDasharray: 160, strokeDashoffset: 160 }, { strokeDashoffset: 0, duration: 1.0, ease: "power2.out" }, 19.15);')
@@ -330,7 +335,7 @@ scene("s-custom", 40.00, 43.60, f'''<div class="bgblur"><img src="assets/img/ren
 J.append('tl.fromTo("#cr1", { rotationY: -30, opacity: 0, x: -80 }, { rotationY: -8, opacity: 1, x: 0, duration: 0.7, ease: "expo.out" }, 40.05);')
 J.append('tl.fromTo("#pl", { rotationY: 30, opacity: 0, x: 80 }, { rotationY: 8, opacity: 1, x: 0, duration: 0.7, ease: "expo.out" }, 40.35);')
 J.append('tl.fromTo("#pl .pl", { strokeDasharray: 1000, strokeDashoffset: 1000 }, { strokeDashoffset: 0, duration: 1.6, ease: "power2.inOut", stagger: 0.12 }, 40.6);')
-block("g-custom", 40.56, 43.60, '<div class="lbl yl xl" id="cu1">CUSTOM DESIGN</div>', 420, 140)
+block("g-custom", 40.56, 43.60, '<div class="lbl yl xl" id="cu1" style="font-size:96px">CUSTOM DESIGN</div>', 420, 140)
 block("g-custom2", 41.85, 43.60, '<div class="lbl mr md" id="cu2">MENGIKUT CITA RASA</div>', 1240, 110)
 tin("#cu1", 40.56, "pop"); tin("#cu2", 41.85, "up")
 tout("#g-custom", 43.40); tout("#g-custom2", 43.40)
@@ -354,7 +359,7 @@ tout("#g-book", 45.74); tout("#g-book2", 45.74)
 
 # --- 12. bebas banjir (over drone)
 block("g-flood", 48.20, 49.50, f'''<div class="shield" id="fl-s">{svg('<path d="M24 4 7 10v12c0 11 7.5 18.5 17 22 9.5-3.5 17-11 17-22V10z" fill="#7A1530" stroke="#FFFFFF"/><path d="M16 24l6 6 10-11" stroke="#FFD400" stroke-width="5"/>', 150, WHT, 3)}</div>
-      <div class="lbl wh md" id="fl1">KAWASAN</div><div class="lbl yl xl" id="fl2">BEBAS BANJIR</div>''', 420, 450)
+      <div class="lbl wh md" id="fl1">KAWASAN</div><div class="lbl yl xl" id="fl2" style="font-size:104px">BEBAS BANJIR</div>''', 420, 450)
 tin("#fl-s", 48.20, "pop"); hide("#fl1"); tin("#fl1", 48.30, "up"); hide("#fl2"); tin("#fl2", 48.39, "pop")
 J.append('tl.to("#fl-s", { y: -10, duration: 0.5, ease: "sine.inOut", yoyo: true, repeat: 1 }, 48.7);')
 tout("#g-flood", 49.32)
@@ -388,10 +393,10 @@ tout("#g-pkg", 65.56)
 
 # --- 17. harga RM390,000 (maroon card over the presenter, blurred)
 scene("s-price", 65.78, 71.10, '<div class="pricebg"></div>')
-block("g-price", 65.78, 71.10, '''<div class="pk" id="pr0">BERMULA DENGAN</div><div class="pk big" id="pr1">HARGA</div>
+block("g-price", 65.78, 71.10, '''<img class="logo" id="pr-l" src="assets/img/logo.png" alt="" /><div class="pk" id="pr0">BERMULA DENGAN</div><div class="pk big" id="pr1">HARGA</div>
       <div class="rm" id="pr2"><span id="nrm">RM390,000</span></div><div class="uline" id="pr-u"></div>
       <div class="pk" id="pr3">SAHAJA</div>''', 560, 700)
-tin("#pr0", 65.80, "up"); hide("#pr1"); tin("#pr1", 67.03, "up")
+tin("#pr-l", 65.80, "fade"); tin("#pr0", 65.80, "up"); hide("#pr1"); tin("#pr1", 67.03, "up")
 hide("#pr2"); tin("#pr2", 67.86, "pop", 0.5)
 count("#nrm", 390000, 67.86, 0.9, "RM")
 J.append('tl.fromTo("#pr-u", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 68.6);')
@@ -410,7 +415,7 @@ J.append('tl.fromTo("#lk-hand", { opacity: 0, x: 80, y: 80 }, { opacity: 1, x: 0
 for at in (72.30, 72.80):
     J.append(f'tl.fromTo("#lk-hand", {{ scale: 1 }}, {{ scale: 0.86, duration: 0.1, yoyo: true, repeat: 1, immediateRender: false }}, {at});')
     J.append(f'tl.fromTo("#lk-r", {{ scale: 0.2, opacity: 0.9 }}, {{ scale: 1.6, opacity: 0, duration: 0.55, ease: "power2.out", immediateRender: false }}, {at + 0.08});')
-block("g-link2", 71.55, 74.30, '<div class="lbl yl lg" id="lk1">KLIK LINK DI BAWAH</div>', 1250, 120)
+block("g-link2", 71.55, 74.30, '<div class="lbl yl lg" id="lk1" style="font-size:68px">KLIK LINK DI BAWAH</div>', 1250, 120)
 tin("#lk1", 71.55, "pop")
 tout("#g-link", 74.10); tout("#g-link2", 74.10)
 
@@ -418,30 +423,57 @@ tout("#g-link", 74.10); tout("#g-link2", 74.10)
 scene("s-fin", 74.32, 77.72, '''<div class="kb"><img id="r5" src="assets/img/render-5.jpg" alt="" /></div><div class="dim l"></div>''')
 J.append('tl.fromTo("#r5", { scale: 1.12, x: 30 }, { scale: 1.02, x: 0, duration: 3.4, ease: "none" }, 74.32);')
 coins2 = "".join(f'<div class="coin" id="cn{i}" style="bottom:{i * 20}px"></div>' for i in range(4))
-block("g-fin", 75.85, 77.72, f'''<div class="lbl wh lg" id="fn1">BUAT HOMESTAY</div><div class="plus" id="fn-p">+</div>
-      <div class="row"><div class="coins sm">{coins2}</div><div class="lbl yl lg" id="fn2">TAMBAH PENDAPATAN</div></div>''', 420, 380)
+block("g-fin", 75.85, 77.72, f'''<div class="lbl wh lg" id="fn1" style="font-size:76px">BUAT HOMESTAY</div><div class="plus" id="fn-p">+</div>
+      <div class="row"><div class="lbl yl lg" id="fn2" style="font-size:64px">TAMBAH PENDAPATAN</div></div>''', 420, 380)
 tin("#fn1", 75.85, "pop"); hide("#fn-p"); tin("#fn-p", 76.40, "pop"); hide("#fn2"); tin("#fn2", 76.68, "pop")
-for i in range(4):
+for i in range(0):
     J.append(f'tl.fromTo("#cn{i}", {{ y: -200, opacity: 0 }}, {{ y: 0, opacity: 1, duration: 0.32, ease: "bounce.out" }}, {round(76.70 + i * 0.1, 3)});')
 tout("#g-fin", 77.52)
 
 # --- 20. closing CTA on the presenter
-block("g-cta", 77.75, TOTAL, f'''<div class="lbl wh md" id="ct1">KLIK LINK DI BAWAH</div><div class="btnw"><div class="lbl yl xl" id="ct2">SEKARANG!</div>
+block("g-cta", 77.75, TOTAL, f'''<img class="logo" id="ct-l" src="assets/img/logo.png" alt="" /><div class="lbl wh md" id="ct1">KLIK LINK DI BAWAH</div><div class="btnw"><div class="lbl yl xl" id="ct2">SEKARANG!</div>
       <div class="tapr" id="ct-r"></div><div class="hand ct-hand" id="ct-h">{HAND}</div></div>''', 400, 300)
-tin("#ct1", 77.75, "pop"); hide("#ct2"); tin("#ct2", 77.95, "pop")
+tin("#ct-l", 77.75, "fade"); tin("#ct1", 77.75, "pop"); hide("#ct2"); tin("#ct2", 77.95, "pop")
 J.append('tl.fromTo("#ct-h", { opacity: 0, x: 60, y: 60 }, { opacity: 1, x: 0, y: 0, duration: 0.3, ease: "power3.out" }, 78.15);')
 J.append('tl.fromTo("#ct-h", { scale: 1 }, { scale: 0.86, duration: 0.1, yoyo: true, repeat: 1, immediateRender: false }, 78.45);')
 J.append('tl.fromTo("#ct2", { scale: 1 }, { scale: 0.95, duration: 0.1, yoyo: true, repeat: 1, immediateRender: false }, 78.45);')
 J.append('tl.fromTo("#ct-r", { scale: 0.2, opacity: 0.9 }, { scale: 1.6, opacity: 0, duration: 0.55, ease: "power2.out", immediateRender: false }, 78.53);')
 
-# --- subtitles: one cue per transcript line in a fixed box that also covers the burned-in captions
-BOXES.append(("subs", 1390, 140))
-cues = []
-for i, (s, text) in enumerate(SUBS):
-    e = SUBS[i + 1][0] if i + 1 < len(SUBS) else TOTAL
-    cues.append(f'      <div class="cue clip" id="cue{i}" data-start="{s}" data-duration="{round(e - s, 3)}"><span>{hl(text)}</span></div>')
-    J.append(f'tl.fromTo("#cue{i}", {{ opacity: 0, y: 12 }}, {{ opacity: 1, y: 0, duration: 0.18, ease: "power2.out" }}, {s});')
-H.append(f'''    <div class="subbox clip" id="subs" data-start="0" data-duration="{TOTAL}">
+# --- subtitles: each transcript line split into short phrases (like the reference), each phrase
+# timed on the whisper word that starts it
+WORDS = json.load(open("words.json"))
+WORDS = WORDS if isinstance(WORDS, list) else WORDS.get("words", WORDS)
+BOXES.append(("subs", 1395, 100))
+cues, k = [], 0
+for i, (s0, text) in enumerate(SUBS):
+    e0 = SUBS[i + 1][0] if i + 1 < len(SUBS) else TOTAL
+    toks, bold = [], False
+    for w in text.split():
+        n = w.count("**")
+        if w.startswith("**"): bold = True
+        toks.append((w.replace("**", ""), bold))
+        if (n == 1 and not w.startswith("**")) or n == 2: bold = False
+    chunks, cur = [], []
+    for t in toks:
+        if cur and len(" ".join(x[0] for x in cur + [t])) > 24:
+            chunks.append(cur); cur = []
+        cur.append(t)
+    if cur: chunks.append(cur)
+    ww = [w for w in WORDS if s0 - 0.05 <= w["start"] < e0 - 0.05]
+    starts, j = [], 0
+    for c in chunks:
+        if j == 0: starts.append(s0)
+        elif ww: starts.append(max(s0, ww[min(len(ww) - 1, round(j * len(ww) / len(toks)))]["start"]))
+        else: starts.append(s0 + (e0 - s0) * j / len(toks))
+        j += len(c)
+    for n, c in enumerate(chunks):
+        cs = round(starts[n], 3); ce = round(starts[n + 1] if n + 1 < len(chunks) else e0, 3)
+        if ce - cs < 0.25: continue
+        html = " ".join(f"<b>{w}</b>" if bb else w for w, bb in c)
+        cues.append(f'      <div class="cue clip" id="cue{k}" data-start="{cs}" data-duration="{round(ce - cs, 3)}"><span>{html}</span></div>')
+        J.append(f'tl.fromTo("#cue{k} span", {{ opacity: 0, scale: 0.9 }}, {{ opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }}, {cs});')
+        k += 1
+H.append(f'''    <div class="subs" id="subs">
 {chr(10).join(cues)}
     </div>''')
 
@@ -454,15 +486,17 @@ CSS = f'''
     .col {{ display: flex; flex-direction: column; align-items: center; gap: 14px; }}
     .row {{ display: flex; align-items: center; gap: 18px; }}
     .y {{ color: {YEL}; }} .mrt {{ color: {MAR}; }}
-    .lbl {{ font-weight: 800; line-height: 1.02; white-space: nowrap; border-radius: 12px; letter-spacing: .005em;
-      box-shadow: 0 16px 36px rgba(0,0,0,.35); text-transform: uppercase; }}
-    .lbl.mr {{ background: {MAR}; color: {WHT}; }}
-    .lbl.yl {{ background: {YEL}; color: {MAR_D}; }}
-    .lbl.wh {{ background: {WHT}; color: {MAR_D}; }}
-    .lbl.sm {{ font-size: 34px; letter-spacing: .1em; padding: 14px 26px 13px; font-weight: 700; }}
-    .lbl.md {{ font-size: 48px; padding: 16px 32px 14px; }}
-    .lbl.lg {{ font-size: 66px; padding: 18px 36px 16px; }}
-    .lbl.xl {{ font-size: 96px; padding: 18px 42px 14px; }}
+    .lbl {{ font-weight: 800; line-height: 1.0; white-space: nowrap; letter-spacing: .005em; text-transform: uppercase; color: {WHT};
+      text-shadow: 0 4px 0 rgba(0,0,0,.18), 0 10px 30px rgba(0,0,0,.6), 0 2px 6px rgba(0,0,0,.45); }}
+    .lbl.mr {{ color: {WHT}; }}
+    .lbl.yl {{ color: {YEL}; }}
+    .lbl.wh {{ color: {WHT}; }}
+    .lbl.sm {{ font-size: 40px; letter-spacing: .12em; font-weight: 700; }}
+    .lbl.md {{ font-size: 60px; }}
+    .lbl.lg {{ font-size: 84px; }}
+    .lbl.xl {{ font-size: 116px; letter-spacing: -.005em; }}
+    .lbl .mrt {{ color: {YEL}; }}
+    .logo {{ width: 190px; height: auto; filter: drop-shadow(0 6px 16px rgba(0,0,0,.5)); margin-bottom: 8px; }}
     .ic-house, .ic-m, .ic-homes, .ic-bed {{ width: 130px; height: 130px; border-radius: 26px; background: {MAR}; display: flex;
       align-items: center; justify-content: center; box-shadow: 0 14px 30px rgba(0,0,0,.35); }}
     .ic-homes svg, .ic-bed svg {{ stroke: {WHT}; }}
@@ -539,10 +573,10 @@ CSS = f'''
     .plus {{ font-weight: 900; font-size: 90px; line-height: .8; color: {YEL}; text-shadow: 0 8px 24px rgba(0,0,0,.5); }}
     .btnw {{ position: relative; }}
     .ct-hand {{ right: -40px; top: 70px; }}
-    .subbox {{ position: absolute; left: 70px; right: 70px; top: 1390px; height: 140px; border-radius: 18px;
-      background: #4A0C1C; border-top: 5px solid {YEL}; box-shadow: 0 22px 40px rgba(0,0,0,.45); }}
-    .cue {{ position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center;
-      padding: 8px 30px; font-weight: 600; font-size: 40px; line-height: 1.22; color: {WHT}; }}
+    .subs {{ position: absolute; left: 70px; right: 70px; top: 1395px; height: 100px; }}
+    .cue {{ position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }}
+    .cue span {{ display: inline-block; padding: 14px 30px 16px; border-radius: 16px; background: rgba(16,16,18,.84);
+      font-weight: 700; font-size: 48px; line-height: 1.1; color: {WHT}; white-space: nowrap; box-shadow: 0 10px 26px rgba(0,0,0,.3); }}
     .cue b {{ color: {YEL}; font-weight: 800; }}
 '''
 gfx = f'''<template>
