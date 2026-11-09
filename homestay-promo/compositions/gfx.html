@@ -1,0 +1,490 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: Poppins, sans-serif; color: #FFFFFF; }
+    .grp { position: absolute; left: 70px; right: 70px; perspective: 1400px; }
+    .col { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+    .row { display: flex; align-items: center; gap: 18px; }
+    .y { color: #F7C531; } .mrt { color: #1B2A3F; }
+    .lbl { font-weight: 800; line-height: 1.0; white-space: nowrap; letter-spacing: .005em; text-transform: uppercase; color: #FFFFFF;
+      text-shadow: 0 4px 0 rgba(0,0,0,.18), 0 10px 30px rgba(0,0,0,.6), 0 2px 6px rgba(0,0,0,.45); }
+    .lbl.mr { color: #FFFFFF; }
+    .lbl.yl { color: #F7C531; }
+    .lbl.wh { color: #FFFFFF; }
+    .lbl.sm { font-size: 40px; letter-spacing: .12em; font-weight: 700; }
+    .lbl.md { font-size: 60px; }
+    .lbl.lg { font-size: 84px; }
+    .lbl.xl { font-size: 116px; letter-spacing: -.005em; }
+    .lbl .mrt { color: #F7C531; }
+    .logo { width: 190px; height: auto; filter: drop-shadow(0 6px 16px rgba(0,0,0,.5)); margin-bottom: 8px; }
+    .ic-house, .ic-m, .ic-homes, .ic-bed { width: 130px; height: 130px; border-radius: 26px; background: #1B2A3F; display: flex;
+      align-items: center; justify-content: center; box-shadow: 0 14px 30px rgba(0,0,0,.35); }
+    .ic-homes svg, .ic-bed svg { stroke: #FFFFFF; }
+    .ic-car { width: 100px; height: 100px; border-radius: 50%; background: #F7C531; display: flex; align-items: center; justify-content: center; }
+    .incw { display: flex; align-items: flex-end; gap: 36px; height: 220px; }
+    .coins { position: relative; width: 140px; height: 160px; }
+    .coins.sm { width: 96px; height: 110px; transform: scale(.7); }
+    .coin { position: absolute; left: 0; width: 140px; height: 46px; border-radius: 50%; background: #F7C531;
+      border: 5px solid #C9A400; box-shadow: inset 0 -8px 0 #E5BC00; }
+    .bars { position: relative; display: flex; align-items: flex-end; gap: 16px; height: 210px; }
+    .bar { width: 46px; border-radius: 8px 8px 2px 2px; background: #FFFFFF; transform-origin: 50% 100%; box-shadow: 0 10px 24px rgba(0,0,0,.3); }
+    .bar:nth-child(4) { background: #F7C531; }
+    .arrow { position: absolute; left: -10px; top: -14px; }
+    .scn { position: absolute; inset: 0; overflow: hidden; background: #0E141D; }
+    .bgblur { position: absolute; inset: -60px; } .bgblur img { width: 100%; height: 100%; object-fit: cover; filter: blur(26px); }
+    .kb { position: absolute; inset: 0; } .kb img { width: 100%; height: 100%; object-fit: cover; }
+    .dim { position: absolute; inset: 0; background: rgba(40,8,16,.42); } .dim.l { background: rgba(20,6,10,.18); }
+    .stage { position: absolute; left: 70px; right: 70px; top: 540px; height: 640px; perspective: 1600px; }
+    .rc3d { position: absolute; inset: 0; border-radius: 22px; overflow: hidden; border: 6px solid #FFFFFF; opacity: 0;
+      box-shadow: 0 30px 70px rgba(0,0,0,.55); transform-style: preserve-3d; }
+    .rc3d img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .chips { display: flex; gap: 14px; justify-content: center; }
+    .chip { padding: 16px 26px 14px; border-radius: 999px; background: #FFFFFF; color: #101A28; font-weight: 800; font-size: 40px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.35); white-space: nowrap; }
+    .chip:nth-child(2) { background: #F7C531; }
+    .pinw { position: relative; height: 96px; }
+    .ring { position: absolute; left: 50%; bottom: -6px; width: 80px; height: 26px; margin-left: -40px; border-radius: 50%;
+      border: 5px solid #F7C531; opacity: 0; }
+    .route { position: relative; width: 900px; height: 230px; border-radius: 24px; background: #FFFFFF; color: #101A28;
+      display: flex; align-items: center; justify-content: space-between; padding: 0 34px; box-shadow: 0 24px 60px rgba(0,0,0,.45); }
+    .rt-a, .rt-b { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 170px; }
+    .rt-home { width: 90px; height: 90px; border-radius: 20px; background: #F7C531; display: flex; align-items: center; justify-content: center; }
+    .rt-l { font-weight: 800; font-size: 28px; line-height: 1.1; text-align: center; letter-spacing: .02em; }
+    .rt-line { position: relative; flex: 1; height: 90px; }
+    .rt-dash { position: absolute; left: 0; right: 0; top: 52px; height: 8px; transform-origin: 0 50%;
+      background: repeating-linear-gradient(90deg, #1B2A3F 0 26px, transparent 26px 42px); border-radius: 4px; }
+    .rt-car { position: absolute; left: 0; top: 0; width: 76px; height: 64px; }
+    .rt-car svg { width: 76px; height: 64px; }
+    .big5 { font-weight: 900; font-size: 150px; line-height: 1; margin-top: 18px; text-shadow: 0 10px 34px rgba(0,0,0,.55); }
+    .stat { display: flex; align-items: center; gap: 26px; padding: 26px 44px 26px 28px; border-radius: 18px;
+      background: rgba(74,12,28,.94); color: #FFFFFF; box-shadow: 0 20px 50px rgba(0,0,0,.45); border-left: 12px solid #F7C531; }
+    .si { width: 120px; height: 120px; border-radius: 16px; background: #F7C531; display: flex; align-items: center; justify-content: center; flex: none; }
+    .sk { font-weight: 700; font-size: 32px; letter-spacing: .1em; }
+    .sv { font-weight: 900; font-size: 110px; line-height: 1.0; white-space: nowrap; }
+    .sv small { font-size: 46px; }
+    .cst { position: absolute; left: 70px; right: 70px; top: 580px; height: 620px; perspective: 1600px; }
+    .rc3d.sm { left: 0; right: 360px; top: 30px; bottom: 60px; opacity: 1; }
+    .planc { position: absolute; right: 0; top: 120px; width: 440px; height: 330px; border-radius: 20px; background: #FBF7EE;
+      display: flex; align-items: center; justify-content: center; box-shadow: 0 26px 60px rgba(0,0,0,.5); border: 6px solid #F7C531; }
+    .phone { position: relative; width: 400px; height: 740px; border-radius: 58px; background: #111; padding: 18px;
+      box-shadow: 0 40px 80px rgba(0,0,0,.6), inset 0 0 0 4px #333; transform-style: preserve-3d; }
+    .scr { width: 100%; height: 100%; border-radius: 42px; background: #FFF8F4; color: #101A28; overflow: hidden;
+      display: flex; flex-direction: column; align-items: center; padding: 56px 28px; gap: 26px; position: relative; }
+    .scr.dk { background: #1B2A3F; color: #FFFFFF; justify-content: center; }
+    .ph-h { font-weight: 800; font-size: 34px; }
+    .cal { display: grid; grid-template-columns: repeat(7, 34px); gap: 8px; }
+    .cal i { display: block; width: 34px; height: 34px; border-radius: 8px; background: #EADBDF; }
+    .ph-btn { padding: 14px 40px; border-radius: 999px; background: #1B2A3F; color: #FFFFFF; font-weight: 800; font-size: 30px; }
+    .ok { display: flex; align-items: center; gap: 16px; font-weight: 800; font-size: 30px; line-height: 1.1; opacity: 0;
+      background: #FFFFFF; border-radius: 18px; padding: 16px 20px; box-shadow: 0 10px 26px rgba(0,0,0,.18); }
+    .okc { width: 66px; height: 66px; border-radius: 50%; background: #1E9E5A; display: flex; align-items: center; justify-content: center; }
+    .lk { width: 180px; height: 180px; border-radius: 50%; background: #F7C531; display: flex; align-items: center; justify-content: center; }
+    .lk-t { font-weight: 900; font-size: 56px; line-height: 1.05; text-align: center; }
+    .hand { position: absolute; filter: drop-shadow(0 8px 14px rgba(0,0,0,.45)); opacity: 0; }
+    .ph-hand { right: -30px; top: 470px; }
+    .tapr { position: absolute; left: 50%; top: 50%; width: 130px; height: 130px; margin: -65px 0 0 -65px; border-radius: 50%;
+      border: 5px solid #F7C531; opacity: 0; }
+    .shield { filter: drop-shadow(0 16px 30px rgba(0,0,0,.45)); }
+    .pricebg { position: absolute; inset: 0; background: linear-gradient(180deg, #101A28 0%, #1B2A3F 50%, #101A28 100%); }
+    .pk { font-weight: 800; font-size: 54px; letter-spacing: .06em; }
+    .pk.big { font-size: 92px; }
+    .rm { font-weight: 900; font-size: 170px; line-height: 1; color: #F7C531; letter-spacing: -.01em; text-shadow: 0 12px 40px rgba(0,0,0,.4); }
+    .uline { width: 760px; height: 12px; border-radius: 6px; background: #F7C531; transform-origin: 0 50%; }
+    .plus { font-weight: 900; font-size: 90px; line-height: .8; color: #F7C531; text-shadow: 0 8px 24px rgba(0,0,0,.5); }
+    .btnw { position: relative; }
+    .ct-hand { right: -40px; top: 70px; }
+    .subs { position: absolute; left: 70px; right: 70px; top: 1395px; height: 100px; }
+    .cue { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+    .cue span { display: inline-block; padding: 14px 30px 16px; border-radius: 16px; background: rgba(16,16,18,.84);
+      font-weight: 700; font-size: 48px; line-height: 1.1; color: #FFFFFF; white-space: nowrap; box-shadow: 0 10px 26px rgba(0,0,0,.3); }
+    .cue b { color: #F7C531; font-weight: 800; }
+  </style>
+  <div id="root" data-composition-id="gfx" data-width="1080" data-height="1920" data-duration="79.45">
+    <div class="grp clip col" id="g-hook" data-start="0.3" data-duration="3.65" style="top:388px; height:370px"><img class="logo" id="hk-i" style="width:150px" src="assets/img/logo.png" alt="" />
+      <div class="lbl mr sm" id="hk0">CARI TANAH?</div>
+      <div class="lbl wh lg" id="hk1">NAK BUAT</div>
+      <div class="lbl yl xl" id="hk2" style="font-size:104px">HOMESTAY?</div></div>
+    <div class="grp clip col" id="g-inc" data-start="4.0" data-duration="2.2" style="top:400px; height:360px"><div class="incw"><div class="coins"><div class="coin" id="coin0" style="bottom:0px"></div><div class="coin" id="coin1" style="bottom:20px"></div><div class="coin" id="coin2" style="bottom:40px"></div><div class="coin" id="coin3" style="bottom:60px"></div><div class="coin" id="coin4" style="bottom:80px"></div></div><div class="bars"><div class="bar" id="bar0" style="height:60px"></div><div class="bar" id="bar1" style="height:100px"></div><div class="bar" id="bar2" style="height:145px"></div><div class="bar" id="bar3" style="height:195px"></div>
+      <svg class="arrow" viewBox="0 0 240 200" width="240" height="200"><path id="arr" d="M10 180 L80 120 L130 140 L225 30" fill="none" stroke="#F7C531" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+      <path id="arrh" d="M190 26 L228 26 L228 64" fill="none" stroke="#F7C531" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+      <div class="lbl mr md" id="inc-t" style="font-size:50px">TAMBAH <span class="y">SUMBER PENDAPATAN</span></div></div>
+    <div class="scn clip" id="s-concept" data-start="7.24" data-duration="4.46"><div class="bgblur"><img src="assets/img/render-2.jpg" alt="" /></div><div class="dim"></div>
+      <div class="stage"><div class="rc3d" id="rc0"><img src="assets/img/render-1.jpg" alt="" /></div><div class="rc3d" id="rc1"><img src="assets/img/render-2.jpg" alt="" /></div><div class="rc3d" id="rc2"><img src="assets/img/render-5.jpg" alt="" /></div></div></div>
+    <div class="grp clip col" id="g-concept-h" data-start="7.24" data-duration="4.46" style="top:410px; height:80px"><div class="lbl mr sm" id="cc-h">PILIHAN KONSEP HOMESTAY</div></div>
+    <div class="grp clip col" id="g-concept" data-start="7.24" data-duration="4.46" style="top:1250px; height:100px"><div class="chips"><div class="chip" id="ch0">SCANDINAVIAN</div><div class="chip" id="ch1">BALI</div>
+      <div class="chip" id="ch2">KOLAM RENANG</div></div></div>
+    <div class="grp clip col" id="g-strat" data-start="13.84" data-duration="3.06" style="top:420px; height:400px"><div class="pinw" id="st-pin"><svg viewBox="0 0 48 64" width="64" height="84"><path d="M24 1C11.3 1 1 11.3 1 24c0 16.5 23 39 23 39s23-22.5 23-39C47 11.3 36.7 1 24 1z" fill="#F7C531" stroke="#0E141D" stroke-width="2"/><circle cx="24" cy="24" r="8.5" fill="#1B2A3F"/></svg><div class="ring" id="st-ring"></div></div>
+      <div class="lbl wh lg" id="st1">PILIH LOKASI</div><div class="lbl yl xl" id="st2">STRATEGIK</div></div>
+    <div class="grp clip col" id="g-view" data-start="19.1" data-duration="4.0" style="top:420px; height:360px"><div class="ic-m" id="vw-i"><svg viewBox="0 0 48 48" width="70" height="70" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 40 17 18l9 12 6-8 14 18z"/><circle cx="36" cy="10" r="4"/></svg></div>
+      <div class="lbl mr lg" id="vw1" style="font-size:66px">VIEW <span class="y">CANTIK</span> &amp; ALAMI</div>
+      <div class="lbl wh md" id="vw2">HUTAN BUKIT-BUKAU</div></div>
+    <div class="scn clip" id="s-route" data-start="23.16" data-duration="2.88"><div class="kb"><img id="rt-bg" src="assets/img/aerial-angle.jpg" alt="" /></div><div class="dim l"></div></div>
+    <div class="grp clip col" id="g-route" data-start="23.16" data-duration="2.88" style="top:640px; height:620px"><div class="route" id="rt">
+        <div class="rt-a"><div class="rt-pin"><svg viewBox="0 0 48 64" width="40" height="52"><path d="M24 1C11.3 1 1 11.3 1 24c0 16.5 23 39 23 39s23-22.5 23-39C47 11.3 36.7 1 24 1z" fill="#1B2A3F"/><circle cx="24" cy="24" r="8.5" fill="#FFFFFF"/></svg></div><div class="rt-l">BANDAR<br/>MACHANG</div></div>
+        <div class="rt-line"><div class="rt-dash" id="rt-dash"></div><div class="rt-car" id="rt-car"><svg viewBox="0 0 48 48" width="64" height="64" fill="none" stroke="#0E141D" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 30l4-10c1-3 3-4 6-4h16c3 0 5 1 6 4l4 10"/><rect x="4" y="30" width="40" height="9" rx="3"/><circle cx="13" cy="40" r="3.5" fill="#1A1014"/><circle cx="35" cy="40" r="3.5" fill="#1A1014"/></svg></div></div>
+        <div class="rt-b"><div class="rt-home"><svg viewBox="0 0 48 48" width="64" height="64" fill="none" stroke="#0E141D" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22 24 6l20 16"/><path d="M9 19v24h30V19"/><path d="M20 43V31h8v12"/></svg></div><div class="rt-l">TANAH<br/>KITA</div></div>
+      </div>
+      <div class="big5" id="rt-5"><span class="y">5 MINIT</span></div><div class="lbl wh md" id="rt-s">DARI BANDAR MACHANG</div></div>
+    <div class="grp clip col" id="g-lots" data-start="27.1" data-duration="3.9" style="top:1000px; height:360px"><div class="lbl mr md" id="lt0">TINGGAL</div><div class="lbl yl lg" id="lt1">BEBERAPA LOT</div>
+      <div class="lbl wh md" id="lt2">SAHAJA LAGI!</div></div>
+    <div class="grp clip col" id="g-5101" data-start="31.24" data-duration="2.96" style="top:820px; height:220px"><div class="stat" id="ks"><div class="si"><svg viewBox="0 0 48 48" width="64" height="64" fill="none" stroke="#0E141D" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 32 24 22l20 10-20 10z"/><path d="M24 22V6"/><path d="M24 6l12 4-12 4" fill="#1A1014"/></svg></div><div><div class="sk">KELUASAN LOT BERMULA</div>
+      <div class="sv"><span class="y" id="n5101">5,101</span> <small>KPS</small></div></div></div></div>
+    <div class="scn clip" id="s-1400" data-start="35.0" data-duration="2.9"><div class="kb"><img id="r3" src="assets/img/render-3.jpg" alt="" /></div><div class="dim l"></div></div>
+    <div class="grp clip col" id="g-1400" data-start="35.75" data-duration="2.15" style="top:1030px; height:220px"><div class="stat" id="bs"><div class="si"><svg viewBox="0 0 48 48" width="64" height="64" fill="none" stroke="#0E141D" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22 24 6l20 16"/><path d="M9 19v24h30V19"/><path d="M20 43V31h8v12"/></svg></div><div><div class="sk">BINA RUMAH BERMULA</div>
+      <div class="sv"><span class="y" id="n1400">1,400</span> <small>KPS</small></div></div></div></div>
+    <div class="scn clip" id="s-custom" data-start="40.0" data-duration="3.6"><div class="bgblur"><img src="assets/img/render-4.jpg" alt="" /></div><div class="dim"></div>
+      <div class="cst"><div class="rc3d sm" id="cr1"><img src="assets/img/render-4.jpg" alt="" /></div>
+      <div class="planc" id="pl"><svg viewBox="0 0 300 220" width="380" height="279" fill="none" stroke="#0E141D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+        <path class="pl" d="M10 10 H290 V210 H10 Z"/><path class="pl" d="M150 10 V120 M10 120 H200 M200 120 V210 M150 60 H290"/>
+        <path class="pl" d="M60 120 v-26 M240 60 v28 M110 210 v-30"/><path class="pl" d="M40 150 h50 v40 h-50 z" stroke-width="3"/></svg></div></div></div>
+    <div class="grp clip col" id="g-custom" data-start="40.56" data-duration="3.04" style="top:420px; height:140px"><div class="lbl yl xl" id="cu1" style="font-size:96px">CUSTOM DESIGN</div></div>
+    <div class="grp clip col" id="g-custom2" data-start="41.85" data-duration="1.75" style="top:1240px; height:110px"><div class="lbl mr md" id="cu2">MENGIKUT CITA RASA</div></div>
+    <div class="scn clip" id="s-book" data-start="43.6" data-duration="2.36"><div class="bgblur"><img src="assets/img/render-5.jpg" alt="" /></div><div class="dim"></div></div>
+    <div class="grp clip col" id="g-book" data-start="43.6" data-duration="2.36" style="top:420px; height:760px"><div class="phone" id="ph"><div class="scr">
+        <div class="ph-h">Homestay Booking</div>
+        <div class="cal" id="cal"><i class="d" id=""></i><i class="d" id=""></i><i class="d" id=""></i><i class="d" id=""></i><i class="d" id=""></i><i class="d" id=""></i><i class="d" id=""></i><i class="d" id=""></i><i class="d" id=""></i><i class="d" id=""></i><i class="d" id=""></i><i class="d" id=""></i><i class="d" id=""></i><i class="d" id=""></i><i class="d" id=""></i><i class="d" id=""></i><i class="d" id=""></i><i class="d on" id="dsel"></i><i class="d" id=""></i><i class="d" id=""></i><i class="d" id=""></i><i class="d" id=""></i><i class="d" id=""></i><i class="d" id=""></i><i class="d" id=""></i><i class="d" id=""></i><i class="d" id=""></i><i class="d" id=""></i></div>
+        <div class="ph-btn" id="ph-btn">TEMPAH</div>
+        <div class="ok" id="ok"><div class="okc"><svg viewBox="0 0 48 48" width="46" height="46" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 25l9 9 19-20"/></svg></div><div>Tempahan<br/>Disahkan</div></div>
+      </div><div class="hand ph-hand" id="ph-hand"><svg viewBox="0 0 64 72" width="86" height="96"><path d="M22 6c0-3 2-5 5-5s5 2 5 5v24l3-1c3-1 6 1 6 4l8-2c3 0 5 2 5 5v14c0 10-7 20-19 20h-6c-7 0-11-3-14-8L4 44c-2-3-1-6 2-7 2-1 5 0 6 2l10 10z" fill="#FFFFFF" stroke="#0E141D" stroke-width="3.5" stroke-linejoin="round"/></svg></div></div></div>
+    <div class="grp clip col" id="g-book2" data-start="43.8" data-duration="2.16" style="top:1250px; height:110px"><div class="lbl wh md" id="bk1">MUDAH UNTUK <span class="mrt">BOOKING</span></div></div>
+    <div class="grp clip col" id="g-flood" data-start="48.2" data-duration="1.3" style="top:420px; height:450px"><div class="shield" id="fl-s"><svg viewBox="0 0 48 48" width="150" height="150" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4 7 10v12c0 11 7.5 18.5 17 22 9.5-3.5 17-11 17-22V10z" fill="#7A1530" stroke="#FFFFFF"/><path d="M16 24l6 6 10-11" stroke="#FFD400" stroke-width="5"/></svg></div>
+      <div class="lbl wh md" id="fl1">KAWASAN</div><div class="lbl yl xl" id="fl2" style="font-size:104px">BEBAS BANJIR</div></div>
+    <div class="grp clip col" id="g-5min" data-start="49.6" data-duration="2.1" style="top:400px; height:340px"><div class="row"><div class="ic-car" id="cr-i"><svg viewBox="0 0 48 48" width="64" height="64" fill="none" stroke="#0E141D" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 30l4-10c1-3 3-4 6-4h16c3 0 5 1 6 4l4 10"/><rect x="4" y="30" width="40" height="9" rx="3"/><circle cx="13" cy="40" r="3.5" fill="#1A1014"/><circle cx="35" cy="40" r="3.5" fill="#1A1014"/></svg></div><div class="lbl wh md" id="m1">HANYA</div></div>
+      <div class="lbl yl xl" id="m2">5 MINIT</div><div class="lbl mr md" id="m3">KE BANDAR</div></div>
+    <div class="scn clip" id="s-sesuai" data-start="52.5" data-duration="2.46"><div class="kb"><img id="r4" src="assets/img/render-4.jpg" alt="" /></div><div class="dim l"></div></div>
+    <div class="grp clip col" id="g-sesuai" data-start="52.9" data-duration="2.06" style="top:1000px; height:360px"><div class="ic-bed" id="sb-i"><svg viewBox="0 0 48 48" width="64" height="64" fill="none" stroke="#0E141D" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 38V12M4 30h40v8M44 30v-6c0-3-2-5-5-5H20v11"/><circle cx="12" cy="24" r="4"/></svg></div><div class="lbl wh md" id="sb1">SESUAI UNTUK</div>
+      <div class="lbl yl xl" id="sb2">HOMESTAY</div></div>
+    <div class="grp clip col" id="g-kj" data-start="55.77" data-duration="5.03" style="top:400px; height:340px"><div class="ic-homes" id="kj-i"><svg viewBox="0 0 48 48" width="64" height="64" fill="none" stroke="#0E141D" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 26 14 16l12 10"/><path d="M5 24v18h18V24"/><path d="M22 20 34 10l12 10"/><path d="M26 18v24h17V18"/></svg></div><div class="lbl wh md" id="kj1">KAWASAN KEJIRANAN</div>
+      <div class="lbl yl xl" id="kj2">COMPLETE</div></div>
+    <div class="grp clip col" id="g-pkg" data-start="63.49" data-duration="2.27" style="top:400px; height:340px"><div class="lbl mr lg" id="pk1">PAKEJ TANAH</div><div class="lbl wh md" id="pk2">BERSERTA</div>
+      <div class="lbl yl xl" id="pk3">BINA RUMAH</div></div>
+    <div class="scn clip" id="s-price" data-start="65.78" data-duration="5.32"><div class="pricebg"></div></div>
+    <div class="grp clip col" id="g-price" data-start="65.78" data-duration="5.32" style="top:560px; height:700px"><img class="logo" id="pr-l" src="assets/img/logo.png" alt="" /><div class="pk" id="pr0">BERMULA DENGAN</div><div class="pk big" id="pr1">HARGA</div>
+      <div class="rm" id="pr2"><span id="nrm">RM390,000</span></div><div class="uline" id="pr-u"></div>
+      <div class="pk" id="pr3">SAHAJA</div></div>
+    <div class="scn clip" id="s-link" data-start="71.12" data-duration="3.18"><div class="bgblur"><img src="assets/img/render-1.jpg" alt="" /></div><div class="dim"></div></div>
+    <div class="grp clip col" id="g-link" data-start="71.12" data-duration="3.18" style="top:420px; height:760px"><div class="phone dark" id="lp"><div class="scr dk"><div class="lk" id="lk"><svg viewBox="0 0 48 48" width="96" height="96" fill="none" stroke="#0E141D" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 28a8 8 0 0 0 12 1l6-6a8 8 0 0 0-11-11l-3 3"/><path d="M28 20a8 8 0 0 0-12-1l-6 6a8 8 0 0 0 11 11l3-3"/></svg></div>
+        <div class="lk-t">KLIK<br/>LINK<br/>DI BAWAH</div><div class="tapr" id="lk-r"></div></div>
+      <div class="hand ph-hand" id="lk-hand"><svg viewBox="0 0 64 72" width="86" height="96"><path d="M22 6c0-3 2-5 5-5s5 2 5 5v24l3-1c3-1 6 1 6 4l8-2c3 0 5 2 5 5v14c0 10-7 20-19 20h-6c-7 0-11-3-14-8L4 44c-2-3-1-6 2-7 2-1 5 0 6 2l10 10z" fill="#FFFFFF" stroke="#0E141D" stroke-width="3.5" stroke-linejoin="round"/></svg></div></div></div>
+    <div class="grp clip col" id="g-link2" data-start="71.55" data-duration="2.75" style="top:1250px; height:120px"><div class="lbl yl lg" id="lk1" style="font-size:68px">KLIK LINK DI BAWAH</div></div>
+    <div class="scn clip" id="s-fin" data-start="74.32" data-duration="3.4"><div class="kb"><img id="r5" src="assets/img/render-5.jpg" alt="" /></div><div class="dim l"></div></div>
+    <div class="grp clip col" id="g-fin" data-start="75.85" data-duration="1.87" style="top:420px; height:380px"><div class="lbl wh lg" id="fn1" style="font-size:76px">BUAT HOMESTAY</div><div class="plus" id="fn-p">+</div>
+      <div class="row"><div class="lbl yl lg" id="fn2" style="font-size:64px">TAMBAH PENDAPATAN</div></div></div>
+    <div class="grp clip col" id="g-cta" data-start="77.75" data-duration="1.7" style="top:400px; height:300px"><img class="logo" id="ct-l" src="assets/img/logo.png" alt="" /><div class="lbl wh md" id="ct1">KLIK LINK DI BAWAH</div><div class="btnw"><div class="lbl yl xl" id="ct2">SEKARANG!</div>
+      <div class="tapr" id="ct-r"></div><div class="hand ct-hand" id="ct-h"><svg viewBox="0 0 64 72" width="86" height="96"><path d="M22 6c0-3 2-5 5-5s5 2 5 5v24l3-1c3-1 6 1 6 4l8-2c3 0 5 2 5 5v14c0 10-7 20-19 20h-6c-7 0-11-3-14-8L4 44c-2-3-1-6 2-7 2-1 5 0 6 2l10 10z" fill="#FFFFFF" stroke="#0E141D" stroke-width="3.5" stroke-linejoin="round"/></svg></div></div></div>
+    <div class="subs" id="subs">
+      <div class="cue clip" id="cue0" data-start="0.15" data-duration="1.85"><span>Ada ke mana-mana orang</span></div>
+      <div class="cue clip" id="cue1" data-start="2" data-duration="0.8"><span>sini tengah cari tanah</span></div>
+      <div class="cue clip" id="cue2" data-start="2.8" data-duration="1.2"><span>nak buat <b>homestay?</b></span></div>
+      <div class="cue clip" id="cue3" data-start="4.0" data-duration="0.84"><span>Kiranya nak <b>tambah</b></span></div>
+      <div class="cue clip" id="cue4" data-start="4.84" data-duration="1.42"><span><b>sumber</b> <b>pendapatan</b> lah.</span></div>
+      <div class="cue clip" id="cue5" data-start="6.26" data-duration="1.56"><span>Ramai deh bila nak buat</span></div>
+      <div class="cue clip" id="cue6" data-start="7.82" data-duration="1.1"><span>homestay je, duk pilih</span></div>
+      <div class="cue clip" id="cue7" data-start="8.92" data-duration="0.91"><span>nak <b>Scandinavian</b> lah.</span></div>
+      <div class="cue clip" id="cue8" data-start="9.83" data-duration="1.41"><span><b>Bali</b> lah, ada <b>kolam</b> lah,</span></div>
+      <div class="cue clip" id="cue9" data-start="11.24" data-duration="0.53"><span>macam-macam.</span></div>
+      <div class="cue clip" id="cue10" data-start="11.77" data-duration="1.38"><span>Tapi pemilihan tanah pun</span></div>
+      <div class="cue clip" id="cue11" data-start="13.15" data-duration="1.41"><span>kena pilih hok</span></div>
+      <div class="cue clip" id="cue12" data-start="14.56" data-duration="0.76"><span><b>strategik,</b> tuan-puan.</span></div>
+      <div class="cue clip" id="cue13" data-start="15.32" data-duration="1.01"><span>Contohnya tanah sini</span></div>
+      <div class="cue clip" id="cue14" data-start="16.33" data-duration="0.6"><span>deh.</span></div>
+      <div class="cue clip" id="cue15" data-start="16.93" data-duration="1.07"><span>Ha, ni tanah ni.</span></div>
+      <div class="cue clip" id="cue16" data-start="18.0" data-duration="1.79"><span>Baru bangun pagi tengok</span></div>
+      <div class="cue clip" id="cue17" data-start="19.79" data-duration="0.75"><span><b>view-nya</b> dengan</span></div>
+      <div class="cue clip" id="cue18" data-start="20.54" data-duration="0.31"><span>comelnya.</span></div>
+      <div class="cue clip" id="cue19" data-start="20.85" data-duration="1.76"><span>Dengan <b>hutan</b> <b>bukit-bukau</b></span></div>
+      <div class="cue clip" id="cue20" data-start="22.61" data-duration="0.55"><span>gitu.</span></div>
+      <div class="cue clip" id="cue21" data-start="23.16" data-duration="1.54"><span><b>Lima</b> <b>minit</b> je dari</span></div>
+      <div class="cue clip" id="cue22" data-start="24.7" data-duration="1.34"><span><b>Bandar</b> <b>Machang.</b></span></div>
+      <div class="cue clip" id="cue23" data-start="26.04" data-duration="0.72"><span>Tuan-puan tahu dak?</span></div>
+      <div class="cue clip" id="cue24" data-start="26.76" data-duration="1.29"><span>Tinggal <b>beberapa</b> <b>lot</b> je</span></div>
+      <div class="cue clip" id="cue25" data-start="28.05" data-duration="1.14"><span>lagi tanah hok kita ada</span></div>
+      <div class="cue clip" id="cue26" data-start="29.28" data-duration="1.39"><span>Dan setiap keluasan lot</span></div>
+      <div class="cue clip" id="cue27" data-start="30.67" data-duration="1.52"><span>tu kan bermula dengan…</span></div>
+      <div class="cue clip" id="cue28" data-start="32.19" data-duration="2.05"><span><b>5,101</b> <b>kaki</b> <b>persegi.</b></span></div>
+      <div class="cue clip" id="cue29" data-start="34.24" data-duration="0.63"><span>Tuan-puan boleh buat</span></div>
+      <div class="cue clip" id="cue30" data-start="34.87" data-duration="0.88"><span>rumah pula bermula</span></div>
+      <div class="cue clip" id="cue31" data-start="35.75" data-duration="1.71"><span>dengan <b>1,400</b> <b>kaki</b></span></div>
+      <div class="cue clip" id="cue32" data-start="37.46" data-duration="0.5"><span><b>persegi.</b></span></div>
+      <div class="cue clip" id="cue33" data-start="37.96" data-duration="0.97"><span>Ha, pastu design pun</span></div>
+      <div class="cue clip" id="cue34" data-start="38.93" data-duration="1.15"><span>saya kata saat ni…</span></div>
+      <div class="cue clip" id="cue35" data-start="40.08" data-duration="1.24"><span>Memang boleh <b>custom.</b></span></div>
+      <div class="cue clip" id="cue36" data-start="41.32" data-duration="0.89"><span>Nak design lagu mana</span></div>
+      <div class="cue clip" id="cue37" data-start="42.21" data-duration="0.26"><span>biar…</span></div>
+      <div class="cue clip" id="cue38" data-start="42.47" data-duration="0.98"><span>Kalau buat tu biar orang</span></div>
+      <div class="cue clip" id="cue39" data-start="43.45" data-duration="0.25"><span>kenal.</span></div>
+      <div class="cue clip" id="cue40" data-start="43.7" data-duration="1.29"><span>Nak mari <b>booking</b> lalu</span></div>
+      <div class="cue clip" id="cue41" data-start="44.99" data-duration="0.97"><span>homestay tu.</span></div>
+      <div class="cue clip" id="cue42" data-start="45.96" data-duration="1.55"><span>Tengoklah kawasan dia</span></div>
+      <div class="cue clip" id="cue43" data-start="47.51" data-duration="1.61"><span>dengan kawasan <b>bebas</b></span></div>
+      <div class="cue clip" id="cue44" data-start="49.12" data-duration="0.48"><span><b>banjirnya.</b></span></div>
+      <div class="cue clip" id="cue45" data-start="49.6" data-duration="1.25"><span><b>Lima</b> <b>minit</b> je nak ke</span></div>
+      <div class="cue clip" id="cue46" data-start="50.85" data-duration="0.88"><span>Bandar Machang…</span></div>
+      <div class="cue clip" id="cue47" data-start="51.73" data-duration="1.37"><span>Pastu ha ni kalau buat</span></div>
+      <div class="cue clip" id="cue48" data-start="53.1" data-duration="0.6"><span>homestay…</span></div>
+      <div class="cue clip" id="cue49" data-start="53.7" data-duration="1.03"><span>Orang tak takut nak</span></div>
+      <div class="cue clip" id="cue50" data-start="54.73" data-duration="0.25"><span>mari.</span></div>
+      <div class="cue clip" id="cue51" data-start="54.98" data-duration="1.22"><span>Sebabnya tengok <b>kawasan</b></span></div>
+      <div class="cue clip" id="cue52" data-start="56.2" data-duration="1.48"><span><b>kejiranan</b> dia ada dah.</span></div>
+      <div class="cue clip" id="cue53" data-start="57.68" data-duration="1.39"><span>Memang <b>complete</b> banyak</span></div>
+      <div class="cue clip" id="cue54" data-start="59.07" data-duration="1.77"><span>dah rumah kawasan ni.</span></div>
+      <div class="cue clip" id="cue55" data-start="60.84" data-duration="1.32"><span>Harga, aa, untuk setiap</span></div>
+      <div class="cue clip" id="cue56" data-start="62.16" data-duration="1.33"><span>lot tu nanti harga dia…</span></div>
+      <div class="cue clip" id="cue57" data-start="63.49" data-duration="1.33"><span>Pakej rumah berserta</span></div>
+      <div class="cue clip" id="cue58" data-start="64.82" data-duration="1.58"><span>bina rumah ni bermula</span></div>
+      <div class="cue clip" id="cue59" data-start="66.4" data-duration="1.46"><span>dengan harga dia…</span></div>
+      <div class="cue clip" id="cue60" data-start="67.86" data-duration="2.09"><span><b>RM390,000.</b></span></div>
+      <div class="cue clip" id="cue61" data-start="69.95" data-duration="1.17"><span><b>Sahaja.</b></span></div>
+      <div class="cue clip" id="cue62" data-start="71.12" data-duration="1.45"><span>Tuan-puan <b>klik</b> <b>dulu</b> <b>link</b></span></div>
+      <div class="cue clip" id="cue63" data-start="72.57" data-duration="0.42"><span><b>bawah.</b></span></div>
+      <div class="cue clip" id="cue64" data-start="72.99" data-duration="1.33"><span>Kita try buat kira.</span></div>
+      <div class="cue clip" id="cue65" data-start="74.32" data-duration="1.17"><span>Yang pasti tuan-puan</span></div>
+      <div class="cue clip" id="cue66" data-start="75.49" data-duration="1.19"><span>boleh <b>buat</b> <b>homestay.</b></span></div>
+      <div class="cue clip" id="cue67" data-start="76.68" data-duration="1.07"><span>Boleh <b>tambah</b> <b>pendapatan.</b></span></div>
+      <div class="cue clip" id="cue68" data-start="77.75" data-duration="1.29"><span><b>Klik</b> <b>link</b> <b>bawah</b> selalu</span></div>
+      <div class="cue clip" id="cue69" data-start="79.04" data-duration="0.41"><span>deh. Bye-bye!</span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#hk-i", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "back.out(1.8)" }, 0.3);
+    tl.set("#hk0", { opacity: 0 }, 0);
+    tl.fromTo("#hk0", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.4, ease: "back.out(1.8)" }, 2.31);
+    tl.set("#hk1", { opacity: 0 }, 0);
+    tl.fromTo("#hk1", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.4, ease: "back.out(1.8)" }, 2.8);
+    tl.set("#hk2", { opacity: 0 }, 0);
+    tl.fromTo("#hk2", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.4, ease: "back.out(1.8)" }, 3.36);
+    tl.to("#g-hook", { opacity: 0, y: -18, duration: 0.22, ease: "power2.in" }, 3.72);
+    tl.fromTo("#g-inc .incw", { opacity: 0 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.3, ease: "expo.out" }, 4.0);
+    tl.fromTo("#coin0", { y: -260, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "bounce.out" }, 4.15);
+    tl.fromTo("#coin1", { y: -260, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "bounce.out" }, 4.27);
+    tl.fromTo("#coin2", { y: -260, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "bounce.out" }, 4.39);
+    tl.fromTo("#coin3", { y: -260, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "bounce.out" }, 4.51);
+    tl.fromTo("#coin4", { y: -260, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "bounce.out" }, 4.63);
+    tl.fromTo("#bar0", { scaleY: 0 }, { scaleY: 1, duration: 0.4, ease: "back.out(1.6)" }, 4.6);
+    tl.fromTo("#bar1", { scaleY: 0 }, { scaleY: 1, duration: 0.4, ease: "back.out(1.6)" }, 4.7);
+    tl.fromTo("#bar2", { scaleY: 0 }, { scaleY: 1, duration: 0.4, ease: "back.out(1.6)" }, 4.8);
+    tl.fromTo("#bar3", { scaleY: 0 }, { scaleY: 1, duration: 0.4, ease: "back.out(1.6)" }, 4.9);
+    tl.fromTo("#arr", { strokeDasharray: 330, strokeDashoffset: 330 }, { strokeDashoffset: 0, duration: 0.55, ease: "power2.out" }, 5.0);
+    tl.fromTo("#arrh", { opacity: 0 }, { opacity: 1, duration: 0.15 }, 5.45);
+    tl.set("#inc-t", { opacity: 0 }, 0);
+    tl.fromTo("#inc-t", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "expo.out" }, 4.45);
+    tl.to("#g-inc", { opacity: 0, y: -18, duration: 0.22, ease: "power2.in" }, 5.98);
+    tl.fromTo("#s-concept", { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.45, ease: "expo.out" }, 7.24);
+    tl.fromTo("#rc0", { opacity: 0, rotationY: -35, x: 120 }, { opacity: 1, rotationY: 0, x: 0, duration: 0.6, ease: "expo.out" }, 7.24);
+    tl.fromTo("#rc0 img", { scale: 1.0 }, { scale: 1.08, duration: 1.89, ease: "none" }, 7.24);
+    tl.to("#rc0", { opacity: 0, rotationY: 35, x: -120, duration: 0.4, ease: "power2.in" }, 8.577);
+    tl.fromTo("#rc1", { opacity: 0, rotationY: -35, x: 120 }, { opacity: 1, rotationY: 0, x: 0, duration: 0.6, ease: "expo.out" }, 8.727);
+    tl.fromTo("#rc1 img", { scale: 1.0 }, { scale: 1.08, duration: 1.89, ease: "none" }, 8.727);
+    tl.to("#rc1", { opacity: 0, rotationY: 35, x: -120, duration: 0.4, ease: "power2.in" }, 10.064);
+    tl.fromTo("#rc2", { opacity: 0, rotationY: -35, x: 120 }, { opacity: 1, rotationY: 0, x: 0, duration: 0.6, ease: "expo.out" }, 10.213);
+    tl.fromTo("#rc2 img", { scale: 1.0 }, { scale: 1.08, duration: 1.89, ease: "none" }, 10.213);
+    tl.fromTo("#cc-h", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "expo.out" }, 7.3);
+    tl.set("#ch0", { opacity: 0 }, 0);
+    tl.fromTo("#ch0", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.4, ease: "back.out(1.8)" }, 8.92);
+    tl.set("#ch1", { opacity: 0 }, 0);
+    tl.fromTo("#ch1", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.4, ease: "back.out(1.8)" }, 9.83);
+    tl.set("#ch2", { opacity: 0 }, 0);
+    tl.fromTo("#ch2", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.4, ease: "back.out(1.8)" }, 10.4);
+    tl.to("#g-concept-h", { opacity: 0, y: -18, duration: 0.22, ease: "power2.in" }, 11.48);
+    tl.to("#g-concept", { opacity: 0, y: -18, duration: 0.22, ease: "power2.in" }, 11.48);
+    tl.fromTo("#st-pin", { y: -160, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "bounce.out" }, 13.84);
+    tl.fromTo("#st-ring", { scale: 0.3, opacity: 0.9 }, { scale: 2.2, opacity: 0, duration: 1.0, ease: "power2.out", repeat: 1, immediateRender: false }, 14.3);
+    tl.set("#st1", { opacity: 0 }, 0);
+    tl.fromTo("#st1", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "expo.out" }, 14.05);
+    tl.set("#st2", { opacity: 0 }, 0);
+    tl.fromTo("#st2", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "back.out(1.8)" }, 14.3);
+    tl.to("#g-strat", { opacity: 0, y: -18, duration: 0.22, ease: "power2.in" }, 16.68);
+    tl.fromTo("#vw-i", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "back.out(1.8)" }, 19.1);
+    tl.fromTo("#vw-i path, #vw-i circle", { strokeDasharray: 160, strokeDashoffset: 160 }, { strokeDashoffset: 0, duration: 1.0, ease: "power2.out" }, 19.15);
+    tl.set("#vw1", { opacity: 0 }, 0);
+    tl.fromTo("#vw1", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "expo.out" }, 19.3);
+    tl.set("#vw2", { opacity: 0 }, 0);
+    tl.fromTo("#vw2", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "expo.out" }, 21.16);
+    tl.to("#g-view", { opacity: 0, y: -18, duration: 0.22, ease: "power2.in" }, 22.88);
+    tl.fromTo("#s-route", { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.45, ease: "expo.out" }, 23.16);
+    tl.fromTo("#rt-bg", { scale: 1.05 }, { scale: 1.15, duration: 2.9, ease: "none" }, 23.16);
+    tl.fromTo("#rt", { opacity: 0, scale: 0.8 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "expo.out" }, 23.2);
+    tl.fromTo("#rt-dash", { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "power2.out" }, 23.40);
+    tl.fromTo("#rt-car", { x: 0 }, { x: 330, duration: 1.4, ease: "power1.inOut" }, 23.90);
+    tl.set("#rt-5", { opacity: 0 }, 0);
+    tl.fromTo("#rt-5", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "back.out(1.8)" }, 24.0);
+    tl.set("#rt-s", { opacity: 0 }, 0);
+    tl.fromTo("#rt-s", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "expo.out" }, 24.36);
+    tl.to("#g-route", { opacity: 0, y: -18, duration: 0.22, ease: "power2.in" }, 25.82);
+    tl.fromTo("#lt0", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "expo.out" }, 27.1);
+    tl.set("#lt1", { opacity: 0 }, 0);
+    tl.fromTo("#lt1", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "back.out(1.8)" }, 27.18);
+    tl.set("#lt2", { opacity: 0 }, 0);
+    tl.fromTo("#lt2", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "expo.out" }, 28.05);
+    tl.to("#g-lots", { opacity: 0, y: -18, duration: 0.22, ease: "power2.in" }, 30.8);
+    tl.fromTo("#ks", { opacity: 0, scale: 0.8 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "expo.out" }, 31.24);
+    (() => { const o = { v: 0 }; tl.fromTo(o, { v: 0 }, { v: 5101, duration: 0.8, ease: "power3.out", onUpdate: () => { document.querySelector("#n5101").textContent = "" + Math.round(o.v).toLocaleString("en-US"); } }, 32.19); })();
+    tl.to("#g-5101", { opacity: 0, y: -18, duration: 0.22, ease: "power2.in" }, 34.0);
+    tl.fromTo("#s-1400", { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.45, ease: "expo.out" }, 35.0);
+    tl.fromTo("#r3", { scale: 1.02 }, { scale: 1.12, duration: 2.9, ease: "none" }, 35.0);
+    tl.fromTo("#bs", { opacity: 0, scale: 0.8 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "expo.out" }, 35.75);
+    (() => { const o = { v: 0 }; tl.fromTo(o, { v: 0 }, { v: 1400, duration: 0.8, ease: "power3.out", onUpdate: () => { document.querySelector("#n1400").textContent = "" + Math.round(o.v).toLocaleString("en-US"); } }, 36.57); })();
+    tl.to("#g-1400", { opacity: 0, y: -18, duration: 0.22, ease: "power2.in" }, 37.7);
+    tl.fromTo("#s-custom", { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.45, ease: "expo.out" }, 40.0);
+    tl.fromTo("#cr1", { rotationY: -30, opacity: 0, x: -80 }, { rotationY: -8, opacity: 1, x: 0, duration: 0.7, ease: "expo.out" }, 40.05);
+    tl.fromTo("#pl", { rotationY: 30, opacity: 0, x: 80 }, { rotationY: 8, opacity: 1, x: 0, duration: 0.7, ease: "expo.out" }, 40.35);
+    tl.fromTo("#pl .pl", { strokeDasharray: 1000, strokeDashoffset: 1000 }, { strokeDashoffset: 0, duration: 1.6, ease: "power2.inOut", stagger: 0.12 }, 40.6);
+    tl.fromTo("#cu1", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "back.out(1.8)" }, 40.56);
+    tl.fromTo("#cu2", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "expo.out" }, 41.85);
+    tl.to("#g-custom", { opacity: 0, y: -18, duration: 0.22, ease: "power2.in" }, 43.4);
+    tl.to("#g-custom2", { opacity: 0, y: -18, duration: 0.22, ease: "power2.in" }, 43.4);
+    tl.fromTo("#s-book", { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.45, ease: "expo.out" }, 43.6);
+    tl.fromTo("#ph", { rotationY: -28, rotationX: 10, opacity: 0, y: 60 }, { rotationY: -10, rotationX: 4, opacity: 1, y: 0, duration: 0.7, ease: "expo.out" }, 43.62);
+    tl.fromTo("#ph-hand", { opacity: 0, x: 80, y: 80 }, { opacity: 1, x: 0, y: 0, duration: 0.35, ease: "power3.out" }, 43.85);
+    tl.fromTo("#ph-hand", { scale: 1 }, { scale: 0.86, duration: 0.1, yoyo: true, repeat: 1, immediateRender: false }, 44.16);
+    tl.fromTo("#dsel", { backgroundColor: "#EADBDF" }, { backgroundColor: "#7A1530", duration: 0.15 }, 44.20);
+    tl.fromTo("#ok", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, 44.80);
+    tl.fromTo("#bk1", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "expo.out" }, 43.9);
+    tl.to("#g-book", { opacity: 0, y: -18, duration: 0.22, ease: "power2.in" }, 45.74);
+    tl.to("#g-book2", { opacity: 0, y: -18, duration: 0.22, ease: "power2.in" }, 45.74);
+    tl.fromTo("#fl-s", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "back.out(1.8)" }, 48.2);
+    tl.set("#fl1", { opacity: 0 }, 0);
+    tl.fromTo("#fl1", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "expo.out" }, 48.3);
+    tl.set("#fl2", { opacity: 0 }, 0);
+    tl.fromTo("#fl2", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "back.out(1.8)" }, 48.39);
+    tl.to("#fl-s", { y: -10, duration: 0.5, ease: "sine.inOut", yoyo: true, repeat: 1 }, 48.7);
+    tl.to("#g-flood", { opacity: 0, y: -18, duration: 0.22, ease: "power2.in" }, 49.32);
+    tl.fromTo("#cr-i", { x: -140, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: "expo.out" }, 49.60);
+    tl.fromTo("#m1", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "expo.out" }, 49.62);
+    tl.set("#m2", { opacity: 0 }, 0);
+    tl.fromTo("#m2", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "back.out(1.8)" }, 49.77);
+    tl.set("#m3", { opacity: 0 }, 0);
+    tl.fromTo("#m3", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "expo.out" }, 50.85);
+    tl.to("#g-5min", { opacity: 0, y: -18, duration: 0.22, ease: "power2.in" }, 51.5);
+    tl.fromTo("#s-sesuai", { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.45, ease: "expo.out" }, 52.5);
+    tl.fromTo("#r4", { scale: 1.02, x: 0 }, { scale: 1.14, x: -30, duration: 2.5, ease: "none" }, 52.5);
+    tl.fromTo("#sb-i", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "back.out(1.8)" }, 52.9);
+    tl.set("#sb1", { opacity: 0 }, 0);
+    tl.fromTo("#sb1", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "expo.out" }, 52.95);
+    tl.set("#sb2", { opacity: 0 }, 0);
+    tl.fromTo("#sb2", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "back.out(1.8)" }, 53.1);
+    tl.to("#g-sesuai", { opacity: 0, y: -18, duration: 0.22, ease: "power2.in" }, 54.76);
+    tl.fromTo("#kj-i", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "back.out(1.8)" }, 55.77);
+    tl.fromTo("#kj1", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "expo.out" }, 55.8);
+    tl.set("#kj2", { opacity: 0 }, 0);
+    tl.fromTo("#kj2", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "back.out(1.8)" }, 57.92);
+    tl.to("#g-kj", { opacity: 0, y: -18, duration: 0.22, ease: "power2.in" }, 60.58);
+    tl.fromTo("#pk1", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "back.out(1.8)" }, 63.49);
+    tl.set("#pk2", { opacity: 0 }, 0);
+    tl.fromTo("#pk2", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "expo.out" }, 64.04);
+    tl.set("#pk3", { opacity: 0 }, 0);
+    tl.fromTo("#pk3", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "back.out(1.8)" }, 64.43);
+    tl.to("#g-pkg", { opacity: 0, y: -18, duration: 0.22, ease: "power2.in" }, 65.56);
+    tl.fromTo("#s-price", { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.45, ease: "expo.out" }, 65.78);
+    tl.fromTo("#pr-l", { opacity: 0 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "expo.out" }, 65.8);
+    tl.fromTo("#pr0", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "expo.out" }, 65.8);
+    tl.set("#pr1", { opacity: 0 }, 0);
+    tl.fromTo("#pr1", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "expo.out" }, 67.03);
+    tl.set("#pr2", { opacity: 0 }, 0);
+    tl.fromTo("#pr2", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.5, ease: "back.out(1.8)" }, 67.86);
+    (() => { const o = { v: 0 }; tl.fromTo(o, { v: 0 }, { v: 390000, duration: 0.9, ease: "power3.out", onUpdate: () => { document.querySelector("#nrm").textContent = "RM" + Math.round(o.v).toLocaleString("en-US"); } }, 67.86); })();
+    tl.fromTo("#pr-u", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 68.6);
+    tl.set("#pr3", { opacity: 0 }, 0);
+    tl.fromTo("#pr3", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "back.out(1.8)" }, 69.95);
+    tl.fromTo("#pr2", { scale: 1 }, { scale: 1.06, duration: 0.18, yoyo: true, repeat: 1, immediateRender: false }, 69.95);
+    tl.to("#g-price", { opacity: 0, y: -18, duration: 0.22, ease: "power2.in" }, 70.9);
+    tl.fromTo("#s-link", { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.45, ease: "expo.out" }, 71.12);
+    tl.fromTo("#lp", { rotationY: 24, rotationX: 8, opacity: 0, y: 60 }, { rotationY: 8, rotationX: 3, opacity: 1, y: 0, duration: 0.7, ease: "expo.out" }, 71.14);
+    tl.fromTo("#lk", { rotation: -20, scale: 0.6 }, { rotation: 0, scale: 1, duration: 0.6, ease: "back.out(2)" }, 71.3);
+    tl.fromTo("#lk-hand", { opacity: 0, x: 80, y: 80 }, { opacity: 1, x: 0, y: 0, duration: 0.35, ease: "power3.out" }, 71.8);
+    tl.fromTo("#lk-hand", { scale: 1 }, { scale: 0.86, duration: 0.1, yoyo: true, repeat: 1, immediateRender: false }, 72.3);
+    tl.fromTo("#lk-r", { scale: 0.2, opacity: 0.9 }, { scale: 1.6, opacity: 0, duration: 0.55, ease: "power2.out", immediateRender: false }, 72.38);
+    tl.fromTo("#lk-hand", { scale: 1 }, { scale: 0.86, duration: 0.1, yoyo: true, repeat: 1, immediateRender: false }, 72.8);
+    tl.fromTo("#lk-r", { scale: 0.2, opacity: 0.9 }, { scale: 1.6, opacity: 0, duration: 0.55, ease: "power2.out", immediateRender: false }, 72.88);
+    tl.fromTo("#lk1", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "back.out(1.8)" }, 71.55);
+    tl.to("#g-link", { opacity: 0, y: -18, duration: 0.22, ease: "power2.in" }, 74.1);
+    tl.to("#g-link2", { opacity: 0, y: -18, duration: 0.22, ease: "power2.in" }, 74.1);
+    tl.fromTo("#s-fin", { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.45, ease: "expo.out" }, 74.32);
+    tl.fromTo("#r5", { scale: 1.12, x: 30 }, { scale: 1.02, x: 0, duration: 3.4, ease: "none" }, 74.32);
+    tl.fromTo("#fn1", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "back.out(1.8)" }, 75.85);
+    tl.set("#fn-p", { opacity: 0 }, 0);
+    tl.fromTo("#fn-p", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "back.out(1.8)" }, 76.4);
+    tl.set("#fn2", { opacity: 0 }, 0);
+    tl.fromTo("#fn2", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "back.out(1.8)" }, 76.68);
+    tl.to("#g-fin", { opacity: 0, y: -18, duration: 0.22, ease: "power2.in" }, 77.52);
+    tl.fromTo("#ct-l", { opacity: 0 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "expo.out" }, 77.75);
+    tl.fromTo("#ct1", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "back.out(1.8)" }, 77.75);
+    tl.set("#ct2", { opacity: 0 }, 0);
+    tl.fromTo("#ct2", { opacity: 0, scale: 0.4 }, { opacity: 1, y: 0, scale: 1, rotationX: 0, duration: 0.45, ease: "back.out(1.8)" }, 77.95);
+    tl.fromTo("#ct-h", { opacity: 0, x: 60, y: 60 }, { opacity: 1, x: 0, y: 0, duration: 0.3, ease: "power3.out" }, 78.15);
+    tl.fromTo("#ct-h", { scale: 1 }, { scale: 0.86, duration: 0.1, yoyo: true, repeat: 1, immediateRender: false }, 78.45);
+    tl.fromTo("#ct2", { scale: 1 }, { scale: 0.95, duration: 0.1, yoyo: true, repeat: 1, immediateRender: false }, 78.45);
+    tl.fromTo("#ct-r", { scale: 0.2, opacity: 0.9 }, { scale: 1.6, opacity: 0, duration: 0.55, ease: "power2.out", immediateRender: false }, 78.53);
+    tl.fromTo("#cue0 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 0.15);
+    tl.fromTo("#cue1 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 2);
+    tl.fromTo("#cue2 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 2.8);
+    tl.fromTo("#cue3 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 4.0);
+    tl.fromTo("#cue4 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 4.84);
+    tl.fromTo("#cue5 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 6.26);
+    tl.fromTo("#cue6 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 7.82);
+    tl.fromTo("#cue7 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 8.92);
+    tl.fromTo("#cue8 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 9.83);
+    tl.fromTo("#cue9 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 11.24);
+    tl.fromTo("#cue10 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 11.77);
+    tl.fromTo("#cue11 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 13.15);
+    tl.fromTo("#cue12 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 14.56);
+    tl.fromTo("#cue13 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 15.32);
+    tl.fromTo("#cue14 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 16.33);
+    tl.fromTo("#cue15 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 16.93);
+    tl.fromTo("#cue16 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 18.0);
+    tl.fromTo("#cue17 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 19.79);
+    tl.fromTo("#cue18 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 20.54);
+    tl.fromTo("#cue19 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 20.85);
+    tl.fromTo("#cue20 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 22.61);
+    tl.fromTo("#cue21 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 23.16);
+    tl.fromTo("#cue22 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 24.7);
+    tl.fromTo("#cue23 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 26.04);
+    tl.fromTo("#cue24 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 26.76);
+    tl.fromTo("#cue25 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 28.05);
+    tl.fromTo("#cue26 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 29.28);
+    tl.fromTo("#cue27 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 30.67);
+    tl.fromTo("#cue28 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 32.19);
+    tl.fromTo("#cue29 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 34.24);
+    tl.fromTo("#cue30 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 34.87);
+    tl.fromTo("#cue31 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 35.75);
+    tl.fromTo("#cue32 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 37.46);
+    tl.fromTo("#cue33 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 37.96);
+    tl.fromTo("#cue34 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 38.93);
+    tl.fromTo("#cue35 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 40.08);
+    tl.fromTo("#cue36 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 41.32);
+    tl.fromTo("#cue37 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 42.21);
+    tl.fromTo("#cue38 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 42.47);
+    tl.fromTo("#cue39 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 43.45);
+    tl.fromTo("#cue40 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 43.7);
+    tl.fromTo("#cue41 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 44.99);
+    tl.fromTo("#cue42 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 45.96);
+    tl.fromTo("#cue43 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 47.51);
+    tl.fromTo("#cue44 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 49.12);
+    tl.fromTo("#cue45 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 49.6);
+    tl.fromTo("#cue46 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 50.85);
+    tl.fromTo("#cue47 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 51.73);
+    tl.fromTo("#cue48 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 53.1);
+    tl.fromTo("#cue49 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 53.7);
+    tl.fromTo("#cue50 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 54.73);
+    tl.fromTo("#cue51 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 54.98);
+    tl.fromTo("#cue52 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 56.2);
+    tl.fromTo("#cue53 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 57.68);
+    tl.fromTo("#cue54 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 59.07);
+    tl.fromTo("#cue55 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 60.84);
+    tl.fromTo("#cue56 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 62.16);
+    tl.fromTo("#cue57 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 63.49);
+    tl.fromTo("#cue58 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 64.82);
+    tl.fromTo("#cue59 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 66.4);
+    tl.fromTo("#cue60 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 67.86);
+    tl.fromTo("#cue61 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 69.95);
+    tl.fromTo("#cue62 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 71.12);
+    tl.fromTo("#cue63 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 72.57);
+    tl.fromTo("#cue64 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 72.99);
+    tl.fromTo("#cue65 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 74.32);
+    tl.fromTo("#cue66 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 75.49);
+    tl.fromTo("#cue67 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 76.68);
+    tl.fromTo("#cue68 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 77.75);
+    tl.fromTo("#cue69 span", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.14, ease: "back.out(2)" }, 79.04);
+    window.__timelines["gfx"] = tl;
+  </script>
+</template>
