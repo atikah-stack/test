@@ -15,7 +15,6 @@ SHOTS = [
     # Handover
     ("s02", "IMG_0075.mov", 0.2, 2.6, 0.85, None),   # keys on the tray, close-up
     ("s03", "IMG_0054.mov", 0.0, 2.2, 1, 0.5),       # signing, close-up
-    ("s04", "IMG_0073.mov", 0.2, 2.6, 1, 0.5),       # choosing the key
     ("s05", "IMG_0092.MOV", 0.0, 2.8, 1, 0.9),       # Tahniah board handed over
     ("s06", "IMG_0081.mov", 0.0, 2.4, 1, 0.6),       # key turns in the front door
     # Bungalow reveal
@@ -43,18 +42,19 @@ for s in SHOTS:
     times.append(round(t, 2))
     t += s[3] - FADE
 video_end = round(times[-1] + SHOTS[-1][3], 2)
+IDX = {s[0]: i for i, s in enumerate(SHOTS)}
 TOTAL = round(video_end + 1.0, 2)
 
 # Graphics slots (start, duration)
 HOOK = (0.0, 4.5)
-CAPTION = (times[1] + 0.2, 3.0)
-IMPIAN = (times[6] + 0.3, 3.2)
-CLOSING = (times[15] + 0.3, 3.4)
-OUTRO = (times[16] + 1.9, TOTAL - (times[16] + 1.9))
+CAPTION = (times[IDX["s02"]] + 0.2, 3.0)
+IMPIAN = (times[IDX["s07"]] + 0.3, 3.2)
+CLOSING = (times[IDX["s16"]] + 0.3, 3.4)
+OUTRO = (times[IDX["s17"]] + 1.9, TOTAL - (times[IDX["s17"]] + 1.9))
 
 SFX = [
     ("x-hook", "whoosh-short.mp3", 0.05, 0.6, 0.22),
-    ("x-key", "impact-bass-1.mp3", times[1], 2.1, 0.22),
+    ("x-key", "impact-bass-1.mp3", times[IDX["s02"]], 2.1, 0.22),
     ("x-impian", "whoosh.mp3", IMPIAN[0], 0.6, 0.2),
     ("x-close", "whoosh-short.mp3", CLOSING[0], 0.6, 0.2),
     ("x-logo", "chime.mp3", OUTRO[0] + 0.2, 2.5, 0.25),
@@ -108,7 +108,7 @@ rows.append(host("closing", CLOSING, 63, 5))
 rows.append(host("outro", OUTRO, 95, 7))
 
 js_shots = json.dumps([[f"#{s[0]}", times[i], s[3]] for i, s in enumerate(SHOTS)])
-rot = SHOTS[6]
+rot = SHOTS[IDX["s07"]]
 
 html = f"""<!doctype html>
 <html lang="ms" data-resolution="portrait">
@@ -140,8 +140,8 @@ html = f"""<!doctype html>
         if (s > 0) tl.fromTo(sel, {{ opacity: 0 }}, {{ opacity: 1, duration: {FADE}, ease: "sine.inOut" }}, s);
       }});
       // Exterior: slow pan across the facade (local y is screen x after the turn).
-      tl.fromTo("#s07", {{ y: 520, opacity: 0 }}, {{ y: -420, duration: {rot[3]}, ease: "sine.inOut" }}, {times[6]});
-      tl.to("#s07", {{ opacity: 1, duration: {FADE}, ease: "sine.inOut" }}, {times[6]});
+      tl.fromTo("#s07", {{ y: 520, opacity: 0 }}, {{ y: -420, duration: {rot[3]}, ease: "sine.inOut" }}, {times[IDX["s07"]]});
+      tl.to("#s07", {{ opacity: 1, duration: {FADE}, ease: "sine.inOut" }}, {times[IDX["s07"]]});
       tl.fromTo("#fade", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.6, ease: "sine.in" }}, {round(video_end - 0.6, 2)});
       window.__timelines["main"] = tl;
     </script>
@@ -236,7 +236,7 @@ OUTRO_HTML = f"""<template>
 """
 
 scenes = {
-    "hook": heading("hook", "SESI PENYERAHAN KUNCI", "BANGLO PN IZRA", 1130, HOOK[1], sizes=("66px", "104px"), tag="Klien Mahligai Idaman"),
+    "hook": heading("hook", "SESI PENYERAHAN KUNCI", "BANGLO PN IZRA", 1130, HOOK[1], sizes=("66px", "104px"), tag="Kok Lanas, Kelantan"),
     "impian": heading("impian", "IMPIAN KINI", "JADI KENYATAAN", 1120, IMPIAN[1], sizes=("84px", "92px")),
     "closing": heading("closing", "SELAMAT MENDUDUKI", "RUMAH IDAMAN", 1300, CLOSING[1], sizes=("72px", "100px")),
     "caption": CAPTION_HTML,
