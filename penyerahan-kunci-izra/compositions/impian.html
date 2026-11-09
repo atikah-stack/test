@@ -1,0 +1,27 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Poppins",sans-serif; }
+    .block { position:absolute; left:60px; right:60px; display:flex; flex-direction:column; align-items:center; text-align:center; }
+    .l1, .l2 { font-weight:900; text-transform:uppercase; line-height:1.02; letter-spacing:0.005em;
+      text-shadow:0 6px 22px rgba(0,0,0,.55), 0 2px 5px rgba(0,0,0,.5); }
+    .l1 { color:#FFFFFF; font-size:var(--l1, 64px); }
+    .l2 { color:#F5C34B; font-size:var(--l2, 96px); margin-top:4px; }
+    .tag { margin-top:26px; padding:12px 32px 14px; border-radius:40px; background:rgba(0,0,0,.55);
+      color:#FFFFFF; font-weight:600; font-size:34px; letter-spacing:0.01em; }
+
+    #impian-block { top:1120px; --l1:84px; --l2:92px; }
+  </style>
+  <div id="root" data-composition-id="impian" data-width="1080" data-height="1920">
+    <div id="impian-block" class="block clip" data-start="0" data-duration="3.2" data-track-index="0">
+      <div id="impian-l1" class="l1">IMPIAN KINI</div>
+      <div id="impian-l2" class="l2">JADI KENYATAAN</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#impian-l1", { opacity:0, y:28, scale:0.95 }, { opacity:1, y:0, scale:1, duration:0.7, ease:"power2.out" }, 0);
+    tl.fromTo("#impian-l2", { opacity:0, y:28, scale:0.95 }, { opacity:1, y:0, scale:1, duration:0.7, ease:"power2.out" }, 0.18);
+    tl.to("#impian-block", { opacity:0, duration:0.4, ease:"sine.in" }, 2.75);
+    window.__timelines["impian"] = tl;
+  </script>
+</template>

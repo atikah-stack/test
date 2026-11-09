@@ -1,0 +1,20 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; }
+    #logo-card { position:absolute; left:250px; top:340px; width:580px; padding:44px 50px; border-radius:36px;
+      background:#FFFFFF; box-shadow:0 18px 60px rgba(0,0,0,.35); }
+    #logo-img { display:block; width:480px; height:auto; }
+  </style>
+  <div id="root" data-composition-id="outro" data-width="1080" data-height="1920">
+    <div id="logo-card" class="clip" data-start="0" data-duration="2.65" data-track-index="0">
+      <img id="logo-img" src="assets/brand/logo-mi.png" alt="Mahligai Idaman" />
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#logo-card", { opacity:0, y:24, scale:0.95 }, { opacity:1, y:0, scale:1, duration:0.8, ease:"power2.out" }, 0);
+    // Once the picture fades to black, settle the logo to the centre.
+    tl.to("#logo-card", { y:420, duration:0.9, ease:"power2.inOut" }, 1.05);
+    window.__timelines["outro"] = tl;
+  </script>
+</template>
