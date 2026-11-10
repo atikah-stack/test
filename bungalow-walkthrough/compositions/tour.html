@@ -1,0 +1,92 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #0d0f12; }
+    #tour-bg { position: absolute; inset: 0; }
+    #tour-bg img { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    #tour-bg .shade { position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(9,11,14,.66) 0%, rgba(9,11,14,.5) 30%, rgba(9,11,14,.32) 50%, rgba(9,11,14,.55) 68%, rgba(9,11,14,.82) 100%); }
+    .shot { position: absolute; inset: 0; overflow: hidden; }
+    /* Each image is laid out in its 1920x1080 source space; the camera moves the .cam wrapper. */
+    .cam { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; }
+    .cam img { display: block; width: 1920px; height: 1080px; }
+    /* Wide framed shots melt into the backdrop at top and bottom instead of showing a hard edge. */
+    .feather img {
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.35) 8%, rgba(0,0,0,.8) 15%, #000 22%, #000 78%, rgba(0,0,0,.8) 85%, rgba(0,0,0,.35) 92%, transparent 100%);
+      mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.35) 8%, rgba(0,0,0,.8) 15%, #000 22%, #000 78%, rgba(0,0,0,.8) 85%, rgba(0,0,0,.35) 92%, transparent 100%);
+    }
+  </style>
+  <div id="root" data-composition-id="tour" data-width="1080" data-height="1920">
+    <div id="tour-bg" class="clip" data-start="0" data-duration="30" data-track-index="0" style="z-index: 1">
+      <img src="assets/bg-front.jpg" alt="" />
+      <div class="shade"></div>
+    </div>
+
+    <!-- 1. Grand reveal: front elevation, wide to entrance -->
+    <div id="shot-a" class="shot clip feather" data-start="0" data-duration="5.6" data-track-index="1" style="z-index: 2">
+      <div id="cam-a" class="cam"><img src="assets/v2.jpg" alt="Front elevation" /></div>
+    </div>
+    <!-- 2. Right side: front-right view truck towards the car porch -->
+    <div id="shot-b" class="shot clip" data-start="4.6" data-duration="3.8" data-track-index="2" style="z-index: 3">
+      <div id="cam-b" class="cam"><img src="assets/v4.jpg" alt="Front right view" /></div>
+    </div>
+    <!-- 2b. Right 45-degree: two-car porch -->
+    <div id="shot-c" class="shot clip" data-start="7.4" data-duration="3.4" data-track-index="3" style="z-index: 4">
+      <div id="cam-c" class="cam"><img src="assets/v3.jpg" alt="Right 45 degree view" /></div>
+    </div>
+    <!-- 3. Entrance detail: left perspective push-in -->
+    <div id="shot-d" class="shot clip" data-start="9.9" data-duration="3.4" data-track-index="4" style="z-index: 5">
+      <div id="cam-d" class="cam"><img src="assets/v1.jpg" alt="Front left view" /></div>
+    </div>
+    <!-- 3b. Entrance detail: front push-in on the stone columns and door -->
+    <div id="shot-e" class="shot clip" data-start="12.4" data-duration="3.2" data-track-index="5" style="z-index: 6">
+      <div id="cam-e" class="cam"><img src="assets/v2.jpg" alt="Front entrance" /></div>
+    </div>
+    <!-- 4. Elevated drone: front-left aerial, rising -->
+    <div id="shot-f" class="shot clip" data-start="14.7" data-duration="4.9" data-track-index="6" style="z-index: 7">
+      <div id="cam-f" class="cam"><img src="assets/v6.jpg" alt="Elevated front left view" /></div>
+    </div>
+    <!-- 4b. Elevated drone: front-right aerial -->
+    <div id="shot-g" class="shot clip" data-start="18.6" data-duration="5.0" data-track-index="7" style="z-index: 8">
+      <div id="cam-g" class="cam"><img src="assets/v5.jpg" alt="Elevated front right view" /></div>
+    </div>
+    <!-- 5. Hero: front elevation dolly-out and hold -->
+    <div id="shot-h" class="shot clip feather" data-start="22.6" data-duration="7.4" data-track-index="8" style="z-index: 9">
+      <div id="cam-h" class="cam"><img src="assets/v2.jpg" alt="Front elevation hero" /></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const W = 1080, H = 1920, IW = 1920, IH = 1080;
+      // Camera = the image point (cx, cy) held at screen centre, at scale s.
+      // Full-bleed shots clamp the point so the image always covers the frame.
+      function cam(cx, cy, s, cover) {
+        if (cover) {
+          const hx = W / 2 / s, hy = H / 2 / s;
+          cx = Math.min(Math.max(cx, hx), IW - hx);
+          cy = Math.min(Math.max(cy, hy), IH - hy);
+        }
+        return { x: W / 2 - cx * s, y: H / 2 - cy * s, scale: s };
+      }
+      const DISSOLVE = 0.7;
+      // [shot, start, duration, from, to, ease, cover]
+      const shots = [
+        ["a", 0.0, 5.6, [960, 545, 0.575], [815, 470, 1.35], "power2.in", false],
+        ["b", 4.6, 3.8, [725, 540, 1.8], [1430, 540, 1.82], "sine.inOut", true],
+        ["c", 7.4, 3.4, [1230, 560, 1.8], [1480, 560, 1.9], "sine.inOut", true],
+        ["d", 9.9, 3.4, [880, 520, 1.85], [905, 600, 2.12], "sine.inOut", true],
+        ["e", 12.4, 3.2, [815, 560, 2.05], [815, 610, 2.28], "sine.inOut", true],
+        ["f", 14.7, 4.9, [520, 640, 2.1], [1000, 520, 1.82], "sine.inOut", true],
+        ["g", 18.6, 5.0, [780, 520, 1.82], [1330, 540, 1.86], "sine.inOut", true],
+        ["h", 22.6, 5.6, [880, 545, 2.05], [960, 545, 0.575], "power2.inOut", false],
+      ];
+      const tl = gsap.timeline({ paused: true });
+      shots.forEach(([id, start, dur, from, to, ease, cover], i) => {
+        tl.fromTo("#cam-" + id, cam(...from, cover), { ...cam(...to, cover), duration: dur, ease: ease }, start);
+        if (i > 0) {
+          tl.fromTo("#shot-" + id, { opacity: 0 }, { opacity: 1, duration: DISSOLVE, ease: "sine.inOut" }, start);
+        }
+      });
+      window.__timelines["tour"] = tl;
+    })();
+  </script>
+</template>

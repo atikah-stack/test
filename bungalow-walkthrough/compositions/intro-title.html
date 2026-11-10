@@ -1,0 +1,27 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: "Montserrat", sans-serif; }
+    .ttl { position: absolute; left: 90px; right: 90px; top: 330px; display: flex; flex-direction: column; align-items: center; }
+    .l1 { color: #ffffff; font-weight: 700; font-size: 52px; letter-spacing: 0.08em; white-space: nowrap;
+      text-shadow: 0 4px 18px rgba(0, 0, 0, 0.5); }
+    .rule { width: 120px; height: 3px; margin: 26px 0 22px; background: #f6c343; transform-origin: 50% 50%; }
+    .l2 { color: #f6c343; font-weight: 800; font-size: 104px; letter-spacing: 0.02em; line-height: 1; white-space: nowrap;
+      text-shadow: 0 4px 18px rgba(0, 0, 0, 0.5); }
+  </style>
+  <div id="root" data-composition-id="intro-title" data-width="1080" data-height="1920">
+    <div id="it-wrap" class="ttl clip" data-start="0" data-duration="3" data-track-index="0">
+      <div id="it-l1" class="l1" data-var-text="line1">ENGLISH STYLE BUNGALOW</div>
+      <div id="it-rule" class="rule"></div>
+      <div id="it-l2" class="l2" data-var-text="line2">2,785 SQ FT</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // On screen from frame 0 (the thumbnail); only the gold rule draws in.
+    tl.fromTo("#it-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "expo.out" }, 0.1);
+    tl.fromTo("#it-l1", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.22, ease: "power2.in" }, 2.5);
+    tl.fromTo("#it-rule", { opacity: 1 }, { opacity: 0, duration: 0.2, ease: "power2.in" }, 2.55);
+    tl.fromTo("#it-l2", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.22, ease: "power2.in" }, 2.6);
+    window.__timelines["intro-title"] = tl;
+  </script>
+</template>
