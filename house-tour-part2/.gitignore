@@ -3,3 +3,4 @@ renders/
 node_modules/
 .transcode-cache/
 .media/cache/
+assets/footage/tour.mp4
