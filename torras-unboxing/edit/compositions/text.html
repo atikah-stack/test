@@ -1,0 +1,79 @@
+<template>
+  <style>
+    @font-face { font-family: "DM Sans"; font-weight: 400; src: url("assets/fonts/dm-sans-latin-400-normal.woff2") format("woff2"); }
+    @font-face { font-family: "DM Sans"; font-weight: 500; src: url("assets/fonts/dm-sans-latin-500-normal.woff2") format("woff2"); }
+    @font-face { font-family: "DM Sans"; font-weight: 600; src: url("assets/fonts/dm-sans-latin-600-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Noto Color Emoji"; src: url("assets/fonts/NotoColorEmoji.ttf") format("truetype"); }
+    #root { position: absolute; inset: 0; font-family: "DM Sans", "Noto Color Emoji", sans-serif; }
+    .cap { position: absolute; left: 60px; right: 60px; top: 200px; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
+    .ln { color: #fff8ee; font-weight: 500; font-size: 54px; line-height: 1.18; letter-spacing: -0.01em; white-space: nowrap;
+      text-shadow: 0 2px 16px rgba(40, 25, 20, 0.55), 0 1px 3px rgba(40, 25, 20, 0.45); }
+    .ln.big { font-size: 60px; font-weight: 600; }
+    .ln.blush { color: #f8d6d8; }
+    .w { display: inline-block; }
+    .pill { display: inline-flex; align-items: center; gap: 12px; padding: 14px 28px; border-radius: 999px;
+      background: rgba(255, 248, 238, 0.86); color: #5a4038; font-weight: 600; font-size: 34px; letter-spacing: 0.01em; white-space: nowrap;
+      box-shadow: 0 8px 24px rgba(60, 35, 30, 0.18); }
+    .dot { width: 12px; height: 12px; border-radius: 50%; background: #e9a8ae; }
+    .small { color: #fff8ee; font-weight: 500; font-size: 36px; margin-top: 14px; white-space: nowrap;
+      text-shadow: 0 2px 12px rgba(40, 25, 20, 0.45); }
+  </style>
+  <div id="root" data-composition-id="text" data-width="1080" data-height="1920">
+    <div id="t-hook" class="cap clip" data-start="0" data-duration="2.45" data-track-index="0">
+      <div class="ln big" id="t-hook-1">Okay… clear case ni cantik gila</div>
+      <div class="ln big" id="t-hook-2">bila kena sunlight 👀✨</div>
+    </div>
+    <div id="t-unbox" class="cap clip" data-start="2.4" data-duration="2.6" data-track-index="0">
+      <div class="ln" id="t-unbox-1"><span class="w">unboxing</span> <span class="w">my</span> <span class="w">new</span> <span class="w">TORRAS</span> <span class="w">case</span> <span class="w blush">♡</span></div>
+    </div>
+    <div id="t-clear" class="cap clip" data-start="5.4" data-duration="3.6" data-track-index="0">
+      <div class="ln" id="t-clear-1"><span class="w">the</span> <span class="w">crystal</span> <span class="w">clear</span> <span class="w">finish</span> <span class="w">✨</span></div>
+    </div>
+    <div id="t-colour" class="cap clip" data-start="10.25" data-duration="2.8" data-track-index="0">
+      <div class="ln" id="t-colour-1">Still showing off</div>
+      <div class="ln blush" id="t-colour-2">my phone colour 🤍</div>
+    </div>
+    <div id="t-cam" class="cap clip" data-start="13.3" data-duration="1.25" data-track-index="0">
+      <div class="pill" id="t-cam-1"><span class="dot"></span>Camera-area protection</div>
+    </div>
+    <div id="t-mag" class="cap clip" data-start="14.75" data-duration="1.5" data-track-index="0">
+      <div class="pill" id="t-mag-1"><span class="dot"></span>Magnetic compatible</div>
+    </div>
+    <div id="t-pretty" class="cap clip" data-start="18.5" data-duration="3.4" data-track-index="0">
+      <div class="ln big" id="t-pretty-1"><span class="w">Simple.</span> <span class="w">Clear.</span> <span class="w blush">So pretty. ✨</span></div>
+    </div>
+    <div id="t-cta" class="cap clip" data-start="22.35" data-duration="2.75" data-track-index="0">
+      <div class="ln big" id="t-cta-1">Team clear case juga? 🤍</div>
+      <div class="small" id="t-cta-2">Link dekat bakul kuning 🛒</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const vars = (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {};
+      if (vars.showCta === false) document.getElementById("t-cta-2").style.display = "none";
+      const tl = gsap.timeline({ paused: true });
+      const blurIn = (sel, at, stagger) =>
+        tl.fromTo(sel, { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.14, ease: "power2.out", stagger: stagger || 0 }, at);
+      const blurOut = (sel, at) =>
+        tl.fromTo(sel, { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(6px)", duration: 0.18, ease: "power2.in" }, at);
+      // Hook is on screen from frame 0 (thumbnail); it only leaves.
+      blurOut("#t-hook-1, #t-hook-2", 2.22);
+      blurIn("#t-unbox-1 .w", 2.4, 0.07);
+      blurOut("#t-unbox-1", 4.78);
+      blurIn("#t-clear-1 .w", 5.4, 0.08);
+      blurOut("#t-clear-1", 8.78);
+      blurIn("#t-colour-1", 10.25);
+      blurIn("#t-colour-2", 10.45);
+      blurOut("#t-colour-1, #t-colour-2", 12.84);
+      tl.fromTo("#t-cam-1", { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.4)" }, 13.3);
+      blurOut("#t-cam-1", 14.35);
+      tl.fromTo("#t-mag-1", { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(1.4)" }, 14.75);
+      blurOut("#t-mag-1", 16.05);
+      blurIn("#t-pretty-1 .w", 18.5, 0.35);
+      blurOut("#t-pretty-1", 21.7);
+      blurIn("#t-cta-1", 22.35);
+      blurIn("#t-cta-2", 22.75);
+      window.__timelines["text"] = tl;
+    })();
+  </script>
+</template>
