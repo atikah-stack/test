@@ -1,0 +1,36 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Montserrat",sans-serif; color:#fff; }
+    .y { color:#f6c343; }
+    .hd { position:absolute; left:80px; right:80px; top:320px; text-align:center; font-weight:900; line-height:1.02;
+      text-shadow:0 5px 18px rgba(0,0,0,.55), 0 2px 4px rgba(0,0,0,.45); }
+    .hd div { white-space:nowrap; }
+    .hg { position:absolute; left:20px; right:20px; top:260px; height:340px; border-radius:50%; pointer-events:none;
+      background:radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0,0,0,.42) 0%, rgba(0,0,0,.2) 55%, rgba(0,0,0,0) 100%); }
+    .pill { position:absolute; display:inline-flex; align-items:center; gap:12px; padding:12px 24px; border-radius:50px; background:rgba(0,0,0,.55);
+      font-weight:800; font-size:36px; white-space:nowrap; text-shadow:0 2px 6px rgba(0,0,0,.35); }
+    .pill svg { width:40px; height:40px; color:#f6c343; }
+    .tag { position:absolute; display:inline-flex; align-items:center; gap:10px; padding:10px 22px; border-radius:40px; background:#f6c343; color:#1b1b1b;
+      font-weight:800; font-size:32px; white-space:nowrap; box-shadow:0 8px 20px rgba(0,0,0,.28); }
+    .tag svg { width:34px; height:34px; color:#1b1b1b; }
+    svg.ptr { position:absolute; left:0; top:0; width:1080px; height:1920px; overflow:visible; pointer-events:none; }
+</style>
+  <div id="root" data-composition-id="shower" data-width="1080" data-height="1920">
+    <div id="shower-w0" class="clip" data-start="0" data-duration="4.6" data-track-index="0" style="position:absolute; inset:0">
+      <svg class="ptr" viewBox="0 0 1080 1920" aria-hidden="true">
+        <defs><marker id="sh-p-m" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#f6c343"/></marker></defs>
+        <line id="sh-p" x1="520" y1="560" x2="430" y2="380" stroke="#f6c343" stroke-width="7" stroke-linecap="round" marker-end="url(#sh-p-m)" stroke-dasharray="201" stroke-dashoffset="201" style="filter:drop-shadow(0 2px 4px rgba(0,0,0,.45))"/>
+        <circle id="sh-p-c" cx="430" cy="380" r="18" fill="none" stroke="#f6c343" stroke-width="4" opacity="0"/>
+      </svg>
+      <div id="sh-t" class="tag" style="left:420px; top:560px"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2s7 7.6 7 12.5A7 7 0 0 1 5 14.5C5 9.6 12 2 12 2z"/></svg>SHOWER HEAD</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#sh-p", { attr:{ "stroke-dashoffset": 201 } }, { attr:{ "stroke-dashoffset": 0 }, duration:0.45, ease:"power2.out" }, 0.2);
+    tl.fromTo("#sh-p-c", { opacity:0.9, attr:{ r:10 } }, { opacity:0, attr:{ r:40 }, duration:0.8, ease:"sine.out" }, 0.6000000000000001);
+    tl.fromTo("#sh-t", { opacity:0, scale:0.8 }, { opacity:1, scale:1, duration:0.38, ease:"back.out(1.8)" }, 0);
+    tl.to("#shower-w0", { opacity:0, duration:0.3, ease:"sine.in" }, 4.25);
+    window.__timelines["shower"] = tl;
+  </script>
+</template>
