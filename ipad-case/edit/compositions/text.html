@@ -1,0 +1,100 @@
+<template>
+  <style>
+    @font-face { font-family: "Manrope"; font-weight: 800; src: url("assets/fonts/manrope-latin-800-normal.woff2") format("woff2"); }
+    @font-face { font-family: "DM Sans"; font-weight: 500; src: url("assets/fonts/dm-sans-latin-500-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Cormorant Garamond"; font-style: italic; font-weight: 500; src: url("assets/fonts/cormorant-garamond-latin-500-italic.woff2") format("woff2"); }
+    @font-face { font-family: "Noto Color Emoji"; src: url("assets/fonts/NotoColorEmoji.ttf") format("truetype"); }
+    #root { position: absolute; inset: 0; color: #fff; }
+    .blk { position: absolute; left: 130px; right: 130px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    @font-face { font-family: "Cormorant Garamond"; font-style: italic; font-weight: 600; src: url("assets/fonts/cormorant-garamond-latin-600-italic.woff2") format("woff2"); }
+    .hd { font-family: "Cormorant Garamond", "Noto Color Emoji", serif; font-style: italic; font-weight: 600; font-size: 84px; line-height: 1.02; letter-spacing: 0; white-space: nowrap;
+      text-shadow: 0 1px 3px rgba(30,15,20,.55), 0 0 14px rgba(30,15,20,.45), 0 4px 22px rgba(30,15,20,.35); }
+    .hd.sm { font-size: 72px; line-height: 1.04; }
+    .w { display: inline-block; }
+    .pk { color: #FFE1EC; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 10px; }
+    .mask { overflow: hidden; padding: 0 8px 6px; }
+    .sub { font-family: "DM Sans", "Noto Color Emoji", sans-serif; font-weight: 500; font-size: 27px; letter-spacing: 0.24em; margin-right: -0.24em; margin-top: 22px; white-space: nowrap; color: #FFF4E8;
+      text-shadow: 0 1px 2px rgba(30,15,20,.75), 0 0 10px rgba(30,15,20,.6), 0 2px 18px rgba(30,15,20,.45); }
+    .sub.cream { color: #FFF4E8; }
+    .deco { font-family: "Cormorant Garamond", serif; font-style: italic; font-weight: 500; font-size: 64px; color: #F4B7CE; margin-top: 6px; white-space: nowrap;
+      text-shadow: 0 1px 3px rgba(30,15,20,.45), 0 2px 14px rgba(30,15,20,.4); }
+    .bar { width: 180px; height: 2px; background: #FFF4E8; margin-top: 22px; }
+    .icons { display: flex; align-items: center; gap: 10px; margin-top: 18px; filter: drop-shadow(0 2px 8px rgba(30,15,20,.45)); }
+    .ic { width: 70px; height: 70px; display: block; }
+    .arc { width: 200px; height: 82px; }
+    .star { position: absolute; width: 46px; height: 46px; }
+  </style>
+  <div id="root" data-composition-id="text" data-width="1080" data-height="1920">
+    <div id="t1" class="blk clip" data-start="0.0" data-duration="2.17" data-track-index="0" style="top:760px">
+      <div class="hd sm"><span class="w " id="h1-0">case</span> <span class="w " id="h1-1">yang</span> <span class="w " id="h1-2">buat</span> <span class="w " id="h1-3">iPad</span> <span class="w pk" id="h1-4">pink</span></div>
+      <div class="hd sm"><span class="w " id="h2-0">nampak</span> <span class="w " id="h2-1">lagi</span> <span class="w " id="h2-2">mahal</span> <span class="w " id="h2-3">🩷</span></div>
+      <div class="bar" id="h-bar"></div>
+    </div>
+    <div id="t2" class="blk clip" data-start="2.3" data-duration="2.67" data-track-index="0" style="top:820px">
+      <div class="mask"><div class="hd" id="d-1">the 3-piece case</div></div>
+      <div class="sub" id="d-2">MINIMAL · PRETTY · SLIM</div>
+    </div>
+    <div id="t3" class="blk clip" data-start="5.1" data-duration="2.87" data-track-index="0" style="top:760px">
+      <div class="mask"><div class="hd" id="sl-1">smart sleep &amp; wake</div></div>
+      <div class="icons"><span id="sl-m"><svg class="ic" viewBox="0 0 64 64"><path d="M40 8a24 24 0 1 0 16 40A20 20 0 0 1 40 8z" fill="#fff"/></svg></span><svg class="arc" viewBox="0 0 220 90"><path id="sl-arc" d="M12 70 C 60 6, 160 6, 200 60" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="butt" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/><path id="sl-head" d="M186 44 L 202 62 L 180 68" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg><span id="sl-s"><svg class="ic" viewBox="0 0 64 64"><circle cx="32" cy="32" r="11" fill="#F4B7CE"/><line x1="32" y1="6" x2="32" y2="15" stroke="#F4B7CE" stroke-width="4" stroke-linecap="round" transform="rotate(0 32 32)"/><line x1="32" y1="6" x2="32" y2="15" stroke="#F4B7CE" stroke-width="4" stroke-linecap="round" transform="rotate(45 32 32)"/><line x1="32" y1="6" x2="32" y2="15" stroke="#F4B7CE" stroke-width="4" stroke-linecap="round" transform="rotate(90 32 32)"/><line x1="32" y1="6" x2="32" y2="15" stroke="#F4B7CE" stroke-width="4" stroke-linecap="round" transform="rotate(135 32 32)"/><line x1="32" y1="6" x2="32" y2="15" stroke="#F4B7CE" stroke-width="4" stroke-linecap="round" transform="rotate(180 32 32)"/><line x1="32" y1="6" x2="32" y2="15" stroke="#F4B7CE" stroke-width="4" stroke-linecap="round" transform="rotate(225 32 32)"/><line x1="32" y1="6" x2="32" y2="15" stroke="#F4B7CE" stroke-width="4" stroke-linecap="round" transform="rotate(270 32 32)"/><line x1="32" y1="6" x2="32" y2="15" stroke="#F4B7CE" stroke-width="4" stroke-linecap="round" transform="rotate(315 32 32)"/></svg></span></div>
+      <div class="sub" id="sl-2">CLOSE TO SLEEP · OPEN TO WAKE</div>
+    </div>
+    <div id="t4" class="blk clip" data-start="8.15" data-duration="2.853" data-track-index="0" style="top:820px">
+      <div class="hd"><span class="w " id="f1-0">one</span> <span class="w " id="f1-1">flip,</span></div>
+      <div class="hd"><span class="w " id="f2-0">that's</span> <span class="w pk" id="f2-1">it</span> <span class="w " id="f2-2">✨</span></div>
+    </div>
+    <div id="t5" class="blk clip" data-start="11.153" data-duration="2.85" data-track-index="0" style="top:740px">
+      <div class="mask"><div class="hd" id="p-1">pencil holder ✏️</div></div>
+      <div class="sub" id="p-2">KEEP EVERYTHING TOGETHER</div>
+    </div>
+    <div id="t6" class="blk clip" data-start="14.183" data-duration="3.62" data-track-index="0" style="top:760px">
+      <div class="mask"><div class="hd" id="c-1">crystal clear back</div></div>
+      <div class="sub" id="c-2">STILL SHOWING OFF MY iPAD COLOUR ♡</div>
+    </div>
+    <div id="t7" class="blk clip" data-start="17.953" data-duration="2.65" data-track-index="0" style="top:800px">
+      <div class="hd"><span class="w " id="r1-0">iPad</span> <span class="w pk" id="r1-1">pink,</span></div>
+      <div class="hd"><span class="w " id="r2-0">makin</span> <span class="w " id="r2-1">cantik</span> <span class="w " id="r2-2">🩷</span></div>
+    </div>
+    <div id="t8" class="blk clip" data-start="20.513" data-duration="2.12" data-track-index="0" style="top:860px">
+      <div class="hd" id="ct-1">team clear case juga? 🩷</div>
+      <div class="bar" id="ct-bar"></div>
+      <div class="sub" id="ct-2">3-PIECE iPAD CASE · CLEAR BACK</div>
+    </div>
+    <div id="t8s" class="clip" data-start="20.513" data-duration="2.12" data-track-index="2"><svg class="star" id="st1" style="left:150px; top:800px" viewBox="0 0 54 54"><path d="M27 4 C 29 20, 34 25, 50 27 C 34 29, 29 34, 27 50 C 25 34, 20 29, 4 27 C 20 25, 25 20, 27 4 Z" fill="#fff"/></svg><svg class="star" id="st2" style="left:880px; top:960px" viewBox="0 0 54 54"><path d="M27 4 C 29 20, 34 25, 50 27 C 34 29, 29 34, 27 50 C 25 34, 20 29, 4 27 C 20 25, 25 20, 27 4 Z" fill="#fff"/></svg></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#t1 .w", { opacity: 0, scale: 0.86, filter: "blur(8px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.32, ease: "power3.out", stagger: 0.08 }, 0.0);
+      tl.fromTo("#h-bar", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "expo.out" }, 0.8);
+      tl.to("#t1 .w, #h-bar", { opacity: 0, filter: "blur(6px)", duration: 0.18, ease: "power2.in" }, 1.97);
+      tl.fromTo("#d-1", { yPercent: 110 }, { yPercent: 0, duration: 0.45, ease: "power3.out" }, 2.3);
+      tl.fromTo("#d-2", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 2.65);
+      tl.to("#d-1, #d-2", { opacity: 0, filter: "blur(6px)", duration: 0.18, ease: "power2.in" }, 4.77);
+      tl.fromTo("#sl-1", { yPercent: 110 }, { yPercent: 0, duration: 0.45, ease: "power3.out" }, 5.1);
+      tl.fromTo("#sl-m", { opacity: 0, scale: 0.5, rotation: -30 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.4, ease: "back.out(1.6)" }, 5.4);
+      tl.fromTo("#sl-arc", { attr: { "stroke-dashoffset": 1 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.7, ease: "power2.inOut" }, 5.7);
+      tl.fromTo("#sl-head", { opacity: 0 }, { opacity: 1, duration: 0.15 }, 6.35);
+      tl.fromTo("#sl-s", { opacity: 0, scale: 0.5, rotation: -90 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.5, ease: "back.out(1.6)" }, 6.4);
+      tl.to("#sl-m", { opacity: 0.35, duration: 0.4 }, 6.4);
+      tl.fromTo("#sl-2", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 5.6);
+      tl.to("#sl-1, #sl-2, .icons", { opacity: 0, filter: "blur(6px)", duration: 0.18, ease: "power2.in" }, 7.77);
+      tl.fromTo("#t4 .w", { opacity: 0, scale: 0.86, filter: "blur(8px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.32, ease: "power3.out", stagger: 0.12 }, 8.15);
+      tl.to("#t4 .w", { opacity: 0, filter: "blur(6px)", duration: 0.18, ease: "power2.in" }, 10.803);
+      tl.fromTo("#p-1", { yPercent: 110 }, { yPercent: 0, duration: 0.45, ease: "power3.out" }, 11.153);
+      tl.fromTo("#p-2", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 11.503);
+      tl.to("#p-1, #p-2", { opacity: 0, filter: "blur(6px)", duration: 0.18, ease: "power2.in" }, 13.803);
+      tl.fromTo("#c-1", { yPercent: 110 }, { yPercent: 0, duration: 0.45, ease: "power3.out" }, 14.183);
+      tl.fromTo("#c-2", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 14.583);
+      tl.to("#c-1, #c-2", { opacity: 0, filter: "blur(6px)", duration: 0.18, ease: "power2.in" }, 17.603);
+      tl.fromTo("#t7 .w", { opacity: 0, scale: 0.86, filter: "blur(8px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.32, ease: "power3.out", stagger: 0.16 }, 17.953);
+      tl.to("#t7 .w", { opacity: 0, filter: "blur(6px)", duration: 0.18, ease: "power2.in" }, 20.403);
+      tl.fromTo("#ct-1", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.5)" }, 20.513);
+      tl.fromTo("#ct-bar", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "expo.out" }, 20.813);
+      tl.fromTo("#ct-2", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 20.863);
+      tl.fromTo("#st1", { opacity: 0, scale: 0, rotation: -40 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.35, ease: "back.out(2)" }, 20.913); tl.to("#st1", { scale: 0.55, rotation: 20, duration: 0.4, ease: "sine.inOut" }, 21.313);
+      tl.fromTo("#st2", { opacity: 0, scale: 0, rotation: -40 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.35, ease: "back.out(2)" }, 21.113); tl.to("#st2", { scale: 0.55, rotation: 20, duration: 0.4, ease: "sine.inOut" }, 21.513);
+      window.__timelines["text"] = tl;
+    })();
+  </script>
+</template>
