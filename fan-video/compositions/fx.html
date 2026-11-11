@@ -1,0 +1,227 @@
+<template>
+  <style>
+    @font-face { font-family: "Manrope"; src: url("assets/fonts/Manrope-800.woff2") format("woff2"); font-weight: 600 800; }
+    @font-face { font-family: "DM Sans"; src: url("assets/fonts/DMSans-500.woff2") format("woff2"); font-weight: 500; }
+    #root { position: absolute; inset: 0; color: #fff; }
+    #root .grp { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; opacity: 0; }
+    #root .line {
+      position: absolute; left: 130px; width: 820px; text-align: center; white-space: nowrap; line-height: 1.12;
+      text-shadow: 0 3px 14px rgba(20,14,16,0.75), 0 1px 2px rgba(20,14,16,0.9);
+    }
+    #root > .line { opacity: 0; }
+    #root .f-h { font-family: "Manrope", sans-serif; font-weight: 800; letter-spacing: -0.01em; }
+    #root .f-b { font-family: "DM Sans", sans-serif; font-weight: 500; }
+    #root .w { display: inline-block; }
+    #root .brand { letter-spacing: 0.16em; }
+    #root .uline { position: absolute; height: 7px; border-radius: 4px; transform: scaleX(0); transform-origin: 0% 50%; box-shadow: 0 2px 10px rgba(0,0,0,0.35); }
+    #root .ring, #root .arc, #root .spark { position: absolute; opacity: 0; overflow: visible; }
+    #root .ring svg { filter: drop-shadow(0 2px 8px rgba(0,0,0,0.45)); overflow: visible; }
+    #root .pulse { position: absolute; border-radius: 50%; border: 4px solid #fff; opacity: 0; }
+    #root .pulse.air { border-color: #BFE3FF; border-width: 5px; }
+    #root .badge {
+      position: absolute; display: flex; align-items: center; gap: 12px; opacity: 0;
+      padding: 12px 22px; border-radius: 999px; background: rgba(20,14,16,0.55); border: 2px solid rgba(255,255,255,0.7);
+      font-family: "DM Sans", sans-serif; font-weight: 500; font-size: 34px;
+    }
+    #root .lv { display: inline-block; padding: 0 10px; }
+    #root .dot { color: rgba(255,255,255,0.6); }
+    #root .meter { position: absolute; width: 132px; height: 108px; opacity: 0; }
+    #root .bar { position: absolute; bottom: 0; width: 34px; border-radius: 10px; transform-origin: 50% 100%; box-shadow: 0 2px 10px rgba(0,0,0,0.35); }
+    #root .chip {
+      position: absolute; left: 320px; width: 440px; text-align: center; padding: 12px 0; border-radius: 999px;
+      background: rgba(244,183,206,0.92); color: #3a2630; font-size: 38px; opacity: 0;
+    }
+    #root .cta {
+      position: absolute; left: 210px; width: 660px; text-align: center; padding: 22px 0; border-radius: 999px;
+      background: #FFF4E8; color: #3a2630; font-size: 44px; opacity: 0; box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+  </style>
+  <div id="root" data-composition-id="fx" data-width="1080" data-height="1920" data-layout-allow-overlap>
+    <div id="g1" class="grp">
+    <div id="g1a" class="line  f-h" style="top:420px;font-size:66px"><span class="w">EH,</span> <span class="w">KIPAS</span> <span class="w">MINI</span> <span class="w">NI</span></div>
+    <div id="g1b" class="line  f-h" style="top:506px;font-size:70px;color:#F4B7CE"><span class="w">CUCUK</span> <span class="w">TERUS</span> <span class="w">JE?!</span> <span class="w">👀</span></div>
+    </div>
+    <div id="u1" class="uline" style="top:600px;left:430px;width:220px;background:#F4B7CE"></div>
+    <div id="c1" class="ring" style="left:345px;top:710px;width:450px;height:450px"><svg viewBox="0 0 450 450" width="450" height="450"><circle cx="225.0" cy="225.0" r="215" fill="none" stroke="#fff" stroke-width="5" stroke-dasharray="18 14" stroke-linecap="round"/></svg></div>
+    <div id="p1" class="pulse" style="left:420px;top:785px;width:300px;height:300px;border-color:#fff"></div>
+    <div id="g2" class="grp">
+    <div id="g2a" class="line brand f-h" style="top:1330px;font-size:76px"><span id="gc0" class="w">G</span><span id="gc1" class="w">O</span><span id="gc2" class="w">O</span><span id="gc3" class="w">J</span><span id="gc4" class="w">O</span><span id="gc5" class="w">D</span><span id="gc6" class="w">O</span><span id="gc7" class="w">Q</span></div>
+    <div id="g2b" class="line sub f-b" style="top:1430px;font-size:42px;color:#F4B7CE"><span class="w">USB</span> <span class="w">TYPE-C</span> <span class="w">MINI</span> <span class="w">FAN</span></div>
+    </div>
+    <div id="u2" class="uline" style="top:1500px;left:450px;width:180px;background:#FFF4E8"></div>
+    <svg id="arc2" class="arc" style="left:175px;top:670px" width="400" height="400" viewBox="0 0 400 400"><path d="M 60 290 A 160 160 0 1 1 330 300" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-dasharray="820" stroke-dashoffset="820"/></svg>
+    <svg id="s2" class="spark" style="left:573px;top:673px" width="34" height="34" viewBox="0 0 20 20"><path d="M10 0 C11 7 13 9 20 10 C13 11 11 13 10 20 C9 13 7 11 0 10 C7 9 9 7 10 0Z" fill="#FFF4E8"/></svg>
+    <div id="g3" class="line soft f-b" style="top:400px;font-size:60px;color:#FFF4E8"><span class="w">unboxing</span> <span class="w">this</span> <span class="w">mini</span> <span class="w">fan</span> <span class="w">♡</span></div>
+    <div id="u3" class="uline" style="top:488px;left:390px;width:300px;background:#F4B7CE"></div>
+    <div id="g4" class="line  f-h" style="top:790px;font-size:62px"><span class="w">Pink</span> <span class="w">edition</span> <span class="w">is</span> <span class="w">so</span> <span class="w">cute</span> <span class="w">♡</span></div>
+    <div id="u4" class="uline" style="top:872px;left:410px;width:260px;background:#F4B7CE"></div>
+    <svg id="ol4" class="arc" style="left:240px;top:925px" width="540" height="520" viewBox="0 0 540 520"><ellipse cx="270" cy="260" rx="255" ry="245" fill="none" stroke="#fff" stroke-width="4" stroke-dasharray="1580" stroke-dashoffset="1580" stroke-linecap="round"/></svg>
+    <svg id="s4a" class="spark" style="left:785px;top:945px" width="30" height="30" viewBox="0 0 20 20"><path d="M10 0 C11 7 13 9 20 10 C13 11 11 13 10 20 C9 13 7 11 0 10 C7 9 9 7 10 0Z" fill="#FFF4E8"/></svg>
+    <svg id="s4b" class="spark" style="left:238px;top:1368px" width="24" height="24" viewBox="0 0 20 20"><path d="M10 0 C11 7 13 9 20 10 C13 11 11 13 10 20 C9 13 7 11 0 10 C7 9 9 7 10 0Z" fill="#FFF4E8"/></svg>
+    <div id="g5" class="grp">
+    <div id="g5a" class="line  f-h" style="top:400px;font-size:76px"><span class="w">USB</span> <span class="w">TYPE-C</span></div>
+    <div id="g5b" class="line sub f-b" style="top:495px;font-size:44px;color:#F4B7CE"><span class="w">Plug</span> <span class="w">&amp;</span> <span class="w">Play</span> <span class="w">⚡</span></div>
+    </div>
+    <div id="c5" class="ring" style="left:290px;top:1040px;width:260px;height:260px"><svg viewBox="0 0 260 260" width="260" height="260"><circle cx="130.0" cy="130.0" r="120" fill="none" stroke="#fff" stroke-width="5" stroke-dasharray="18 14" stroke-linecap="round"/></svg></div>
+    <div id="p5" class="pulse" style="left:330px;top:1080px;width:180px;height:180px;border-color:#fff"></div>
+    <svg id="ptr5" class="arc" style="left:0;top:0" width="1080" height="1920" viewBox="0 0 1080 1920"><path d="M 540 585 C 560 760 520 880 470 960" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-dasharray="460" stroke-dashoffset="460"/><circle cx="470" cy="960" r="9" fill="#fff" opacity="0"/></svg>
+    <div id="usb5" class="badge" style="left:640px;top:1070px"><svg width="64" height="30" viewBox="0 0 64 30"><rect x="3" y="3" width="58" height="24" rx="12" fill="none" stroke="#fff" stroke-width="4"/><rect x="16" y="12" width="32" height="6" rx="3" fill="#fff"/></svg><span>USB-C</span></div>
+    <div id="n7" class="line note f-b" style="top:590px;font-size:36px;color:#FFF4E8"><span class="w">Guna</span> <span class="w">kuasa</span> <span class="w">dari</span> <span class="w">device</span> <span class="w">USB-C</span></div>
+    <svg id="bolt7" class="arc" style="left:505px;top:1190px" width="70" height="70" viewBox="0 0 24 24"><path d="M13 2 L4 14 H11 L10 22 L20 9 H13 Z" fill="#F4B7CE"/></svg>
+    <div id="g6" class="grp">
+    <div id="g6a" class="line  f-h" style="top:400px;font-size:74px"><span class="w">3</span> <span class="w">WIND</span> <span class="w">LEVELS</span></div>
+    <div id="g6b" class="line sub f-b" style="top:494px;font-size:40px"><span id="lv1" class="lv">Soft</span><span class="dot">•</span><span id="lv2" class="lv">Comfortable</span><span class="dot">•</span><span id="lv3" class="lv">Turbo</span></div>
+    </div>
+    <div id="meter" class="meter" style="left:474px;top:600px"><div id="bar1" class="bar" style="left:0px;height:44px"></div><div id="bar2" class="bar" style="left:46px;height:76px"></div><div id="bar3" class="bar" style="left:92px;height:108px"></div></div>
+    <div id="rip0" class="pulse air" style="left:410px;top:1030px;width:300px;height:300px"></div>
+    <div id="rip1" class="pulse air" style="left:410px;top:1030px;width:300px;height:300px"></div>
+    <div id="rip2" class="pulse air" style="left:410px;top:1030px;width:300px;height:300px"></div>
+    <svg id="wav8L" class="arc" style="left:20px;top:980px" width="360" height="400" viewBox="0 0 360 400"><path class="wv" d="M 0 110 Q 60 84 120 110 T 240 110 T 360 110" fill="none" stroke="#BFE3FF" stroke-opacity="0.75" stroke-width="7" stroke-linecap="round" stroke-dasharray="70 40"/><path class="wv" d="M 0 200 Q 60 168 120 200 T 240 200 T 360 200" fill="none" stroke="#BFE3FF" stroke-opacity="0.75" stroke-width="7" stroke-linecap="round" stroke-dasharray="70 40"/><path class="wv" d="M 0 290 Q 60 264 120 290 T 240 290 T 360 290" fill="none" stroke="#BFE3FF" stroke-opacity="0.75" stroke-width="7" stroke-linecap="round" stroke-dasharray="70 40"/></svg>
+    <svg id="wav8R" class="arc" style="left:740px;top:980px;transform:scaleX(-1)" width="360" height="400" viewBox="0 0 360 400"><path class="wv" d="M 0 110 Q 60 84 120 110 T 240 110 T 360 110" fill="none" stroke="#BFE3FF" stroke-opacity="0.75" stroke-width="7" stroke-linecap="round" stroke-dasharray="70 40"/><path class="wv" d="M 0 200 Q 60 168 120 200 T 240 200 T 360 200" fill="none" stroke="#BFE3FF" stroke-opacity="0.75" stroke-width="7" stroke-linecap="round" stroke-dasharray="70 40"/><path class="wv" d="M 0 290 Q 60 264 120 290 T 240 290 T 360 290" fill="none" stroke="#BFE3FF" stroke-opacity="0.75" stroke-width="7" stroke-linecap="round" stroke-dasharray="70 40"/></svg>
+    <svg id="wav9" class="arc" style="left:330px;top:640px;transform:scaleX(-1)" width="480" height="520" viewBox="0 0 360 400"><path class="wv" d="M 0 110 Q 60 84 120 110 T 240 110 T 360 110" fill="none" stroke="#BFE3FF" stroke-opacity="0.75" stroke-width="7" stroke-linecap="round" stroke-dasharray="70 40"/><path class="wv" d="M 0 200 Q 60 168 120 200 T 240 200 T 360 200" fill="none" stroke="#BFE3FF" stroke-opacity="0.75" stroke-width="7" stroke-linecap="round" stroke-dasharray="70 40"/><path class="wv" d="M 0 290 Q 60 264 120 290 T 240 290 T 360 290" fill="none" stroke="#BFE3FF" stroke-opacity="0.75" stroke-width="7" stroke-linecap="round" stroke-dasharray="70 40"/></svg>
+    <div id="g7" class="grp">
+    <div id="g7a" class="line  f-h" style="top:640px;font-size:70px"><span class="w">SMALL</span> <span class="w">BUT</span> <span class="w">USEFUL</span> <span class="w">♡</span></div>
+    <div id="g7b" class="chip f-b" style="top:740px">Lightweight • Compact</div>
+    </div>
+    <svg id="cv10" class="arc" style="left:250px;top:1000px" width="580" height="560" viewBox="0 0 580 560"><path d="M 40 380 C 30 150 250 40 420 110" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-dasharray="560" stroke-dashoffset="560"/><path d="M 400 90 L 430 112 L 398 132" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="0"/></svg>
+    <svg id="s10" class="spark" style="left:845px;top:685px" width="30" height="30" viewBox="0 0 20 20"><path d="M10 0 C11 7 13 9 20 10 C13 11 11 13 10 20 C9 13 7 11 0 10 C7 9 9 7 10 0Z" fill="#FFF4E8"/></svg>
+    <div id="g8" class="grp">
+    <div id="g8a" class="line f-h" style="top:860px;font-size:68px"><span id="k1" class="w">KECIL.</span> <span id="k2" class="w" style="color:#F4B7CE">COMEL.</span></div>
+    <div id="g8b" class="line f-h" style="top:946px;font-size:68px"><span id="k3" class="w">PRAKTIKAL. 🤍</span></div>
+    </div>
+    <div id="u8" class="uline" style="top:1042px;left:410px;width:260px;background:#FFF4E8"></div>
+    <svg id="s8a" class="spark" style="left:804px;top:384px" width="32" height="32" viewBox="0 0 20 20"><path d="M10 0 C11 7 13 9 20 10 C13 11 11 13 10 20 C9 13 7 11 0 10 C7 9 9 7 10 0Z" fill="#FFF4E8"/></svg>
+    <svg id="s8b" class="spark" style="left:258px;top:458px" width="24" height="24" viewBox="0 0 20 20"><path d="M10 0 C11 7 13 9 20 10 C13 11 11 13 10 20 C9 13 7 11 0 10 C7 9 9 7 10 0Z" fill="#FFF4E8"/></svg>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#u1", { scaleX: 0, opacity: 1 }, { scaleX: 1, duration: 0.5, ease: "power3.inOut" }, 0.55);
+    tl.set("#g1", { opacity: 1, y: 0 }, 0);
+    tl.fromTo("#g1a .w", { opacity: 0, y: 26, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "power3.out", stagger: 0.05 }, 0.02);
+    tl.fromTo("#g1b .w", { opacity: 0, y: 26, scale: 1.25 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "back.out(2)", stagger: 0.07 }, 0.22);
+    tl.fromTo("#c1", { opacity: 0, scale: 0.55, rotation: -60 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.5, ease: "back.out(1.8)" }, 0.35);
+    tl.to("#c1", { rotation: 70, duration: 0.6, ease: "none" }, 0.850);
+    tl.to("#c1", { opacity: 0, scale: 1.15, duration: 0.25, ease: "power2.in" }, 1.200);
+    tl.fromTo("#p1", { opacity: 0.85, scale: 0.6 }, { opacity: 0, scale: 1.7, duration: 0.8, ease: "power2.out", repeat: 0, immediateRender: false }, 0.45);
+    tl.fromTo("#g1", { y: 0 }, { y: -12, duration: 1.7, ease: "none" }, 0.3);
+    tl.to("#g1", { opacity: 0, y: -18, duration: 0.25, ease: "power2.in" }, 2.050);
+    tl.set("#g1", { opacity: 0 }, 2.3);
+    tl.to("#u1", { scaleX: 0, transformOrigin: "100% 50%", duration: 0.25 }, 2.05);
+    tl.set("#g2", { opacity: 1, y: 0 }, 2.45);
+    tl.fromTo("#gc0", { opacity: 0, x: -161, y: 10 }, { opacity: 1, x: 0, y: 0, duration: 0.75, ease: "power3.out" }, 2.605);
+    tl.fromTo("#gc1", { opacity: 0, x: -115, y: 10 }, { opacity: 1, x: 0, y: 0, duration: 0.75, ease: "power3.out" }, 2.575);
+    tl.fromTo("#gc2", { opacity: 0, x: -69, y: 10 }, { opacity: 1, x: 0, y: 0, duration: 0.75, ease: "power3.out" }, 2.545);
+    tl.fromTo("#gc3", { opacity: 0, x: -23, y: 10 }, { opacity: 1, x: 0, y: 0, duration: 0.75, ease: "power3.out" }, 2.515);
+    tl.fromTo("#gc4", { opacity: 0, x: 23, y: 10 }, { opacity: 1, x: 0, y: 0, duration: 0.75, ease: "power3.out" }, 2.515);
+    tl.fromTo("#gc5", { opacity: 0, x: 69, y: 10 }, { opacity: 1, x: 0, y: 0, duration: 0.75, ease: "power3.out" }, 2.545);
+    tl.fromTo("#gc6", { opacity: 0, x: 115, y: 10 }, { opacity: 1, x: 0, y: 0, duration: 0.75, ease: "power3.out" }, 2.575);
+    tl.fromTo("#gc7", { opacity: 0, x: 161, y: 10 }, { opacity: 1, x: 0, y: 0, duration: 0.75, ease: "power3.out" }, 2.605);
+    tl.fromTo("#g2b .w", { opacity: 0, y: 34, scale: 0.86, filter: "blur(10px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.5, ease: "power3.out", stagger: 0.07 }, 2.85);
+    tl.fromTo("#u2", { scaleX: 0, opacity: 1 }, { scaleX: 1, duration: 0.5, ease: "power3.inOut" }, 3.15);
+    tl.set("#arc2", { opacity: 1 }, 2.95);
+    tl.fromTo("#arc2 path", { attr: { "stroke-dashoffset": 820 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.7, ease: "power2.inOut" }, 2.95);
+    tl.to("#arc2", { opacity: 0, duration: 0.25 }, 4.2);
+    tl.fromTo("#s2", { opacity: 0, scale: 0, rotation: -45 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.35, ease: "back.out(3)" }, 3.4);
+    tl.to("#s2", { opacity: 0, scale: 0.4, rotation: 45, duration: 0.35, ease: "power2.in" }, 4.100);
+    tl.to("#g2", { opacity: 0, y: -18, duration: 0.25, ease: "power2.in" }, 4.250);
+    tl.set("#g2", { opacity: 0 }, 4.5);
+    tl.to("#u2", { opacity: 0, duration: 0.2 }, 4.25);
+    tl.set("#g3", { opacity: 1, y: 0 }, 4.6);
+    tl.fromTo("#g3 .w", { opacity: 0, y: 34, scale: 0.86, filter: "blur(10px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.5, ease: "power3.out", stagger: 0.08 }, 4.6);
+    tl.fromTo("#u3", { scaleX: 0, opacity: 1 }, { scaleX: 1, duration: 0.5, ease: "power3.inOut" }, 5.05);
+    tl.to("#u3", { scaleX: 0.3, duration: 0.5, ease: "sine.inOut", yoyo: true, repeat: 1 }, 5.8);
+    tl.to("#g3", { opacity: 0, y: -18, duration: 0.25, ease: "power2.in" }, 6.750);
+    tl.set("#g3", { opacity: 0 }, 7.0);
+    tl.to("#u3", { opacity: 0, duration: 0.2 }, 6.8);
+    tl.set("#g4", { opacity: 1, y: 0 }, 7.15);
+    tl.fromTo("#g4 .w", { opacity: 0, y: 34, scale: 0.86, filter: "blur(10px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.5, ease: "power3.out", stagger: 0.07 }, 7.15);
+    tl.fromTo("#g4 .w:last-child", { color: "#fff" }, { color: "#F4B7CE", duration: 0.3 }, 7.7);
+    tl.fromTo("#u4", { scaleX: 0, opacity: 1 }, { scaleX: 1, duration: 0.5, ease: "power3.inOut" }, 7.6);
+    tl.set("#ol4", { opacity: 1 }, 7.45);
+    tl.fromTo("#ol4 ellipse", { attr: { "stroke-dashoffset": 1580 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.9, ease: "power2.inOut" }, 7.45);
+    tl.to("#ol4", { opacity: 0, scale: 1.08, transformOrigin: "50% 50%", duration: 0.35 }, 8.7);
+    tl.fromTo("#s4a", { opacity: 0, scale: 0, rotation: -45 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.35, ease: "back.out(3)" }, 8.0);
+    tl.to("#s4a", { opacity: 0, scale: 0.4, rotation: 45, duration: 0.35, ease: "power2.in" }, 8.700);
+    tl.fromTo("#s4b", { opacity: 0, scale: 0, rotation: -45 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.35, ease: "back.out(3)" }, 8.2);
+    tl.to("#s4b", { opacity: 0, scale: 0.4, rotation: 45, duration: 0.35, ease: "power2.in" }, 8.900);
+    tl.to("#g4", { opacity: 0, y: -18, duration: 0.25, ease: "power2.in" }, 9.150);
+    tl.set("#g4", { opacity: 0 }, 9.4);
+    tl.to("#u4", { opacity: 0, duration: 0.2 }, 9.15);
+    tl.set("#g5", { opacity: 1, y: 0 }, 9.5);
+    tl.fromTo("#g5a .w", { opacity: 0, y: 34, scale: 0.86, filter: "blur(10px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.5, ease: "power3.out", stagger: 0.08 }, 9.5);
+    tl.fromTo("#g5b .w", { opacity: 0, y: 34, scale: 0.86, filter: "blur(10px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.5, ease: "power3.out", stagger: 0.08 }, 9.75);
+    tl.fromTo("#c5", { opacity: 0, scale: 0.55, rotation: -60 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.5, ease: "back.out(1.8)" }, 9.75);
+    tl.to("#c5", { rotation: 70, duration: 1.0, ease: "none" }, 10.250);
+    tl.to("#c5", { x: -15, y: -130, duration: 0.9, ease: "sine.inOut" }, 9.750);
+    tl.to("#c5", { opacity: 0, scale: 1.15, duration: 0.25, ease: "power2.in" }, 11.000);
+    tl.fromTo("#p5", { opacity: 0.85, scale: 0.6 }, { opacity: 0, scale: 1.7, duration: 0.8, ease: "power2.out", repeat: 1, immediateRender: false }, 9.9);
+    tl.to("#p5", { x: -15, y: -130, duration: 0.9, ease: "sine.inOut" }, 9.9);
+    tl.set("#ptr5", { opacity: 1 }, 10.0);
+    tl.fromTo("#ptr5 path", { attr: { "stroke-dashoffset": 460 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.5, ease: "power2.out" }, 10.0);
+    tl.to("#ptr5 circle", { opacity: 1, duration: 0.15 }, 10.45);
+    tl.to("#ptr5", { opacity: 0, duration: 0.25 }, 11.15);
+    tl.fromTo("#usb5", { opacity: 0, scale: 0.4, x: -30 }, { opacity: 1, scale: 1, x: 0, duration: 0.45, ease: "back.out(2.2)" }, 10.45);
+    tl.to("#usb5", { y: -90, duration: 0.8, ease: "sine.inOut" }, 10.5);
+    tl.to("#usb5", { opacity: 0, duration: 0.2 }, 11.25);
+    tl.set("#n7", { opacity: 1, y: 0 }, 11.55);
+    tl.fromTo("#n7 .w", { opacity: 0, y: 34, scale: 0.86, filter: "blur(10px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.5, ease: "power3.out", stagger: 0.04 }, 11.55);
+    tl.fromTo("#bolt7", { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2.5)" }, 11.75);
+    tl.to("#bolt7", { scale: 1.15, duration: 0.3, yoyo: true, repeat: 2, ease: "sine.inOut" }, 12.15);
+    tl.to("#bolt7", { opacity: 0, duration: 0.2 }, 12.7);
+    tl.to("#n7", { opacity: 0, y: -18, duration: 0.25, ease: "power2.in" }, 12.650);
+    tl.set("#n7", { opacity: 0 }, 12.9);
+    tl.to("#g5", { opacity: 0, y: -18, duration: 0.25, ease: "power2.in" }, 12.650);
+    tl.set("#g5", { opacity: 0 }, 12.9);
+    tl.set("#g6", { opacity: 1, y: 0 }, 12.95);
+    tl.fromTo("#g6a .w", { opacity: 0, y: 34, scale: 0.86, filter: "blur(10px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.5, ease: "power3.out", stagger: 0.08 }, 12.95);
+    tl.fromTo("#g6b", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 13.15);
+    tl.fromTo("#meter", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 13.1);
+    tl.fromTo("#bar1", { scaleY: 0, background: "rgba(255,255,255,0.35)" }, { scaleY: 1, background: "#F4B7CE", duration: 0.35, ease: "back.out(2)" }, 13.25);
+    tl.to("#lv1", { color: "#F4B7CE", scale: 1.12, duration: 0.2 }, 13.25);
+    tl.to("#lv1", { color: "#fff", scale: 1, duration: 0.2 }, 13.850);
+    tl.fromTo("#bar2", { scaleY: 0, background: "rgba(255,255,255,0.35)" }, { scaleY: 1, background: "#F4B7CE", duration: 0.35, ease: "back.out(2)" }, 13.85);
+    tl.to("#lv2", { color: "#F4B7CE", scale: 1.12, duration: 0.2 }, 13.85);
+    tl.to("#lv2", { color: "#fff", scale: 1, duration: 0.2 }, 14.450);
+    tl.fromTo("#bar3", { scaleY: 0, background: "rgba(255,255,255,0.35)" }, { scaleY: 1, background: "#F4B7CE", duration: 0.35, ease: "back.out(2)" }, 14.45);
+    tl.to("#lv3", { color: "#F4B7CE", scale: 1.12, duration: 0.2 }, 14.45);
+    tl.fromTo("#meter", { scale: 1 }, { scale: 1.18, duration: 0.18, yoyo: true, repeat: 1, ease: "power2.out" }, 14.45);
+    tl.fromTo("#rip0", { opacity: 0.8, scale: 0.5 }, { opacity: 0, scale: 2.2, duration: 0.9, ease: "power1.out", immediateRender: false }, 13.30);
+    tl.fromTo("#rip1", { opacity: 0.8, scale: 0.5 }, { opacity: 0, scale: 2.2, duration: 0.9, ease: "power1.out", immediateRender: false }, 13.65);
+    tl.fromTo("#rip2", { opacity: 0.8, scale: 0.5 }, { opacity: 0, scale: 2.2, duration: 0.9, ease: "power1.out", immediateRender: false }, 14.00);
+    tl.fromTo("#wav8L", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 13.5);
+    tl.fromTo("#wav8L .wv", { attr: { "stroke-dashoffset": 0 } }, { attr: { "stroke-dashoffset": 440 }, duration: 1.4, ease: "none" }, 13.5);
+    tl.to("#wav8L", { opacity: 0, duration: 0.25 }, 14.65);
+    tl.fromTo("#wav8R", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 13.5);
+    tl.fromTo("#wav8R .wv", { attr: { "stroke-dashoffset": 0 } }, { attr: { "stroke-dashoffset": 440 }, duration: 1.4, ease: "none" }, 13.5);
+    tl.to("#wav8R", { opacity: 0, duration: 0.25 }, 14.65);
+    tl.fromTo("#wav9", { opacity: 0 }, { opacity: 0.9, duration: 0.3 }, 15.0);
+    tl.fromTo("#wav9 .wv", { attr: { "stroke-dashoffset": 0 } }, { attr: { "stroke-dashoffset": 660 }, duration: 1.5, ease: "none" }, 15.0);
+    tl.to("#wav9", { opacity: 0, duration: 0.25 }, 16.2);
+    tl.to("#meter", { opacity: 0, duration: 0.25 }, 16.25);
+    tl.to("#g6", { opacity: 0, y: -18, duration: 0.25, ease: "power2.in" }, 16.250);
+    tl.set("#g6", { opacity: 0 }, 16.5);
+    tl.set("#g7", { opacity: 1, y: 0 }, 16.6);
+    tl.fromTo("#g7a .w", { opacity: 0, y: 34, scale: 0.86, filter: "blur(10px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.5, ease: "power3.out", stagger: 0.08 }, 16.6);
+    tl.fromTo("#g7b", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, 16.95);
+    tl.set("#cv10", { opacity: 1 }, 17.05);
+    tl.fromTo("#cv10 path:first-child", { attr: { "stroke-dashoffset": 560 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.7, ease: "power2.inOut" }, 17.05);
+    tl.to("#cv10 path:last-child", { opacity: 1, duration: 0.15 }, 17.7);
+    tl.to("#cv10", { opacity: 0, duration: 0.3 }, 18.1);
+    tl.fromTo("#s10", { opacity: 0, scale: 0, rotation: -45 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.35, ease: "back.out(3)" }, 17.3);
+    tl.to("#s10", { opacity: 0, scale: 0.4, rotation: 45, duration: 0.35, ease: "power2.in" }, 18.000);
+    tl.to("#g7", { y: -40, duration: 0.9, ease: "sine.inOut" }, 18.3);
+    tl.to("#g7", { opacity: 0, y: -18, duration: 0.25, ease: "power2.in" }, 19.250);
+    tl.set("#g7", { opacity: 0 }, 19.5);
+    tl.set("#g8", { opacity: 1, y: 0 }, 19.6);
+    tl.fromTo("#k1", { opacity: 0, y: 40, scale: 1.3, filter: "blur(8px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.4, ease: "back.out(2)" }, 19.75);
+    tl.fromTo("#k2", { opacity: 0, y: 40, scale: 1.3, filter: "blur(8px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.4, ease: "back.out(2)" }, 20.1);
+    tl.fromTo("#k3", { opacity: 0, y: 40, scale: 1.3, filter: "blur(8px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.4, ease: "back.out(2)" }, 20.45);
+    tl.fromTo("#u8", { scaleX: 0, opacity: 1 }, { scaleX: 1, duration: 0.5, ease: "power3.inOut" }, 20.75);
+    tl.to(["#g8", "#u8"], { y: -470, duration: 0.6, ease: "power3.inOut" }, 21.05);
+    tl.fromTo("#s8a", { opacity: 0, scale: 0, rotation: -45 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.35, ease: "back.out(3)" }, 21.75);
+    tl.to("#s8a", { opacity: 0, scale: 0.4, rotation: 45, duration: 0.35, ease: "power2.in" }, 22.450);
+    tl.fromTo("#s8b", { opacity: 0, scale: 0, rotation: -45 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.35, ease: "back.out(3)" }, 21.95);
+    tl.to("#s8b", { opacity: 0, scale: 0.4, rotation: 45, duration: 0.35, ease: "power2.in" }, 22.650);
+    window.__timelines["fx"] = tl;
+  </script>
+</template>
