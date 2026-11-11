@@ -54,7 +54,7 @@ page = f'''<!doctype html>
     <meta name="viewport" content="width=1080, height=1920" />
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
     <style>
-      @font-face {{ font-family: "Inter"; font-weight: 600; src: url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"); }}
+      @font-face {{ font-family: "Inter"; font-weight: 500; src: url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"); }}
       @font-face {{ font-family: "Noto Color Emoji"; src: url("assets/fonts/NotoColorEmoji.ttf") format("truetype"); }}
       * {{ margin: 0; padding: 0; box-sizing: border-box; }}
       html, body {{ margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #f4ece2; }}
@@ -64,8 +64,8 @@ page = f'''<!doctype html>
       .ring {{ position: absolute; left: 0; top: 0; width: 0; height: 0; }}
       .spin {{ position: absolute; filter: drop-shadow(0 1px 3px rgba(40,28,20,.45)); }}
       .lab {{ position: absolute; left: -400px; width: 800px; display: flex; justify-content: center; }}
-      .chip {{ display: inline-block; padding: 12px 26px; border-radius: 999px; background: rgba(255, 249, 240, 0.9); color: #5a4033;
-        font-family: "Inter", "Noto Color Emoji", sans-serif; font-weight: 600; font-size: 31px; white-space: nowrap; box-shadow: 0 6px 20px rgba(60,40,28,.18); }}
+      .chip {{ display: inline-block; color: #ffffff; font-family: "Inter", "Noto Color Emoji", sans-serif; font-weight: 500; font-size: 34px;
+        letter-spacing: 0.01em; white-space: nowrap; text-shadow: 0 0 18px rgba(25,16,10,.75), 0 0 6px rgba(25,16,10,.55), 0 1px 2px rgba(25,16,10,.6); }}
       .flash {{ position: absolute; inset: 0; background: #fff8ee; pointer-events: none; }}
     </style>
   </head>
@@ -106,7 +106,7 @@ b1, c1 = start["b01"] / 30, start["c01"] / 30
 txt = f'''<template>
   <style>
     @font-face {{ font-family: "Nunito"; font-weight: 800; src: url("assets/fonts/nunito-latin-800-normal.woff2") format("woff2"); }}
-    @font-face {{ font-family: "Inter"; font-weight: 600; src: url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"); }}
+    @font-face {{ font-family: "Inter"; font-weight: 500; src: url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"); }}
     @font-face {{ font-family: "Noto Color Emoji"; src: url("assets/fonts/NotoColorEmoji.ttf") format("truetype"); }}
     #root {{ position: absolute; inset: 0; }}
     .blk {{ position: absolute; left: 60px; right: 60px; display: flex; flex-direction: column; align-items: center; text-align: center; }}
@@ -118,8 +118,8 @@ txt = f'''<template>
     .glow {{ position: absolute; left: 50%; top: 50%; width: 900px; height: 470px; margin: -235px 0 0 -450px; z-index: -1; border-radius: 50%;
       background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(38,26,18,.55) 0%, rgba(38,26,18,.26) 50%, rgba(38,26,18,0) 100%); }}
     .glow.sm {{ width: 820px; height: 240px; margin: -120px 0 0 -410px; }}
-    .chip {{ display: inline-block; padding: 14px 30px; border-radius: 999px; background: rgba(255,249,240,.92); color: #5a4033;
-      font-family: "Inter", "Noto Color Emoji", sans-serif; font-weight: 600; font-size: 36px; white-space: nowrap; box-shadow: 0 8px 22px rgba(60,40,28,.2); }}
+    .chip {{ display: inline-block; color: #ffffff; font-family: "Inter", "Noto Color Emoji", sans-serif; font-weight: 500; font-size: 38px;
+      letter-spacing: 0.01em; white-space: nowrap; text-shadow: 0 0 20px rgba(25,16,10,.75), 0 0 7px rgba(25,16,10,.55), 0 1px 2px rgba(25,16,10,.6); }}
     .stk {{ position: absolute; font-family: "Noto Color Emoji"; font-size: 70px; line-height: 1; }}
   </style>
   <div id="root" data-composition-id="text" data-width="1080" data-height="1920">
