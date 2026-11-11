@@ -1,0 +1,60 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #12151B; font-family: Montserrat, sans-serif; color: #fff; }
+    #root .shot { position: absolute; inset: 0; overflow: hidden; }
+    #root .shot .sbg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    #root .frame { position: absolute; left: 0; top: 0; width: 3413px; height: 1920px; transform-origin: 0 50%; }
+    #root .dimv { position: absolute; inset: 0; background: rgba(8,10,14,.62); }
+    #root .frame img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }
+    #root .frame svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; }
+    #root .tshade { position: absolute; left: 0; top: 0; width: 1080px; height: 640px; z-index: 2;
+      background: linear-gradient(rgba(8,10,14,.85), rgba(8,10,14,.55) 55%, rgba(8,10,14,0)); }
+    #root .t { position: absolute; left: 40px; right: 40px; text-align: center; z-index: 3; text-transform: uppercase;
+      font-weight: 900; color: #fff; line-height: 1.02; text-shadow: 0 4px 0 rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.7); }
+    #root .y { color: #F6C343; }
+    #root .ser { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; text-transform: none; color: #F6C343; }
+    #root .num { position: absolute; left: 0; right: 0; text-align: center; z-index: 3; font-weight: 700; font-size: 28px;
+      letter-spacing: .34em; color: #F6C343; }
+    #root .chip { position: absolute; z-index: 3; padding: 12px 24px; background: rgba(12,14,18,.82); border: 2px solid #F6C343;
+      border-radius: 999px; font-weight: 800; font-size: 34px; letter-spacing: .12em; text-transform: uppercase; color: #fff; white-space: nowrap; }
+    #root video.full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    #root .vwrap { position: absolute; inset: 0; transform-origin: 50% 50%; }
+    #root .acard { position: absolute; width: 444px; height: 250px; overflow: hidden; border-radius: 14px; border: 3px solid rgba(255,255,255,.9);
+      box-shadow: 0 20px 50px rgba(0,0,0,.5); }
+    #root .acard img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    #root .acard span { position: absolute; left: 10px; bottom: 10px; padding: 6px 12px; background: rgba(12,14,18,.85); color: #fff;
+      font-weight: 800; font-size: 28px; letter-spacing: .06em; border-radius: 6px; text-transform: uppercase; }
+
+    #s05-row { position: absolute; left: 0; top: 500px; height: 960px; width: 4500px; }
+    #s05-row2 { position: absolute; left: 0; top: 1060px; height: 120px; width: 4300px; opacity: .35; }
+    #root .gc { position: absolute; top: 0; width: 700px; height: 960px; border-radius: 18px; overflow: hidden; box-shadow: 0 30px 70px rgba(0,0,0,.55); }
+    #root .gc img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    #root .gc b { position: absolute; left: 20px; bottom: 18px; font-weight: 900; font-size: 36px; text-transform: uppercase; letter-spacing: .05em;
+      text-shadow: 0 4px 16px rgba(0,0,0,.8); }
+
+  </style>
+  <div id="root" data-composition-id="s05" data-width="1080" data-height="1920" data-duration="4.85">
+    <video id="s05-bgv" class="clip full" src="assets/video/interior-room.mp4" data-start="0" data-duration="4.85" data-media-start="5.0" muted playsinline></video>
+    <div class="dimv"></div>
+    <div id="s05-row">
+      <div class="gc" style="left:0px"><img src="assets/img/modern.jpg" alt="" /><b>Modern Tropical</b></div>
+      <div class="gc" style="left:740px"><img src="assets/img/muji.jpg" alt="" /><b>Muji Style</b></div>
+      <div class="gc" style="left:1480px"><img src="assets/img/english.jpg" alt="" /><b>English Style</b></div>
+      <div class="gc" style="left:2220px"><img src="assets/img/nordic.jpg" alt="" /><b>Nordic Style</b></div>
+      <div class="gc" style="left:2960px"><img src="assets/img/malay.jpg" alt="" /><b>Malay Traditional</b></div>
+    </div>
+    <div class="num" id="s05-n" style="top:206px">Mahligai Idaman</div>
+    <div class="t" id="s05-h" style="top:252px; font-size:84px">Koleksi design<br /><span class="y">split level</span></div>
+    <div class="tshade"></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#s05-row", { x: 1000 }, { x: -2770, duration: 4.85, ease: "power2.inOut" }, 0);
+    tl.fromTo("#s05-row .gc", { rotateY: 0, scale: 0.92 }, { scale: 1, duration: 0.6, stagger: 0.12, ease: "power2.out" }, 0);
+    tl.fromTo("#s05-n", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power4.out" }, 0.1);
+    tl.fromTo("#s05-h", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "power4.out" }, 0.2);
+
+    window.__timelines["s05"] = tl;
+  </script>
+</template>

@@ -1,0 +1,26 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Montserrat",sans-serif; color:#fff; }
+    .y { color:#f6c343; }
+    .hd { position:absolute; left:100px; right:100px; text-align:center; font-weight:800; line-height:1.04; letter-spacing:0.005em;
+      text-shadow:0 4px 18px rgba(0,0,0,.55), 0 2px 4px rgba(0,0,0,.45); }
+    .hd div { display:block; }
+    .glow { position:absolute; left:40px; right:40px; height:300px; border-radius:50%; pointer-events:none;
+      background:radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0,0,0,.5) 0%, rgba(0,0,0,.28) 50%, rgba(0,0,0,0) 100%); }
+.hd { top:300px; font-size:84px; }</style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
+    <div id="hk-bg" class="glow clip" data-start="0" data-duration="4.0" data-track-index="1" data-layout-ignore style="top:250px"></div>
+    <div id="hk" class="hd clip" data-start="0" data-duration="4.0" data-track-index="0">
+      <div id="hk1">SEBUAH RUMAH</div>
+      <div id="hk2" class="y">UNTUK IBU</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#hk1", { opacity:0, y:16 }, { opacity:1, y:0, duration:0.45, ease:"power3.out" }, 0.15);
+    tl.fromTo("#hk2", { opacity:0, y:18, scale:0.94 }, { opacity:1, y:0, scale:1, duration:0.5, ease:"back.out(1.7)" }, 2.7);
+    tl.fromTo("#hk-bg", { opacity:0 }, { opacity:1, duration:0.4, ease:"sine.out" }, 0.1);
+    tl.to(["#hk", "#hk-bg"], { opacity:0, duration:0.35, ease:"sine.in" }, 3.6);
+    window.__timelines["hook"] = tl;
+  </script>
+</template>

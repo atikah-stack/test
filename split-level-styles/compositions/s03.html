@@ -1,0 +1,69 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #12151B; font-family: Montserrat, sans-serif; color: #fff; }
+    #root .shot { position: absolute; inset: 0; overflow: hidden; }
+    #root .shot .sbg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    #root .frame { position: absolute; left: 0; top: 0; width: 3413px; height: 1920px; transform-origin: 0 50%; }
+    #root .dimv { position: absolute; inset: 0; background: rgba(8,10,14,.62); }
+    #root .frame img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }
+    #root .frame svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; }
+    #root .tshade { position: absolute; left: 0; top: 0; width: 1080px; height: 640px; z-index: 2;
+      background: linear-gradient(rgba(8,10,14,.85), rgba(8,10,14,.55) 55%, rgba(8,10,14,0)); }
+    #root .t { position: absolute; left: 40px; right: 40px; text-align: center; z-index: 3; text-transform: uppercase;
+      font-weight: 900; color: #fff; line-height: 1.02; text-shadow: 0 4px 0 rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.7); }
+    #root .y { color: #F6C343; }
+    #root .ser { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; text-transform: none; color: #F6C343; }
+    #root .num { position: absolute; left: 0; right: 0; text-align: center; z-index: 3; font-weight: 700; font-size: 28px;
+      letter-spacing: .34em; color: #F6C343; }
+    #root .chip { position: absolute; z-index: 3; padding: 12px 24px; background: rgba(12,14,18,.82); border: 2px solid #F6C343;
+      border-radius: 999px; font-weight: 800; font-size: 34px; letter-spacing: .12em; text-transform: uppercase; color: #fff; white-space: nowrap; }
+    #root video.full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    #root .vwrap { position: absolute; inset: 0; transform-origin: 50% 50%; }
+    #root .acard { position: absolute; width: 444px; height: 250px; overflow: hidden; border-radius: 14px; border: 3px solid rgba(255,255,255,.9);
+      box-shadow: 0 20px 50px rgba(0,0,0,.5); }
+    #root .acard img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    #root .acard span { position: absolute; left: 10px; bottom: 10px; padding: 6px 12px; background: rgba(12,14,18,.85); color: #fff;
+      font-weight: 800; font-size: 28px; letter-spacing: .06em; border-radius: 6px; text-transform: uppercase; }
+#s03-l1, #s03-l2, #s03-up { opacity: 0; } #s03-i1, #s03-i2 { opacity: 0; }
+    #s03-m { top: -290px; }
+    #s03-pave { position: absolute; left: 0; top: 1560px; width: 1080px; height: 360px;
+      background: linear-gradient(to bottom, rgba(197,205,226,0), #C5CDE2 70px, #BAC2D8); }
+  </style>
+  <div id="root" data-composition-id="s03" data-width="1080" data-height="1920" data-duration="10.35">
+    <div class="shot" id="s03-m">
+      <div class="frame" id="s03-m-f"><img src="assets/img/modern.jpg" alt="" /><svg viewBox="0 0 2560 1440" preserveAspectRatio="none">
+<g id="s03-l1"><line x1="70" y1="1086" x2="1060" y2="1086" stroke="#F6C343" stroke-width="7" stroke-dasharray="26 14" pathLength="1" />
+  <line x1="530" y1="874" x2="530" y2="1086" stroke="#F6C343" stroke-width="5" /><rect x="340" y="780" width="380" height="94" rx="14" fill="rgba(12,14,18,.88)" stroke="#F6C343" stroke-width="4"/><text x="530" y="844" text-anchor="middle" font-family="Montserrat" font-weight="900" font-size="58" fill="#fff" letter-spacing="5">LEVEL 01</text></g>
+<g id="s03-l2"><line x1="1360" y1="890" x2="2440" y2="890" stroke="#fff" stroke-width="7" stroke-dasharray="26 14" />
+  <rect x="1420" y="779" width="380" height="94" rx="14" fill="rgba(12,14,18,.88)" stroke="#fff" stroke-width="4"/><text x="1610" y="843" text-anchor="middle" font-family="Montserrat" font-weight="900" font-size="58" fill="#F6C343" letter-spacing="5">LEVEL 02</text></g>
+<g id="s03-up"><line x1="1250" y1="1080" x2="1250" y2="905" stroke="#F6C343" stroke-width="8" /><path d="M1222 935 L1250 895 L1278 935" fill="none" stroke="#F6C343" stroke-width="8" stroke-linejoin="round" />
+  <line x1="1215" y1="1086" x2="1285" y2="1086" stroke="#F6C343" stroke-width="6" /><line x1="1215" y1="890" x2="1285" y2="890" stroke="#F6C343" stroke-width="6" /></g></svg></div>
+    </div>
+    <div id="s03-pave"></div>
+    <div class="vwrap" id="s03-i1"><video id="s03-v1" class="clip full" src="assets/video/interior-stairs.mp4" data-start="5.35" data-duration="2.55" data-media-start="1.0" muted playsinline></video></div>
+    <div class="vwrap" id="s03-i2"><video id="s03-v2" class="clip full" src="assets/video/interior-room.mp4" data-start="7.85" data-duration="2.5" data-media-start="0.6" muted playsinline></video></div>
+    <div class="t" id="s03-h" style="top:206px; font-size:96px">Split <span class="y">level</span></div>
+    <div class="t ser" id="s03-d" style="top:320px; font-size:62px">aras lantai berbeza</div>
+    <div class="t" id="s03-u" style="top:420px; font-size:40px; letter-spacing:.2em; font-weight:800">Unik <span class="y">•</span> Ada karakter</div>
+    <div class="tshade"></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#s03-m-f", { scale: 1.0, x: -117 }, { scale: 1.0, x: -1400, duration: 5.5, ease: "sine.inOut" }, 0);
+    tl.fromTo("#s03-h", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "power4.out" }, 0.1);
+    tl.fromTo("#s03-d", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power4.out" }, 1.4);
+
+    tl.fromTo("#s03-l1", { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 0.5);
+    tl.fromTo("#s03-up", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "back.out(2)" }, 2.6);
+    tl.fromTo("#s03-l2", { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 4.5);
+    tl.fromTo("#s03-i1", { opacity: 1, clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)" }, { opacity: 1, clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", duration: 0.55, ease: "power3.inOut" }, 5.35);
+    tl.fromTo("#s03-i1", { scale: 1.12 }, { scale: 1.0, duration: 2.5, ease: "power2.out" }, 5.35);
+    tl.fromTo("#s03-i2", { opacity: 1, clipPath: "inset(0% 50% 0% 50%)" }, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: 0.5, ease: "power3.inOut" }, 7.85);
+    tl.fromTo("#s03-i2", { scale: 1.0 }, { scale: 1.08, duration: 2.5, ease: "sine.inOut" }, 7.85);
+    tl.to("#s03-d", { opacity: 0, duration: 0.2 }, 5.3);
+    tl.fromTo("#s03-u", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power4.out" }, 7.79);
+
+    window.__timelines["s03"] = tl;
+  </script>
+</template>

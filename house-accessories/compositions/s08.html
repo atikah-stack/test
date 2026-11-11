@@ -1,0 +1,79 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: Montserrat, sans-serif; color: #fff;
+      background: linear-gradient(180deg, #10151F 0%, #1A2232 45%, #2B3446 100%); }
+    #root .bg { position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 60px 60px; background-position: 30px 0; }
+    #root .stage { position: absolute; left: 0; top: 0; width: 1600px; height: 2800px; transform-origin: 0 0;
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0px, #000 150px);
+      mask-image: linear-gradient(to bottom, transparent 0px, #000 150px); }
+    #root .stage .floor { position: absolute; left: -1200px; top: 880px; width: 4000px; height: 1900px;
+      background: linear-gradient(to bottom, #C1BEC6 0px, #B5B3BC 500px, #9E9DA6 1900px); }
+    #root .stage .floorfade { position: absolute; left: 0; top: 800px; width: 1600px; height: 84px;
+      background: linear-gradient(to bottom, rgba(193,190,198,0), #C1BEC6); }
+    #root .stage.nomask { -webkit-mask-image: none; mask-image: none; }
+    #root .stage img, #root .stage .layer { position: absolute; left: 0; top: 0; width: 1600px; height: 900px; display: block; }
+    #root .stage svg { position: absolute; left: 0; top: 0; width: 1600px; height: 900px; overflow: visible; }
+    #root .win { position: absolute; left: 0; width: 1080px; overflow: hidden; background: #141A26; }
+    #root .headline { position: absolute; left: 50px; right: 50px; text-align: center; font-weight: 900; font-size: 92px;
+      line-height: 1.02; letter-spacing: -0.01em; text-transform: uppercase; color: #fff;
+      text-shadow: 0 4px 0 rgba(0,0,0,.28), 0 12px 34px rgba(0,0,0,.55); }
+    #root .headline .ln { display: block; }
+    #root .y { color: #F6C343; }
+    #root .kicker { position: absolute; left: 0; right: 0; text-align: center; font-weight: 700; font-size: 30px;
+      letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,.78); }
+    #root .tagwrap { position: absolute; left: 0; right: 0; display: flex; justify-content: center; }
+    #root .tag { display: flex; align-items: center; gap: 22px; padding: 22px 38px; background: rgba(16,20,29,.94);
+      border: 2px solid #F6C343; border-radius: 10px; box-shadow: 0 18px 44px rgba(0,0,0,.4); }
+    #root .tag .num { font-weight: 900; font-size: 50px; color: #F6C343; }
+    #root .tag .dash { width: 46px; height: 3px; background: #F6C343; }
+    #root .tag .name { font-weight: 800; font-size: 46px; letter-spacing: 0.08em; color: #fff; }
+    #root .chip { position: absolute; padding: 10px 20px; background: rgba(16,20,29,.94); color: #fff; font-weight: 800; font-size: 30px;
+      letter-spacing: 0.16em; text-transform: uppercase; border-radius: 6px; }
+    #root .chip.yl { background: #F6C343; color: #141A26; }
+    #root .pointer { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+    #root .shade { position: absolute; left: 0; right: 0; top: 0; height: 900px;
+      background: linear-gradient(to bottom, rgba(10,13,20,.85), rgba(10,13,20,.45) 55%, rgba(10,13,20,0)); }
+    #root video.full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+
+    #s08-handle { position: absolute; left: 0; top: 0; width: 1600px; height: 900px; }
+    #s08-bar { position: absolute; left: -2px; top: 60px; width: 5px; height: 780px; background: #F6C343; }
+    #s08-knob { position: absolute; left: -40px; top: 410px; width: 80px; height: 80px; border-radius: 50%; background: #F6C343;
+      display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 32px; color: #141A26; letter-spacing: 4px; }
+
+  </style>
+  <div id="root" data-composition-id="s08" data-width="1080" data-height="1920" data-duration="2.25">
+    <div class="bg"></div>
+    <div class="stage" id="s08-stage">
+      <div class="floor"></div>
+      <img id="s08-plain" src="assets/house-plain.jpg" alt="" />
+      <img id="s08-full" src="assets/house-full.jpg" alt="" />
+      <div class="floorfade"></div>
+      <div id="s08-handle"><div id="s08-bar"></div><div id="s08-knob">‹›</div></div>
+    </div>
+    <div class="headline" id="s08-head" style="top:250px; font-size:104px">Before <span class="y" style="font-weight:600">vs</span><br /><span class="y">After</span></div>
+    <div class="chip" id="s08-cb" style="left:60px; top:520px">Before</div>
+    <div class="chip yl" id="s08-ca" style="right:60px; top:520px">After</div>
+  </div>
+  <script>
+    const F = (s, px, py, cx, cy) => ({ x: cx - px * s, y: cy - py * s, scale: s });
+    const R = (x1, y1, x2, y2) =>
+      `inset(${(y1 / 9).toFixed(3)}% ${(100 - x2 / 16).toFixed(3)}% ${(100 - y2 / 9).toFixed(3)}% ${(x1 / 16).toFixed(3)}%)`;
+    const tl = gsap.timeline({ paused: true });
+
+    tl.set("#s08-stage", F(0.68, 800, 470, 540, 900), 0);
+    tl.to("#s08-stage", { ...F(0.71, 800, 470, 540, 900), duration: 2.25, ease: "sine.inOut" }, 0);
+    tl.fromTo("#s08-full", { clipPath: "inset(0% 0% 0% 100%)" }, { clipPath: "inset(0% 0% 0% 50%)", duration: 0.5, ease: "power3.inOut" }, 0.05);
+    tl.fromTo("#s08-handle", { x: 1600 }, { x: 800, duration: 0.5, ease: "power3.inOut" }, 0.05);
+    tl.to("#s08-full", { clipPath: "inset(0% 0% 0% 22%)", duration: 0.4, ease: "power2.inOut" }, 0.75);
+    tl.to("#s08-handle", { x: 352, duration: 0.4, ease: "power2.inOut" }, 0.75);
+    tl.to("#s08-full", { clipPath: "inset(0% 0% 0% 0%)", duration: 0.5, ease: "power3.inOut" }, 1.35);
+    tl.to("#s08-handle", { x: -40, opacity: 0, duration: 0.5, ease: "power3.inOut" }, 1.35);
+    tl.fromTo("#s08-head", { opacity: 0, scale: 1.1 }, { opacity: 1, scale: 1, duration: 0.35, ease: "power4.out" }, 0);
+    tl.fromTo(["#s08-cb", "#s08-ca"], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.25, stagger: 0.08 }, 0.25);
+    tl.to("#s08-cb", { opacity: 0, duration: 0.25 }, 1.4);
+
+    window.__timelines["s08"] = tl;
+  </script>
+</template>

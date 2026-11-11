@@ -1,0 +1,64 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #12151B; font-family: Montserrat, sans-serif; color: #fff; }
+    #root .shot { position: absolute; inset: 0; overflow: hidden; }
+    #root .shot .sbg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    #root .frame { position: absolute; left: 0; top: 0; width: 3413px; height: 1920px; transform-origin: 0 50%; }
+    #root .dimv { position: absolute; inset: 0; background: rgba(8,10,14,.62); }
+    #root .frame img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }
+    #root .frame svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; }
+    #root .tshade { position: absolute; left: 0; top: 0; width: 1080px; height: 640px; z-index: 2;
+      background: linear-gradient(rgba(8,10,14,.85), rgba(8,10,14,.55) 55%, rgba(8,10,14,0)); }
+    #root .t { position: absolute; left: 40px; right: 40px; text-align: center; z-index: 3; text-transform: uppercase;
+      font-weight: 900; color: #fff; line-height: 1.02; text-shadow: 0 4px 0 rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.7); }
+    #root .y { color: #F6C343; }
+    #root .ser { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; text-transform: none; color: #F6C343; }
+    #root .num { position: absolute; left: 0; right: 0; text-align: center; z-index: 3; font-weight: 700; font-size: 28px;
+      letter-spacing: .34em; color: #F6C343; }
+    #root .chip { position: absolute; z-index: 3; padding: 12px 24px; background: rgba(12,14,18,.82); border: 2px solid #F6C343;
+      border-radius: 999px; font-weight: 800; font-size: 34px; letter-spacing: .12em; text-transform: uppercase; color: #fff; white-space: nowrap; }
+    #root video.full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    #root .vwrap { position: absolute; inset: 0; transform-origin: 50% 50%; }
+    #root .acard { position: absolute; width: 444px; height: 250px; overflow: hidden; border-radius: 14px; border: 3px solid rgba(255,255,255,.9);
+      box-shadow: 0 20px 50px rgba(0,0,0,.5); }
+    #root .acard img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    #root .acard span { position: absolute; left: 10px; bottom: 10px; padding: 6px 12px; background: rgba(12,14,18,.85); color: #fff;
+      font-weight: 800; font-size: 28px; letter-spacing: .06em; border-radius: 6px; text-transform: uppercase; }
+
+  </style>
+  <div id="root" data-composition-id="s09" data-width="1080" data-height="1920" data-duration="4.87">
+    <div class="shot" id="s09-p">
+      <div class="frame" id="s09-p-f"><img src="assets/img/english.jpg" alt="" /></div>
+    </div>
+    <div class="shot" id="s09-nordic">
+      <div class="frame" id="s09-nordic-f"><img src="assets/img/nordic.jpg" alt="" /></div>
+    </div>
+    <div class="num" id="s09-t0-n" style="top:196px">04 / 05</div>
+    <div class="t" id="s09-t0-nm" style="top:236px; font-size:92px">Nordic Style</div>
+    <div class="t ser" id="s09-t0-ds" style="top:318px; font-size:66px">Cozy</div>
+    <div class="shot" id="s09-malay">
+      <div class="frame" id="s09-malay-f"><img src="assets/img/malay.jpg" alt="" /></div>
+    </div>
+    <div class="num" id="s09-t1-n" style="top:196px">05 / 05</div>
+    <div class="t" id="s09-t1-nm" style="top:236px; font-size:74px">Malay Traditional</div>
+    
+
+    <div class="tshade"></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.set("#s09-p-f", { scale: 1.05, x: -951 }, 0);
+    tl.fromTo("#s09-nordic", { clipPath: "polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)" }, { clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", duration: 0.6, ease: "power3.inOut" }, 0);
+    tl.fromTo("#s09-nordic-f", { scale: 1.0, x: -583 }, { scale: 1.05, x: -1502, duration: 2.49, ease: "sine.inOut" }, 0);
+    tl.fromTo("#s09-t0-n", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power4.out" }, 0.2);
+    tl.fromTo("#s09-t0-nm", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "power4.out" }, 0.28);
+    tl.fromTo("#s09-t0-ds", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.45);
+    tl.to(["#s09-t0-n", "#s09-t0-nm", "#s09-t0-ds"], { opacity: 0, duration: 0.2 }, 2.14);
+    tl.fromTo("#s09-malay", { clipPath: "polygon(100% 0%, 100% 0%, 100% 100%, 145% 100%)" }, { clipPath: "polygon(-45% 0%, 100% 0%, 100% 100%, 0% 100%)", duration: 0.6, ease: "power3.inOut" }, 2.19);
+    tl.fromTo("#s09-malay-f", { scale: 1.0, x: -1446 }, { scale: 1.05, x: -901, duration: 2.98, ease: "sine.inOut" }, 2.19);
+    tl.fromTo("#s09-t1-n", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power4.out" }, 2.39);
+    tl.fromTo("#s09-t1-nm", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "power4.out" }, 2.47);
+
+    window.__timelines["s09"] = tl;
+  </script>
+</template>

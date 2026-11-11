@@ -1,0 +1,38 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Montserrat",sans-serif; color:#fff; }
+    .y { color:#f6c343; }
+    .hd { position:absolute; left:100px; right:100px; text-align:center; font-weight:800; line-height:1.04; letter-spacing:0.005em;
+      text-shadow:0 4px 18px rgba(0,0,0,.55), 0 2px 4px rgba(0,0,0,.45); }
+    .hd div { display:block; }
+    .glow { position:absolute; left:40px; right:40px; height:300px; border-radius:50%; pointer-events:none;
+      background:radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0,0,0,.5) 0%, rgba(0,0,0,.28) 50%, rgba(0,0,0,0) 100%); }
+
+    .rm { position:absolute; left:50%; top:300px; transform:translateX(-50%); display:flex; align-items:center; gap:22px;
+      padding:18px 34px 18px 20px; border-radius:70px; background:rgba(0,0,0,.5); }
+    .ic { position:relative; width:96px; height:96px; flex:0 0 96px; }
+    .ic .c { position:absolute; inset:0; border-radius:50%; background:#f6c343; }
+    .ic .w { position:absolute; inset:0; border-radius:50%; border:4px solid rgba(255,255,255,.9); }
+    .ic svg { position:absolute; left:24px; top:24px; width:48px; height:48px; }
+    .tx { font-weight:800; font-size:46px; line-height:1.05; white-space:nowrap; text-shadow:0 3px 12px rgba(0,0,0,.45); }
+    .pin { width:46px; height:46px; margin-left:4px; }</style>
+  <div id="root" data-composition-id="remote" data-width="1080" data-height="1920">
+    <div id="rm" class="rm clip" data-start="0" data-duration="6" data-track-index="0">
+      <div class="ic"><div id="rm-w1" class="w"></div><div id="rm-w2" class="w"></div><div class="c"></div><div id="rm-g" style="position:absolute;inset:0"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#ffffff" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg></div></div>
+      <div class="tx">BINA RUMAH<br /><span class="y">DARI JAUH</span></div>
+      <div id="rm-pin" class="pin"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#f6c343" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.6A2.6 2.6 0 1 1 12 6.4a2.6 2.6 0 0 1 0 5.2z"/></svg></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#rm", { opacity:0, scale:0.85 }, { opacity:1, scale:1, duration:0.45, ease:"back.out(1.6)" }, 0);
+    tl.set("#rm-g", { rotation:0 }, 0);
+    tl.set(["#rm-w1", "#rm-w2"], { scale:1, opacity:0 }, 0);
+    [0.35, 3.4].forEach((t0) => tl.to("#rm-g", { rotation:12, duration:0.06, ease:"sine.inOut", yoyo:true, repeat:7 }, t0));
+    [[0.3,"#rm-w1"],[0.7,"#rm-w2"],[3.35,"#rm-w1"],[3.75,"#rm-w2"]].forEach(([t0, s]) => tl.fromTo(s, { scale:1, opacity:0.85 }, { scale:1.55, opacity:0, duration:0.9, ease:"sine.out", immediateRender:false }, t0));
+    tl.set("#rm-pin", { y:0 }, 0);
+    tl.fromTo("#rm-pin", { y:-26, opacity:0 }, { y:0, opacity:1, duration:0.5, ease:"bounce.out", immediateRender:false }, 0.25);
+    tl.to("#rm", { opacity:0, duration:0.4, ease:"sine.in" }, 5.55);
+    window.__timelines["remote"] = tl;
+  </script>
+</template>

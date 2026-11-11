@@ -1,0 +1,28 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Montserrat",sans-serif; color:#fff; }
+    .y { color:#f6c343; }
+    .band { position:absolute; left:90px; right:90px; top:320px; display:flex; flex-direction:column; align-items:center; gap:18px; }
+    .pill { display:inline-flex; align-items:center; gap:16px; padding:16px 30px; border-radius:60px; background:rgba(0,0,0,.55);
+      font-weight:800; font-size:44px; line-height:1.1; white-space:nowrap; text-shadow:0 2px 8px rgba(0,0,0,.35); }
+    .pill svg { width:46px; height:46px; color:#f6c343; flex:0 0 auto; }
+    .tag { display:inline-flex; align-items:center; gap:12px; padding:12px 24px; border-radius:40px; background:#f6c343; color:#1b1b1b;
+      font-weight:800; font-size:34px; white-space:nowrap; box-shadow:0 8px 22px rgba(0,0,0,.28); }
+    .tag svg { width:36px; height:36px; color:#1b1b1b; }
+
+    .ts { display:flex; flex-direction:column; align-items:center; gap:4px; }
+    .up { width:76px; height:76px; color:#f6c343; filter:drop-shadow(0 3px 8px rgba(0,0,0,.45)); }</style>
+  <div id="root" data-composition-id="teaser" data-width="1080" data-height="1920">
+    <div id="teaser-w" class="band clip" data-start="0" data-duration="14.2" data-track-index="0">
+      <div class="ts"><div id="ts-u" class="up"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 3l7 8h-4.5v10h-5V11H5z"/></svg></div><div id="ts-p" class="pill"><span>APA ADA DI <span class="y">ARAS ATAS?</span> 👀</span></div></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#ts-p", { opacity:0, scale:0.8, y:10 }, { opacity:1, scale:1, y:0, duration:0.4, ease:"back.out(1.8)" }, 0);
+    tl.fromTo("#ts-u", { opacity:0, y:14 }, { opacity:1, y:0, duration:0.4, ease:"power2.out" }, 0.2);
+    tl.fromTo("#ts-u", { y:0 }, { y:-14, duration:0.6, ease:"sine.inOut", yoyo:true, repeat:20, immediateRender:false }, 0.65);
+    tl.to("#teaser-w", { opacity:0, duration:0.3, ease:"sine.in" }, 13.82);
+    window.__timelines["teaser"] = tl;
+  </script>
+</template>

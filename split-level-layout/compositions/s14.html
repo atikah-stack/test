@@ -1,0 +1,69 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #FFFFFF; font-family: Montserrat, sans-serif; color: #fff; }
+    #root .paper { position: absolute; inset: 0; background: #FFFFFF;
+      background-image: linear-gradient(rgba(22,24,29,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(22,24,29,.05) 1px, transparent 1px);
+      background-size: 54px 54px; }
+    #root .plan { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+    #root .plan img { position: absolute; left: 0; top: 0; display: block; }
+    #root .plan svg { position: absolute; left: 0; top: 0; overflow: visible; }
+    #root .card { position: absolute; left: 40px; right: 40px; padding: 0; background: transparent; border-radius: 0;
+      text-shadow: 0 4px 0 rgba(0,0,0,.35), 0 10px 30px rgba(0,0,0,.7), 0 0 3px rgba(0,0,0,.85);
+      text-align: center; font-weight: 900; font-size: 74px; line-height: 1.06; text-transform: uppercase; color: #fff; }
+    #root .card .a { color: #F6C343; }
+    #root .tshade { position: absolute; left: 0; top: 0; width: 1080px; height: 900px; z-index: 2;
+      background: linear-gradient(rgba(10,12,16,.9) 0px, rgba(10,12,16,.72) 420px, rgba(10,12,16,0) 880px); }
+    #root .card, #root .kick, #root .chip, #root .opt, #root .row, #root #s14-cm { z-index: 3; }
+    #root .card .r { color: #FF6B6F; }
+    #root .kick { position: absolute; left: 0; right: 0; display: flex; justify-content: center; }
+    #root .kick span { padding: 10px 22px; background: #F6C343; color: #16181D; font-weight: 900; font-size: 32px; letter-spacing: .14em;
+      text-transform: uppercase; border-radius: 8px; }
+    #root .chip { position: absolute; padding: 12px 22px; background: #16181D; color: #fff; font-weight: 800; font-size: 34px;
+      letter-spacing: .06em; text-transform: uppercase; border-radius: 10px; white-space: nowrap; box-shadow: 0 10px 26px rgba(0,0,0,.25); }
+    #root .chip i { display: inline-block; width: 16px; height: 16px; border-radius: 50%; background: #F59E0B; margin-right: 12px; vertical-align: 2px; font-style: normal; }
+    #root .inset { position: absolute; width: 400px; height: 520px; border-radius: 26px; overflow: hidden; border: 6px solid #fff;
+      box-shadow: 0 24px 60px rgba(0,0,0,.35); background: #16181D; }
+    #root .inset video { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }
+    #root .inset .tagv { position: absolute; left: 14px; bottom: 14px; padding: 8px 14px; background: rgba(22,24,29,.85); color: #fff;
+      font-weight: 800; font-size: 28px; letter-spacing: .08em; border-radius: 8px; text-transform: uppercase; }
+    #root .photo { position: absolute; inset: 0; overflow: hidden; opacity: 0; }
+    #root .photo img { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; transform-origin: 50% 60%; }
+    #root video.full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    #root .dim { position: absolute; inset: 0; background: rgba(12,14,18,.5); }
+    #root .topshade { position: absolute; left: 0; right: 0; top: 0; height: 760px; background: linear-gradient(rgba(12,14,18,.75), rgba(12,14,18,0)); }
+
+    #root .row { position: absolute; left: 90px; right: 90px; height: 120px; border-radius: 18px; display: flex; align-items: center; gap: 24px;
+      padding: 0 30px; background: #fff; color: #16181D; font-weight: 900; font-size: 48px; text-transform: uppercase; }
+    #root .row b { flex: none; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 46px; }
+    #s14-cm { position: absolute; left: 0; right: 0; top: 920px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    #s14-cm span { padding: 16px 44px; background: #F59E0B; color: #16181D; font-weight: 900; font-size: 64px; border-radius: 16px; letter-spacing: .06em; }
+
+  </style>
+  <div id="root" data-composition-id="s14" data-width="1080" data-height="1920" data-duration="3.15">
+    <div class="paper"></div>
+<div class="tshade"></div>
+    <div class="plan" id="s14-plan" style="width:2200px; height:1800px">
+      <img src="assets/plan-upper-hd.png" alt="" style="width:2200px; height:1800px" />
+      <svg viewBox="0 0 2200 1800" style="width:2200px; height:1800px"></svg>
+    </div>
+    <div class="dim" style="background:rgba(14,16,20,.84)"></div>
+    <div class="card" id="s14-head" style="top:220px; font-size:84px">Korang pilih<br /><span class="a">yang mana?</span></div>
+    <div class="row" id="s14-a" style="top:520px"><b style="background:#14B8A6">A</b>Tambah bilik air</div>
+    <div class="row" id="s14-b" style="top:665px"><b style="background:#F59E0B">B</b>Kekalkan layout</div>
+    <div id="s14-cm"><span id="s14-k">Komen</span><svg id="s14-arrow" width="64" height="80" viewBox="0 0 64 80"><path d="M32 4 V66 M8 44 L32 68 L56 44" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+  </div>
+  <script>
+    const F = (s, px, py, cx, cy) => ({ x: cx - px * s, y: cy - py * s, scale: s });
+    const tl = gsap.timeline({ paused: true });
+
+    tl.fromTo("#s14-plan", F(1.3, 1515, 820, 540, 1000), { ...F(1.38, 1515, 820, 540, 1000), duration: 3.15, ease: "sine.inOut" }, 0);
+    tl.fromTo("#s14-head", { opacity: 0, y: 24, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "back.out(1.6)" }, 0.0);
+    tl.fromTo("#s14-a", { opacity: 0, y: 24, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 0.25);
+    tl.fromTo("#s14-b", { opacity: 0, y: 24, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, 0.4);
+    tl.fromTo("#s14-k", { opacity: 0, y: 24, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "back.out(1.6)" }, 0.6);
+
+    tl.fromTo("#s14-arrow", { y: 0 }, { y: 16, duration: 0.35, ease: "sine.inOut", yoyo: true, repeat: 5 }, 0.9);
+
+    window.__timelines["s14"] = tl;
+  </script>
+</template>

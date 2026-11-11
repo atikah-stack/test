@@ -1,0 +1,35 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Montserrat",sans-serif; color:#fff; }
+    .y { color:#f6c343; }
+    .hd { position:absolute; left:80px; right:80px; top:320px; text-align:center; font-weight:900; line-height:1.02;
+      text-shadow:0 5px 18px rgba(0,0,0,.55), 0 2px 4px rgba(0,0,0,.45); }
+    .hd div { white-space:nowrap; }
+    .hg { position:absolute; left:20px; right:20px; top:260px; height:340px; border-radius:50%; pointer-events:none;
+      background:radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0,0,0,.42) 0%, rgba(0,0,0,.2) 55%, rgba(0,0,0,0) 100%); }
+    .pill { position:absolute; display:inline-flex; align-items:center; gap:12px; padding:12px 24px; border-radius:50px; background:rgba(0,0,0,.55);
+      font-weight:800; font-size:36px; white-space:nowrap; text-shadow:0 2px 6px rgba(0,0,0,.35); }
+    .pill svg { width:40px; height:40px; color:#f6c343; }
+    .tag { position:absolute; display:inline-flex; align-items:center; gap:10px; padding:10px 22px; border-radius:40px; background:#f6c343; color:#1b1b1b;
+      font-weight:800; font-size:32px; white-space:nowrap; box-shadow:0 8px 20px rgba(0,0,0,.28); }
+    .tag svg { width:34px; height:34px; color:#1b1b1b; }
+    svg.ptr { position:absolute; left:0; top:0; width:1080px; height:1920px; overflow:visible; pointer-events:none; }
+</style>
+  <div id="root" data-composition-id="bilikair" data-width="1080" data-height="1920">
+    <div id="bilikair-w0" class="clip" data-start="0" data-duration="9.8" data-track-index="0" style="position:absolute; inset:0">
+      <div id="bx-g" class="hg" style="top:260px"></div>
+      <div id="bx-h" class="hd" style="top:320px">
+        <div id="bx-l0" style="font-size:88px">BILIK AIR</div>
+        <div id="bx-l1" class="y" style="font-size:92px">VIBES LUXURY</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#bx-g", { opacity:0 }, { opacity:1, duration:0.35 }, 0);
+    tl.fromTo("#bx-l0", { opacity:0, y:18, scale:0.92 }, { opacity:1, y:0, scale:1, duration:0.42, ease:"back.out(1.7)" }, 0);
+    tl.fromTo("#bx-l1", { opacity:0, y:18, scale:0.92 }, { opacity:1, y:0, scale:1, duration:0.42, ease:"back.out(1.7)" }, 7.9);
+    tl.to("#bilikair-w0", { opacity:0, duration:0.3, ease:"sine.in" }, 9.45);
+    window.__timelines["bilikair"] = tl;
+  </script>
+</template>

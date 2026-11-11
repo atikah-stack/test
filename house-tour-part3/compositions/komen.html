@@ -1,0 +1,38 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Montserrat",sans-serif; color:#fff; }
+    .y { color:#f6c343; }
+    .hd { position:absolute; left:80px; right:80px; top:320px; text-align:center; font-weight:900; line-height:1.02;
+      text-shadow:0 5px 18px rgba(0,0,0,.55), 0 2px 4px rgba(0,0,0,.45); }
+    .hd div { white-space:nowrap; }
+    .hg { position:absolute; left:20px; right:20px; top:260px; height:340px; border-radius:50%; pointer-events:none;
+      background:radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0,0,0,.42) 0%, rgba(0,0,0,.2) 55%, rgba(0,0,0,0) 100%); }
+    .pill { position:absolute; display:inline-flex; align-items:center; gap:12px; padding:12px 24px; border-radius:50px; background:rgba(0,0,0,.55);
+      font-weight:800; font-size:36px; white-space:nowrap; text-shadow:0 2px 6px rgba(0,0,0,.35); }
+    .pill svg { width:40px; height:40px; color:#f6c343; }
+    .tag { position:absolute; display:inline-flex; align-items:center; gap:10px; padding:10px 22px; border-radius:40px; background:#f6c343; color:#1b1b1b;
+      font-weight:800; font-size:32px; white-space:nowrap; box-shadow:0 8px 20px rgba(0,0,0,.28); }
+    .tag svg { width:34px; height:34px; color:#1b1b1b; }
+    svg.ptr { position:absolute; left:0; top:0; width:1080px; height:1920px; overflow:visible; pointer-events:none; }
+</style>
+  <div id="root" data-composition-id="komen" data-width="1080" data-height="1920">
+    <div id="komen-w0" class="clip" data-start="0" data-duration="4.6" data-track-index="0" style="position:absolute; inset:0">
+      <div id="km-g" class="hg" style="top:260px"></div>
+      <div id="km-h" class="hd" style="top:320px">
+        <div id="km-l0" style="font-size:88px">CANTIK TAK</div>
+        <div id="km-l1" class="y" style="font-size:96px">RUMAH NI?</div>
+      </div>
+      <div id="km-i" style="position:absolute; left:470px; top:560px; width:140px; height:140px; color:#fff; filter:drop-shadow(0 6px 14px rgba(0,0,0,.45))"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M4 3h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm3 6v2h2V9zm4 0v2h2V9zm4 0v2h2V9z"/></svg></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#km-g", { opacity:0 }, { opacity:1, duration:0.35 }, 0);
+    tl.fromTo("#km-l0", { opacity:0, y:18, scale:0.92 }, { opacity:1, y:0, scale:1, duration:0.42, ease:"back.out(1.7)" }, 0);
+    tl.fromTo("#km-l1", { opacity:0, y:18, scale:0.92 }, { opacity:1, y:0, scale:1, duration:0.42, ease:"back.out(1.7)" }, 1.8);
+    tl.fromTo("#km-i", { opacity:0, scale:0.8 }, { opacity:1, scale:1, duration:0.38, ease:"back.out(1.8)" }, 0.3);
+    tl.fromTo("#km-i", { rotation:0 }, { rotation:10, duration:0.12, yoyo:true, repeat:5, ease:"sine.inOut", immediateRender:false }, 1.0);
+    tl.to("#komen-w0", { opacity:0, duration:0.3, ease:"sine.in" }, 4.25);
+    window.__timelines["komen"] = tl;
+  </script>
+</template>

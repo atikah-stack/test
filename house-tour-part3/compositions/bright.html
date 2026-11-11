@@ -1,0 +1,55 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Montserrat",sans-serif; color:#fff; }
+    .y { color:#f6c343; }
+    .hd { position:absolute; left:80px; right:80px; top:320px; text-align:center; font-weight:900; line-height:1.02;
+      text-shadow:0 5px 18px rgba(0,0,0,.55), 0 2px 4px rgba(0,0,0,.45); }
+    .hd div { white-space:nowrap; }
+    .hg { position:absolute; left:20px; right:20px; top:260px; height:340px; border-radius:50%; pointer-events:none;
+      background:radial-gradient(ellipse 50% 50% at 50% 50%, rgba(0,0,0,.42) 0%, rgba(0,0,0,.2) 55%, rgba(0,0,0,0) 100%); }
+    .pill { position:absolute; display:inline-flex; align-items:center; gap:12px; padding:12px 24px; border-radius:50px; background:rgba(0,0,0,.55);
+      font-weight:800; font-size:36px; white-space:nowrap; text-shadow:0 2px 6px rgba(0,0,0,.35); }
+    .pill svg { width:40px; height:40px; color:#f6c343; }
+    .tag { position:absolute; display:inline-flex; align-items:center; gap:10px; padding:10px 22px; border-radius:40px; background:#f6c343; color:#1b1b1b;
+      font-weight:800; font-size:32px; white-space:nowrap; box-shadow:0 8px 20px rgba(0,0,0,.28); }
+    .tag svg { width:34px; height:34px; color:#1b1b1b; }
+    svg.ptr { position:absolute; left:0; top:0; width:1080px; height:1920px; overflow:visible; pointer-events:none; }
+</style>
+  <div id="root" data-composition-id="bright" data-width="1080" data-height="1920">
+    <div id="bright-w0" class="clip" data-start="0" data-duration="17" data-track-index="0" style="position:absolute; inset:0">
+      <div id="br-g" class="hg" style="top:260px"></div>
+      <div id="br-h" class="hd" style="top:320px">
+        <div id="br-l0" style="font-size:84px">LARASKAN</div>
+        <div id="br-l1" class="y" style="font-size:88px">PENCAHAYAAN</div>
+      </div>
+      <div id="br-w" style="position:absolute; left:170px; right:170px; top:560px; height:90px; display:flex; align-items:center; gap:20px">
+        <div style="width:46px; height:46px; color:rgba(255,255,255,.6)"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zM11 1h2v3h-2zm0 19h2v3h-2zM1 11h3v2H1zm19 0h3v2h-3zM4.2 5.6l1.4-1.4 2.1 2.1-1.4 1.4zm12.1 12.1 1.4-1.4 2.1 2.1-1.4 1.4zM4.2 18.4l2.1-2.1 1.4 1.4-2.1 2.1zM16.3 6.3l2.1-2.1 1.4 1.4-2.1 2.1z"/></svg></div>
+        <div style="position:relative; flex:1; height:16px; border-radius:8px; background:rgba(0,0,0,.55); border:2px solid rgba(255,255,255,.6)">
+          <div id="br-f" style="position:absolute; left:0; top:0; bottom:0; width:100%; border-radius:8px; background:#f6c343; transform-origin:0 50%"></div>
+          <div id="br-k" style="position:absolute; left:0; top:-17px; width:46px; height:46px; margin-left:-23px; border-radius:50%; background:#fff; box-shadow:0 4px 12px rgba(0,0,0,.4)"></div>
+        </div>
+        <div style="width:60px; height:60px; color:#f6c343"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zM11 1h2v3h-2zm0 19h2v3h-2zM1 11h3v2H1zm19 0h3v2h-3zM4.2 5.6l1.4-1.4 2.1 2.1-1.4 1.4zm12.1 12.1 1.4-1.4 2.1 2.1-1.4 1.4zM4.2 18.4l2.1-2.1 1.4 1.4-2.1 2.1zM16.3 6.3l2.1-2.1 1.4 1.4-2.1 2.1z"/></svg></div>
+      </div>
+      <div id="br-lo" class="tag" style="left:200px; top:670px">MALAP</div>
+      <div id="br-hi" class="tag" style="left:700px; top:670px">TERANG</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#br-g", { opacity:0 }, { opacity:1, duration:0.35 }, 0);
+    tl.fromTo("#br-l0", { opacity:0, y:18, scale:0.92 }, { opacity:1, y:0, scale:1, duration:0.42, ease:"back.out(1.7)" }, 0);
+    tl.fromTo("#br-l1", { opacity:0, y:18, scale:0.92 }, { opacity:1, y:0, scale:1, duration:0.42, ease:"back.out(1.7)" }, 0.3);
+    tl.fromTo("#br-w", { opacity:0, scale:0.8 }, { opacity:1, scale:1, duration:0.38, ease:"back.out(1.8)" }, 0.2);
+    tl.set("#br-f", { scaleX:0.6 }, 0);
+    tl.set("#br-k", { x:356 }, 0);
+    tl.to("#br-f", { scaleX:0.12, duration:1.4, ease:"power2.inOut" }, 7.80);
+    tl.to("#br-k", { x:71, duration:1.4, ease:"power2.inOut" }, 7.80);
+    tl.fromTo("#br-lo", { opacity:0, scale:0.8 }, { opacity:1, scale:1, duration:0.38, ease:"back.out(1.8)" }, 9.20);
+    tl.to("#br-lo", { opacity:0, duration:0.3 }, 11.60);
+    tl.to("#br-f", { scaleX:1, duration:2.0, ease:"power2.inOut" }, 11.90);
+    tl.to("#br-k", { x:594, duration:2.0, ease:"power2.inOut" }, 11.90);
+    tl.fromTo("#br-hi", { opacity:0, scale:0.8 }, { opacity:1, scale:1, duration:0.38, ease:"back.out(1.8)" }, 13.60);
+    tl.to("#bright-w0", { opacity:0, duration:0.3, ease:"sine.in" }, 16.65);
+    window.__timelines["bright"] = tl;
+  </script>
+</template>

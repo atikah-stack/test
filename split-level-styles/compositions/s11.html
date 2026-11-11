@@ -1,0 +1,58 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; background: #12151B; font-family: Montserrat, sans-serif; color: #fff; }
+    #root .shot { position: absolute; inset: 0; overflow: hidden; }
+    #root .shot .sbg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+    #root .frame { position: absolute; left: 0; top: 0; width: 3413px; height: 1920px; transform-origin: 0 50%; }
+    #root .dimv { position: absolute; inset: 0; background: rgba(8,10,14,.62); }
+    #root .frame img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }
+    #root .frame svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; }
+    #root .tshade { position: absolute; left: 0; top: 0; width: 1080px; height: 640px; z-index: 2;
+      background: linear-gradient(rgba(8,10,14,.85), rgba(8,10,14,.55) 55%, rgba(8,10,14,0)); }
+    #root .t { position: absolute; left: 40px; right: 40px; text-align: center; z-index: 3; text-transform: uppercase;
+      font-weight: 900; color: #fff; line-height: 1.02; text-shadow: 0 4px 0 rgba(0,0,0,.3), 0 10px 30px rgba(0,0,0,.7); }
+    #root .y { color: #F6C343; }
+    #root .ser { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; text-transform: none; color: #F6C343; }
+    #root .num { position: absolute; left: 0; right: 0; text-align: center; z-index: 3; font-weight: 700; font-size: 28px;
+      letter-spacing: .34em; color: #F6C343; }
+    #root .chip { position: absolute; z-index: 3; padding: 12px 24px; background: rgba(12,14,18,.82); border: 2px solid #F6C343;
+      border-radius: 999px; font-weight: 800; font-size: 34px; letter-spacing: .12em; text-transform: uppercase; color: #fff; white-space: nowrap; }
+    #root video.full { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    #root .vwrap { position: absolute; inset: 0; transform-origin: 50% 50%; }
+    #root .acard { position: absolute; width: 444px; height: 250px; overflow: hidden; border-radius: 14px; border: 3px solid rgba(255,255,255,.9);
+      box-shadow: 0 20px 50px rgba(0,0,0,.5); }
+    #root .acard img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    #root .acard span { position: absolute; left: 10px; bottom: 10px; padding: 6px 12px; background: rgba(12,14,18,.85); color: #fff;
+      font-weight: 800; font-size: 28px; letter-spacing: .06em; border-radius: 6px; text-transform: uppercase; }
+
+
+
+  </style>
+  <div id="root" data-composition-id="s11" data-width="1080" data-height="1920" data-duration="3.75">
+    <video id="s11-bgv" class="clip full" src="assets/video/interior-stairs.mp4" data-start="0" data-duration="3.75" data-media-start="4.5" muted playsinline></video>
+    <div class="dimv"></div>
+    <div class="acard sc" id="s11-c0" style="left:318px; top:735px; width:444px; height:250px"><img src="assets/img/modern.jpg" alt="" /></div>
+    <div class="acard sc" id="s11-c1" style="left:318px; top:735px; width:444px; height:250px"><img src="assets/img/muji.jpg" alt="" /></div>
+    <div class="acard sc" id="s11-c2" style="left:318px; top:735px; width:444px; height:250px"><img src="assets/img/english.jpg" alt="" /></div>
+    <div class="acard sc" id="s11-c3" style="left:318px; top:735px; width:444px; height:250px"><img src="assets/img/nordic.jpg" alt="" /></div>
+    <div class="acard sc" id="s11-c4" style="left:318px; top:735px; width:444px; height:250px"><img src="assets/img/malay.jpg" alt="" /></div>
+    <div class="t" id="s11-h" style="top:1080px; font-size:40px; letter-spacing:.24em; font-weight:800">Mahligai <span class="y">Idaman</span></div>
+
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#s11-c0", { opacity: 0, x: -700, y: -500, rotation: -18, scale: 1.25 }, { opacity: 1, x: -234, y: -167, rotation: -9, scale: 1.25, duration: 0.45, ease: "power3.out" }, 0.05);
+    tl.to("#s11-c0", { x: -300, y: -20, rotation: -8, scale: 1.05, duration: 0.8, ease: "expo.inOut" }, 1.9);
+    tl.fromTo("#s11-c1", { opacity: 0, x: 760, y: -420, rotation: 16, scale: 1.25 }, { opacity: 1, x: 253, y: -140, rotation: 8, scale: 1.25, duration: 0.45, ease: "power3.out" }, 0.27);
+    tl.to("#s11-c1", { x: 300, y: -30, rotation: 7, scale: 1.05, duration: 0.8, ease: "expo.inOut" }, 1.9);
+    tl.fromTo("#s11-c2", { opacity: 0, x: -760, y: 380, rotation: 12, scale: 1.25 }, { opacity: 1, x: -254, y: 126, rotation: 6, scale: 1.25, duration: 0.45, ease: "power3.out" }, 0.49);
+    tl.to("#s11-c2", { x: -150, y: 40, rotation: -3, scale: 1.05, duration: 0.8, ease: "expo.inOut" }, 1.9);
+    tl.fromTo("#s11-c3", { opacity: 0, x: 760, y: 460, rotation: -14, scale: 1.25 }, { opacity: 1, x: 253, y: 153, rotation: -7, scale: 1.25, duration: 0.45, ease: "power3.out" }, 0.71);
+    tl.to("#s11-c3", { x: 160, y: 40, rotation: 4, scale: 1.05, duration: 0.8, ease: "expo.inOut" }, 1.9);
+    tl.fromTo("#s11-c4", { opacity: 0, x: 0, y: 900, rotation: 0, scale: 1.25 }, { opacity: 1, x: 0, y: 300, rotation: 0, scale: 1.25, duration: 0.45, ease: "power3.out" }, 0.93);
+    tl.to("#s11-c4", { x: 0, y: 0, rotation: 0, scale: 1.35, duration: 0.8, ease: "expo.inOut" }, 1.9);
+    tl.fromTo("#s11-h", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: "power4.out" }, 2.6);
+
+    window.__timelines["s11"] = tl;
+  </script>
+</template>
