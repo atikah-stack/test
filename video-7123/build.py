@@ -33,6 +33,9 @@ def src(sid, s):
 
 # B-roll over the talent audio: (id, file, film start, dur)
 BROLL = [
+    ("o1", "b-img_1736", src("A", 200.85), 2.4),   # consultation room: "Buka file terus" (back to her face for "Tak sabar")
+    ("o2", "b-img_5600", src("D2", 193.45), 2.6),  # MI office lobby: "nak pergi dekat MI punya ofis"
+    ("o3", "b-img_1736", src("D2", 196.10), 2.85), # consultation: "So nak tanyalah macam mana buat tu kan"
     ("r1", "b-img_3772", src("E", 227.05), 2.4),   # exterior: "banyak dah buat rumah, dah siap"
     ("r2", "b-img_3757", src("E", 229.45), 2.2),   # porch pillars: "tak ada yang terbengkalai"
     ("r3", "b-img_3555", src("G", 235.62), 2.0),   # dining: covers the F->G jump cut
@@ -41,6 +44,7 @@ BROLL = [
     ("r6", "b-img_3564", src("H", 556.45), 2.0),   # dining -> back to her face for "So kita pilih Mahligai lah"
 ]
 
+MS = {"o1": 0.5, "o2": 4.0, "o3": 3.2}
 V = []
 for sid, c, a, b in SEGS:
     V.append(f'      <div class="vw" id="w-{sid}"><video id="v-{sid}" class="clip" src="assets/video/{c}.mp4" data-start="{start[sid]}" '
@@ -48,7 +52,7 @@ for sid, c, a, b in SEGS:
              f'data-has-audio="true" data-volume="1" data-fade-in="0.03" data-fade-out="0.05"></video></div>')
 for rid, f, s, d in BROLL:
     V.append(f'      <div class="vw br" id="w-{rid}"><video id="v-{rid}" class="clip" src="assets/video/{f}.mp4" data-start="{s}" '
-             f'data-duration="{d}" data-media-start="0.3" data-track-index="2" muted playsinline></video></div>')
+             f'data-duration="{d}" data-media-start="{MS.get(rid, 0.3)}" data-track-index="2" muted playsinline></video></div>')
 V.append(f'      <div class="vw" id="w-cta"><video id="v-cta" class="clip" src="assets/video/b-img_3772.mp4" data-start="{TALK}" '
          f'data-duration="{CTA}" data-media-start="4.0" data-track-index="1" muted playsinline></video></div>')
 
@@ -179,7 +183,8 @@ badge("g-yakin", src("F", 233.75), src("G", 237.0), STAR, "YAKIN", "PILIH MI")
 
 # hook
 el(f'<div class="gw clip" id="g-hook" data-start="0.05" data-duration="3.8"><div class="hk">'
-   f'<div class="hk1" id="hk1">DATANG OFIS,</div><div class="hk2" id="hk2">TERUS SIGN?!</div></div></div>')
+   f'<img class="hlogo" id="hlogo" src="assets/img/logo.png" alt="" /><div class="hk1" id="hk1">DATANG OFIS,</div><div class="hk2" id="hk2">TERUS SIGN?!</div></div></div>')
+js('tl.fromTo("#hlogo", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.05);')
 js('tl.fromTo("#hk1", { opacity: 0, y: 40, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 0.1);')
 js('tl.fromTo("#hk2", { opacity: 0, scale: 1.4, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 0.4);')
 js('tl.to("#g-hook", { opacity: 0, y: -20, duration: 0.25, ease: "power2.in" }, 3.6);')
@@ -199,17 +204,20 @@ CSS = '''
     .y { color: #FFC845; }
     .cw { position: absolute; left: 80px; right: 80px; top: 1300px; display: flex; justify-content: center; }
     .cap { max-width: 920px; padding: 12px 28px 14px; border-radius: 20px; background: rgba(10,12,16,.58); text-align: center;
-      font-weight: 800; font-size: 54px; line-height: 1.18; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,.35); opacity: 0; }
-    .gw { position: absolute; left: 80px; right: 80px; top: 300px; display: flex; justify-content: center; }
-    .badge { display: flex; align-items: center; gap: 20px; padding: 16px 36px 18px 18px; border-radius: 24px; background: rgba(10,12,16,.72);
-      border: 3px solid #FFC845; box-shadow: 0 16px 40px rgba(0,0,0,.35); opacity: 0; }
-    .bi { width: 88px; height: 88px; border-radius: 20px; background: rgba(255,255,255,.08); display: flex; align-items: center; justify-content: center; flex: none; }
-    .b1 { font-weight: 700; font-size: 32px; letter-spacing: .1em; color: #fff; line-height: 1.1; white-space: nowrap; }
-    .b2 { font-weight: 800; font-size: 58px; line-height: 1.02; color: #FFC845; white-space: nowrap; text-shadow: 0 3px 10px rgba(0,0,0,.35); }
-    .hk { text-align: center; padding: 22px 40px 28px; border-radius: 28px; background: rgba(10,12,16,.55); }
-    .hk1, .hk2 { font-weight: 800; line-height: 1.02; white-space: nowrap; text-shadow: 0 5px 18px rgba(0,0,0,.4), 0 2px 4px rgba(0,0,0,.35); opacity: 0; }
-    .hk1 { font-size: 92px; color: #fff; }
-    .hk2 { font-size: 118px; color: #FFC845; }
+      font-weight: 700; font-size: 52px; line-height: 1.18; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,.35); opacity: 0; }
+    .gw { position: absolute; left: 60px; right: 60px; top: 250px; display: flex; justify-content: center; }
+    .badge { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; opacity: 0; }
+    .bi { height: 80px; display: flex; align-items: center; justify-content: center; filter: drop-shadow(0 4px 10px rgba(0,0,0,.45)); margin-bottom: 6px; }
+    .bi svg { width: 84px !important; height: 84px !important; }
+    .b1 { font-weight: 800; font-size: 72px; line-height: 1.0; color: #fff; white-space: nowrap; letter-spacing: .01em;
+      text-shadow: 0 4px 14px rgba(0,0,0,.45), 0 2px 3px rgba(0,0,0,.35); }
+    .b2 { font-weight: 800; font-size: 96px; line-height: 1.0; color: #FFC845; white-space: nowrap; letter-spacing: .01em;
+      text-shadow: 0 5px 22px rgba(0,0,0,.6), 0 2px 5px rgba(0,0,0,.5); }
+    .hk { text-align: center; display: flex; flex-direction: column; align-items: center; }
+    .hlogo { width: 150px; height: auto; margin-bottom: 26px; filter: drop-shadow(0 4px 12px rgba(0,0,0,.45)); opacity: 0; }
+    .hk1, .hk2 { font-weight: 800; line-height: 1.04; white-space: nowrap; text-shadow: 0 6px 20px rgba(0,0,0,.5), 0 2px 4px rgba(0,0,0,.4); opacity: 0; }
+    .hk1 { font-size: 104px; color: #fff; }
+    .hk2 { font-size: 112px; color: #FFC845; }
     .ctabg { position: absolute; inset: 0; background: rgba(8,10,12,.62); opacity: 0; }
     .ctaw { position: absolute; left: 80px; right: 80px; top: 520px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 30px; }
     .logo { width: 230px; height: auto; filter: drop-shadow(0 8px 18px rgba(0,0,0,.45)); opacity: 0; }

@@ -4,17 +4,20 @@
     .y { color: #FFC845; }
     .cw { position: absolute; left: 80px; right: 80px; top: 1300px; display: flex; justify-content: center; }
     .cap { max-width: 920px; padding: 12px 28px 14px; border-radius: 20px; background: rgba(10,12,16,.58); text-align: center;
-      font-weight: 800; font-size: 54px; line-height: 1.18; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,.35); opacity: 0; }
-    .gw { position: absolute; left: 80px; right: 80px; top: 300px; display: flex; justify-content: center; }
-    .badge { display: flex; align-items: center; gap: 20px; padding: 16px 36px 18px 18px; border-radius: 24px; background: rgba(10,12,16,.72);
-      border: 3px solid #FFC845; box-shadow: 0 16px 40px rgba(0,0,0,.35); opacity: 0; }
-    .bi { width: 88px; height: 88px; border-radius: 20px; background: rgba(255,255,255,.08); display: flex; align-items: center; justify-content: center; flex: none; }
-    .b1 { font-weight: 700; font-size: 32px; letter-spacing: .1em; color: #fff; line-height: 1.1; white-space: nowrap; }
-    .b2 { font-weight: 800; font-size: 58px; line-height: 1.02; color: #FFC845; white-space: nowrap; text-shadow: 0 3px 10px rgba(0,0,0,.35); }
-    .hk { text-align: center; padding: 22px 40px 28px; border-radius: 28px; background: rgba(10,12,16,.55); }
-    .hk1, .hk2 { font-weight: 800; line-height: 1.02; white-space: nowrap; text-shadow: 0 5px 18px rgba(0,0,0,.4), 0 2px 4px rgba(0,0,0,.35); opacity: 0; }
-    .hk1 { font-size: 92px; color: #fff; }
-    .hk2 { font-size: 118px; color: #FFC845; }
+      font-weight: 700; font-size: 52px; line-height: 1.18; color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,.35); opacity: 0; }
+    .gw { position: absolute; left: 60px; right: 60px; top: 250px; display: flex; justify-content: center; }
+    .badge { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; opacity: 0; }
+    .bi { height: 80px; display: flex; align-items: center; justify-content: center; filter: drop-shadow(0 4px 10px rgba(0,0,0,.45)); margin-bottom: 6px; }
+    .bi svg { width: 84px !important; height: 84px !important; }
+    .b1 { font-weight: 800; font-size: 72px; line-height: 1.0; color: #fff; white-space: nowrap; letter-spacing: .01em;
+      text-shadow: 0 4px 14px rgba(0,0,0,.45), 0 2px 3px rgba(0,0,0,.35); }
+    .b2 { font-weight: 800; font-size: 96px; line-height: 1.0; color: #FFC845; white-space: nowrap; letter-spacing: .01em;
+      text-shadow: 0 5px 22px rgba(0,0,0,.6), 0 2px 5px rgba(0,0,0,.5); }
+    .hk { text-align: center; display: flex; flex-direction: column; align-items: center; }
+    .hlogo { width: 150px; height: auto; margin-bottom: 26px; filter: drop-shadow(0 4px 12px rgba(0,0,0,.45)); opacity: 0; }
+    .hk1, .hk2 { font-weight: 800; line-height: 1.04; white-space: nowrap; text-shadow: 0 6px 20px rgba(0,0,0,.5), 0 2px 4px rgba(0,0,0,.4); opacity: 0; }
+    .hk1 { font-size: 104px; color: #fff; }
+    .hk2 { font-size: 112px; color: #FFC845; }
     .ctabg { position: absolute; inset: 0; background: rgba(8,10,12,.62); opacity: 0; }
     .ctaw { position: absolute; left: 80px; right: 80px; top: 520px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 30px; }
     .logo { width: 230px; height: auto; filter: drop-shadow(0 8px 18px rgba(0,0,0,.45)); opacity: 0; }
@@ -55,7 +58,7 @@
     <div class="gw clip" id="g-ofis" data-start="16.5" data-duration="5.0"><div class="badge" id="g-ofis-b"><div class="bi"><svg viewBox="0 0 48 64" width="46" height="62"><path d="M24 1C11.3 1 1 11.3 1 24c0 16.5 23 39 23 39s23-22.5 23-39C47 11.3 36.7 1 24 1z" fill="#FFC845"/><circle cx="24" cy="24" r="9" fill="#14161B"/></svg></div><div><div class="b1">DATANG KE</div><div class="b2">OFIS</div></div></div></div>
     <div class="gw clip" id="g-rumah" data-start="27.65" data-duration="4.55"><div class="badge" id="g-rumah-b"><div class="bi"><svg viewBox="0 0 48 48" width="62" height="62" fill="none" stroke="#FFC845" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"><path d="M5 22 24 7l19 15"/><path d="M10 19v23h28V19"/><circle cx="34" cy="34" r="9" fill="#1FA34A" stroke="#fff" stroke-width="2.5"/><path d="M30 34l3 3 5-6" stroke="#fff" stroke-width="2.8"/></svg></div><div><div class="b1">BANYAK RUMAH</div><div class="b2">DAH SIAP</div></div></div></div>
     <div class="gw clip" id="g-yakin" data-start="33.95" data-duration="3.18"><div class="badge" id="g-yakin-b"><div class="bi"><svg viewBox="0 0 48 48" width="60" height="60"><path d="M24 4l6 13 14 1.5-10.5 9.5 3 14L24 35l-12.5 7 3-14L4 18.5 18 17z" fill="#FFC845"/></svg></div><div><div class="b1">YAKIN</div><div class="b2">PILIH MI</div></div></div></div>
-    <div class="gw clip" id="g-hook" data-start="0.05" data-duration="3.8"><div class="hk"><div class="hk1" id="hk1">DATANG OFIS,</div><div class="hk2" id="hk2">TERUS SIGN?!</div></div></div>
+    <div class="gw clip" id="g-hook" data-start="0.05" data-duration="3.8"><div class="hk"><img class="hlogo" id="hlogo" src="assets/img/logo.png" alt="" /><div class="hk1" id="hk1">DATANG OFIS,</div><div class="hk2" id="hk2">TERUS SIGN?!</div></div></div>
     <div class="clip" id="g-cta" data-start="48.58" data-duration="3.4" style="position:absolute; inset:0"><div class="ctabg" id="ctabg"></div><div class="ctaw"><img class="logo" id="cta-l" src="assets/img/logo.png" alt="" /><div class="c1" id="cta1">Nak bina rumah atas<br><span class="y">tanah sendiri?</span></div><div class="c2" id="cta2">Jom konsultasi dengan<br><b>Mahligai Idaman</b></div></div></div>
   </div>
   <script>
@@ -101,6 +104,7 @@
     tl.fromTo("#g-yakin-b", { opacity: 0, y: -24, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "back.out(1.6)" }, 33.95);
     tl.fromTo("#g-yakin-b .bi", { scale: 0.4, rotation: -20 }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2)" }, 34.05);
     tl.to("#g-yakin-b", { opacity: 0, y: -16, duration: 0.22, ease: "power2.in" }, 36.91);
+    tl.fromTo("#hlogo", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.05);
     tl.fromTo("#hk1", { opacity: 0, y: 40, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 0.1);
     tl.fromTo("#hk2", { opacity: 0, scale: 1.4, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 0.4);
     tl.to("#g-hook", { opacity: 0, y: -20, duration: 0.25, ease: "power2.in" }, 3.6);
