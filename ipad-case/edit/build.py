@@ -122,8 +122,8 @@ def line_in(sel, at):
 
 # S1 hook
 a0, a1 = 0.0, sec("s2") - 0.03
-scene("t1", a0, a1, 760, f'''      <div class="hd sm">{ww("h1", [("case", ""), ("yang", ""), ("buat", ""), ("iPad", ""), ("pink", "pk")])}</div>
-      <div class="hd sm">{ww("h2", [("nampak", ""), ("lagi", ""), ("mahal", ""), ("🩷", "")])}</div>
+scene("t1", a0, a1, 760, f'''      <div class="hk">{ww("h1", [("case", ""), ("yang", ""), ("buat", ""), ("iPad", ""), ("pink", "hp")])}</div>
+      <div class="hk">{ww("h2", [("nampak", ""), ("lagi", ""), ("mahal", ""), ("🩷", "")])}</div>
       <div class="bar" id="h-bar"></div>''')
 words_in("#t1 .w", 0.0, 0.08); line_in("#h-bar", 0.8); fade_out("#t1 .w, #h-bar", a1 - 0.2)
 sfx += [("pop", 0.0, 0.35), ("click-soft", 0.8, 0.45)]
@@ -242,6 +242,10 @@ open("compositions/text.html", "w").write(f'''<template>
     .hd {{ font-family: "Cormorant Garamond", "Noto Color Emoji", serif; font-style: italic; font-weight: 600; font-size: 84px; line-height: 1.02; letter-spacing: 0; white-space: nowrap;
       text-shadow: 0 1px 3px rgba(30,15,20,.55), 0 0 14px rgba(30,15,20,.45), 0 4px 22px rgba(30,15,20,.35); }}
     .hd.sm {{ font-size: 72px; line-height: 1.04; }}
+    @font-face {{ font-family: "DM Sans"; font-weight: 300; src: url("assets/fonts/dm-sans-latin-300-normal.woff2") format("woff2"); }}
+    .hk {{ font-family: "DM Sans", "Noto Color Emoji", sans-serif; font-weight: 300; font-size: 54px; line-height: 1.3; letter-spacing: 0.02em; white-space: nowrap; color: #ffffff;
+      text-shadow: 0 1px 3px rgba(30,15,20,.6), 0 0 14px rgba(30,15,20,.45); }}
+    .hp {{ color: #FFE1EC; font-weight: 400; }}
     .w {{ display: inline-block; }}
     .pk {{ color: #FFE1EC; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 10px; }}
     .mask {{ overflow: hidden; padding: 0 8px 6px; }}
