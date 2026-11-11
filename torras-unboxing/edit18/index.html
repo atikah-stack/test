@@ -1,22 +1,18 @@
 <!doctype html>
-<html lang="ms" data-composition-variables='[{"id":"showCta","type":"boolean","label":"Show bakul kuning line (only if linked in TikTok Shop)","default":true}]'>
+<html lang="ms">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1080, height=1920" />
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
     <style>
-      @font-face { font-family: "Shadows Into Light"; font-weight: 400; src: url("assets/fonts/shadows-into-light-latin-400-normal.woff2") format("woff2"); }
-      @font-face { font-family: "Noto Color Emoji"; src: url("assets/fonts/NotoColorEmoji.ttf") format("truetype"); }
       * { margin: 0; padding: 0; box-sizing: border-box; }
-      html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #f4ece2; }
+      html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #1a1513; }
       #root { position: relative; width: 100%; height: 100%; overflow: hidden; }
       .frame { position: absolute; inset: 0; }
       .shot { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
-      .ring { position: absolute; left: 0; top: 0; width: 0; height: 0; }
-      .spin { position: absolute; filter: drop-shadow(0 1px 3px rgba(40,28,20,.45)); }
-      .lab { position: absolute; left: -400px; width: 800px; display: flex; justify-content: center; }
-      .chip { display: inline-block; font-family: "Shadows Into Light", "Noto Color Emoji", sans-serif; font-weight: 400; font-size: 40px; letter-spacing: 0.02em; white-space: nowrap; }
-      .flash { position: absolute; inset: 0; background: #fff8ee; pointer-events: none; }
+      .arc { position: absolute; left: 0; top: 0; width: 0; height: 0; }
+      .ring1, .ring2, .waves { position: absolute; overflow: visible; }
+      .flash { position: absolute; inset: 0; background: #fff8f2; pointer-events: none; }
     </style>
   </head>
   <body>
@@ -38,14 +34,10 @@
       </div>
       <div class="frame" id="f-d02" style="z-index:6">
         <video id="v-d02" class="clip shot" src="assets/even/d02.mp4" data-start="6.1333" data-duration="2.0333" data-track-index="1" data-has-audio="true" data-volume="2.2" playsinline></video>
-        <div id="ring-d02" class="ring clip" data-start="6.8" data-duration="1.0" data-track-index="3" data-layout-allow-overflow>
-          <div id="ring-d02-spin" class="spin" style="width:438px;height:438px;left:-219px;top:-219px">
-            <svg width="438" height="438" viewBox="0 0 438 438">
-              <defs><mask id="m-d02"><circle id="mk-d02" cx="219" cy="219" r="215" fill="none" stroke="#fff" stroke-width="10" stroke-dasharray="1350.9" stroke-dashoffset="1350.9" transform="rotate(-90 219 219)"/></mask></defs>
-              <circle cx="219" cy="219" r="215" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-dasharray="11 9" stroke-linecap="round" mask="url(#m-d02)"/>
-            </svg>
-          </div>
-          <div id="lab-d02" class="lab" style="top:-298px"><span class="chip" style="color:#ffffff">magnetic compatible 🧲</span></div>
+        <div id="arc-d02" class="arc clip" data-start="6.7333" data-duration="1.1333" data-track-index="3" data-layout-allow-overflow>
+          
+          <svg class="ring2" id="arc2-d02" width="480" height="480" viewBox="0 0 480 480" style="left:-240px; top:-240px"><circle cx="240" cy="240" r="226" fill="none" stroke="#ffffff" stroke-opacity="0.35" stroke-width="2"/></svg>
+          <svg class="ring1" id="arc1-d02" width="480" height="480" viewBox="0 0 480 480" style="left:-240px; top:-240px"><circle id="arcp-d02" cx="240" cy="240" r="210" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="950.0 1319.5" stroke-dashoffset="950.0" transform="rotate(-90 240 240)"/></svg>
         </div>
       </div>
       <div class="frame" id="f-i01" style="z-index:7">
@@ -59,14 +51,10 @@
       </div>
       <div class="frame" id="f-x01" style="z-index:10">
         <video id="v-x01" class="clip shot" src="assets/even/x01.mp4" data-start="11.1667" data-duration="1.6" data-track-index="1" data-has-audio="true" data-volume="1.6" playsinline></video>
-        <div id="ring-x01" class="ring clip" data-start="11.2333" data-duration="1.4667" data-track-index="3" data-layout-allow-overflow>
-          <div id="ring-x01-spin" class="spin" style="width:478px;height:478px;left:-239px;top:-239px">
-            <svg width="478" height="478" viewBox="0 0 478 478">
-              <defs><mask id="m-x01"><circle id="mk-x01" cx="239" cy="239" r="235" fill="none" stroke="#fff" stroke-width="10" stroke-dasharray="1476.5" stroke-dashoffset="1476.5" transform="rotate(-90 239 239)"/></mask></defs>
-              <circle cx="239" cy="239" r="235" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-dasharray="11 9" stroke-linecap="round" mask="url(#m-x01)"/>
-            </svg>
-          </div>
-          <div id="lab-x01" class="lab" style="top:252px"><span class="chip" style="color:#3b2a22">0.8mm raised lens protection 📸</span></div>
+        <div id="arc-x01" class="arc clip" data-start="11.2333" data-duration="1.4667" data-track-index="3" data-layout-allow-overflow>
+          
+          <svg class="ring2" id="arc2-x01" width="530" height="530" viewBox="0 0 530 530" style="left:-265px; top:-265px"><circle cx="265" cy="265" r="251" fill="none" stroke="#ffffff" stroke-opacity="0.35" stroke-width="2"/></svg>
+          <svg class="ring1" id="arc1-x01" width="530" height="530" viewBox="0 0 530 530" style="left:-265px; top:-265px"><circle id="arcp-x01" cx="265" cy="265" r="235" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="1063.1 1476.5" stroke-dashoffset="1063.1" transform="rotate(-90 265 265)"/></svg>
         </div>
       </div>
       <div class="frame" id="f-x02" style="z-index:11">
@@ -77,42 +65,40 @@
       </div>
       <div class="frame" id="f-m01" style="z-index:13">
         <video id="v-m01" class="clip shot" src="assets/even/m01.mp4" data-start="16.1667" data-duration="1.6" data-track-index="1" data-has-audio="true" data-volume="1.6" playsinline></video>
-        <div id="ring-m01" class="ring clip" data-start="16.4333" data-duration="1.2667" data-track-index="3" data-layout-allow-overflow>
-          <div id="ring-m01-spin" class="spin" style="width:418px;height:418px;left:-209px;top:-209px">
-            <svg width="418" height="418" viewBox="0 0 418 418">
-              <defs><mask id="m-m01"><circle id="mk-m01" cx="209" cy="209" r="205" fill="none" stroke="#fff" stroke-width="10" stroke-dasharray="1288.1" stroke-dashoffset="1288.1" transform="rotate(-90 209 209)"/></mask></defs>
-              <circle cx="209" cy="209" r="205" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-dasharray="11 9" stroke-linecap="round" mask="url(#m-m01)"/>
-            </svg>
-          </div>
-          <div id="lab-m01" class="lab" style="top:-278px"><span class="chip" style="color:#3b2a22">dustproof mesh 🫧</span></div>
+        <div id="arc-m01" class="arc clip" data-start="16.3667" data-duration="1.3333" data-track-index="3" data-layout-allow-overflow>
+          <svg class="waves" id="wv-m01" width="900" height="200" viewBox="-450 -100 900 200" style="left:-450px; top:-100px"><path class="wv-m01" d="M-430 -40 q 22 -14 44 0 t 44 0 t 44 0" fill="none" stroke="#bfd8f2" stroke-width="5" stroke-linecap="round" stroke-dasharray="26 16"/><path class="wv-m01" d="M-430 0 q 22 -14 44 0 t 44 0 t 44 0" fill="none" stroke="#bfd8f2" stroke-width="5" stroke-linecap="round" stroke-dasharray="26 16"/><path class="wv-m01" d="M-430 40 q 22 -14 44 0 t 44 0 t 44 0" fill="none" stroke="#bfd8f2" stroke-width="5" stroke-linecap="round" stroke-dasharray="26 16"/><path class="wv-m01" d="M255 -40 q 22 -14 44 0 t 44 0 t 44 0" fill="none" stroke="#bfd8f2" stroke-width="5" stroke-linecap="round" stroke-dasharray="26 16"/><path class="wv-m01" d="M255 0 q 22 -14 44 0 t 44 0 t 44 0" fill="none" stroke="#bfd8f2" stroke-width="5" stroke-linecap="round" stroke-dasharray="26 16"/><path class="wv-m01" d="M255 40 q 22 -14 44 0 t 44 0 t 44 0" fill="none" stroke="#bfd8f2" stroke-width="5" stroke-linecap="round" stroke-dasharray="26 16"/></svg>
+          <svg class="ring2" id="arc2-m01" width="460" height="460" viewBox="0 0 460 460" style="left:-230px; top:-230px"><circle cx="230" cy="230" r="216" fill="none" stroke="#ffffff" stroke-opacity="0.35" stroke-width="2"/></svg>
+          <svg class="ring1" id="arc1-m01" width="460" height="460" viewBox="0 0 460 460" style="left:-230px; top:-230px"><circle id="arcp-m01" cx="230" cy="230" r="200" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="904.8 1256.6" stroke-dashoffset="904.8" transform="rotate(-90 230 230)"/></svg>
         </div>
       </div>
       <div class="frame" id="f-c01" style="z-index:14">
         <video id="v-c01" class="clip shot" src="assets/even/c01.mp4" data-start="17.7667" data-duration="2.0" data-track-index="1" data-has-audio="true" data-volume="1.6" playsinline></video>
       </div>
+      <div id="arc-box" class="arc clip" data-start="2.1" data-duration="0.8" data-track-index="3" style="z-index:30; left:0; top:0" data-layout-allow-overflow>
+        <svg class="ring1" id="arc1-box" width="560" height="560" viewBox="0 0 560 560" style="left:250px; top:560px"><circle id="arcp-box" cx="280" cy="280" r="250" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="1131 1571" stroke-dashoffset="1131" transform="rotate(-90 280 280)"/></svg>
+      </div>
       <div id="flash" class="flash clip" data-start="0" data-duration="19.7667" data-track-index="4" style="z-index:40"></div>
-      <audio id="sfx-00" class="clip" src="assets/sfx/sparkle.mp3" data-start="0.3" data-duration="1.8" data-track-index="12" data-volume="0.3"></audio>
-      <audio id="sfx-01" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="1.8" data-duration="0.575" data-track-index="9" data-volume="0.32"></audio>
-      <audio id="sfx-02" class="clip" src="assets/sfx/pop.mp3" data-start="2.08" data-duration="0.72" data-track-index="10" data-volume="0.42"></audio>
-      <audio id="sfx-03" class="clip" src="assets/sfx/click-soft.mp3" data-start="3.033" data-duration="0.366" data-track-index="10" data-volume="0.55"></audio>
-      <audio id="sfx-04" class="clip" src="assets/sfx/pop.mp3" data-start="4.067" data-duration="0.72" data-track-index="10" data-volume="0.42"></audio>
-      <audio id="sfx-05" class="clip" src="assets/sfx/whoosh.mp3" data-start="4.9" data-duration="0.575" data-track-index="9" data-volume="0.32"></audio>
-      <audio id="sfx-06" class="clip" src="assets/sfx/click-soft.mp3" data-start="5.15" data-duration="0.366" data-track-index="10" data-volume="0.55"></audio>
-      <audio id="sfx-07" class="clip" src="assets/sfx/ping.mp3" data-start="6.8" data-duration="1.32" data-track-index="11" data-volume="0.22"></audio>
-      <audio id="sfx-08" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="7.967" data-duration="0.575" data-track-index="9" data-volume="0.32"></audio>
-      <audio id="sfx-09" class="clip" src="assets/sfx/pop.mp3" data-start="8.217" data-duration="0.72" data-track-index="10" data-volume="0.42"></audio>
-      <audio id="sfx-10" class="clip" src="assets/sfx/click-soft.mp3" data-start="9.167" data-duration="0.366" data-track-index="10" data-volume="0.55"></audio>
-      <audio id="sfx-11" class="clip" src="assets/sfx/pop.mp3" data-start="10.297" data-duration="0.72" data-track-index="10" data-volume="0.42"></audio>
-      <audio id="sfx-12" class="clip" src="assets/sfx/whoosh.mp3" data-start="10.967" data-duration="0.575" data-track-index="9" data-volume="0.32"></audio>
-      <audio id="sfx-13" class="clip" src="assets/sfx/ping.mp3" data-start="11.233" data-duration="1.32" data-track-index="11" data-volume="0.22"></audio>
-      <audio id="sfx-14" class="clip" src="assets/sfx/click-soft.mp3" data-start="12.817" data-duration="0.366" data-track-index="10" data-volume="0.55"></audio>
+      <audio id="sfx-00" class="clip" src="assets/sfx/pop.mp3" data-start="0.05" data-duration="0.72" data-track-index="10" data-volume="0.38"></audio>
+      <audio id="sfx-01" class="clip" src="assets/sfx/click-soft.mp3" data-start="0.8" data-duration="0.366" data-track-index="10" data-volume="0.5"></audio>
+      <audio id="sfx-02" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="1.8" data-duration="0.575" data-track-index="9" data-volume="0.32"></audio>
+      <audio id="sfx-03" class="clip" src="assets/sfx/ping.mp3" data-start="2.1" data-duration="1.32" data-track-index="11" data-volume="0.4"></audio>
+      <audio id="sfx-04" class="clip" src="assets/sfx/pop.mp3" data-start="2.15" data-duration="0.72" data-track-index="10" data-volume="0.4"></audio>
+      <audio id="sfx-05" class="clip" src="assets/sfx/click-soft.mp3" data-start="4.017" data-duration="0.366" data-track-index="10" data-volume="0.5"></audio>
+      <audio id="sfx-06" class="clip" src="assets/sfx/whoosh.mp3" data-start="4.9" data-duration="0.575" data-track-index="9" data-volume="0.32"></audio>
+      <audio id="sfx-07" class="clip" src="assets/sfx/click-soft.mp3" data-start="5.18" data-duration="0.366" data-track-index="10" data-volume="0.42"></audio>
+      <audio id="sfx-08" class="clip" src="assets/sfx/ping.mp3" data-start="6.733" data-duration="1.32" data-track-index="11" data-volume="0.45"></audio>
+      <audio id="sfx-09" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="7.967" data-duration="0.575" data-track-index="9" data-volume="0.32"></audio>
+      <audio id="sfx-10" class="clip" src="assets/sfx/pop.mp3" data-start="8.247" data-duration="0.72" data-track-index="10" data-volume="0.42"></audio>
+      <audio id="sfx-11" class="clip" src="assets/sfx/whoosh.mp3" data-start="10.967" data-duration="0.575" data-track-index="9" data-volume="0.32"></audio>
+      <audio id="sfx-12" class="clip" src="assets/sfx/ping.mp3" data-start="11.233" data-duration="1.32" data-track-index="11" data-volume="0.45"></audio>
+      <audio id="sfx-13" class="clip" src="assets/sfx/click-soft.mp3" data-start="11.247" data-duration="0.366" data-track-index="10" data-volume="0.42"></audio>
+      <audio id="sfx-14" class="clip" src="assets/sfx/pop.mp3" data-start="12.847" data-duration="0.72" data-track-index="10" data-volume="0.42"></audio>
       <audio id="sfx-15" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="13.967" data-duration="0.575" data-track-index="9" data-volume="0.32"></audio>
-      <audio id="sfx-16" class="clip" src="assets/sfx/pop.mp3" data-start="14.217" data-duration="0.72" data-track-index="10" data-volume="0.42"></audio>
-      <audio id="sfx-17" class="clip" src="assets/sfx/sparkle.mp3" data-start="15.167" data-duration="1.8" data-track-index="12" data-volume="0.3"></audio>
-      <audio id="sfx-18" class="clip" src="assets/sfx/ping.mp3" data-start="16.433" data-duration="1.32" data-track-index="11" data-volume="0.22"></audio>
+      <audio id="sfx-16" class="clip" src="assets/sfx/click-soft.mp3" data-start="14.247" data-duration="0.366" data-track-index="10" data-volume="0.42"></audio>
+      <audio id="sfx-17" class="clip" src="assets/sfx/pop.mp3" data-start="16.247" data-duration="0.72" data-track-index="10" data-volume="0.42"></audio>
+      <audio id="sfx-18" class="clip" src="assets/sfx/ping.mp3" data-start="16.367" data-duration="1.32" data-track-index="11" data-volume="0.45"></audio>
       <audio id="sfx-19" class="clip" src="assets/sfx/whoosh.mp3" data-start="17.567" data-duration="0.575" data-track-index="9" data-volume="0.32"></audio>
-      <audio id="sfx-20" class="clip" src="assets/sfx/pop.mp3" data-start="17.867" data-duration="0.72" data-track-index="10" data-volume="0.4"></audio>
-      <audio id="sfx-21" class="clip" src="assets/sfx/sparkle.mp3" data-start="18.117" data-duration="1.65" data-track-index="12" data-volume="0.34"></audio>
+      <audio id="sfx-20" class="clip" src="assets/sfx/sparkle.mp3" data-start="18.267" data-duration="1.5" data-track-index="12" data-volume="0.34"></audio>
       <div id="text" data-composition-id="text" data-composition-src="compositions/text.html" data-start="0" data-duration="19.7667"
         data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:50"></div>
     </div>
@@ -127,147 +113,157 @@
       tl.fromTo("#f-d01", { scale: 1.12, transformOrigin: "55% 45%" }, { scale: 1.0, duration: 0.32, ease: "expo.out" }, 5.1);
       tl.fromTo("#f-d01", { scale: 1.0 }, { scale: 1.04, duration: 0.7133, ease: "none", immediateRender: false }, 5.42);
       tl.fromTo("#f-d02", { scale: 1.0, transformOrigin: "58% 57%" }, { scale: 1.04, duration: 2.0333, ease: "sine.inOut" }, 6.1333);
-      tl.set("#ring-d02", { x: 627.0, y: 1091.0 }, 6.8);
-      tl.to("#ring-d02", { x: 631.2, y: 1088.8, duration: 0.0333, ease: "none" }, 6.8);
-      tl.to("#ring-d02", { x: 636.0, y: 1087.8, duration: 0.0333, ease: "none" }, 6.8333);
-      tl.to("#ring-d02", { x: 640.0, y: 1087.6, duration: 0.0333, ease: "none" }, 6.8667);
-      tl.to("#ring-d02", { x: 643.0, y: 1087.6, duration: 0.0333, ease: "none" }, 6.9);
-      tl.to("#ring-d02", { x: 645.8, y: 1087.8, duration: 0.0333, ease: "none" }, 6.9333);
-      tl.to("#ring-d02", { x: 647.6, y: 1088.8, duration: 0.0333, ease: "none" }, 6.9667);
-      tl.to("#ring-d02", { x: 647.6, y: 1090.0, duration: 0.0333, ease: "none" }, 7.0);
-      tl.to("#ring-d02", { x: 647.2, y: 1091.6, duration: 0.0333, ease: "none" }, 7.0333);
-      tl.to("#ring-d02", { x: 646.2, y: 1093.0, duration: 0.0333, ease: "none" }, 7.0667);
-      tl.to("#ring-d02", { x: 645.4, y: 1094.2, duration: 0.0333, ease: "none" }, 7.1);
-      tl.to("#ring-d02", { x: 644.8, y: 1094.4, duration: 0.0333, ease: "none" }, 7.1333);
-      tl.to("#ring-d02", { x: 643.8, y: 1095.0, duration: 0.0333, ease: "none" }, 7.1667);
-      tl.to("#ring-d02", { x: 643.0, y: 1095.4, duration: 0.0333, ease: "none" }, 7.2);
-      tl.to("#ring-d02", { x: 642.4, y: 1095.8, duration: 0.0333, ease: "none" }, 7.2333);
-      tl.to("#ring-d02", { x: 641.4, y: 1097.4, duration: 0.0333, ease: "none" }, 7.2667);
-      tl.to("#ring-d02", { x: 640.4, y: 1099.8, duration: 0.0333, ease: "none" }, 7.3);
-      tl.to("#ring-d02", { x: 639.8, y: 1101.8, duration: 0.0333, ease: "none" }, 7.3333);
-      tl.to("#ring-d02", { x: 639.0, y: 1103.0, duration: 0.0333, ease: "none" }, 7.3667);
-      tl.to("#ring-d02", { x: 637.4, y: 1104.4, duration: 0.0333, ease: "none" }, 7.4);
-      tl.to("#ring-d02", { x: 636.2, y: 1104.6, duration: 0.0333, ease: "none" }, 7.4333);
-      tl.to("#ring-d02", { x: 632.6, y: 1102.2, duration: 0.0333, ease: "none" }, 7.4667);
-      tl.to("#ring-d02", { x: 628.8, y: 1099.4, duration: 0.0333, ease: "none" }, 7.5);
-      tl.to("#ring-d02", { x: 626.8, y: 1097.6, duration: 0.0333, ease: "none" }, 7.5333);
-      tl.to("#ring-d02", { x: 625.6, y: 1095.6, duration: 0.0333, ease: "none" }, 7.5667);
-      tl.to("#ring-d02", { x: 625.0, y: 1091.4, duration: 0.0333, ease: "none" }, 7.6);
-      tl.to("#ring-d02", { x: 627.8, y: 1087.4, duration: 0.0333, ease: "none" }, 7.6333);
-      tl.to("#ring-d02", { x: 630.8, y: 1083.8, duration: 0.0333, ease: "none" }, 7.6667);
-      tl.to("#ring-d02", { x: 634.0, y: 1080.4, duration: 0.0333, ease: "none" }, 7.7);
-      tl.to("#ring-d02", { x: 639.0, y: 1076.6, duration: 0.0333, ease: "none" }, 7.7333);
-      tl.fromTo("#mk-d02", { attr: { "stroke-dashoffset": 1350.9 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.45, ease: "power2.inOut" }, 6.8);
-      tl.fromTo("#ring-d02-spin", { rotation: 0, scale: 0.9 }, { rotation: 40, scale: 1, duration: 1.0, ease: "none" }, 6.8);
-      tl.fromTo("#lab-d02 .chip", { opacity: 0, scale: 0.6, y: 14 }, { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: "back.out(1.8)" }, 6.98);
-      tl.to("#ring-d02-spin, #lab-d02 .chip", { opacity: 0, scale: 0.92, duration: 0.16, ease: "power2.in" }, 7.63);
+      tl.set("#arc-d02", { x: 619.4, y: 1097.6 }, 6.7333);
+      tl.to("#arc-d02", { x: 623.6, y: 1093.2, duration: 0.0333, ease: "none" }, 6.7333);
+      tl.to("#arc-d02", { x: 627.0, y: 1091.0, duration: 0.0333, ease: "none" }, 6.7667);
+      tl.to("#arc-d02", { x: 631.2, y: 1088.8, duration: 0.0333, ease: "none" }, 6.8);
+      tl.to("#arc-d02", { x: 636.0, y: 1087.8, duration: 0.0333, ease: "none" }, 6.8333);
+      tl.to("#arc-d02", { x: 640.0, y: 1087.6, duration: 0.0333, ease: "none" }, 6.8667);
+      tl.to("#arc-d02", { x: 643.0, y: 1087.6, duration: 0.0333, ease: "none" }, 6.9);
+      tl.to("#arc-d02", { x: 645.8, y: 1087.8, duration: 0.0333, ease: "none" }, 6.9333);
+      tl.to("#arc-d02", { x: 647.6, y: 1088.8, duration: 0.0333, ease: "none" }, 6.9667);
+      tl.to("#arc-d02", { x: 647.6, y: 1090.0, duration: 0.0333, ease: "none" }, 7.0);
+      tl.to("#arc-d02", { x: 647.2, y: 1091.6, duration: 0.0333, ease: "none" }, 7.0333);
+      tl.to("#arc-d02", { x: 646.2, y: 1093.0, duration: 0.0333, ease: "none" }, 7.0667);
+      tl.to("#arc-d02", { x: 645.4, y: 1094.2, duration: 0.0333, ease: "none" }, 7.1);
+      tl.to("#arc-d02", { x: 644.8, y: 1094.4, duration: 0.0333, ease: "none" }, 7.1333);
+      tl.to("#arc-d02", { x: 643.8, y: 1095.0, duration: 0.0333, ease: "none" }, 7.1667);
+      tl.to("#arc-d02", { x: 643.0, y: 1095.4, duration: 0.0333, ease: "none" }, 7.2);
+      tl.to("#arc-d02", { x: 642.4, y: 1095.8, duration: 0.0333, ease: "none" }, 7.2333);
+      tl.to("#arc-d02", { x: 641.4, y: 1097.4, duration: 0.0333, ease: "none" }, 7.2667);
+      tl.to("#arc-d02", { x: 640.4, y: 1099.8, duration: 0.0333, ease: "none" }, 7.3);
+      tl.to("#arc-d02", { x: 639.8, y: 1101.8, duration: 0.0333, ease: "none" }, 7.3333);
+      tl.to("#arc-d02", { x: 639.0, y: 1103.0, duration: 0.0333, ease: "none" }, 7.3667);
+      tl.to("#arc-d02", { x: 637.4, y: 1104.4, duration: 0.0333, ease: "none" }, 7.4);
+      tl.to("#arc-d02", { x: 636.2, y: 1104.6, duration: 0.0333, ease: "none" }, 7.4333);
+      tl.to("#arc-d02", { x: 632.6, y: 1102.2, duration: 0.0333, ease: "none" }, 7.4667);
+      tl.to("#arc-d02", { x: 628.8, y: 1099.4, duration: 0.0333, ease: "none" }, 7.5);
+      tl.to("#arc-d02", { x: 626.8, y: 1097.6, duration: 0.0333, ease: "none" }, 7.5333);
+      tl.to("#arc-d02", { x: 625.6, y: 1095.6, duration: 0.0333, ease: "none" }, 7.5667);
+      tl.to("#arc-d02", { x: 625.0, y: 1091.4, duration: 0.0333, ease: "none" }, 7.6);
+      tl.to("#arc-d02", { x: 627.8, y: 1087.4, duration: 0.0333, ease: "none" }, 7.6333);
+      tl.to("#arc-d02", { x: 630.8, y: 1083.8, duration: 0.0333, ease: "none" }, 7.6667);
+      tl.to("#arc-d02", { x: 634.0, y: 1080.4, duration: 0.0333, ease: "none" }, 7.7);
+      tl.to("#arc-d02", { x: 639.0, y: 1076.6, duration: 0.0333, ease: "none" }, 7.7333);
+      tl.to("#arc-d02", { x: 632.4, y: 1072.6, duration: 0.0333, ease: "none" }, 7.7667);
+      tl.to("#arc-d02", { x: 624.8, y: 1070.4, duration: 0.0333, ease: "none" }, 7.8);
+      tl.fromTo("#arcp-d02", { attr: { "stroke-dashoffset": 950.0 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.5, ease: "power2.out" }, 6.7333);
+      tl.fromTo("#arc1-d02", { rotation: -20 }, { rotation: 160, duration: 1.1333, ease: "none" }, 6.7333);
+      tl.fromTo("#arc2-d02", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" }, 6.7333);
+      tl.to("#arc1-d02, #arc2-d02", { opacity: 0, duration: 0.16, ease: "power2.in" }, 7.697);
       tl.fromTo("#f-i01", { scale: 1.165, transformOrigin: "60% 40%" }, { scale: 1.04, duration: 0.32, ease: "expo.out" }, 8.1667);
       tl.fromTo("#f-i01", { scale: 1.04 }, { scale: 1.0, duration: 0.58, ease: "power2.out", immediateRender: false }, 8.4867);
       tl.fromTo("#f-i02", { scale: 1.0, transformOrigin: "50% 50%" }, { scale: 1.05, duration: 1.2, ease: "none" }, 9.0667);
       tl.fromTo("#f-i03", { scale: 1.06, transformOrigin: "60% 45%" }, { scale: 1.0, duration: 0.9, ease: "power2.out" }, 10.2667);
       tl.fromTo("#f-x01", { scale: 1.12, transformOrigin: "52% 34%" }, { scale: 1.0, duration: 0.32, ease: "expo.out" }, 11.1667);
       tl.fromTo("#f-x01", { scale: 1.0 }, { scale: 1.1, duration: 1.28, ease: "sine.inOut", immediateRender: false }, 11.4867);
-      tl.set("#ring-x01", { x: 569.2, y: 660.8 }, 11.2333);
-      tl.to("#ring-x01", { x: 568.8, y: 661.2, duration: 0.0333, ease: "none" }, 11.2333);
-      tl.to("#ring-x01", { x: 568.6, y: 661.2, duration: 0.0333, ease: "none" }, 11.2667);
-      tl.to("#ring-x01", { x: 568.2, y: 661.4, duration: 0.0333, ease: "none" }, 11.3);
-      tl.to("#ring-x01", { x: 567.8, y: 661.6, duration: 0.0333, ease: "none" }, 11.3333);
-      tl.to("#ring-x01", { x: 567.2, y: 661.8, duration: 0.0333, ease: "none" }, 11.3667);
-      tl.to("#ring-x01", { x: 566.8, y: 661.6, duration: 0.0333, ease: "none" }, 11.4);
-      tl.to("#ring-x01", { x: 566.4, y: 661.6, duration: 0.0333, ease: "none" }, 11.4333);
-      tl.to("#ring-x01", { x: 566.0, y: 661.4, duration: 0.0333, ease: "none" }, 11.4667);
-      tl.to("#ring-x01", { x: 565.6, y: 661.2, duration: 0.0333, ease: "none" }, 11.5);
-      tl.to("#ring-x01", { x: 565.2, y: 661.0, duration: 0.0333, ease: "none" }, 11.5333);
-      tl.to("#ring-x01", { x: 564.8, y: 661.0, duration: 0.0333, ease: "none" }, 11.5667);
-      tl.to("#ring-x01", { x: 564.2, y: 661.0, duration: 0.0333, ease: "none" }, 11.6);
-      tl.to("#ring-x01", { x: 563.8, y: 661.0, duration: 0.0333, ease: "none" }, 11.6333);
-      tl.to("#ring-x01", { x: 563.2, y: 661.0, duration: 0.0333, ease: "none" }, 11.6667);
-      tl.to("#ring-x01", { x: 562.8, y: 661.0, duration: 0.0333, ease: "none" }, 11.7);
-      tl.to("#ring-x01", { x: 562.2, y: 661.0, duration: 0.0333, ease: "none" }, 11.7333);
-      tl.to("#ring-x01", { x: 561.8, y: 661.0, duration: 0.0333, ease: "none" }, 11.7667);
-      tl.to("#ring-x01", { x: 561.4, y: 661.0, duration: 0.0333, ease: "none" }, 11.8);
-      tl.to("#ring-x01", { x: 561.2, y: 661.0, duration: 0.0333, ease: "none" }, 11.8333);
-      tl.to("#ring-x01", { x: 560.8, y: 661.0, duration: 0.0333, ease: "none" }, 11.8667);
-      tl.to("#ring-x01", { x: 560.6, y: 661.0, duration: 0.0333, ease: "none" }, 11.9);
-      tl.to("#ring-x01", { x: 560.4, y: 661.2, duration: 0.0333, ease: "none" }, 11.9333);
-      tl.to("#ring-x01", { x: 560.2, y: 661.4, duration: 0.0333, ease: "none" }, 11.9667);
-      tl.to("#ring-x01", { x: 560.0, y: 661.6, duration: 0.0333, ease: "none" }, 12.0);
-      tl.to("#ring-x01", { x: 560.2, y: 661.8, duration: 0.0333, ease: "none" }, 12.0333);
-      tl.to("#ring-x01", { x: 560.4, y: 662.2, duration: 0.0333, ease: "none" }, 12.0667);
-      tl.to("#ring-x01", { x: 560.6, y: 662.4, duration: 0.0333, ease: "none" }, 12.1);
-      tl.to("#ring-x01", { x: 560.8, y: 662.6, duration: 0.0333, ease: "none" }, 12.1333);
-      tl.to("#ring-x01", { x: 561.0, y: 662.8, duration: 0.0333, ease: "none" }, 12.1667);
-      tl.to("#ring-x01", { x: 561.0, y: 663.0, duration: 0.0333, ease: "none" }, 12.2);
-      tl.to("#ring-x01", { x: 561.0, y: 663.0, duration: 0.0333, ease: "none" }, 12.2333);
-      tl.to("#ring-x01", { x: 561.0, y: 663.0, duration: 0.0333, ease: "none" }, 12.2667);
-      tl.to("#ring-x01", { x: 561.2, y: 662.8, duration: 0.0333, ease: "none" }, 12.3);
-      tl.to("#ring-x01", { x: 561.4, y: 662.4, duration: 0.0333, ease: "none" }, 12.3333);
-      tl.to("#ring-x01", { x: 561.6, y: 662.0, duration: 0.0333, ease: "none" }, 12.3667);
-      tl.to("#ring-x01", { x: 561.8, y: 661.4, duration: 0.0333, ease: "none" }, 12.4);
-      tl.to("#ring-x01", { x: 561.8, y: 660.6, duration: 0.0333, ease: "none" }, 12.4333);
-      tl.to("#ring-x01", { x: 561.6, y: 659.8, duration: 0.0333, ease: "none" }, 12.4667);
-      tl.to("#ring-x01", { x: 561.2, y: 659.0, duration: 0.0333, ease: "none" }, 12.5);
-      tl.to("#ring-x01", { x: 560.6, y: 658.0, duration: 0.0333, ease: "none" }, 12.5333);
-      tl.to("#ring-x01", { x: 559.8, y: 657.0, duration: 0.0333, ease: "none" }, 12.5667);
-      tl.to("#ring-x01", { x: 559.0, y: 656.0, duration: 0.0333, ease: "none" }, 12.6);
-      tl.to("#ring-x01", { x: 558.0, y: 655.0, duration: 0.0333, ease: "none" }, 12.6333);
-      tl.fromTo("#mk-x01", { attr: { "stroke-dashoffset": 1476.5 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.45, ease: "power2.inOut" }, 11.2333);
-      tl.fromTo("#ring-x01-spin", { rotation: 0, scale: 0.9 }, { rotation: 40, scale: 1, duration: 1.4667, ease: "none" }, 11.2333);
-      tl.fromTo("#lab-x01 .chip", { opacity: 0, scale: 0.6, y: 14 }, { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: "back.out(1.8)" }, 11.4133);
-      tl.to("#ring-x01-spin, #lab-x01 .chip", { opacity: 0, scale: 0.92, duration: 0.16, ease: "power2.in" }, 12.53);
+      tl.set("#arc-x01", { x: 569.2, y: 660.8 }, 11.2333);
+      tl.to("#arc-x01", { x: 568.8, y: 661.2, duration: 0.0333, ease: "none" }, 11.2333);
+      tl.to("#arc-x01", { x: 568.6, y: 661.2, duration: 0.0333, ease: "none" }, 11.2667);
+      tl.to("#arc-x01", { x: 568.2, y: 661.4, duration: 0.0333, ease: "none" }, 11.3);
+      tl.to("#arc-x01", { x: 567.8, y: 661.6, duration: 0.0333, ease: "none" }, 11.3333);
+      tl.to("#arc-x01", { x: 567.2, y: 661.8, duration: 0.0333, ease: "none" }, 11.3667);
+      tl.to("#arc-x01", { x: 566.8, y: 661.6, duration: 0.0333, ease: "none" }, 11.4);
+      tl.to("#arc-x01", { x: 566.4, y: 661.6, duration: 0.0333, ease: "none" }, 11.4333);
+      tl.to("#arc-x01", { x: 566.0, y: 661.4, duration: 0.0333, ease: "none" }, 11.4667);
+      tl.to("#arc-x01", { x: 565.6, y: 661.2, duration: 0.0333, ease: "none" }, 11.5);
+      tl.to("#arc-x01", { x: 565.2, y: 661.0, duration: 0.0333, ease: "none" }, 11.5333);
+      tl.to("#arc-x01", { x: 564.8, y: 661.0, duration: 0.0333, ease: "none" }, 11.5667);
+      tl.to("#arc-x01", { x: 564.2, y: 661.0, duration: 0.0333, ease: "none" }, 11.6);
+      tl.to("#arc-x01", { x: 563.8, y: 661.0, duration: 0.0333, ease: "none" }, 11.6333);
+      tl.to("#arc-x01", { x: 563.2, y: 661.0, duration: 0.0333, ease: "none" }, 11.6667);
+      tl.to("#arc-x01", { x: 562.8, y: 661.0, duration: 0.0333, ease: "none" }, 11.7);
+      tl.to("#arc-x01", { x: 562.2, y: 661.0, duration: 0.0333, ease: "none" }, 11.7333);
+      tl.to("#arc-x01", { x: 561.8, y: 661.0, duration: 0.0333, ease: "none" }, 11.7667);
+      tl.to("#arc-x01", { x: 561.4, y: 661.0, duration: 0.0333, ease: "none" }, 11.8);
+      tl.to("#arc-x01", { x: 561.2, y: 661.0, duration: 0.0333, ease: "none" }, 11.8333);
+      tl.to("#arc-x01", { x: 560.8, y: 661.0, duration: 0.0333, ease: "none" }, 11.8667);
+      tl.to("#arc-x01", { x: 560.6, y: 661.0, duration: 0.0333, ease: "none" }, 11.9);
+      tl.to("#arc-x01", { x: 560.4, y: 661.2, duration: 0.0333, ease: "none" }, 11.9333);
+      tl.to("#arc-x01", { x: 560.2, y: 661.4, duration: 0.0333, ease: "none" }, 11.9667);
+      tl.to("#arc-x01", { x: 560.0, y: 661.6, duration: 0.0333, ease: "none" }, 12.0);
+      tl.to("#arc-x01", { x: 560.2, y: 661.8, duration: 0.0333, ease: "none" }, 12.0333);
+      tl.to("#arc-x01", { x: 560.4, y: 662.2, duration: 0.0333, ease: "none" }, 12.0667);
+      tl.to("#arc-x01", { x: 560.6, y: 662.4, duration: 0.0333, ease: "none" }, 12.1);
+      tl.to("#arc-x01", { x: 560.8, y: 662.6, duration: 0.0333, ease: "none" }, 12.1333);
+      tl.to("#arc-x01", { x: 561.0, y: 662.8, duration: 0.0333, ease: "none" }, 12.1667);
+      tl.to("#arc-x01", { x: 561.0, y: 663.0, duration: 0.0333, ease: "none" }, 12.2);
+      tl.to("#arc-x01", { x: 561.0, y: 663.0, duration: 0.0333, ease: "none" }, 12.2333);
+      tl.to("#arc-x01", { x: 561.0, y: 663.0, duration: 0.0333, ease: "none" }, 12.2667);
+      tl.to("#arc-x01", { x: 561.2, y: 662.8, duration: 0.0333, ease: "none" }, 12.3);
+      tl.to("#arc-x01", { x: 561.4, y: 662.4, duration: 0.0333, ease: "none" }, 12.3333);
+      tl.to("#arc-x01", { x: 561.6, y: 662.0, duration: 0.0333, ease: "none" }, 12.3667);
+      tl.to("#arc-x01", { x: 561.8, y: 661.4, duration: 0.0333, ease: "none" }, 12.4);
+      tl.to("#arc-x01", { x: 561.8, y: 660.6, duration: 0.0333, ease: "none" }, 12.4333);
+      tl.to("#arc-x01", { x: 561.6, y: 659.8, duration: 0.0333, ease: "none" }, 12.4667);
+      tl.to("#arc-x01", { x: 561.2, y: 659.0, duration: 0.0333, ease: "none" }, 12.5);
+      tl.to("#arc-x01", { x: 560.6, y: 658.0, duration: 0.0333, ease: "none" }, 12.5333);
+      tl.to("#arc-x01", { x: 559.8, y: 657.0, duration: 0.0333, ease: "none" }, 12.5667);
+      tl.to("#arc-x01", { x: 559.0, y: 656.0, duration: 0.0333, ease: "none" }, 12.6);
+      tl.to("#arc-x01", { x: 558.0, y: 655.0, duration: 0.0333, ease: "none" }, 12.6333);
+      tl.fromTo("#arcp-x01", { attr: { "stroke-dashoffset": 1063.1 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.5, ease: "power2.out" }, 11.2333);
+      tl.fromTo("#arc1-x01", { rotation: -20 }, { rotation: 160, duration: 1.4667, ease: "none" }, 11.2333);
+      tl.fromTo("#arc2-x01", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" }, 11.2333);
+      tl.to("#arc1-x01, #arc2-x01", { opacity: 0, duration: 0.16, ease: "power2.in" }, 12.53);
       tl.fromTo("#f-x02", { scale: 1.0, transformOrigin: "45% 40%" }, { scale: 1.05, duration: 1.4, ease: "none" }, 12.7667);
       tl.fromTo("#f-b01", { scale: 1.12, transformOrigin: "50% 60%" }, { scale: 1.0, duration: 0.32, ease: "expo.out" }, 14.1667);
       tl.fromTo("#f-b01", { scale: 1.0 }, { scale: 1.06, duration: 1.68, ease: "sine.inOut", immediateRender: false }, 14.4867);
       tl.fromTo("#f-m01", { scale: 1.0, transformOrigin: "55% 66%" }, { scale: 1.08, duration: 1.6, ease: "sine.inOut" }, 16.1667);
-      tl.set("#ring-m01", { x: 607.4, y: 1275.4 }, 16.4333);
-      tl.to("#ring-m01", { x: 608.0, y: 1273.8, duration: 0.0333, ease: "none" }, 16.4333);
-      tl.to("#ring-m01", { x: 608.6, y: 1272.2, duration: 0.0333, ease: "none" }, 16.4667);
-      tl.to("#ring-m01", { x: 609.2, y: 1270.8, duration: 0.0333, ease: "none" }, 16.5);
-      tl.to("#ring-m01", { x: 609.6, y: 1269.2, duration: 0.0333, ease: "none" }, 16.5333);
-      tl.to("#ring-m01", { x: 609.8, y: 1267.8, duration: 0.0333, ease: "none" }, 16.5667);
-      tl.to("#ring-m01", { x: 610.0, y: 1266.2, duration: 0.0333, ease: "none" }, 16.6);
-      tl.to("#ring-m01", { x: 610.0, y: 1264.4, duration: 0.0333, ease: "none" }, 16.6333);
-      tl.to("#ring-m01", { x: 610.0, y: 1262.4, duration: 0.0333, ease: "none" }, 16.6667);
-      tl.to("#ring-m01", { x: 609.8, y: 1260.4, duration: 0.0333, ease: "none" }, 16.7);
-      tl.to("#ring-m01", { x: 609.6, y: 1258.2, duration: 0.0333, ease: "none" }, 16.7333);
-      tl.to("#ring-m01", { x: 609.2, y: 1256.0, duration: 0.0333, ease: "none" }, 16.7667);
-      tl.to("#ring-m01", { x: 608.8, y: 1254.0, duration: 0.0333, ease: "none" }, 16.8);
-      tl.to("#ring-m01", { x: 608.2, y: 1252.2, duration: 0.0333, ease: "none" }, 16.8333);
-      tl.to("#ring-m01", { x: 607.6, y: 1250.4, duration: 0.0333, ease: "none" }, 16.8667);
-      tl.to("#ring-m01", { x: 606.8, y: 1248.6, duration: 0.0333, ease: "none" }, 16.9);
-      tl.to("#ring-m01", { x: 606.0, y: 1247.0, duration: 0.0333, ease: "none" }, 16.9333);
-      tl.to("#ring-m01", { x: 605.0, y: 1245.6, duration: 0.0333, ease: "none" }, 16.9667);
-      tl.to("#ring-m01", { x: 604.0, y: 1244.2, duration: 0.0333, ease: "none" }, 17.0);
-      tl.to("#ring-m01", { x: 603.0, y: 1243.0, duration: 0.0333, ease: "none" }, 17.0333);
-      tl.to("#ring-m01", { x: 602.0, y: 1242.0, duration: 0.0333, ease: "none" }, 17.0667);
-      tl.to("#ring-m01", { x: 601.0, y: 1241.0, duration: 0.0333, ease: "none" }, 17.1);
-      tl.to("#ring-m01", { x: 599.8, y: 1240.2, duration: 0.0333, ease: "none" }, 17.1333);
-      tl.to("#ring-m01", { x: 598.6, y: 1239.4, duration: 0.0333, ease: "none" }, 17.1667);
-      tl.to("#ring-m01", { x: 597.2, y: 1238.8, duration: 0.0333, ease: "none" }, 17.2);
-      tl.to("#ring-m01", { x: 595.8, y: 1238.2, duration: 0.0333, ease: "none" }, 17.2333);
-      tl.to("#ring-m01", { x: 594.2, y: 1237.8, duration: 0.0333, ease: "none" }, 17.2667);
-      tl.to("#ring-m01", { x: 592.8, y: 1237.2, duration: 0.0333, ease: "none" }, 17.3);
-      tl.to("#ring-m01", { x: 591.6, y: 1236.8, duration: 0.0333, ease: "none" }, 17.3333);
-      tl.to("#ring-m01", { x: 590.6, y: 1236.2, duration: 0.0333, ease: "none" }, 17.3667);
-      tl.to("#ring-m01", { x: 589.6, y: 1235.6, duration: 0.0333, ease: "none" }, 17.4);
-      tl.to("#ring-m01", { x: 588.8, y: 1234.8, duration: 0.0333, ease: "none" }, 17.4333);
-      tl.to("#ring-m01", { x: 588.0, y: 1234.2, duration: 0.0333, ease: "none" }, 17.4667);
-      tl.to("#ring-m01", { x: 587.0, y: 1233.4, duration: 0.0333, ease: "none" }, 17.5);
-      tl.to("#ring-m01", { x: 586.0, y: 1232.6, duration: 0.0333, ease: "none" }, 17.5333);
-      tl.to("#ring-m01", { x: 584.8, y: 1231.8, duration: 0.0333, ease: "none" }, 17.5667);
-      tl.to("#ring-m01", { x: 583.6, y: 1231.2, duration: 0.0333, ease: "none" }, 17.6);
-      tl.to("#ring-m01", { x: 582.4, y: 1230.4, duration: 0.0333, ease: "none" }, 17.6333);
-      tl.fromTo("#mk-m01", { attr: { "stroke-dashoffset": 1288.1 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.45, ease: "power2.inOut" }, 16.4333);
-      tl.fromTo("#ring-m01-spin", { rotation: 0, scale: 0.9 }, { rotation: 40, scale: 1, duration: 1.2667, ease: "none" }, 16.4333);
-      tl.fromTo("#lab-m01 .chip", { opacity: 0, scale: 0.6, y: 14 }, { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: "back.out(1.8)" }, 16.6133);
-      tl.to("#ring-m01-spin, #lab-m01 .chip", { opacity: 0, scale: 0.92, duration: 0.16, ease: "power2.in" }, 17.53);
+      tl.set("#arc-m01", { x: 606.0, y: 1279.2 }, 16.3667);
+      tl.to("#arc-m01", { x: 606.6, y: 1277.2, duration: 0.0333, ease: "none" }, 16.3667);
+      tl.to("#arc-m01", { x: 607.4, y: 1275.4, duration: 0.0333, ease: "none" }, 16.4);
+      tl.to("#arc-m01", { x: 608.0, y: 1273.8, duration: 0.0333, ease: "none" }, 16.4333);
+      tl.to("#arc-m01", { x: 608.6, y: 1272.2, duration: 0.0333, ease: "none" }, 16.4667);
+      tl.to("#arc-m01", { x: 609.2, y: 1270.8, duration: 0.0333, ease: "none" }, 16.5);
+      tl.to("#arc-m01", { x: 609.6, y: 1269.2, duration: 0.0333, ease: "none" }, 16.5333);
+      tl.to("#arc-m01", { x: 609.8, y: 1267.8, duration: 0.0333, ease: "none" }, 16.5667);
+      tl.to("#arc-m01", { x: 610.0, y: 1266.2, duration: 0.0333, ease: "none" }, 16.6);
+      tl.to("#arc-m01", { x: 610.0, y: 1264.4, duration: 0.0333, ease: "none" }, 16.6333);
+      tl.to("#arc-m01", { x: 610.0, y: 1262.4, duration: 0.0333, ease: "none" }, 16.6667);
+      tl.to("#arc-m01", { x: 609.8, y: 1260.4, duration: 0.0333, ease: "none" }, 16.7);
+      tl.to("#arc-m01", { x: 609.6, y: 1258.2, duration: 0.0333, ease: "none" }, 16.7333);
+      tl.to("#arc-m01", { x: 609.2, y: 1256.0, duration: 0.0333, ease: "none" }, 16.7667);
+      tl.to("#arc-m01", { x: 608.8, y: 1254.0, duration: 0.0333, ease: "none" }, 16.8);
+      tl.to("#arc-m01", { x: 608.2, y: 1252.2, duration: 0.0333, ease: "none" }, 16.8333);
+      tl.to("#arc-m01", { x: 607.6, y: 1250.4, duration: 0.0333, ease: "none" }, 16.8667);
+      tl.to("#arc-m01", { x: 606.8, y: 1248.6, duration: 0.0333, ease: "none" }, 16.9);
+      tl.to("#arc-m01", { x: 606.0, y: 1247.0, duration: 0.0333, ease: "none" }, 16.9333);
+      tl.to("#arc-m01", { x: 605.0, y: 1245.6, duration: 0.0333, ease: "none" }, 16.9667);
+      tl.to("#arc-m01", { x: 604.0, y: 1244.2, duration: 0.0333, ease: "none" }, 17.0);
+      tl.to("#arc-m01", { x: 603.0, y: 1243.0, duration: 0.0333, ease: "none" }, 17.0333);
+      tl.to("#arc-m01", { x: 602.0, y: 1242.0, duration: 0.0333, ease: "none" }, 17.0667);
+      tl.to("#arc-m01", { x: 601.0, y: 1241.0, duration: 0.0333, ease: "none" }, 17.1);
+      tl.to("#arc-m01", { x: 599.8, y: 1240.2, duration: 0.0333, ease: "none" }, 17.1333);
+      tl.to("#arc-m01", { x: 598.6, y: 1239.4, duration: 0.0333, ease: "none" }, 17.1667);
+      tl.to("#arc-m01", { x: 597.2, y: 1238.8, duration: 0.0333, ease: "none" }, 17.2);
+      tl.to("#arc-m01", { x: 595.8, y: 1238.2, duration: 0.0333, ease: "none" }, 17.2333);
+      tl.to("#arc-m01", { x: 594.2, y: 1237.8, duration: 0.0333, ease: "none" }, 17.2667);
+      tl.to("#arc-m01", { x: 592.8, y: 1237.2, duration: 0.0333, ease: "none" }, 17.3);
+      tl.to("#arc-m01", { x: 591.6, y: 1236.8, duration: 0.0333, ease: "none" }, 17.3333);
+      tl.to("#arc-m01", { x: 590.6, y: 1236.2, duration: 0.0333, ease: "none" }, 17.3667);
+      tl.to("#arc-m01", { x: 589.6, y: 1235.6, duration: 0.0333, ease: "none" }, 17.4);
+      tl.to("#arc-m01", { x: 588.8, y: 1234.8, duration: 0.0333, ease: "none" }, 17.4333);
+      tl.to("#arc-m01", { x: 588.0, y: 1234.2, duration: 0.0333, ease: "none" }, 17.4667);
+      tl.to("#arc-m01", { x: 587.0, y: 1233.4, duration: 0.0333, ease: "none" }, 17.5);
+      tl.to("#arc-m01", { x: 586.0, y: 1232.6, duration: 0.0333, ease: "none" }, 17.5333);
+      tl.to("#arc-m01", { x: 584.8, y: 1231.8, duration: 0.0333, ease: "none" }, 17.5667);
+      tl.to("#arc-m01", { x: 583.6, y: 1231.2, duration: 0.0333, ease: "none" }, 17.6);
+      tl.to("#arc-m01", { x: 582.4, y: 1230.4, duration: 0.0333, ease: "none" }, 17.6333);
+      tl.fromTo("#arcp-m01", { attr: { "stroke-dashoffset": 904.8 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.5, ease: "power2.out" }, 16.3667);
+      tl.fromTo("#arc1-m01", { rotation: -20 }, { rotation: 160, duration: 1.3333, ease: "none" }, 16.3667);
+      tl.fromTo("#arc2-m01", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" }, 16.3667);
+      tl.fromTo("#wv-m01", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 16.517);
+      tl.fromTo(".wv-m01", { attr: { "stroke-dashoffset": 0 } }, { attr: { "stroke-dashoffset": -126 }, duration: 1.3333, ease: "none" }, 16.3667);
+      tl.to("#arc1-m01, #arc2-m01, #wv-m01", { opacity: 0, duration: 0.16, ease: "power2.in" }, 17.53);
       tl.fromTo("#f-c01", { scale: 1.176, transformOrigin: "50% 50%" }, { scale: 1.05, duration: 0.32, ease: "expo.out" }, 17.7667);
       tl.fromTo("#f-c01", { scale: 1.05 }, { scale: 1.0, duration: 1.68, ease: "power2.out", immediateRender: false }, 18.0867);
+      tl.fromTo("#arcp-box", { attr: { "stroke-dashoffset": 1131 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.45, ease: "power2.out" }, 2.1);
+      tl.fromTo("#arc1-box", { rotation: 0 }, { rotation: 90, duration: 0.8, ease: "none" }, 2.1);
       tl.set("#flash", { opacity: 0 }, 0);
-      tl.fromTo("#flash", { opacity: 0.55 }, { opacity: 0, duration: 0.28, ease: "power2.out" }, 2.0);
-      tl.fromTo("#flash", { opacity: 0.55 }, { opacity: 0, duration: 0.28, ease: "power2.out" }, 8.1667);
-      tl.fromTo("#flash", { opacity: 0.55 }, { opacity: 0, duration: 0.28, ease: "power2.out" }, 14.1667);
-      tl.fromTo("#flash", { opacity: 0.55 }, { opacity: 0, duration: 0.28, ease: "power2.out" }, 17.7667);
+      tl.fromTo("#flash", { opacity: 0.45 }, { opacity: 0, duration: 0.26, ease: "power2.out" }, 2.0);
+      tl.fromTo("#flash", { opacity: 0.45 }, { opacity: 0, duration: 0.26, ease: "power2.out" }, 8.1667);
+      tl.fromTo("#flash", { opacity: 0.45 }, { opacity: 0, duration: 0.26, ease: "power2.out" }, 14.1667);
+      tl.fromTo("#flash", { opacity: 0.45 }, { opacity: 0, duration: 0.26, ease: "power2.out" }, 17.7667);
       window.__timelines["main"] = tl;
     </script>
   </body>

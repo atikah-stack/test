@@ -1,109 +1,127 @@
 <template>
   <style>
-    @font-face { font-family: "Shadows Into Light"; font-weight: 400; src: url("assets/fonts/shadows-into-light-latin-400-normal.woff2") format("woff2"); }
-    @font-face { font-family: "Shadows Into Light"; font-weight: 400; src: url("assets/fonts/shadows-into-light-latin-400-normal.woff2") format("woff2"); }
+    @font-face { font-family: "DM Sans"; font-weight: 300; src: url("assets/fonts/dm-sans-latin-300-normal.woff2") format("woff2"); }
+    @font-face { font-family: "DM Sans"; font-weight: 400; src: url("assets/fonts/dm-sans-latin-400-normal.woff2") format("woff2"); }
+    @font-face { font-family: "DM Sans"; font-weight: 700; src: url("assets/fonts/dm-sans-latin-700-normal.woff2") format("woff2"); }
     @font-face { font-family: "Noto Color Emoji"; src: url("assets/fonts/NotoColorEmoji.ttf") format("truetype"); }
-    #root { position: absolute; inset: 0; }
+    #root { position: absolute; inset: 0; font-family: "DM Sans", "Noto Color Emoji", sans-serif; color: #ffffff; }
     .blk { position: absolute; left: 60px; right: 60px; display: flex; flex-direction: column; align-items: center; text-align: center; }
-    .title { font-family: "Shadows Into Light", sans-serif; font-weight: 400; font-size: 118px; line-height: 1.05; letter-spacing: 0.04em; color: #ffffff; }
-    .sub { font-family: "Shadows Into Light", "Noto Color Emoji", sans-serif; font-weight: 400; font-size: 44px; line-height: 1.2; letter-spacing: 0.02em; white-space: nowrap; }
-    .yel { color: #f5d45e; } .wht { color: #ffffff; } .cream { color: #fff5e8; }
-    .mask { overflow: hidden; padding: 0 6px 8px; }
-    .glow { display: none; position: absolute; left: 50%; top: 50%; width: 900px; height: 470px; margin: -235px 0 0 -450px; z-index: -1; border-radius: 50%;
-      background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(38,26,18,.55) 0%, rgba(38,26,18,.26) 50%, rgba(38,26,18,0) 100%); }
-    .glow.sm { width: 820px; height: 240px; margin: -120px 0 0 -410px; }
-    .chip { display: inline-block; font-family: "Shadows Into Light", "Noto Color Emoji", sans-serif; font-weight: 400; font-size: 44px; letter-spacing: 0.02em; white-space: nowrap; }
-    .arrow { position: absolute; left: 50%; top: -112px; margin-left: 120px; overflow: visible; }
-    .doodle { position: absolute; overflow: visible; }
-    .star { position: absolute; width: 54px; height: 54px; }
-    .stk { position: absolute; font-family: "Noto Color Emoji"; font-size: 70px; line-height: 1; }
+    .h1 { font-weight: 700; font-size: 72px; line-height: 1.08; letter-spacing: -0.01em; white-space: nowrap; text-shadow: 0 2px 10px rgba(0,0,0,.22); }
+    .h1.big { font-size: 80px; }
+    .w { display: inline-block; }
+    .pkw { color: #f4afc4; }
+    .mask { overflow: hidden; padding: 0 8px 4px; }
+    .lt { font-weight: 400; font-size: 44px; letter-spacing: 0.005em; white-space: nowrap; margin-top: 12px; text-shadow: 0 2px 10px rgba(0,0,0,.22); }
+    .lt.big { font-size: 54px; margin-top: 0; }
+    .sub { font-weight: 400; font-size: 40px; margin-top: 12px; white-space: nowrap; text-shadow: 0 2px 10px rgba(0,0,0,.25); }
+    .sw { color: #ffffff; }
+    .dot { color: #f4afc4; font-size: 26px; vertical-align: middle; margin: 0 6px; }
+    .brand { font-weight: 700; font-size: 104px; letter-spacing: 0.22em; margin-right: -0.22em; text-shadow: 0 3px 14px rgba(0,0,0,.3); }
+    .ltr { display: inline-block; }
+    .pk { color: #f4afc4; font-weight: 700; font-size: 40px; letter-spacing: 0.08em; margin-top: 6px; white-space: nowrap; text-shadow: 0 1px 3px rgba(0,0,0,.55), 0 2px 14px rgba(0,0,0,.45); }
+    .ul { width: 110px; height: 5px; border-radius: 3px; background: #ffffff; margin-top: 22px; }
+    .ul.wide { width: 280px; }
+    .dash { width: 28px; height: 5px; border-radius: 3px; background: #f4afc4; margin-top: 14px; }
+    .pill { display: inline-block; padding: 18px 40px; border-radius: 999px; background: #fff6ec; color: #3a2a24; font-weight: 400; font-size: 44px; white-space: nowrap; box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+    .star { position: absolute; width: 46px; height: 46px; }
   </style>
   <div id="root" data-composition-id="text" data-width="1080" data-height="1920">
-    <div id="t-hero" class="blk clip" data-start="0" data-duration="1.97" data-track-index="0" style="top: 780px">
-      <div class="glow" id="t-hero-g"></div>
-      <div class="mask"><div class="title" id="t-hero-0" style="color:#3b2a22">TORRAS</div></div>
-      <svg class="doodle" style="left: 50%; top: 122px; margin-left: -210px" width="420" height="40" viewBox="0 0 420 40"><path id="ul-hero" d="M8 24 C 60 6, 110 36, 165 20 S 270 8, 320 22 S 390 30, 412 14" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" fill="none" stroke="#3b2a22" stroke-width="4" stroke-linecap="round"/></svg>
-      <div class="sub" id="t-hero-1" style="margin-top: 40px; color:#6a4512">anti-yellowing 🌼</div>
-      <div class="sub" id="t-hero-2" style="color:#3b2a22">clear magnetic case 🧲</div>
+    <div id="t-hook" class="blk clip" data-start="0" data-duration="1.95" data-track-index="0" style="top: 250px">
+      <div class="h1"><span class="w " id="hk-1">EH,</span> <span class="w " id="hk-2">CLEAR</span> <span class="w " id="hk-3">CASE</span> <span class="w " id="hk-4">NI</span></div>
+      <div class="lt" id="hk-sub">cantik gila bila dah pakai 👀</div>
     </div>
-    <div id="s-hero" class="clip" data-start="0" data-duration="1.97" data-track-index="2">
-      <div class="stk" id="s-h1" style="left: 150px; top: 700px">✨</div><svg class="star" id="st-h1" style="left:120px; top:620px" viewBox="0 0 54 54"><path d="M27 4 C 29 20, 34 25, 50 27 C 34 29, 29 34, 27 50 C 25 34, 20 29, 4 27 C 20 25, 25 20, 27 4 Z" fill="#fff5e8"/></svg><svg class="star" id="st-h2" style="left:900px; top:760px" viewBox="0 0 54 54"><path d="M27 4 C 29 20, 34 25, 50 27 C 34 29, 29 34, 27 50 C 25 34, 20 29, 4 27 C 20 25, 25 20, 27 4 Z" fill="#fff5e8"/></svg><svg class="star" id="st-h3" style="left:880px; top:1240px" viewBox="0 0 54 54"><path d="M27 4 C 29 20, 34 25, 50 27 C 34 29, 29 34, 27 50 C 25 34, 20 29, 4 27 C 20 25, 25 20, 27 4 Z" fill="#fff5e8"/></svg>
-      <div class="stk" id="s-h2" style="left: 860px; top: 1010px">🤍</div>
+    <div id="t-brand" class="blk clip" data-start="2.15" data-duration="1.767" data-track-index="0" style="top: 190px">
+      <div class="brand"><span class="ltr" id="br-0">T</span><span class="ltr" id="br-1">O</span><span class="ltr" id="br-2">R</span><span class="ltr" id="br-3">R</span><span class="ltr" id="br-4">A</span><span class="ltr" id="br-5">S</span></div>
+      <div class="pk" id="br-sub">CLEAR MAGNETIC CASE</div>
+      <div class="ul" id="br-ul"></div>
     </div>
-    <div id="c-box" class="blk clip" data-start="2.08" data-duration="0.82" data-track-index="1" style="top:1180px; left:60px; right:60px"><span class="chip" id="c-box-i" style="color:#3b2a22">unboxing time 📦</span><svg class="arrow" width="130" height="110" viewBox="0 0 130 110"><path id="ar-box" d="M18 100 C 26 62, 58 40, 112 18 M112 18 L 90 16 M112 18 L 102 38" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" fill="none" stroke="#3b2a22" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div id="c-asmr" class="blk clip" data-start="3.033" data-duration="0.88" data-track-index="1" style="top:1180px; left:60px; right:60px"><span class="chip" id="c-asmr-i" style="color:#ffffff">so satisfying 🤤</span></div>
-    <div id="c-inside" class="blk clip" data-start="4.067" data-duration="1.0" data-track-index="1" style="top:1180px; left:60px; right:60px"><span class="chip" id="c-inside-i" style="color:#3b2a22">what's inside? 👀</span></div>
-    <div id="c-crys" class="blk clip" data-start="5.15" data-duration="0.95" data-track-index="1" style="top:1180px; left:60px; right:60px"><span class="chip" id="c-crys-i" style="color:#3b2a22">crystal clear 💎</span><svg class="arrow" width="130" height="110" viewBox="0 0 130 110"><path id="ar-crys" d="M18 100 C 26 62, 58 40, 112 18 M112 18 L 90 16 M112 18 L 102 38" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" fill="none" stroke="#3b2a22" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div id="c-before" class="blk clip" data-start="8.217" data-duration="0.82" data-track-index="1" style="top:1180px; left:60px; right:60px"><span class="chip" id="c-before-i" style="color:#3b2a22">before 🤍</span></div>
-    <div id="c-fit" class="blk clip" data-start="9.167" data-duration="1.05" data-track-index="1" style="top:1180px; left:60px; right:60px"><span class="chip" id="c-fit-i" style="color:#3b2a22">fits perfectly ✨</span><svg class="arrow" width="130" height="110" viewBox="0 0 130 110"><path id="ar-fit" d="M18 100 C 26 62, 58 40, 112 18 M112 18 L 90 16 M112 18 L 102 38" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" fill="none" stroke="#3b2a22" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div id="c-fp" class="blk clip" data-start="10.297" data-duration="0.85" data-track-index="1" style="top:1180px; left:60px; right:60px"><span class="chip" id="c-fp-i" style="color:#3b2a22">anti-fingerprint 🫶</span><svg class="arrow" width="130" height="110" viewBox="0 0 130 110"><path id="ar-fp" d="M18 100 C 26 62, 58 40, 112 18 M112 18 L 90 16 M112 18 L 102 38" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" fill="none" stroke="#3b2a22" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div id="c-btn" class="blk clip" data-start="12.817" data-duration="1.3" data-track-index="1" style="top:1080px; left:360px; right:-240px"><span class="chip" id="c-btn-i" style="color:#ffffff">clear side buttons ✨</span></div>
-    <div id="c-scr" class="blk clip" data-start="14.217" data-duration="0.85" data-track-index="1" style="top:1180px; left:60px; right:60px"><span class="chip" id="c-scr-i" style="color:#3b2a22">scratch-resistant 💪</span><svg class="arrow" width="130" height="110" viewBox="0 0 130 110"><path id="ar-scr" d="M18 100 C 26 62, 58 40, 112 18 M112 18 L 90 16 M112 18 L 102 38" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" fill="none" stroke="#3b2a22" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div id="t-pretty" class="blk clip" data-start="15.167" data-duration="0.97" data-track-index="0" style="top: 1010px">
-      <div class="glow sm"></div>
-      <div class="sub" id="t-pretty-1" style="color:#3b2a22">clean &amp; pretty ♡ 🌷</div>
+    <div id="t-unbox" class="blk clip" data-start="4.017" data-duration="1.05" data-track-index="0" style="top: 250px">
+      <div class="lt big" id="ub-1">unboxing this clear case ♡</div>
+      <div class="dash" id="ub-d"></div>
     </div>
-    <div id="s-pretty" class="clip" data-start="15.167" data-duration="0.97" data-track-index="2">
-      <div class="stk" id="s-p1" style="left: 130px; top: 880px">✨</div><svg class="star" id="st-p1" style="left:110px; top:980px" viewBox="0 0 54 54"><path d="M27 4 C 29 20, 34 25, 50 27 C 34 29, 29 34, 27 50 C 25 34, 20 29, 4 27 C 20 25, 25 20, 27 4 Z" fill="#fff5e8"/></svg><svg class="star" id="st-p2" style="left:920px; top:860px" viewBox="0 0 54 54"><path d="M27 4 C 29 20, 34 25, 50 27 C 34 29, 29 34, 27 50 C 25 34, 20 29, 4 27 C 20 25, 25 20, 27 4 Z" fill="#fff5e8"/></svg>
-      <div class="stk" id="s-p2" style="left: 870px; top: 1100px">✨</div>
+    <div id="t-mag" class="blk clip" data-start="5.18" data-duration="2.957" data-track-index="0" style="top: 250px">
+      <div class="mask"><div class="h1" id="mag-t">MAGNETIC RING</div></div>
+      <div class="sub" id="mag-sub"><span class="sw" id="mag-s0">Clear</span> <span class="dot">•</span> <span class="sw" id="mag-s1">Magnetic</span> <span class="dot">•</span> <span class="sw" id="mag-s2">Slim</span></div>
     </div>
-    <div id="t-cta" class="blk clip" data-start="17.867" data-duration="1.9" data-track-index="0" style="top: 960px">
-      <div class="glow sm" id="t-cta-g"></div>
-      <div class="title" id="t-cta-0" style="font-size: 88px; color:#3b2a22">TORRAS ♡</div>
-      <svg class="doodle" style="left: 50%; top: -34px; margin-left: -230px" width="460" height="170" viewBox="0 0 460 170"><path id="loop-cta" d="M250 14 C 120 4, 18 30, 22 84 C 26 140, 170 160, 300 148 C 420 136, 452 92, 430 54 C 410 20, 330 8, 230 18" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" fill="none" stroke="#3b2a22" stroke-width="3.5" stroke-linecap="round"/></svg>
-      <div style="margin-top:14px"><span class="chip" id="t-cta-1" style="color:#6a4512">get yours kat bakul kuning 🛒</span></div>
+    <div id="t-col" class="blk clip" data-start="8.247" data-duration="2.89" data-track-index="0" style="top: 250px">
+      <div class="mask"><div class="h1" id="col-t">TRUE-TO-PHONE COLOUR</div></div>
+      <div class="sub" id="col-sub"><span class="sw" id="col-s0">Before</span> <span class="dot">•</span> <span class="sw" id="col-s1">Fitting</span> <span class="dot">•</span> <span class="sw" id="col-s2">After</span></div>
     </div>
-    <div id="s-cta" class="clip" data-start="17.867" data-duration="1.9" data-track-index="2">
-      <div class="stk" id="s-c1" style="left: 150px; top: 880px">🎀</div><svg class="star" id="st-c1" style="left:120px; top:1180px" viewBox="0 0 54 54"><path d="M27 4 C 29 20, 34 25, 50 27 C 34 29, 29 34, 27 50 C 25 34, 20 29, 4 27 C 20 25, 25 20, 27 4 Z" fill="#fff5e8"/></svg><svg class="star" id="st-c2" style="left:910px; top:820px" viewBox="0 0 54 54"><path d="M27 4 C 29 20, 34 25, 50 27 C 34 29, 29 34, 27 50 C 25 34, 20 29, 4 27 C 20 25, 25 20, 27 4 Z" fill="#fff5e8"/></svg>
-      <div class="stk" id="s-c2" style="left: 860px; top: 1110px">✨</div>
+    <div id="t-lens" class="blk clip" data-start="11.247" data-duration="1.49" data-track-index="0" style="top: 250px">
+      <div class="mask"><div class="h1" id="lens-t">0.8MM RAISED LENS</div></div>
+      <div class="sub" id="lens-sub"><span class="sw" id="lens-s0">Lens</span> <span class="dot">•</span> <span class="sw" id="lens-s1">Camera</span> <span class="dot">•</span> <span class="sw" id="lens-s2">Protection</span></div>
     </div>
+    <div id="t-btn" class="blk clip" data-start="12.847" data-duration="1.29" data-track-index="0" style="top: 250px">
+      <div class="mask"><div class="h1" id="btn-t">CLEAR SIDE BUTTONS</div></div>
+      <div class="sub" id="btn-sub"><span class="sw" id="btn-s0">Anti-fingerprint</span> <span class="dot">•</span> <span class="sw" id="btn-s1">Scratch-resistant</span></div>
+    </div>
+    <div id="t-yel" class="blk clip" data-start="14.247" data-duration="1.89" data-track-index="0" style="top: 250px">
+      <div class="mask"><div class="h1" id="yel-t">ANTI-YELLOWING</div></div>
+      <div class="sub" id="yel-sub"><span class="sw" id="yel-s0">Crystal</span> <span class="dot">•</span> <span class="sw" id="yel-s1">Clear</span> <span class="dot">•</span> <span class="sw" id="yel-s2">Stays clear longer</span></div>
+    </div>
+    <div id="t-mesh" class="blk clip" data-start="16.247" data-duration="1.49" data-track-index="0" style="top: 250px">
+      <div class="mask"><div class="h1" id="mesh-t">DUSTPROOF MESH</div></div>
+      <div class="sub" id="mesh-sub"><span class="sw" id="mesh-s0">Fine-mesh</span> <span class="dot">•</span> <span class="sw" id="mesh-s1">Speaker guard</span></div>
+    </div>
+    <div id="t-close" class="blk clip" data-start="17.867" data-duration="1.9" data-track-index="0" style="top: 230px">
+      <div class="h1 big"><span class="w" id="cl-1">SIMPLE.</span> <span class="w pkw" id="cl-2">CLEAR.</span></div>
+      <div class="h1 big"><span class="w" id="cl-3">CANTIK.</span> <span class="w" id="cl-4">🤍</span></div>
+      <div class="ul wide" id="cl-ul"></div>
+    </div>
+    <div id="t-stars" class="clip" data-start="17.867" data-duration="1.9" data-track-index="2"><svg class="star" id="st1" style="left:830px; top:210px" viewBox="0 0 54 54"><path d="M27 4 C 29 20, 34 25, 50 27 C 34 29, 29 34, 27 50 C 25 34, 20 29, 4 27 C 20 25, 25 20, 27 4 Z" fill="#ffffff"/></svg><svg class="star" id="st2" style="left:150px; top:330px" viewBox="0 0 54 54"><path d="M27 4 C 29 20, 34 25, 50 27 C 34 29, 29 34, 27 50 C 25 34, 20 29, 4 27 C 20 25, 25 20, 27 4 Z" fill="#ffffff"/></svg><svg class="star" id="st3" style="left:880px; top:470px" viewBox="0 0 54 54"><path d="M27 4 C 29 20, 34 25, 50 27 C 34 29, 29 34, 27 50 C 25 34, 20 29, 4 27 C 20 25, 25 20, 27 4 Z" fill="#ffffff"/></svg></div>
   </div>
   <script>
     (function () {
-      const vars = (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {};
-      if (vars.showCta === false) document.getElementById("t-cta-1").textContent = "get yours now 🤍";
       const tl = gsap.timeline({ paused: true });
-      const pop = (sel, at) => tl.fromTo(sel, { opacity: 0, y: 8, clipPath: "inset(-30% 100% -30% -12%)" }, { opacity: 1, y: 0, clipPath: "inset(-30% -12% -30% -12%)", duration: 0.55, ease: "power2.out" }, at);
-      const draw = (sel, at, d) => tl.fromTo(sel, { attr: { "stroke-dashoffset": 1 } }, { attr: { "stroke-dashoffset": 0 }, duration: d || 0.45, ease: "power2.inOut" }, at);
-      const twinkle = (sel, at) => {
-        tl.fromTo(sel, { opacity: 0, scale: 0, rotation: -30 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.35, ease: "back.out(2)" }, at);
-        tl.to(sel, { scale: 0.6, duration: 0.25, ease: "sine.inOut" }, at + 0.35);
-        tl.to(sel, { scale: 1, rotation: 20, duration: 0.25, ease: "sine.inOut" }, at + 0.6);
-      };
-      const out = (sel, at) => tl.to(sel, { opacity: 0, scale: 0.9, duration: 0.15, ease: "power2.in" }, at);
-      const sticker = (sel, at, rot) => {
-        tl.fromTo(sel, { opacity: 0, scale: 0, rotation: -rot }, { opacity: 1, scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2.2)" }, at);
-        tl.to(sel, { scale: 0.85, rotation: rot / 2, duration: 0.5, ease: "sine.inOut" }, at + 0.45);
-      };
-      // hero
-      tl.fromTo("#t-hero-g", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0);
-      tl.fromTo("#t-hero-0", { yPercent: 105 }, { yPercent: 0, duration: 0.5, ease: "power3.out" }, 0.05);
-      tl.fromTo("#t-hero-1, #t-hero-2", { opacity: 0, scale: 0.9, y: 10 }, { opacity: 1, scale: 1, y: 0, duration: 0.38, ease: "back.out(1.6)", stagger: 0.12 }, 0.35);
-      sticker("#s-h1", 0.55, 20); sticker("#s-h2", 0.75, -20);
-      draw("#ul-hero", 0.5, 0.5); twinkle("#st-h1", 0.3); twinkle("#st-h2", 0.6); twinkle("#st-h3", 0.9);
-      tl.to("#t-hero-g, #t-hero-0, #t-hero-1, #t-hero-2, #s-h1, #s-h2, #ul-hero, #st-h1, #st-h2, #st-h3", { opacity: 0, duration: 0.18, ease: "power2.in" }, 1.77);
-      // feature chips
-      draw("#ar-box", 2.33, 0.45);
-      pop("#c-box-i", 2.08); out("#c-box-i", 2.75);
-      pop("#c-asmr-i", 3.033); out("#c-asmr-i", 3.763);
-      pop("#c-inside-i", 4.067); out("#c-inside-i", 4.917);
-      draw("#ar-crys", 5.4, 0.45);
-      pop("#c-crys-i", 5.15); out("#c-crys-i", 5.95);
-      pop("#c-before-i", 8.217); out("#c-before-i", 8.887);
-      draw("#ar-fit", 9.417, 0.45);
-      pop("#c-fit-i", 9.167); out("#c-fit-i", 10.067);
-      draw("#ar-fp", 10.547, 0.45);
-      pop("#c-fp-i", 10.297); out("#c-fp-i", 10.997);
-      pop("#c-btn-i", 12.817); out("#c-btn-i", 13.967);
-      draw("#ar-scr", 14.467, 0.45);
-      pop("#c-scr-i", 14.217); out("#c-scr-i", 14.917);
-      // beauty + CTA
-      pop("#t-pretty-1", 15.167); sticker("#s-p1", 15.267, 25); sticker("#s-p2", 15.417, -25); twinkle("#st-p1", 15.217); twinkle("#st-p2", 15.367);
-      tl.to("#t-pretty-1, #s-p1, #s-p2, #st-p1, #st-p2", { opacity: 0, duration: 0.15 }, 15.967);
-      tl.fromTo("#t-cta-g", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 17.867);
-      tl.fromTo("#t-cta-0", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.7)" }, 17.867);
-      pop("#t-cta-1", 18.067);
-      sticker("#s-c1", 18.217, 20); draw("#loop-cta", 18.117, 0.7); twinkle("#st-c1", 18.467); twinkle("#st-c2", 18.667); sticker("#s-c2", 18.367, -20);
+      tl.fromTo("#hk-1, #hk-2, #hk-3, #hk-4", { opacity: 0.25, color: "#9a9a9a", y: 8 }, { opacity: 1, color: "#ffffff", y: 0, duration: 0.3, ease: "power2.out", stagger: 0.14 }, 0.05);
+      tl.fromTo("#hk-sub", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 0.75);
+      tl.to("#t-hook .w, #hk-sub", { opacity: 0, duration: 0.16 }, 1.78);
+      tl.fromTo("#t-brand .ltr", { opacity: 0, y: 24, filter: "blur(6px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.32, ease: "power3.out", stagger: 0.06 }, 2.15);
+      tl.fromTo("#br-sub", { opacity: 0, y: 10, filter: "blur(4px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: "power2.out" }, 2.5);
+      tl.fromTo("#br-ul", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "expo.out" }, 2.7);
+      tl.to("#t-brand .ltr, #br-sub, #br-ul", { opacity: 0, duration: 0.16 }, 3.737);
+      tl.fromTo("#ub-1", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 4.017);
+      tl.fromTo("#ub-d", { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "expo.out" }, 4.317);
+      tl.to("#ub-1, #ub-d", { opacity: 0, duration: 0.15 }, 4.897);
+      tl.fromTo("#mag-t", { yPercent: 110 }, { yPercent: 0, duration: 0.42, ease: "power3.out" }, 5.18);
+      tl.fromTo("#mag-sub", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 5.38);
+      tl.to("#mag-s0", { color: "#f4afc4", duration: 0.15 }, 5.48); tl.to("#mag-s0", { color: "#ffffff", duration: 0.15 }, 6.299);
+      tl.to("#mag-s1", { color: "#f4afc4", duration: 0.15 }, 6.349); tl.to("#mag-s1", { color: "#ffffff", duration: 0.15 }, 7.168);
+      tl.to("#mag-s2", { color: "#f4afc4", duration: 0.15 }, 7.218); tl.to("#mag-s2", { color: "#ffffff", duration: 0.15 }, 8.037);
+      tl.to("#mag-t, #mag-sub", { opacity: 0, duration: 0.15 }, 7.967);
+      tl.fromTo("#col-t", { yPercent: 110 }, { yPercent: 0, duration: 0.42, ease: "power3.out" }, 8.247);
+      tl.fromTo("#col-sub", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 8.447);
+      tl.to("#col-s0", { color: "#f4afc4", duration: 0.15 }, 8.217); tl.to("#col-s0", { color: "#ffffff", duration: 0.15 }, 9.067);
+      tl.to("#col-s1", { color: "#f4afc4", duration: 0.15 }, 9.117); tl.to("#col-s1", { color: "#ffffff", duration: 0.15 }, 10.267);
+      tl.to("#col-s2", { color: "#f4afc4", duration: 0.15 }, 10.317); tl.to("#col-s2", { color: "#ffffff", duration: 0.15 }, 11.087);
+      tl.to("#col-t, #col-sub", { opacity: 0, duration: 0.15 }, 10.967);
+      tl.fromTo("#lens-t", { yPercent: 110 }, { yPercent: 0, duration: 0.42, ease: "power3.out" }, 11.247);
+      tl.fromTo("#lens-sub", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 11.447);
+      tl.to("#lens-s0", { color: "#f4afc4", duration: 0.15 }, 11.547); tl.to("#lens-s0", { color: "#ffffff", duration: 0.15 }, 11.877);
+      tl.to("#lens-s1", { color: "#f4afc4", duration: 0.15 }, 11.927); tl.to("#lens-s1", { color: "#ffffff", duration: 0.15 }, 12.257);
+      tl.to("#lens-s2", { color: "#f4afc4", duration: 0.15 }, 12.307); tl.to("#lens-s2", { color: "#ffffff", duration: 0.15 }, 12.637);
+      tl.to("#lens-t, #lens-sub", { opacity: 0, duration: 0.15 }, 12.567);
+      tl.fromTo("#btn-t", { yPercent: 110 }, { yPercent: 0, duration: 0.42, ease: "power3.out" }, 12.847);
+      tl.fromTo("#btn-sub", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 13.047);
+      tl.to("#btn-s0", { color: "#f4afc4", duration: 0.15 }, 13.147); tl.to("#btn-s0", { color: "#ffffff", duration: 0.15 }, 13.567);
+      tl.to("#btn-s1", { color: "#f4afc4", duration: 0.15 }, 13.617); tl.to("#btn-s1", { color: "#ffffff", duration: 0.15 }, 14.037);
+      tl.to("#btn-t, #btn-sub", { opacity: 0, duration: 0.15 }, 13.967);
+      tl.fromTo("#yel-t", { yPercent: 110 }, { yPercent: 0, duration: 0.42, ease: "power3.out" }, 14.247);
+      tl.fromTo("#yel-sub", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 14.447);
+      tl.to("#yel-s0", { color: "#f4afc4", duration: 0.15 }, 14.547); tl.to("#yel-s0", { color: "#ffffff", duration: 0.15 }, 15.01);
+      tl.to("#yel-s1", { color: "#f4afc4", duration: 0.15 }, 15.06); tl.to("#yel-s1", { color: "#ffffff", duration: 0.15 }, 15.524);
+      tl.to("#yel-s2", { color: "#f4afc4", duration: 0.15 }, 15.574); tl.to("#yel-s2", { color: "#ffffff", duration: 0.15 }, 16.037);
+      tl.to("#yel-t, #yel-sub", { opacity: 0, duration: 0.15 }, 15.967);
+      tl.fromTo("#mesh-t", { yPercent: 110 }, { yPercent: 0, duration: 0.42, ease: "power3.out" }, 16.247);
+      tl.fromTo("#mesh-sub", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 16.447);
+      tl.to("#mesh-s0", { color: "#f4afc4", duration: 0.15 }, 16.547); tl.to("#mesh-s0", { color: "#ffffff", duration: 0.15 }, 17.067);
+      tl.to("#mesh-s1", { color: "#f4afc4", duration: 0.15 }, 17.117); tl.to("#mesh-s1", { color: "#ffffff", duration: 0.15 }, 17.637);
+      tl.to("#mesh-t, #mesh-sub", { opacity: 0, duration: 0.15 }, 17.567);
+      tl.fromTo("#cl-1, #cl-2, #cl-3, #cl-4", { opacity: 0, y: 16, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(1.6)", stagger: 0.12 }, 17.867);
+      tl.fromTo("#cl-ul", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "expo.out" }, 18.367);
+      tl.fromTo("#st1", { opacity: 0, scale: 0, rotation: -40 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.35, ease: "back.out(2)" }, 18.267); tl.to("#st1", { scale: 0.55, duration: 0.3, ease: "sine.inOut" }, 18.667); tl.to("#st1", { scale: 1, rotation: 25, duration: 0.3, ease: "sine.inOut" }, 18.967);
+      tl.fromTo("#st2", { opacity: 0, scale: 0, rotation: -40 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.35, ease: "back.out(2)" }, 18.447); tl.to("#st2", { scale: 0.55, duration: 0.3, ease: "sine.inOut" }, 18.847); tl.to("#st2", { scale: 1, rotation: 25, duration: 0.3, ease: "sine.inOut" }, 19.147);
+      tl.fromTo("#st3", { opacity: 0, scale: 0, rotation: -40 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.35, ease: "back.out(2)" }, 18.627); tl.to("#st3", { scale: 0.55, duration: 0.3, ease: "sine.inOut" }, 19.027); tl.to("#st3", { scale: 1, rotation: 25, duration: 0.3, ease: "sine.inOut" }, 19.327);
       window.__timelines["text"] = tl;
     })();
   </script>
