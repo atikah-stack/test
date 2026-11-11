@@ -11,16 +11,25 @@ shots = [("h01",60,1.4,(1.0,1.06),"45% 55%","sine.inOut"),("p01",28,2.2,(1.06,1.
 circles = {"d02": dict(f0=20, f1=50, r=215, label="magnetic compatible 🧲", dy=-270),
            "x01": dict(f0=2, f1=46, r=235, label="0.8mm raised lens protection 📸", dy=280),
            "m01": dict(f0=8, f1=46, r=205, label="dustproof mesh 🫧", dy=-250, oy=-28)}
+import subprocess, numpy as np
+def bg(sid, tsec, x0, x1, y0, y1):
+    raw = subprocess.check_output(["ffmpeg","-nostdin","-loglevel","error","-ss",f"{max(0,tsec):.3f}","-i",f"assets/even/{sid}.mp4","-frames:v","1","-vf","format=gray","-f","rawvideo","-"])
+    a = np.frombuffer(raw, np.uint8).reshape(1920, 1080)[max(0,int(y0)):int(y1), max(0,int(x0)):int(x1)]
+    return a.mean() / 255
+DARK, LIGHT, ACC_D, ACC_L = "#3b2a22", "#ffffff", "#6a4512", "#f5d45e"
+def col(l): return (DARK, ACC_D) if l > 0.55 else (LIGHT, ACC_L)
 start = {}; t = 0
 for s in shots: start[s[0]] = t; t += s[1]
 total = round(t / 30, 4); T = lambda f: round(f / 30, 4)
 html, js = [], []
 for i, (sid, fr, vol, (a, b), org, ease) in enumerate(shots):
     st, du = T(start[sid]), T(fr)
-    inner = f'        <video id="v-{sid}" class="clip shot" src="assets/shots/{sid}.mp4" data-start="{st}" data-duration="{du}" data-track-index="1" data-has-audio="true" data-volume="{vol}" playsinline></video>'
+    inner = f'        <video id="v-{sid}" class="clip shot" src="assets/even/{sid}.mp4" data-start="{st}" data-duration="{du}" data-track-index="1" data-has-audio="true" data-volume="{vol}" playsinline></video>'
     js.append(f'      tl.fromTo("#f-{sid}", {{ scale: {a}, transformOrigin: "{org}" }}, {{ scale: {b}, duration: {du}, ease: "{ease}" }}, {st});')
     if sid in circles:
         c = circles[sid]; trk = json.load(open(f"{S}/trk-{sid}.json"))
+        fx, fy = trk[c["f0"] + 12]; ly = fy + c.get("oy", 0) + c["dy"]
+        lc = col(bg(sid, (c["f0"] + 12) / 30, fx - 230, fx + 230, ly - 30, ly + 30))[0]
         cs, cd, R = T(start[sid] + c["f0"]), T(c["f1"] - c["f0"]), c["r"]; C = round(6.28318 * R, 1); W = 2 * R + 8
         inner += f'''
         <div id="ring-{sid}" class="ring clip" data-start="{cs}" data-duration="{cd}" data-track-index="3" data-layout-allow-overflow>
@@ -30,7 +39,7 @@ for i, (sid, fr, vol, (a, b), org, ease) in enumerate(shots):
               <circle cx="{R+4}" cy="{R+4}" r="{R}" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-dasharray="11 9" stroke-linecap="round" mask="url(#m-{sid})"/>
             </svg>
           </div>
-          <div id="lab-{sid}" class="lab" style="top:{c['dy']-28}px"><span class="chip">{c['label']}</span></div>
+          <div id="lab-{sid}" class="lab" style="top:{c['dy']-28}px"><span class="chip" style="color:{lc}">{c['label']}</span></div>
         </div>'''
         oy = c.get("oy", 0); x0, y0 = trk[c["f0"]]; y0 += oy
         js.append(f'      tl.set("#ring-{sid}", {{ x: {x0}, y: {y0} }}, {cs});')
@@ -54,7 +63,7 @@ page = f'''<!doctype html>
     <meta name="viewport" content="width=1080, height=1920" />
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
     <style>
-      @font-face {{ font-family: "Inter"; font-weight: 500; src: url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"); }}
+      @font-face {{ font-family: "Shadows Into Light"; font-weight: 400; src: url("assets/fonts/shadows-into-light-latin-400-normal.woff2") format("woff2"); }}
       @font-face {{ font-family: "Noto Color Emoji"; src: url("assets/fonts/NotoColorEmoji.ttf") format("truetype"); }}
       * {{ margin: 0; padding: 0; box-sizing: border-box; }}
       html, body {{ margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #f4ece2; }}
@@ -64,8 +73,7 @@ page = f'''<!doctype html>
       .ring {{ position: absolute; left: 0; top: 0; width: 0; height: 0; }}
       .spin {{ position: absolute; filter: drop-shadow(0 1px 3px rgba(40,28,20,.45)); }}
       .lab {{ position: absolute; left: -400px; width: 800px; display: flex; justify-content: center; }}
-      .chip {{ display: inline-block; color: #ffffff; font-family: "Inter", "Noto Color Emoji", sans-serif; font-weight: 500; font-size: 34px;
-        letter-spacing: 0.01em; white-space: nowrap; text-shadow: 0 0 18px rgba(25,16,10,.75), 0 0 6px rgba(25,16,10,.55), 0 1px 2px rgba(25,16,10,.6); }}
+      .chip {{ display: inline-block; font-family: "Shadows Into Light", "Noto Color Emoji", sans-serif; font-weight: 400; font-size: 40px; letter-spacing: 0.02em; white-space: nowrap; }}
       .flash {{ position: absolute; inset: 0; background: #fff8ee; pointer-events: none; }}
     </style>
   </head>
@@ -94,40 +102,43 @@ chips = [  # id, shot, offset s, dur s, text, top px
  ("before", "i01", 0.05, 0.82, "before 🤍", 1180),
  ("fit", "i02", 0.1, 1.05, "fits perfectly ✨", 1180),
  ("fp", "i03", 0.03, 0.85, "anti-fingerprint 🫶", 1180),
- ("btn", "x02", 0.05, 1.3, "clear side buttons ✨", 1080),
+ ("btn", "x02", 0.05, 1.3, "clear side buttons ✨", 1080, 300),
  ("scr", "b01", 0.05, 0.85, "scratch-resistant 💪", 1180),
 ]
 blocks, tw = [], []
-for cid, sid, off, du, txt, top in chips:
+for row in chips:
+    cid, sid, off, du, txt, top = row[:6]; dx = row[6] if len(row) > 6 else 0
     st = round(start[sid] / 30 + off, 3)
-    blocks.append(f'    <div id="c-{cid}" class="blk clip" data-start="{st}" data-duration="{du}" data-track-index="1" style="top:{top}px"><span class="chip" id="c-{cid}-i">{txt}</span></div>')
+    cc = LIGHT if cid == "btn" else col(bg(sid, off + 0.3, 340 + dx, 740 + dx, top, top + 64))[0]
+    blocks.append(f'    <div id="c-{cid}" class="blk clip" data-start="{st}" data-duration="{du}" data-track-index="1" style="top:{top}px; left:{60+dx}px; right:{60-dx}px"><span class="chip" id="c-{cid}-i" style="color:{cc}">{txt}</span></div>')
     tw.append(f'      pop("#c-{cid}-i", {st}); out("#c-{cid}-i", {round(st + du - 0.15, 3)});')
 b1, c1 = start["b01"] / 30, start["c01"] / 30
+hm, ha = col(bg("h01", 0.8, 200, 880, 790, 1010))
+pm, pa = col(bg("b01", 1.3, 260, 820, 1010, 1080))
+cm, ca = col(bg("c01", 0.8, 220, 860, 960, 1130))
 txt = f'''<template>
   <style>
-    @font-face {{ font-family: "Nunito"; font-weight: 800; src: url("assets/fonts/nunito-latin-800-normal.woff2") format("woff2"); }}
-    @font-face {{ font-family: "Inter"; font-weight: 500; src: url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"); }}
+    @font-face {{ font-family: "Shadows Into Light"; font-weight: 400; src: url("assets/fonts/shadows-into-light-latin-400-normal.woff2") format("woff2"); }}
+    @font-face {{ font-family: "Shadows Into Light"; font-weight: 400; src: url("assets/fonts/shadows-into-light-latin-400-normal.woff2") format("woff2"); }}
     @font-face {{ font-family: "Noto Color Emoji"; src: url("assets/fonts/NotoColorEmoji.ttf") format("truetype"); }}
     #root {{ position: absolute; inset: 0; }}
     .blk {{ position: absolute; left: 60px; right: 60px; display: flex; flex-direction: column; align-items: center; text-align: center; }}
-    .title {{ font-family: "Nunito", sans-serif; font-weight: 800; font-size: 132px; line-height: 1; letter-spacing: -0.02em; color: #ffffff; text-shadow: 0 3px 22px rgba(40,28,20,.35); }}
-    .sub {{ font-family: "Inter", "Noto Color Emoji", sans-serif; font-weight: 600; font-size: 38px; line-height: 1.25; white-space: nowrap;
-      text-shadow: 0 1px 12px rgba(40,28,20,.6), 0 1px 2px rgba(40,28,20,.5); }}
+    .title {{ font-family: "Shadows Into Light", sans-serif; font-weight: 400; font-size: 118px; line-height: 1.05; letter-spacing: 0.04em; color: #ffffff; }}
+    .sub {{ font-family: "Shadows Into Light", "Noto Color Emoji", sans-serif; font-weight: 400; font-size: 44px; line-height: 1.2; letter-spacing: 0.02em; white-space: nowrap; }}
     .yel {{ color: #f5d45e; }} .wht {{ color: #ffffff; }} .cream {{ color: #fff5e8; }}
     .mask {{ overflow: hidden; padding: 0 6px 8px; }}
-    .glow {{ position: absolute; left: 50%; top: 50%; width: 900px; height: 470px; margin: -235px 0 0 -450px; z-index: -1; border-radius: 50%;
+    .glow {{ display: none; position: absolute; left: 50%; top: 50%; width: 900px; height: 470px; margin: -235px 0 0 -450px; z-index: -1; border-radius: 50%;
       background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(38,26,18,.55) 0%, rgba(38,26,18,.26) 50%, rgba(38,26,18,0) 100%); }}
     .glow.sm {{ width: 820px; height: 240px; margin: -120px 0 0 -410px; }}
-    .chip {{ display: inline-block; color: #ffffff; font-family: "Inter", "Noto Color Emoji", sans-serif; font-weight: 500; font-size: 38px;
-      letter-spacing: 0.01em; white-space: nowrap; text-shadow: 0 0 20px rgba(25,16,10,.75), 0 0 7px rgba(25,16,10,.55), 0 1px 2px rgba(25,16,10,.6); }}
+    .chip {{ display: inline-block; font-family: "Shadows Into Light", "Noto Color Emoji", sans-serif; font-weight: 400; font-size: 44px; letter-spacing: 0.02em; white-space: nowrap; }}
     .stk {{ position: absolute; font-family: "Noto Color Emoji"; font-size: 70px; line-height: 1; }}
   </style>
   <div id="root" data-composition-id="text" data-width="1080" data-height="1920">
     <div id="t-hero" class="blk clip" data-start="0" data-duration="1.97" data-track-index="0" style="top: 780px">
       <div class="glow" id="t-hero-g"></div>
-      <div class="mask"><div class="title" id="t-hero-0">TORRAS</div></div>
-      <div class="sub yel" id="t-hero-1" style="margin-top: 10px">anti-yellowing 🌼</div>
-      <div class="sub wht" id="t-hero-2">clear magnetic case 🧲</div>
+      <div class="mask"><div class="title" id="t-hero-0" style="color:{hm}">TORRAS</div></div>
+      <div class="sub" id="t-hero-1" style="margin-top: 4px; color:{ha}">anti-yellowing 🌼</div>
+      <div class="sub" id="t-hero-2" style="color:{hm}">clear magnetic case 🧲</div>
     </div>
     <div id="s-hero" class="clip" data-start="0" data-duration="1.97" data-track-index="2">
       <div class="stk" id="s-h1" style="left: 150px; top: 700px">✨</div>
@@ -136,7 +147,7 @@ txt = f'''<template>
 {chr(10).join(blocks)}
     <div id="t-pretty" class="blk clip" data-start="{round(b1 + 1.0, 3)}" data-duration="0.97" data-track-index="0" style="top: 1010px">
       <div class="glow sm"></div>
-      <div class="sub cream" id="t-pretty-1">clean &amp; pretty ♡ 🌷</div>
+      <div class="sub" id="t-pretty-1" style="color:{pm}">clean &amp; pretty ♡ 🌷</div>
     </div>
     <div id="s-pretty" class="clip" data-start="{round(b1 + 1.0, 3)}" data-duration="0.97" data-track-index="2">
       <div class="stk" id="s-p1" style="left: 130px; top: 880px">✨</div>
@@ -144,8 +155,8 @@ txt = f'''<template>
     </div>
     <div id="t-cta" class="blk clip" data-start="{round(c1 + 0.1, 3)}" data-duration="{round(total - c1 - 0.1, 3)}" data-track-index="0" style="top: 960px">
       <div class="glow sm" id="t-cta-g"></div>
-      <div class="sub cream" id="t-cta-0" style="font-family: Nunito, sans-serif; font-weight: 800; font-size: 64px; color: #fff">TORRAS ♡</div>
-      <div style="margin-top:14px"><span class="chip" id="t-cta-1">get yours kat bakul kuning 🛒</span></div>
+      <div class="title" id="t-cta-0" style="font-size: 88px; color:{cm}">TORRAS ♡</div>
+      <div style="margin-top:14px"><span class="chip" id="t-cta-1" style="color:{ca}">get yours kat bakul kuning 🛒</span></div>
     </div>
     <div id="s-cta" class="clip" data-start="{round(c1 + 0.1, 3)}" data-duration="{round(total - c1 - 0.1, 3)}" data-track-index="2">
       <div class="stk" id="s-c1" style="left: 150px; top: 880px">🎀</div>
