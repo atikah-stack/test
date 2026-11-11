@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ms">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; }
+      .cam { position: absolute; inset: 0; transform-origin: 50% 45%; }
+      .shot { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+      #fade { position: absolute; inset: 0; background: #000; opacity: 0; z-index: 60; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="28.2" data-width="1080" data-height="1920">
+      <!-- "Banglo U-shape…" hingga "…sampai habis." -->
+      <div id="camA" class="cam" style="z-index: 1"><video id="vA" class="clip shot" src="assets/shots/vA.mp4" data-start="0" data-duration="8.84" data-media-start="0" data-track-index="1" muted playsinline></video></div>
+      <!-- "Banglo ni berkeluasan…" hingga "…terlebih dahulu." -->
+      <div id="camB" class="cam" style="z-index: 2"><video id="vB" class="clip shot" src="assets/shots/vB.mp4" data-start="8.84" data-duration="11.6" data-media-start="0" data-track-index="2" muted playsinline></video></div>
+      <!-- "Nak tengok lebih lanjut?…okey?" + 5 s pemandangan luar -->
+      <div id="camC" class="cam" style="z-index: 3"><video id="vC" class="clip shot" src="assets/shots/vC.mp4" data-start="20.44" data-duration="7.76" data-media-start="0" data-track-index="1" muted playsinline></video></div>
+
+      <audio id="narration" class="clip" src="assets/shots/narration.m4a" data-start="0" data-duration="28.2" data-track-index="8" data-volume="1"></audio>
+      <audio id="fx-whoosh" class="clip" src="assets/shots/whoosh-short.mp3" data-start="0.05" data-duration="0.57" data-track-index="9" data-volume="0.3"></audio>
+      <audio id="fx-pop1" class="clip" src="assets/shots/pop.mp3" data-start="9.95" data-duration="0.72" data-track-index="10" data-volume="0.3"></audio>
+      <audio id="fx-pop2" class="clip" src="assets/shots/pop.mp3" data-start="13.86" data-duration="0.72" data-track-index="9" data-volume="0.3"></audio>
+      <audio id="fx-pop3" class="clip" src="assets/shots/pop.mp3" data-start="15.2" data-duration="0.72" data-track-index="10" data-volume="0.3"></audio>
+      <audio id="fx-pop4" class="clip" src="assets/shots/pop.mp3" data-start="21.69" data-duration="0.72" data-track-index="9" data-volume="0.3"></audio>
+
+      <div id="copy" data-composition-id="copy" data-composition-src="compositions/copy.html" data-start="0" data-duration="28.2" data-track-index="5" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 40"></div>
+      <div id="subs" data-composition-id="subs" data-composition-src="compositions/subs.html" data-start="0" data-duration="28.2" data-track-index="6" data-track-kind="captions" data-width="1080" data-height="1920" style="z-index: 41"></div>
+      <div id="fade"></div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#camA", { scale: 1.0 }, { scale: 1.05, duration: 8.84, ease: "none" }, 0);
+      // a small punch on each cut hides the removed pauses
+      tl.fromTo("#camB", { scale: 1.08 }, { scale: 1.02, duration: 11.6, ease: "sine.out" }, 8.84);
+      tl.fromTo("#camC", { scale: 1.06 }, { scale: 1.0, duration: 7.76, ease: "sine.out" }, 20.44);
+      // gentle fade-out on the exterior shot
+      tl.fromTo("#fade", { opacity: 0 }, { opacity: 1, duration: 0.8, ease: "sine.in" }, 27.39);
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
