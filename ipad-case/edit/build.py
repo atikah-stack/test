@@ -75,7 +75,7 @@ def crystal(sid, ref, quad, f0, f1, cam=None):
         js.append(f'      tl.fromTo("#cam-{sid}", {{ opacity: 0, scale: 0.6, rotation: -40, svgOrigin: "{cx} {cy}" }}, {{ opacity: 1, scale: 1, rotation: 40, duration: 1.2, ease: "power2.out", svgOrigin: "{cx} {cy}" }}, {round(cs + 0.5, 3)});')
     js.append(f'      tl.to("#edge-{sid}{", #cam-" + sid if cam else ""}", {{ opacity: 0, duration: 0.25 }}, {round(cs + cd - 0.27, 3)});')
     return out
-html_s1 = crystal("s1", 15, [(-150, -424), (440, -200), (90, 600), (-490, 320)], 2, 62)
+html_s1 = crystal("s1", 15, [(-150, -424), (440, -200), (90, 600), (-490, 320)], 2, 62, cam=(-110, -380))
 html_s6 = crystal("s6", 24, [(-180, -520), (490, -360), (230, 610), (-530, 350)], 2, 70, cam=(-150, -470))
 
 # ---- pencil holder: dashed circle + pointer tracked to the cover slot (s5) ----
@@ -122,9 +122,9 @@ def line_in(sel, at):
 
 # S1 hook
 a0, a1 = 0.0, sec("s2") - 0.03
-scene("t1", a0, a1, 760, f'''      <div class="hk">{ww("h1", [("case", ""), ("yang", ""), ("buat", ""), ("iPad", ""), ("pink", "hp")])}</div>
-      <div class="hk">{ww("h2", [("nampak", ""), ("lagi", ""), ("mahal", ""), ("🩷", "")])}</div>
-      <div class="bar" id="h-bar"></div>''')
+scene("t1", a0, a1, 760, f'''      <div class="hk">{ww("h1", [("POV:", ""), ("MY", ""), ("PINK", ""), ("iPAD", "")])}</div>
+      <div class="hk hp">{ww("h2", [("FINALLY", ""), ("SHOWS", ""), ("OFF", ""), ("🩷", "")])}</div>
+      <div class="hbar" id="h-bar"></div>''')
 words_in("#t1 .w", 0.0, 0.08); line_in("#h-bar", 0.8); fade_out("#t1 .w, #h-bar", a1 - 0.2)
 sfx += [("pop", 0.0, 0.35), ("click-soft", 0.8, 0.45)]
 # S2 design
@@ -243,9 +243,11 @@ open("compositions/text.html", "w").write(f'''<template>
       text-shadow: 0 1px 3px rgba(30,15,20,.55), 0 0 14px rgba(30,15,20,.45), 0 4px 22px rgba(30,15,20,.35); }}
     .hd.sm {{ font-size: 72px; line-height: 1.04; }}
     @font-face {{ font-family: "DM Sans"; font-weight: 300; src: url("assets/fonts/dm-sans-latin-300-normal.woff2") format("woff2"); }}
-    .hk {{ font-family: "DM Sans", "Noto Color Emoji", sans-serif; font-weight: 300; font-size: 54px; line-height: 1.3; letter-spacing: 0.02em; white-space: nowrap; color: #ffffff;
-      text-shadow: 0 1px 3px rgba(30,15,20,.6), 0 0 14px rgba(30,15,20,.45); }}
-    .hp {{ color: #FFE1EC; font-weight: 400; }}
+    @font-face {{ font-family: "DM Sans"; font-weight: 700; src: url("assets/fonts/dm-sans-latin-700-normal.woff2") format("woff2"); }}
+    .hk {{ font-family: "DM Sans", "Noto Color Emoji", sans-serif; font-weight: 700; font-size: 46px; line-height: 1.2; letter-spacing: -0.015em; white-space: nowrap; color: #ffffff;
+      text-shadow: 0 2px 4px rgba(30,15,20,.45), 0 4px 18px rgba(30,15,20,.35); }}
+    .hp {{ color: {PINK}; }}
+    .hbar {{ width: 130px; height: 4px; border-radius: 3px; background: {PINK}; margin-top: 22px; box-shadow: 0 2px 8px rgba(30,15,20,.3); }}
     .w {{ display: inline-block; }}
     .pk {{ color: #FFE1EC; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 10px; }}
     .mask {{ overflow: hidden; padding: 0 8px 6px; }}
