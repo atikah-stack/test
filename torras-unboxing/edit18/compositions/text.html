@@ -1,54 +1,94 @@
 <template>
   <style>
     @font-face { font-family: "Nunito"; font-weight: 800; src: url("assets/fonts/nunito-latin-800-normal.woff2") format("woff2"); }
-    @font-face { font-family: "Inter"; font-weight: 500; src: url("assets/fonts/inter-latin-500-normal.woff2") format("woff2"); }
     @font-face { font-family: "Inter"; font-weight: 600; src: url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"); }
     @font-face { font-family: "Noto Color Emoji"; src: url("assets/fonts/NotoColorEmoji.ttf") format("truetype"); }
     #root { position: absolute; inset: 0; }
     .blk { position: absolute; left: 60px; right: 60px; display: flex; flex-direction: column; align-items: center; text-align: center; }
-    .title { font-family: "Nunito", sans-serif; font-weight: 800; font-size: 128px; line-height: 1; letter-spacing: -0.02em; color: #ffffff;
-      text-shadow: 0 3px 22px rgba(40, 28, 20, 0.35); }
-    .sub { font-family: "Inter", "Noto Color Emoji", sans-serif; font-weight: 600; font-size: 36px; line-height: 1.22; letter-spacing: -0.005em; white-space: nowrap;
-      text-shadow: 0 1px 12px rgba(40, 28, 20, 0.6), 0 1px 2px rgba(40, 28, 20, 0.5); }
-    .yel { color: #f5d45e; }
-    .wht { color: #ffffff; }
-    .cream { color: #fff5e8; }
+    .title { font-family: "Nunito", sans-serif; font-weight: 800; font-size: 132px; line-height: 1; letter-spacing: -0.02em; color: #ffffff; text-shadow: 0 3px 22px rgba(40,28,20,.35); }
+    .sub { font-family: "Inter", "Noto Color Emoji", sans-serif; font-weight: 600; font-size: 38px; line-height: 1.25; white-space: nowrap;
+      text-shadow: 0 1px 12px rgba(40,28,20,.6), 0 1px 2px rgba(40,28,20,.5); }
+    .yel { color: #f5d45e; } .wht { color: #ffffff; } .cream { color: #fff5e8; }
     .mask { overflow: hidden; padding: 0 6px 8px; }
-    .glow { position: absolute; left: 50%; top: 50%; width: 900px; height: 460px; margin: -230px 0 0 -450px; z-index: -1; border-radius: 50%;
-      background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(38, 26, 18, 0.42) 0%, rgba(38, 26, 18, 0.2) 50%, rgba(38, 26, 18, 0) 100%); }
-    .glow.sm { width: 760px; height: 220px; margin: -110px 0 0 -380px; }
+    .glow { position: absolute; left: 50%; top: 50%; width: 900px; height: 470px; margin: -235px 0 0 -450px; z-index: -1; border-radius: 50%;
+      background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(38,26,18,.55) 0%, rgba(38,26,18,.26) 50%, rgba(38,26,18,0) 100%); }
+    .glow.sm { width: 820px; height: 240px; margin: -120px 0 0 -410px; }
+    .chip { display: inline-block; padding: 14px 30px; border-radius: 999px; background: rgba(255,249,240,.92); color: #5a4033;
+      font-family: "Inter", "Noto Color Emoji", sans-serif; font-weight: 600; font-size: 36px; white-space: nowrap; box-shadow: 0 8px 22px rgba(60,40,28,.2); }
+    .stk { position: absolute; font-family: "Noto Color Emoji"; font-size: 70px; line-height: 1; }
   </style>
   <div id="root" data-composition-id="text" data-width="1080" data-height="1920">
-    <div id="t-hero" class="blk clip" data-start="0" data-duration="1.97" data-track-index="0" style="top: 790px">
+    <div id="t-hero" class="blk clip" data-start="0" data-duration="1.97" data-track-index="0" style="top: 780px">
       <div class="glow" id="t-hero-g"></div>
       <div class="mask"><div class="title" id="t-hero-0">TORRAS</div></div>
-      <div class="sub yel" id="t-hero-1" style="margin-top: 10px">anti-yellowing</div>
-      <div class="sub wht" id="t-hero-2">clear magnetic case</div>
+      <div class="sub yel" id="t-hero-1" style="margin-top: 10px">anti-yellowing 🌼</div>
+      <div class="sub wht" id="t-hero-2">clear magnetic case 🧲</div>
     </div>
-    <div id="t-pretty" class="blk clip" data-start="14.45" data-duration="1.68" data-track-index="0" style="top: 1010px">
-      <div class="glow sm" id="t-pretty-g"></div>
-      <div class="sub cream" id="t-pretty-1">clean &amp; pretty ♡</div>
+    <div id="s-hero" class="clip" data-start="0" data-duration="1.97" data-track-index="2">
+      <div class="stk" id="s-h1" style="left: 150px; top: 700px">✨</div>
+      <div class="stk" id="s-h2" style="left: 860px; top: 1010px">🤍</div>
     </div>
-    <div id="t-cta" class="blk clip" data-start="16.2" data-duration="1.967" data-track-index="0" style="top: 1010px">
+    <div id="c-box" class="blk clip" data-start="2.08" data-duration="0.82" data-track-index="1" style="top:1180px"><span class="chip" id="c-box-i">unboxing time 📦</span></div>
+    <div id="c-asmr" class="blk clip" data-start="3.033" data-duration="0.88" data-track-index="1" style="top:1180px"><span class="chip" id="c-asmr-i">so satisfying 🤤</span></div>
+    <div id="c-inside" class="blk clip" data-start="4.067" data-duration="1.0" data-track-index="1" style="top:1180px"><span class="chip" id="c-inside-i">what's inside? 👀</span></div>
+    <div id="c-crys" class="blk clip" data-start="5.15" data-duration="0.95" data-track-index="1" style="top:1180px"><span class="chip" id="c-crys-i">crystal clear 💎</span></div>
+    <div id="c-before" class="blk clip" data-start="8.217" data-duration="0.82" data-track-index="1" style="top:1180px"><span class="chip" id="c-before-i">before 🤍</span></div>
+    <div id="c-fit" class="blk clip" data-start="9.167" data-duration="1.05" data-track-index="1" style="top:1180px"><span class="chip" id="c-fit-i">fits perfectly ✨</span></div>
+    <div id="c-fp" class="blk clip" data-start="10.297" data-duration="0.85" data-track-index="1" style="top:1180px"><span class="chip" id="c-fp-i">anti-fingerprint 🫶</span></div>
+    <div id="c-btn" class="blk clip" data-start="12.817" data-duration="1.3" data-track-index="1" style="top:1080px"><span class="chip" id="c-btn-i">clear side buttons ✨</span></div>
+    <div id="c-scr" class="blk clip" data-start="14.217" data-duration="0.85" data-track-index="1" style="top:1180px"><span class="chip" id="c-scr-i">scratch-resistant 💪</span></div>
+    <div id="t-pretty" class="blk clip" data-start="15.167" data-duration="0.97" data-track-index="0" style="top: 1010px">
+      <div class="glow sm"></div>
+      <div class="sub cream" id="t-pretty-1">clean &amp; pretty ♡ 🌷</div>
+    </div>
+    <div id="s-pretty" class="clip" data-start="15.167" data-duration="0.97" data-track-index="2">
+      <div class="stk" id="s-p1" style="left: 130px; top: 880px">✨</div>
+      <div class="stk" id="s-p2" style="left: 870px; top: 1100px">✨</div>
+    </div>
+    <div id="t-cta" class="blk clip" data-start="17.867" data-duration="1.9" data-track-index="0" style="top: 960px">
       <div class="glow sm" id="t-cta-g"></div>
-      <div class="sub cream" id="t-cta-1">get yours kat bakul kuning ♡</div>
+      <div class="sub cream" id="t-cta-0" style="font-family: Nunito, sans-serif; font-weight: 800; font-size: 64px; color: #fff">TORRAS ♡</div>
+      <div style="margin-top:14px"><span class="chip" id="t-cta-1">get yours kat bakul kuning 🛒</span></div>
+    </div>
+    <div id="s-cta" class="clip" data-start="17.867" data-duration="1.9" data-track-index="2">
+      <div class="stk" id="s-c1" style="left: 150px; top: 880px">🎀</div>
+      <div class="stk" id="s-c2" style="left: 860px; top: 1110px">✨</div>
     </div>
   </div>
   <script>
     (function () {
       const vars = (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {};
-      if (vars.showCta === false) document.getElementById("t-cta-1").textContent = "get yours ♡";
+      if (vars.showCta === false) document.getElementById("t-cta-1").textContent = "get yours now 🤍";
       const tl = gsap.timeline({ paused: true });
-      // Masked rise for the wordmark, soft fade + scale for the small lines.
-      tl.fromTo("#t-hero-g", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0);
+      const pop = (sel, at) => tl.fromTo(sel, { opacity: 0, scale: 0.6, y: 18 }, { opacity: 1, scale: 1, y: 0, duration: 0.42, ease: "back.out(1.8)" }, at);
+      const out = (sel, at) => tl.to(sel, { opacity: 0, scale: 0.9, duration: 0.15, ease: "power2.in" }, at);
+      const sticker = (sel, at, rot) => {
+        tl.fromTo(sel, { opacity: 0, scale: 0, rotation: -rot }, { opacity: 1, scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2.2)" }, at);
+        tl.to(sel, { scale: 0.85, rotation: rot / 2, duration: 0.5, ease: "sine.inOut" }, at + 0.45);
+      };
+      // hero
+      tl.fromTo("#t-hero-g", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0);
       tl.fromTo("#t-hero-0", { yPercent: 105 }, { yPercent: 0, duration: 0.5, ease: "power3.out" }, 0.05);
-      tl.fromTo("#t-hero-1, #t-hero-2", { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.35, ease: "power2.out", stagger: 0.1 }, 0.35);
-      tl.to("#t-hero-g, #t-hero-0, #t-hero-1, #t-hero-2", { opacity: 0, duration: 0.2, ease: "power2.in" }, 1.75);
-      tl.fromTo("#t-pretty-g", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 14.45);
-      tl.fromTo("#t-pretty-1", { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" }, 14.45);
-      tl.to("#t-pretty-g, #t-pretty-1", { opacity: 0, duration: 0.2, ease: "power2.in" }, 15.9);
-      tl.fromTo("#t-cta-g", { opacity: 0 }, { opacity: 1, duration: 0.45 }, 16.2);
-      tl.fromTo("#t-cta-1", { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.45, ease: "power2.out" }, 16.2);
+      tl.fromTo("#t-hero-1, #t-hero-2", { opacity: 0, scale: 0.9, y: 10 }, { opacity: 1, scale: 1, y: 0, duration: 0.38, ease: "back.out(1.6)", stagger: 0.12 }, 0.35);
+      sticker("#s-h1", 0.55, 20); sticker("#s-h2", 0.75, -20);
+      tl.to("#t-hero-g, #t-hero-0, #t-hero-1, #t-hero-2, #s-h1, #s-h2", { opacity: 0, duration: 0.18, ease: "power2.in" }, 1.77);
+      // feature chips
+      pop("#c-box-i", 2.08); out("#c-box-i", 2.75);
+      pop("#c-asmr-i", 3.033); out("#c-asmr-i", 3.763);
+      pop("#c-inside-i", 4.067); out("#c-inside-i", 4.917);
+      pop("#c-crys-i", 5.15); out("#c-crys-i", 5.95);
+      pop("#c-before-i", 8.217); out("#c-before-i", 8.887);
+      pop("#c-fit-i", 9.167); out("#c-fit-i", 10.067);
+      pop("#c-fp-i", 10.297); out("#c-fp-i", 10.997);
+      pop("#c-btn-i", 12.817); out("#c-btn-i", 13.967);
+      pop("#c-scr-i", 14.217); out("#c-scr-i", 14.917);
+      // beauty + CTA
+      pop("#t-pretty-1", 15.167); sticker("#s-p1", 15.267, 25); sticker("#s-p2", 15.417, -25);
+      tl.to("#t-pretty-1, #s-p1, #s-p2", { opacity: 0, duration: 0.15 }, 15.967);
+      tl.fromTo("#t-cta-g", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 17.867);
+      tl.fromTo("#t-cta-0", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.7)" }, 17.867);
+      pop("#t-cta-1", 18.067);
+      sticker("#s-c1", 18.217, 20); sticker("#s-c2", 18.367, -20);
       window.__timelines["text"] = tl;
     })();
   </script>
