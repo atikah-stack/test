@@ -25,7 +25,11 @@ html, js = [], []
 for i, (sid, fr, vol, (a, b), org, ease) in enumerate(shots):
     st, du = T(start[sid]), T(fr)
     inner = f'        <video id="v-{sid}" class="clip shot" src="assets/even/{sid}.mp4" data-start="{st}" data-duration="{du}" data-track-index="1" data-has-audio="true" data-volume="{vol}" playsinline></video>'
-    js.append(f'      tl.fromTo("#f-{sid}", {{ scale: {a}, transformOrigin: "{org}" }}, {{ scale: {b}, duration: {du}, ease: "{ease}" }}, {st});')
+    if sid in ("p01", "d01", "i01", "x01", "b01", "c01"):
+        js.append(f'      tl.fromTo("#f-{sid}", {{ scale: {round(a*1.12,3)}, transformOrigin: "{org}" }}, {{ scale: {a}, duration: 0.32, ease: "expo.out" }}, {st});')
+        js.append(f'      tl.fromTo("#f-{sid}", {{ scale: {a} }}, {{ scale: {b}, duration: {round(du-0.32,4)}, ease: "{ease}", immediateRender: false }}, {round(st+0.32,4)});')
+    else:
+        js.append(f'      tl.fromTo("#f-{sid}", {{ scale: {a}, transformOrigin: "{org}" }}, {{ scale: {b}, duration: {du}, ease: "{ease}" }}, {st});')
     if sid in circles:
         c = circles[sid]; trk = json.load(open(f"{S}/trk-{sid}.json"))
         fx, fy = trk[c["f0"] + 12]; ly = fy + c.get("oy", 0) + c["dy"]
@@ -110,7 +114,11 @@ for row in chips:
     cid, sid, off, du, txt, top = row[:6]; dx = row[6] if len(row) > 6 else 0
     st = round(start[sid] / 30 + off, 3)
     cc = LIGHT if cid == "btn" else col(bg(sid, off + 0.3, 340 + dx, 740 + dx, top, top + 64))[0]
-    blocks.append(f'    <div id="c-{cid}" class="blk clip" data-start="{st}" data-duration="{du}" data-track-index="1" style="top:{top}px; left:{60+dx}px; right:{60-dx}px"><span class="chip" id="c-{cid}-i" style="color:{cc}">{txt}</span></div>')
+    arrow = ""
+    if cid in ("box", "crys", "fit", "fp", "scr"):
+        arrow = f'<svg class="arrow" width="130" height="110" viewBox="0 0 130 110"><path id="ar-{cid}" d="M18 100 C 26 62, 58 40, 112 18 M112 18 L 90 16 M112 18 L 102 38" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" fill="none" stroke="{cc}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+        tw.append(f'      draw("#ar-{cid}", {round(st + 0.25, 3)}, 0.45);')
+    blocks.append(f'    <div id="c-{cid}" class="blk clip" data-start="{st}" data-duration="{du}" data-track-index="1" style="top:{top}px; left:{60+dx}px; right:{60-dx}px"><span class="chip" id="c-{cid}-i" style="color:{cc}">{txt}</span>{arrow}</div>')
     tw.append(f'      pop("#c-{cid}-i", {st}); out("#c-{cid}-i", {round(st + du - 0.15, 3)});')
 b1, c1 = start["b01"] / 30, start["c01"] / 30
 hm, ha = col(bg("h01", 0.8, 200, 880, 790, 1010))
@@ -131,17 +139,21 @@ txt = f'''<template>
       background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(38,26,18,.55) 0%, rgba(38,26,18,.26) 50%, rgba(38,26,18,0) 100%); }}
     .glow.sm {{ width: 820px; height: 240px; margin: -120px 0 0 -410px; }}
     .chip {{ display: inline-block; font-family: "Shadows Into Light", "Noto Color Emoji", sans-serif; font-weight: 400; font-size: 44px; letter-spacing: 0.02em; white-space: nowrap; }}
+    .arrow {{ position: absolute; left: 50%; top: -112px; margin-left: 120px; overflow: visible; }}
+    .doodle {{ position: absolute; overflow: visible; }}
+    .star {{ position: absolute; width: 54px; height: 54px; }}
     .stk {{ position: absolute; font-family: "Noto Color Emoji"; font-size: 70px; line-height: 1; }}
   </style>
   <div id="root" data-composition-id="text" data-width="1080" data-height="1920">
     <div id="t-hero" class="blk clip" data-start="0" data-duration="1.97" data-track-index="0" style="top: 780px">
       <div class="glow" id="t-hero-g"></div>
       <div class="mask"><div class="title" id="t-hero-0" style="color:{hm}">TORRAS</div></div>
-      <div class="sub" id="t-hero-1" style="margin-top: 4px; color:{ha}">anti-yellowing 🌼</div>
+      <svg class="doodle" style="left: 50%; top: 122px; margin-left: -210px" width="420" height="40" viewBox="0 0 420 40"><path id="ul-hero" d="M8 24 C 60 6, 110 36, 165 20 S 270 8, 320 22 S 390 30, 412 14" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" fill="none" stroke="{hm}" stroke-width="4" stroke-linecap="round"/></svg>
+      <div class="sub" id="t-hero-1" style="margin-top: 40px; color:{ha}">anti-yellowing 🌼</div>
       <div class="sub" id="t-hero-2" style="color:{hm}">clear magnetic case 🧲</div>
     </div>
     <div id="s-hero" class="clip" data-start="0" data-duration="1.97" data-track-index="2">
-      <div class="stk" id="s-h1" style="left: 150px; top: 700px">✨</div>
+      <div class="stk" id="s-h1" style="left: 150px; top: 700px">✨</div><svg class="star" id="st-h1" style="left:120px; top:620px" viewBox="0 0 54 54"><path d="M27 4 C 29 20, 34 25, 50 27 C 34 29, 29 34, 27 50 C 25 34, 20 29, 4 27 C 20 25, 25 20, 27 4 Z" fill="#fff5e8"/></svg><svg class="star" id="st-h2" style="left:900px; top:760px" viewBox="0 0 54 54"><path d="M27 4 C 29 20, 34 25, 50 27 C 34 29, 29 34, 27 50 C 25 34, 20 29, 4 27 C 20 25, 25 20, 27 4 Z" fill="#fff5e8"/></svg><svg class="star" id="st-h3" style="left:880px; top:1240px" viewBox="0 0 54 54"><path d="M27 4 C 29 20, 34 25, 50 27 C 34 29, 29 34, 27 50 C 25 34, 20 29, 4 27 C 20 25, 25 20, 27 4 Z" fill="#fff5e8"/></svg>
       <div class="stk" id="s-h2" style="left: 860px; top: 1010px">🤍</div>
     </div>
 {chr(10).join(blocks)}
@@ -150,16 +162,17 @@ txt = f'''<template>
       <div class="sub" id="t-pretty-1" style="color:{pm}">clean &amp; pretty ♡ 🌷</div>
     </div>
     <div id="s-pretty" class="clip" data-start="{round(b1 + 1.0, 3)}" data-duration="0.97" data-track-index="2">
-      <div class="stk" id="s-p1" style="left: 130px; top: 880px">✨</div>
+      <div class="stk" id="s-p1" style="left: 130px; top: 880px">✨</div><svg class="star" id="st-p1" style="left:110px; top:980px" viewBox="0 0 54 54"><path d="M27 4 C 29 20, 34 25, 50 27 C 34 29, 29 34, 27 50 C 25 34, 20 29, 4 27 C 20 25, 25 20, 27 4 Z" fill="#fff5e8"/></svg><svg class="star" id="st-p2" style="left:920px; top:860px" viewBox="0 0 54 54"><path d="M27 4 C 29 20, 34 25, 50 27 C 34 29, 29 34, 27 50 C 25 34, 20 29, 4 27 C 20 25, 25 20, 27 4 Z" fill="#fff5e8"/></svg>
       <div class="stk" id="s-p2" style="left: 870px; top: 1100px">✨</div>
     </div>
     <div id="t-cta" class="blk clip" data-start="{round(c1 + 0.1, 3)}" data-duration="{round(total - c1 - 0.1, 3)}" data-track-index="0" style="top: 960px">
       <div class="glow sm" id="t-cta-g"></div>
       <div class="title" id="t-cta-0" style="font-size: 88px; color:{cm}">TORRAS ♡</div>
+      <svg class="doodle" style="left: 50%; top: -34px; margin-left: -230px" width="460" height="170" viewBox="0 0 460 170"><path id="loop-cta" d="M250 14 C 120 4, 18 30, 22 84 C 26 140, 170 160, 300 148 C 420 136, 452 92, 430 54 C 410 20, 330 8, 230 18" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" fill="none" stroke="{cm}" stroke-width="3.5" stroke-linecap="round"/></svg>
       <div style="margin-top:14px"><span class="chip" id="t-cta-1" style="color:{ca}">get yours kat bakul kuning 🛒</span></div>
     </div>
     <div id="s-cta" class="clip" data-start="{round(c1 + 0.1, 3)}" data-duration="{round(total - c1 - 0.1, 3)}" data-track-index="2">
-      <div class="stk" id="s-c1" style="left: 150px; top: 880px">🎀</div>
+      <div class="stk" id="s-c1" style="left: 150px; top: 880px">🎀</div><svg class="star" id="st-c1" style="left:120px; top:1180px" viewBox="0 0 54 54"><path d="M27 4 C 29 20, 34 25, 50 27 C 34 29, 29 34, 27 50 C 25 34, 20 29, 4 27 C 20 25, 25 20, 27 4 Z" fill="#fff5e8"/></svg><svg class="star" id="st-c2" style="left:910px; top:820px" viewBox="0 0 54 54"><path d="M27 4 C 29 20, 34 25, 50 27 C 34 29, 29 34, 27 50 C 25 34, 20 29, 4 27 C 20 25, 25 20, 27 4 Z" fill="#fff5e8"/></svg>
       <div class="stk" id="s-c2" style="left: 860px; top: 1110px">✨</div>
     </div>
   </div>
@@ -168,7 +181,13 @@ txt = f'''<template>
       const vars = (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {{}};
       if (vars.showCta === false) document.getElementById("t-cta-1").textContent = "get yours now 🤍";
       const tl = gsap.timeline({{ paused: true }});
-      const pop = (sel, at) => tl.fromTo(sel, {{ opacity: 0, scale: 0.6, y: 18 }}, {{ opacity: 1, scale: 1, y: 0, duration: 0.42, ease: "back.out(1.8)" }}, at);
+      const pop = (sel, at) => tl.fromTo(sel, {{ opacity: 0, y: 8, clipPath: "inset(-30% 100% -30% -12%)" }}, {{ opacity: 1, y: 0, clipPath: "inset(-30% -12% -30% -12%)", duration: 0.55, ease: "power2.out" }}, at);
+      const draw = (sel, at, d) => tl.fromTo(sel, {{ attr: {{ "stroke-dashoffset": 1 }} }}, {{ attr: {{ "stroke-dashoffset": 0 }}, duration: d || 0.45, ease: "power2.inOut" }}, at);
+      const twinkle = (sel, at) => {{
+        tl.fromTo(sel, {{ opacity: 0, scale: 0, rotation: -30 }}, {{ opacity: 1, scale: 1, rotation: 0, duration: 0.35, ease: "back.out(2)" }}, at);
+        tl.to(sel, {{ scale: 0.6, duration: 0.25, ease: "sine.inOut" }}, at + 0.35);
+        tl.to(sel, {{ scale: 1, rotation: 20, duration: 0.25, ease: "sine.inOut" }}, at + 0.6);
+      }};
       const out = (sel, at) => tl.to(sel, {{ opacity: 0, scale: 0.9, duration: 0.15, ease: "power2.in" }}, at);
       const sticker = (sel, at, rot) => {{
         tl.fromTo(sel, {{ opacity: 0, scale: 0, rotation: -rot }}, {{ opacity: 1, scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2.2)" }}, at);
@@ -179,16 +198,17 @@ txt = f'''<template>
       tl.fromTo("#t-hero-0", {{ yPercent: 105 }}, {{ yPercent: 0, duration: 0.5, ease: "power3.out" }}, 0.05);
       tl.fromTo("#t-hero-1, #t-hero-2", {{ opacity: 0, scale: 0.9, y: 10 }}, {{ opacity: 1, scale: 1, y: 0, duration: 0.38, ease: "back.out(1.6)", stagger: 0.12 }}, 0.35);
       sticker("#s-h1", 0.55, 20); sticker("#s-h2", 0.75, -20);
-      tl.to("#t-hero-g, #t-hero-0, #t-hero-1, #t-hero-2, #s-h1, #s-h2", {{ opacity: 0, duration: 0.18, ease: "power2.in" }}, 1.77);
+      draw("#ul-hero", 0.5, 0.5); twinkle("#st-h1", 0.3); twinkle("#st-h2", 0.6); twinkle("#st-h3", 0.9);
+      tl.to("#t-hero-g, #t-hero-0, #t-hero-1, #t-hero-2, #s-h1, #s-h2, #ul-hero, #st-h1, #st-h2, #st-h3", {{ opacity: 0, duration: 0.18, ease: "power2.in" }}, 1.77);
       // feature chips
 {chr(10).join(tw)}
       // beauty + CTA
-      pop("#t-pretty-1", {round(b1 + 1.0, 3)}); sticker("#s-p1", {round(b1 + 1.1, 3)}, 25); sticker("#s-p2", {round(b1 + 1.25, 3)}, -25);
-      tl.to("#t-pretty-1, #s-p1, #s-p2", {{ opacity: 0, duration: 0.15 }}, {round(b1 + 1.8, 3)});
+      pop("#t-pretty-1", {round(b1 + 1.0, 3)}); sticker("#s-p1", {round(b1 + 1.1, 3)}, 25); sticker("#s-p2", {round(b1 + 1.25, 3)}, -25); twinkle("#st-p1", {round(b1 + 1.05, 3)}); twinkle("#st-p2", {round(b1 + 1.2, 3)});
+      tl.to("#t-pretty-1, #s-p1, #s-p2, #st-p1, #st-p2", {{ opacity: 0, duration: 0.15 }}, {round(b1 + 1.8, 3)});
       tl.fromTo("#t-cta-g", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.4 }}, {round(c1 + 0.1, 3)});
       tl.fromTo("#t-cta-0", {{ opacity: 0, scale: 0.8 }}, {{ opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.7)" }}, {round(c1 + 0.1, 3)});
       pop("#t-cta-1", {round(c1 + 0.3, 3)});
-      sticker("#s-c1", {round(c1 + 0.45, 3)}, 20); sticker("#s-c2", {round(c1 + 0.6, 3)}, -20);
+      sticker("#s-c1", {round(c1 + 0.45, 3)}, 20); draw("#loop-cta", {round(c1 + 0.35, 3)}, 0.7); twinkle("#st-c1", {round(c1 + 0.7, 3)}); twinkle("#st-c2", {round(c1 + 0.9, 3)}); sticker("#s-c2", {round(c1 + 0.6, 3)}, -20);
       window.__timelines["text"] = tl;
     }})();
   </script>
