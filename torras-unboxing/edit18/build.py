@@ -216,3 +216,23 @@ txt = f'''<template>
 '''
 open("compositions/text.html", "w").write(txt)
 print("total", total)
+# ---- sound effects (Pixabay, see assets/sfx/SFX-CREDITS.md) ----
+DUR = {"pop": 0.72, "click-soft": 0.366, "sparkle": 1.8, "whoosh-short": 0.575, "whoosh": 0.575, "ping": 1.32}
+sfx = []
+for k, sid in enumerate(("p01", "d01", "i01", "x01", "b01", "c01")):            # whoosh into each zoom punch
+    sfx.append(("whoosh" if k % 2 else "whoosh-short", start[sid] / 30 - 0.2, 0.32))
+for k, row in enumerate(chips):                                               # pop as each label writes on
+    st = start[row[1]] / 30 + row[2]
+    sfx.append(("pop" if k % 2 == 0 else "click-soft", st, 0.42 if k % 2 == 0 else 0.55))
+for sid, c in circles.items():                                                # ping as each circle draws
+    sfx.append(("ping", (start[sid] + c["f0"]) / 30, 0.22))
+sfx += [("sparkle", 0.3, 0.3), ("sparkle", b1 + 1.0, 0.3), ("sparkle", c1 + 0.35, 0.34), ("pop", c1 + 0.1, 0.4)]
+TRK = {"whoosh": 9, "whoosh-short": 9, "pop": 10, "click-soft": 10, "ping": 11, "sparkle": 12}
+tags = []
+for i, (name, at, vol) in enumerate(sorted(sfx, key=lambda x: x[1])):
+    at = max(0, round(at, 3)); d = round(min(DUR[name], total - at), 3)
+    tags.append(f'      <audio id="sfx-{i:02d}" class="clip" src="assets/sfx/{name}.mp3" data-start="{at}" data-duration="{d}" data-track-index="{TRK[name]}" data-volume="{vol}"></audio>')
+idx = open("index.html").read()
+idx = idx.replace('      <div id="text" data-composition-id="text"', "\n".join(tags) + '\n      <div id="text" data-composition-id="text"', 1)
+open("index.html", "w").write(idx)
+print("sfx", len(tags))
