@@ -12,10 +12,10 @@
     .hd.sm { font-size: 72px; line-height: 1.04; }
     @font-face { font-family: "DM Sans"; font-weight: 300; src: url("assets/fonts/dm-sans-latin-300-normal.woff2") format("woff2"); }
     @font-face { font-family: "DM Sans"; font-weight: 700; src: url("assets/fonts/dm-sans-latin-700-normal.woff2") format("woff2"); }
-    .hk { font-family: "DM Sans", "Noto Color Emoji", sans-serif; font-weight: 700; font-size: 46px; line-height: 1.2; letter-spacing: -0.015em; white-space: nowrap; color: #ffffff;
-      text-shadow: 0 2px 4px rgba(30,15,20,.45), 0 4px 18px rgba(30,15,20,.35); }
+    .hk { font-family: "DM Sans", "Noto Color Emoji", sans-serif; font-weight: 700; font-size: 38px; line-height: 1.24; letter-spacing: -0.015em; white-space: nowrap; color: #ffffff;
+      text-shadow: 0 1px 2px rgba(30,15,20,.7), 0 0 10px rgba(30,15,20,.55), 0 2px 18px rgba(30,15,20,.4); }
     .hp { color: #F4B7CE; }
-    .hbar { width: 130px; height: 4px; border-radius: 3px; background: #F4B7CE; margin-top: 22px; box-shadow: 0 2px 8px rgba(30,15,20,.3); }
+    .hbar { width: 110px; height: 3px; border-radius: 3px; background: #F4B7CE; margin-top: 22px; box-shadow: 0 2px 8px rgba(30,15,20,.3); }
     .w { display: inline-block; }
     .pk { color: #FFE1EC; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 10px; }
     .mask { overflow: hidden; padding: 0 8px 6px; }
@@ -58,8 +58,9 @@
       <div class="sub" id="c-2">STILL SHOWING OFF MY iPAD COLOUR ♡</div>
     </div>
     <div id="t7" class="blk clip" data-start="17.953" data-duration="2.65" data-track-index="0" style="top:800px">
-      <div class="hd"><span class="w " id="r1-0">iPad</span> <span class="w pk" id="r1-1">pink,</span></div>
-      <div class="hd"><span class="w " id="r2-0">makin</span> <span class="w " id="r2-1">cantik</span> <span class="w " id="r2-2">🩷</span></div>
+      <div class="hk"><span class="w " id="r1-0">CLEAR</span> <span class="w " id="r1-1">CASE,</span></div>
+      <div class="hk hp"><span class="w " id="r2-0">BUT</span> <span class="w " id="r2-1">MAKE</span> <span class="w " id="r2-2">IT</span> <span class="w " id="r2-3">AESTHETIC</span> <span class="w " id="r2-4">✨</span></div>
+      <div class="hbar" id="r-bar"></div>
     </div>
     <div id="t8" class="blk clip" data-start="20.513" data-duration="2.12" data-track-index="0" style="top:860px">
       <div class="hd" id="ct-1">team clear case juga? 🩷</div>
@@ -71,7 +72,7 @@
   <script>
     (function () {
       const tl = gsap.timeline({ paused: true });
-      tl.fromTo("#t1 .w", { opacity: 0, scale: 0.86, filter: "blur(8px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.32, ease: "power3.out", stagger: 0.08 }, 0.0);
+      tl.fromTo("#t1 .w", { opacity: 0, y: 14, clipPath: "inset(-20% 100% -20% 0%)" }, { opacity: 1, y: 0, clipPath: "inset(-20% -5% -20% 0%)", duration: 0.42, ease: "power2.out", stagger: 0.08 }, 0.0);
       tl.fromTo("#h-bar", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "expo.out" }, 0.8);
       tl.to("#t1 .w, #h-bar", { opacity: 0, filter: "blur(6px)", duration: 0.18, ease: "power2.in" }, 1.97);
       tl.fromTo("#d-1", { yPercent: 110 }, { yPercent: 0, duration: 0.45, ease: "power3.out" }, 2.3);
@@ -85,7 +86,7 @@
       tl.to("#sl-m", { opacity: 0.35, duration: 0.4 }, 6.4);
       tl.fromTo("#sl-2", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 5.6);
       tl.to("#sl-1, #sl-2, .icons", { opacity: 0, filter: "blur(6px)", duration: 0.18, ease: "power2.in" }, 7.77);
-      tl.fromTo("#t4 .w", { opacity: 0, scale: 0.86, filter: "blur(8px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.32, ease: "power3.out", stagger: 0.12 }, 8.15);
+      tl.fromTo("#t4 .w", { opacity: 0, y: 14, clipPath: "inset(-20% 100% -20% 0%)" }, { opacity: 1, y: 0, clipPath: "inset(-20% -5% -20% 0%)", duration: 0.42, ease: "power2.out", stagger: 0.12 }, 8.15);
       tl.to("#t4 .w", { opacity: 0, filter: "blur(6px)", duration: 0.18, ease: "power2.in" }, 10.803);
       tl.fromTo("#p-1", { yPercent: 110 }, { yPercent: 0, duration: 0.45, ease: "power3.out" }, 11.153);
       tl.fromTo("#p-2", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 11.503);
@@ -93,8 +94,9 @@
       tl.fromTo("#c-1", { yPercent: 110 }, { yPercent: 0, duration: 0.45, ease: "power3.out" }, 14.183);
       tl.fromTo("#c-2", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 14.583);
       tl.to("#c-1, #c-2", { opacity: 0, filter: "blur(6px)", duration: 0.18, ease: "power2.in" }, 17.603);
-      tl.fromTo("#t7 .w", { opacity: 0, scale: 0.86, filter: "blur(8px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.32, ease: "power3.out", stagger: 0.16 }, 17.953);
-      tl.to("#t7 .w", { opacity: 0, filter: "blur(6px)", duration: 0.18, ease: "power2.in" }, 20.403);
+      tl.fromTo("#t7 .w", { opacity: 0, y: 14, clipPath: "inset(-20% 100% -20% 0%)" }, { opacity: 1, y: 0, clipPath: "inset(-20% -5% -20% 0%)", duration: 0.42, ease: "power2.out", stagger: 0.1 }, 17.953);
+      tl.fromTo("#r-bar", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "expo.out" }, 18.703);
+      tl.to("#t7 .w, #r-bar", { opacity: 0, filter: "blur(6px)", duration: 0.18, ease: "power2.in" }, 20.403);
       tl.fromTo("#ct-1", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.5)" }, 20.513);
       tl.fromTo("#ct-bar", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "expo.out" }, 20.813);
       tl.fromTo("#ct-2", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 20.863);

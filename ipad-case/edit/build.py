@@ -110,7 +110,7 @@ def ww(prefix, words, cls=""):
 def scene(bid, s0, s1, top, inner):
     blocks.append(f'    <div id="{bid}" class="blk clip" data-start="{round(s0, 3)}" data-duration="{round(s1 - s0, 3)}" data-track-index="0" style="top:{top}px">\n{inner}\n    </div>')
 def words_in(sel, at, stagger=0.09):
-    tw.append(f'      tl.fromTo("{sel}", {{ opacity: 0, scale: 0.86, filter: "blur(8px)" }}, {{ opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.32, ease: "power3.out", stagger: {stagger} }}, {round(at, 3)});')
+    tw.append(f'      tl.fromTo("{sel}", {{ opacity: 0, y: 14, clipPath: "inset(-20% 100% -20% 0%)" }}, {{ opacity: 1, y: 0, clipPath: "inset(-20% -5% -20% 0%)", duration: 0.42, ease: "power2.out", stagger: {stagger} }}, {round(at, 3)});')
 def fade_out(sel, at):
     tw.append(f'      tl.to("{sel}", {{ opacity: 0, filter: "blur(6px)", duration: 0.18, ease: "power2.in" }}, {round(at, 3)});')
 def mask_in(sel, at):
@@ -169,9 +169,10 @@ mask_in("#c-1", a0); soft_in("#c-2", a0 + 0.4); fade_out("#c-1, #c-2", a1 - 0.2)
 sfx += [("sparkle", sec("s6") + 0.2, 0.3), ("ping", sec("s6") + 0.6, 0.3)]
 # S7 final reveal
 a0, a1 = sec("s7") + 0.12, sec("s8") - 0.03
-scene("t7", a0, a1, 800, f'''      <div class="hd">{ww("r1", [("iPad", ""), ("pink,", "pk")])}</div>
-      <div class="hd">{ww("r2", [("makin", ""), ("cantik", ""), ("🩷", "")])}</div>''')
-words_in("#t7 .w", a0, 0.16); fade_out("#t7 .w", a1 - 0.2)
+scene("t7", a0, a1, 800, f'''      <div class="hk">{ww("r1", [("CLEAR", ""), ("CASE,", "")])}</div>
+      <div class="hk hp">{ww("r2", [("BUT", ""), ("MAKE", ""), ("IT", ""), ("AESTHETIC", ""), ("✨", "")])}</div>
+      <div class="hbar" id="r-bar"></div>''')
+words_in("#t7 .w", a0, 0.1); line_in("#r-bar", a0 + 0.75); fade_out("#t7 .w, #r-bar", a1 - 0.2)
 sfx += [("pop", a0, 0.35), ("click-soft", a0 + 0.32, 0.35)]
 # S8 CTA
 a0, a1 = sec("s8") - 0.12, total
@@ -244,10 +245,10 @@ open("compositions/text.html", "w").write(f'''<template>
     .hd.sm {{ font-size: 72px; line-height: 1.04; }}
     @font-face {{ font-family: "DM Sans"; font-weight: 300; src: url("assets/fonts/dm-sans-latin-300-normal.woff2") format("woff2"); }}
     @font-face {{ font-family: "DM Sans"; font-weight: 700; src: url("assets/fonts/dm-sans-latin-700-normal.woff2") format("woff2"); }}
-    .hk {{ font-family: "DM Sans", "Noto Color Emoji", sans-serif; font-weight: 700; font-size: 46px; line-height: 1.2; letter-spacing: -0.015em; white-space: nowrap; color: #ffffff;
-      text-shadow: 0 2px 4px rgba(30,15,20,.45), 0 4px 18px rgba(30,15,20,.35); }}
+    .hk {{ font-family: "DM Sans", "Noto Color Emoji", sans-serif; font-weight: 700; font-size: 38px; line-height: 1.24; letter-spacing: -0.015em; white-space: nowrap; color: #ffffff;
+      text-shadow: 0 1px 2px rgba(30,15,20,.7), 0 0 10px rgba(30,15,20,.55), 0 2px 18px rgba(30,15,20,.4); }}
     .hp {{ color: {PINK}; }}
-    .hbar {{ width: 130px; height: 4px; border-radius: 3px; background: {PINK}; margin-top: 22px; box-shadow: 0 2px 8px rgba(30,15,20,.3); }}
+    .hbar {{ width: 110px; height: 3px; border-radius: 3px; background: {PINK}; margin-top: 22px; box-shadow: 0 2px 8px rgba(30,15,20,.3); }}
     .w {{ display: inline-block; }}
     .pk {{ color: #FFE1EC; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 10px; }}
     .mask {{ overflow: hidden; padding: 0 8px 6px; }}
