@@ -1,0 +1,151 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: Montserrat, sans-serif; color: #FFFFFF; }
+    .grp { position: absolute; left: 40px; right: 40px; display: flex; flex-direction: column; align-items: center; }
+    .hw { font-weight: 800; font-size: 64px; line-height: 1.04; letter-spacing: -.005em; white-space: nowrap; text-transform: uppercase; color: #FFFFFF; text-shadow: 0 3px 6px rgba(0,0,0,.5), 0 10px 28px rgba(0,0,0,.55); }
+    .hy { font-weight: 900; font-size: 110px; line-height: 1.0; letter-spacing: -.02em; white-space: nowrap; text-transform: uppercase; color: #F5C542; text-shadow: 0 3px 6px rgba(0,0,0,.5), 0 10px 28px rgba(0,0,0,.55); }
+    .pin { position: relative; height: 84px; margin-bottom: 8px; filter: drop-shadow(0 6px 12px rgba(0,0,0,.5)); }
+    .ring { position: absolute; left: 50%; bottom: -4px; width: 70px; height: 22px; margin-left: -35px; border-radius: 50%; border: 4px solid #F5C542; opacity: 0; }
+    .ic { width: 92px; height: 92px; border-radius: 50%; border: 3px solid #F5C542; background: rgba(16,21,29,.55); display: flex;
+      align-items: center; justify-content: center; margin-bottom: 14px; box-shadow: 0 8px 20px rgba(0,0,0,.35); }
+    .scn { position: absolute; inset: 0; overflow: hidden; background: #10151D; }
+    .mapbg { position: absolute; inset: 0; background: #10151D; }
+    #map { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transform-origin: 30% 64%; }
+    .hp { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; }
+    .cnt { position: absolute; left: 0; right: 0; top: 1180px; text-align: center; font-weight: 900; font-size: 140px; line-height: 1; color: #F5C542; text-shadow: 0 3px 6px rgba(0,0,0,.5), 0 10px 28px rgba(0,0,0,.55); }
+    .cnt small { font-size: 64px; color: #FFFFFF; }
+    .subs { position: absolute; left: 60px; right: 60px; top: 1350px; height: 170px; }
+    .cue { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; }
+    .cue span { display: block; max-width: 940px; font-weight: 700; font-size: 46px; line-height: 1.22; color: #FFFFFF;
+      text-shadow: 0 2px 4px rgba(0,0,0,.75), 0 6px 18px rgba(0,0,0,.55); }
+    .cue b { color: #F5C542; font-weight: 800; }
+  </style>
+  <div id="root" data-composition-id="gfx" data-width="1080" data-height="1920" data-duration="55.66">
+    <div class="grp clip" id="g-hook" data-start="2.6" data-duration="5.05" style="top:330px"><div class="hw" id="g-hook-w">PAKEJ TANAH BESERTA</div><div class="hy" id="g-hook-y">BINA RUMAH</div></div>
+    <div class="grp clip" id="g-loc" data-start="13.71" data-duration="1.04" style="top:330px"><div class="pin" id="pin"><svg viewBox="0 0 48 64" width="58" height="76"><path d="M24 1C11.3 1 1 11.3 1 24c0 16.5 23 39 23 39s23-22.5 23-39C47 11.3 36.7 1 24 1z" fill="#F5C542"/><circle cx="24" cy="24" r="8.5" fill="#10151D"/></svg><div class="ring" id="ring"></div></div><div class="hw" id="g-loc-w">LOKASI PILIHAN ANDA</div><div class="hy" id="g-loc-y" style="font-size:92px">MACHANG, KELANTAN</div></div>
+    <div class="grp clip" id="g-lot" data-start="15.18" data-duration="4.07" style="top:330px"><div class="hw" id="g-lot-w">1 LOT BANGLO TERAKHIR</div><div class="hy" id="g-lot-y" style="font-size:130px"><span id="n7244">7,244</span> KPS</div></div>
+    <div class="clip scn" id="s-map" data-start="19.25" data-duration="2.16"><div class="mapbg"></div><img id="map" src="assets/img/lot-map.jpg" alt="" /></div>
+    <div class="grp clip" id="g-1400" data-start="25.01" data-duration="2.84" style="top:330px"><div class="hw" id="g-1400-w">BINA RUMAH BERMULA</div><div class="hy" id="g-1400-y" style="font-size:130px"><span id="n1400">1,400</span> KPS</div></div>
+    <div class="grp clip" id="g-price" data-start="28.23" data-duration="3.22" style="top:330px"><div class="hw" id="g-price-w">HARGA PAKEJ BERMULA</div><div class="hy" id="g-price-y" style="font-size:128px"><span id="nrm">RM420,000</span></div></div>
+    <div class="grp clip" id="g-road" data-start="35.17" data-duration="3.16" style="top:330px"><div class="ic" id="ic-road"><svg viewBox="0 0 48 48" width="58" height="58" fill="none" stroke="#FFFFFF" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4 6 44M32 4l10 40"/><path d="M24 8v6M24 21v6M24 34v6"/></svg></div><div class="hw" id="g-road-w">AKSES</div><div class="hy" id="g-road-y">JALAN TAR</div></div>
+    <div class="grp clip" id="g-drain" data-start="38.53" data-duration="1.7" style="top:330px"><div class="ic" id="ic-drain"><svg viewBox="0 0 48 48" width="58" height="58" fill="none" stroke="#FFFFFF" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h8v20h24V14h8"/><path d="M12 34c4 4 20 4 24 0"/><path d="M18 22c2 2 4 2 6 0s4-2 6 0"/></svg></div><div class="hw" id="g-drain-w">KEMUDAHAN</div><div class="hy" id="g-drain-y" style="font-size:84px">SALIRAN LONGKANG</div></div>
+    <div class="grp clip" id="g-kj" data-start="40.55" data-duration="1.4" style="top:330px"><div class="ic" id="ic-kj"><svg viewBox="0 0 48 48" width="58" height="58" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 26 14 16l12 10"/><path d="M5 24v18h18V24"/><path d="M22 20 34 10l12 10"/><path d="M26 18v24h17V18"/></svg></div><div class="hw" id="g-kj-w">KEJIRANAN</div><div class="hy" id="g-kj-y">SEDIA ADA</div></div>
+    <div class="clip scn" id="s-count" data-start="41.95" data-duration="2.4"><img class="hp" id="hp0" src="assets/img/house-1.jpg" alt="" /><img class="hp" id="hp1" src="assets/img/house-2.jpg" alt="" /><img class="hp" id="hp2" src="assets/img/house-3.jpg" alt="" /><img class="hp" id="hp3" src="assets/img/house-4.jpg" alt="" /><div class="cnt" id="cnt"><span id="cntn">1</span><small>/4</small></div></div>
+    <div class="grp clip" id="g-mi" data-start="44.45" data-duration="3.3" style="top:330px"><div class="hw" id="g-mi-w">4 BANGLO HASIL KERJA</div><div class="hy" id="g-mi-y" style="font-size:96px">MAHLIGAI IDAMAN</div></div>
+    <div class="grp clip" id="g-last" data-start="48.97" data-duration="3.44" style="top:330px"><div class="hw" id="g-last-w">TINGGAL</div><div class="hy" id="g-last-y" style="font-size:120px">1 LOT TERAKHIR!</div></div>
+    <div class="grp clip" id="g-cta" data-start="53.23" data-duration="2.73" style="top:330px"><div class="hw" id="g-cta-w">BERMINAT?</div><div class="hy" id="g-cta-y" style="font-size:70px">HUBUNGI KAMI SEKARANG</div></div>
+    <div class="subs" id="subs">
+      <div class="cue clip" id="cue0" data-start="0.03" data-duration="2.33"><span>Tuan-puan tahu dak yang <b>Mahligai Idaman</b> ni</span></div>
+      <div class="cue clip" id="cue1" data-start="2.36" data-duration="2.32"><span>ada <b>pakej tanah dan bina rumah</b>?</span></div>
+      <div class="cue clip" id="cue2" data-start="4.68" data-duration="3.04"><span>Bagi sesiapa hok nak bina rumah tapi <b>tak ada tanah</b>,</span></div>
+      <div class="cue clip" id="cue3" data-start="7.72" data-duration="3.34"><span>kita akan carikan lokasi yang diinginkan lah oleh kalian-kalian itu.</span></div>
+      <div class="cue clip" id="cue4" data-start="11.06" data-duration="3.7"><span>So, antara salah satu lokasi ni adalah di <b>Machang</b> ni.</span></div>
+      <div class="cue clip" id="cue5" data-start="14.76" data-duration="2.8"><span>Ada <b>satu lot banglo</b>, tuan-puan, di belakang saya ni,</span></div>
+      <div class="cue clip" id="cue6" data-start="17.56" data-duration="3.8"><span>berkeluasan <b>7,244 kaki persegi</b>.</span></div>
+      <div class="cue clip" id="cue7" data-start="21.36" data-duration="3.6"><span>Satu lot yang luas, tuan-puan, di mana tuan-puan boleh bina rumah di atas ni</span></div>
+      <div class="cue clip" id="cue8" data-start="24.96" data-duration="2.92"><span>bermula size <b>1,400 kaki persegi</b>,</span></div>
+      <div class="cue clip" id="cue9" data-start="27.88" data-duration="3.54"><span>dengan harga bermula <b>RM420,000</b> ke atas.</span></div>
+      <div class="cue clip" id="cue10" data-start="31.42" data-duration="2.74"><span>Tuan-puan, salah satunya yang berada di sini adalah, tuan-puan boleh tengok,</span></div>
+      <div class="cue clip" id="cue11" data-start="34.16" data-duration="2.26"><span>dan ada dah <b>akses jalan tar</b></span></div>
+      <div class="cue clip" id="cue12" data-start="36.42" data-duration="1.98"><span>dekat sini, rapat ke <b>jalan besar</b>.</span></div>
+      <div class="cue clip" id="cue13" data-start="38.4" data-duration="1.78"><span>Kita dah ada <b>saliran longkang</b> kat sini.</span></div>
+      <div class="cue clip" id="cue14" data-start="40.18" data-duration="1.8"><span>Dan lagi kita ada <b>kejiranan</b>, tuan-puan:</span></div>
+      <div class="cue clip" id="cue15" data-start="41.98" data-duration="2.38"><span>satu, dua, tiga, empat</span></div>
+      <div class="cue clip" id="cue16" data-start="44.36" data-duration="3.42"><span><b>rumah banglo</b> hasil kerja <b>Mahligai Idaman</b>, tuan-puan.</span></div>
+      <div class="cue clip" id="cue17" data-start="47.78" data-duration="2.04"><span>Dan kita nak cari satu lagi <b>lot terakhir</b> ni,</span></div>
+      <div class="cue clip" id="cue18" data-start="49.82" data-duration="2.61"><span>pemilik untuk lot terakhir ni untuk bina rumah kat sini, tuan-puan.</span></div>
+      <div class="cue clip" id="cue19" data-start="52.43" data-duration="1.38"><span>Kalau tuan-puan <b>berminat</b>,</span></div>
+      <div class="cue clip" id="cue20" data-start="53.81" data-duration="1.85"><span>boleh <b>contact saya sekarang</b>.</span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#g-hook-w", { opacity: 0, y: 26 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 2.6);
+    tl.set("#g-hook-y", { opacity: 0 }, 0);
+    tl.fromTo("#g-hook-y", { opacity: 0, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 2.82);
+    tl.to("#g-hook", { opacity: 0, y: -14, duration: 0.25, ease: "power2.in" }, 7.4);
+    tl.fromTo("#g-loc-w", { opacity: 0, y: 26 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 13.71);
+    tl.set("#g-loc-y", { opacity: 0 }, 0);
+    tl.fromTo("#g-loc-y", { opacity: 0, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 13.93);
+    tl.to("#g-loc", { opacity: 0, y: -14, duration: 0.25, ease: "power2.in" }, 14.5);
+    tl.fromTo("#pin", { y: -60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, 13.71);
+    tl.fromTo("#ring", { scale: 0.3, opacity: 0.8 }, { scale: 1.8, opacity: 0, duration: 0.9, ease: "power2.out", immediateRender: false }, 14.05);
+    tl.fromTo("#g-lot-w", { opacity: 0, y: 26 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 15.18);
+    tl.set("#g-lot-y", { opacity: 0 }, 0);
+    tl.fromTo("#g-lot-y", { opacity: 0, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 15.4);
+    tl.to("#g-lot", { opacity: 0, y: -14, duration: 0.25, ease: "power2.in" }, 19.0);
+    (() => { const o = { v: 0 }; tl.fromTo(o, { v: 0 }, { v: 7244, duration: 1.2, ease: "power3.out", onUpdate: () => { document.querySelector("#n7244").textContent = "" + Math.round(o.v).toLocaleString("en-US"); } }, 15.4); })();
+    tl.fromTo("#s-map", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 19.25);
+    tl.fromTo("#map", { scale: 1.0 }, { scale: 1.06, duration: 2.16, ease: "none" }, 19.25);
+    tl.fromTo("#g-1400-w", { opacity: 0, y: 26 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 25.01);
+    tl.set("#g-1400-y", { opacity: 0 }, 0);
+    tl.fromTo("#g-1400-y", { opacity: 0, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 25.23);
+    tl.to("#g-1400", { opacity: 0, y: -14, duration: 0.25, ease: "power2.in" }, 27.6);
+    (() => { const o = { v: 0 }; tl.fromTo(o, { v: 0 }, { v: 1400, duration: 0.9, ease: "power3.out", onUpdate: () => { document.querySelector("#n1400").textContent = "" + Math.round(o.v).toLocaleString("en-US"); } }, 25.23); })();
+    tl.fromTo("#g-price-w", { opacity: 0, y: 26 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 28.23);
+    tl.set("#g-price-y", { opacity: 0 }, 0);
+    tl.fromTo("#g-price-y", { opacity: 0, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 28.45);
+    tl.to("#g-price", { opacity: 0, y: -14, duration: 0.25, ease: "power2.in" }, 31.2);
+    (() => { const o = { v: 0 }; tl.fromTo(o, { v: 0 }, { v: 420000, duration: 1.0, ease: "power3.out", onUpdate: () => { document.querySelector("#nrm").textContent = "RM" + Math.round(o.v).toLocaleString("en-US"); } }, 28.45); })();
+    tl.fromTo("#g-road-w", { opacity: 0, y: 26 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 35.17);
+    tl.set("#g-road-y", { opacity: 0 }, 0);
+    tl.fromTo("#g-road-y", { opacity: 0, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 35.39);
+    tl.to("#g-road", { opacity: 0, y: -14, duration: 0.25, ease: "power2.in" }, 38.08);
+    tl.fromTo("#g-drain-w", { opacity: 0, y: 26 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 38.53);
+    tl.set("#g-drain-y", { opacity: 0 }, 0);
+    tl.fromTo("#g-drain-y", { opacity: 0, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 38.75);
+    tl.to("#g-drain", { opacity: 0, y: -14, duration: 0.25, ease: "power2.in" }, 39.98);
+    tl.fromTo("#g-kj-w", { opacity: 0, y: 26 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 40.55);
+    tl.set("#g-kj-y", { opacity: 0 }, 0);
+    tl.fromTo("#g-kj-y", { opacity: 0, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 40.77);
+    tl.to("#g-kj", { opacity: 0, y: -14, duration: 0.25, ease: "power2.in" }, 41.7);
+    tl.fromTo("#hp0", { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power2.out" }, 41.95);
+    tl.set("#cntn", { textContent: "1" }, 42.03);
+    tl.fromTo("#cnt", { scale: 0.8 }, { scale: 1, duration: 0.3, ease: "back.out(2)", immediateRender: false }, 42.03);
+    tl.fromTo("#hp1", { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power2.out" }, 42.46);
+    tl.set("#cntn", { textContent: "2" }, 42.46);
+    tl.fromTo("#cnt", { scale: 0.8 }, { scale: 1, duration: 0.3, ease: "back.out(2)", immediateRender: false }, 42.46);
+    tl.fromTo("#hp2", { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power2.out" }, 43.29);
+    tl.set("#cntn", { textContent: "3" }, 43.29);
+    tl.fromTo("#cnt", { scale: 0.8 }, { scale: 1, duration: 0.3, ease: "back.out(2)", immediateRender: false }, 43.29);
+    tl.fromTo("#hp3", { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power2.out" }, 43.89);
+    tl.set("#cntn", { textContent: "4" }, 43.89);
+    tl.fromTo("#cnt", { scale: 0.8 }, { scale: 1, duration: 0.3, ease: "back.out(2)", immediateRender: false }, 43.89);
+    tl.set("#cnt", { opacity: 0 }, 0);
+    tl.fromTo("#cnt", { opacity: 0, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "power3.out" }, 42.0);
+    tl.fromTo("#g-mi-w", { opacity: 0, y: 26 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 44.45);
+    tl.set("#g-mi-y", { opacity: 0 }, 0);
+    tl.fromTo("#g-mi-y", { opacity: 0, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 44.67);
+    tl.to("#g-mi", { opacity: 0, y: -14, duration: 0.25, ease: "power2.in" }, 47.5);
+    tl.fromTo("#g-last-w", { opacity: 0, y: 26 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 48.97);
+    tl.set("#g-last-y", { opacity: 0 }, 0);
+    tl.fromTo("#g-last-y", { opacity: 0, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 49.19);
+    tl.to("#g-last", { opacity: 0, y: -14, duration: 0.25, ease: "power2.in" }, 52.16);
+    tl.fromTo("#g-cta-w", { opacity: 0, y: 26 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 53.23);
+    tl.set("#g-cta-y", { opacity: 0 }, 0);
+    tl.fromTo("#g-cta-y", { opacity: 0, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 53.45);
+    tl.to("#g-cta", { opacity: 0, y: -14, duration: 0.25, ease: "power2.in" }, 55.71);
+    tl.fromTo("#cue0 span", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.15, ease: "power2.out" }, 0.03);
+    tl.fromTo("#cue1 span", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.15, ease: "power2.out" }, 2.36);
+    tl.fromTo("#cue2 span", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.15, ease: "power2.out" }, 4.68);
+    tl.fromTo("#cue3 span", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.15, ease: "power2.out" }, 7.72);
+    tl.fromTo("#cue4 span", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.15, ease: "power2.out" }, 11.06);
+    tl.fromTo("#cue5 span", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.15, ease: "power2.out" }, 14.76);
+    tl.fromTo("#cue6 span", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.15, ease: "power2.out" }, 17.56);
+    tl.fromTo("#cue7 span", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.15, ease: "power2.out" }, 21.36);
+    tl.fromTo("#cue8 span", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.15, ease: "power2.out" }, 24.96);
+    tl.fromTo("#cue9 span", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.15, ease: "power2.out" }, 27.88);
+    tl.fromTo("#cue10 span", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.15, ease: "power2.out" }, 31.42);
+    tl.fromTo("#cue11 span", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.15, ease: "power2.out" }, 34.16);
+    tl.fromTo("#cue12 span", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.15, ease: "power2.out" }, 36.42);
+    tl.fromTo("#cue13 span", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.15, ease: "power2.out" }, 38.4);
+    tl.fromTo("#cue14 span", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.15, ease: "power2.out" }, 40.18);
+    tl.fromTo("#cue15 span", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.15, ease: "power2.out" }, 41.98);
+    tl.fromTo("#cue16 span", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.15, ease: "power2.out" }, 44.36);
+    tl.fromTo("#cue17 span", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.15, ease: "power2.out" }, 47.78);
+    tl.fromTo("#cue18 span", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.15, ease: "power2.out" }, 49.82);
+    tl.fromTo("#cue19 span", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.15, ease: "power2.out" }, 52.43);
+    tl.fromTo("#cue20 span", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.15, ease: "power2.out" }, 53.81);
+    window.__timelines["gfx"] = tl;
+  </script>
+</template>
