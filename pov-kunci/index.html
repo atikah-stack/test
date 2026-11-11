@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ms" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #141414; }
+      #root { position: relative; width: 100%; height: 100%; background: #141414; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="9.19" data-width="1080" data-height="1920">
+      <div id="w-main" style="position:absolute; inset:0; z-index:1; overflow:hidden">
+        <video id="v-main" class="clip" src="assets/video/main.mp4" data-start="0" data-duration="9.19" data-media-start="0"
+          data-track-index="1" playsinline data-has-audio="true" data-volume="0.6" data-fade-out="0.3"
+          style="position:absolute; left:0; top:0; width:1080px; height:1920px; object-fit:cover"></video>
+      </div>
+      <div id="shade" style="position:absolute; inset:0; z-index:2; pointer-events:none;
+        background: linear-gradient(180deg, rgba(16,20,28,.55) 0%, rgba(16,20,28,.35) 28%, rgba(16,20,28,0) 46%)"></div>
+      <div id="gfx" data-composition-id="gfx" data-composition-src="compositions/gfx.html" data-start="0" data-duration="9.19"
+        data-track-index="3" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:5"></div>
+      <audio id="sx-notif" class="clip" src="assets/sfx/notification.mp3" data-start="0.05" data-duration="2.4" data-track-index="4" data-volume="0.55"></audio>
+      <audio id="sx-slide" class="clip" src="assets/sfx/slide-up.mp3" data-start="2.75" data-duration="0.65" data-track-index="5" data-volume="0.42"></audio>
+      <audio id="sx-takeoff" class="clip" src="assets/sfx/whoosh.mp3" data-start="3.4" data-duration="0.57" data-track-index="6" data-volume="0.65"></audio>
+      <audio id="sx-aku" class="clip" src="assets/sfx/pop.mp3" data-start="3.45" data-duration="0.72" data-track-index="4" data-volume="0.35"></audio>
+      <audio id="sx-fly1" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="3.77" data-duration="0.57" data-track-index="5" data-volume="0.5"></audio>
+      <audio id="sx-door" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="5.16" data-duration="0.57" data-track-index="6" data-volume="0.5"></audio>
+      <audio id="sx-fly2" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="6.3" data-duration="0.57" data-track-index="4" data-volume="0.42"></audio>
+      <audio id="sx-fly3" class="clip" src="assets/sfx/whoosh-short.mp3" data-start="7.59" data-duration="0.57" data-track-index="5" data-volume="0.42"></audio>
+      <audio id="sx-boing" class="clip" src="assets/sfx/boing.mp3" data-start="8.66" data-duration="0.53" data-track-index="6" data-volume="0.55"></audio>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      // a short camera kick on takeoff sells the "sudden" flight
+      tl.fromTo("#w-main", { scale: 1 }, { scale: 1.06, duration: 0.18, ease: "power3.out" }, 3.4);
+      tl.fromTo("#w-main", { scale: 1.06 }, { scale: 1, duration: 0.4, ease: "power2.inOut", immediateRender: false }, 3.58);
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
