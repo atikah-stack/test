@@ -132,10 +132,10 @@ def count(sel, to, at, d=1.0):
 
 # Opening: package heading with the location
 H.append(f'''    <div class="grp clip" id="g-open" data-start="0.15" data-duration="2.45" style="top:330px">
-      <div class="loc" id="op-l">{PIN}<span>KG HUTAN PUTIH, MACHANG</span></div>
-      <div class="hw" id="op-w" style="font-size:56px">PAKEJ BINA RUMAH</div><div class="hy" id="op-y" style="font-size:104px">BESERTA TANAH</div></div>''')
+      <div class="hw" id="op-w" style="font-size:56px">PAKEJ BINA RUMAH</div><div class="hy" id="op-y" style="font-size:104px">BESERTA TANAH</div>
+      <div class="loc" id="op-l">{PIN}<span>KG HUTAN PUTIH, MACHANG</span></div></div>''')
 BOXES.append(("g-open", 330, 300))
-tin("#op-l", 0.15); J.append('tl.set("#op-w", { opacity: 0 }, 0);'); tin("#op-w", 0.3)
+tin("#op-w", 0.15); J.append('tl.set("#op-l", { opacity: 0 }, 0);'); tin("#op-l", 0.8)
 J.append('tl.set("#op-y", { opacity: 0 }, 0);'); tin("#op-y", 0.5, "scale")
 J.append('tl.to("#g-open", { opacity: 0, y: -14, duration: 0.25, ease: "power2.in" }, 2.35);')
 
@@ -237,7 +237,7 @@ CSS = f'''
     .chip span em {{ font-style: normal; color: {YEL}; }}
     .chip span {{ text-align: center; line-height: 1.08; }}
     .chip svg {{ filter: drop-shadow(0 4px 8px rgba(0,0,0,.5)); }}
-    .loc {{ display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }}
+    .loc {{ display: flex; align-items: center; gap: 12px; margin-top: 14px; }}
     .loc span {{ font-weight: 800; font-size: 40px; letter-spacing: .04em; color: {WHT}; {SH} }}
     .loc svg {{ width: 38px; height: 50px; filter: drop-shadow(0 4px 8px rgba(0,0,0,.5)); }}
     .scn {{ position: absolute; inset: 0; overflow: hidden; background: {INK}; }}
