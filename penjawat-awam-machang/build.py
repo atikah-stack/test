@@ -37,7 +37,6 @@ for k, ((a, b), st) in enumerate(zip(SEGS, starts)):
 
 # B-roll: (id, kind, file, film start, film end, media start)
 BROLL = [
-    ("b-lot", "video", "drone-0169", T(8.50), T(12.00), 0.3),          # "tinggal satu lot ni jah, 4 km"
     ("b-loc", "video", "aerial-C51AA0CC", T(14.88), T(19.15), 1.5),     # covers the cut; "tanah dia ... sedia untuk bina rumah"
     ("b-wide", "video", "aerial-D9D2F1E2", T(19.15), T(22.10), 0.0),    # "pakej bina rumah berserta dengan tanah"
     ("b-lot2", "video", "drone-0169", T(22.10), T(25.95), 4.0),         # "keluasan lot ni ... 7,244"
@@ -155,12 +154,24 @@ def hide(sel):
     J.append(f'tl.set("{sel}", {{ opacity: 0 }}, 0);')
 
 
+import re
+
+
+def fit(text, size, k, maxw=860):
+    """largest font size <= size whose longest line stays within maxw (Montserrat caps ~k em per char)"""
+    lines = re.sub(r"<[^>]+>", "", text.replace("<br/>", "\n")).replace("&amp;", "&").split("\n")
+    n = max(len(l) for l in lines)
+    return int(min(size, maxw / (k * n)))
+
+
 def head(hid, s, e, white, yellow, top=330, extra="", ysize="", sub=""):
     BOXES.append((hid, top, 400))
-    ys = f' style="font-size:{ysize}px"' if ysize else ""
+    ys = f' style="font-size:{fit(yellow, int(ysize or 110), 0.72)}px"'
+    ws = f' style="font-size:{fit(white, 56, 0.66)}px"'
+    white_html = white
     sb = f'<div class="hs" id="{hid}-s">{sub}</div>' if sub else ""
     H.append(f'    <div class="grp clip" id="{hid}" data-start="{round(s, 3)}" data-duration="{round(e - s, 3)}" style="top:{top}px">'
-             f'{extra}<div class="hw" id="{hid}-w">{white}</div><div class="hy" id="{hid}-y"{ys}>{yellow}</div>{sb}</div>')
+             f'{extra}<div class="hw" id="{hid}-w"{ws}>{white_html}</div><div class="hy" id="{hid}-y"{ys}>{yellow}</div>{sb}</div>')
     tin(f"#{hid}-w", s, "up")
     hide(f"#{hid}-y"); tin(f"#{hid}-y", s + 0.22, "scale")
     if sub:
@@ -176,6 +187,30 @@ def count(sel, to, at, d=1.0, prefix=""):
 # Scene 1: hook, then the remaining lot (over the drone)
 head("g-hook", T(0.40), T(6.00), "KHAS UNTUK PENJAWAT AWAM", "NAK BINA RUMAH<br/>DI MACHANG?", ysize=104)
 head("g-last", T(8.60), T(12.00), "TINGGAL", "1 LOT TERAKHIR!", ysize=110)
+# 3D land map: the top-down drone photo, tilted, with the empty lot between the dark-roof house
+# and the walled grey house traced from what the photo shows (fence line on the road side,
+# neighbouring lot edges top and bottom). Photo 1449x2576 -> frame 1080x1920 (x0.7453).
+k = 1080 / 1449
+poly = [(450, 1010), (990, 1010), (990, 1540), (450, 1540)]
+pts = " ".join(f"{round(x * k)},{round(y * k)}" for x, y in poly)
+cx = round(sum(x for x, _ in poly) / 4 * k); cy = round(sum(y for _, y in poly) / 4 * k)
+s3, e3 = T(8.50), T(12.00)
+H.insert(0, f'''    <div class="clip scn3" id="s-lot3d" data-start="{s3}" data-duration="{round(e3 - s3, 3)}">
+      <div class="tilt" id="tilt"><img src="assets/img/lot-top.jpg" alt="" />
+        <svg class="lotsvg" viewBox="0 0 1080 1920" width="1080" height="1920">
+          <polygon id="lotfill" points="{pts}" fill="{YEL}" fill-opacity="0.28"/>
+          <polygon id="lotline" points="{pts}" fill="none" stroke="{YEL}" stroke-width="7" stroke-linejoin="round"/>
+        </svg>
+        <div class="lotpin" id="lotpin" style="left:{cx}px; top:{cy}px"><div class="lp-t">LOT TERAKHIR</div><div class="lp-s">7,244 KPS</div></div>
+      </div>
+    </div>''')
+J.append(f'tl.fromTo("#s-lot3d", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.25 }}, {s3});')
+J.append(f'tl.fromTo("#tilt", {{ rotationX: 0, scale: 1.0, y: 0 }}, {{ rotationX: 42, scale: 1.32, y: -60, duration: 1.4, ease: "power2.inOut" }}, {s3 + 0.1});')
+J.append(f'tl.to("#tilt", {{ rotationZ: -4, duration: {round(e3 - s3 - 1.5, 2)}, ease: "sine.inOut" }}, {s3 + 1.5});')
+J.append(f'tl.fromTo("#lotline", {{ strokeDasharray: 1900, strokeDashoffset: 1900 }}, {{ strokeDashoffset: 0, duration: 0.9, ease: "power2.inOut" }}, {s3 + 1.0});')
+J.append(f'tl.fromTo("#lotfill", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.5 }}, {s3 + 1.7});')
+J.append(f'tl.fromTo("#lotpin", {{ opacity: 0, y: 30 }}, {{ opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }}, {s3 + 1.9});')
+
 # Scene 2: location
 head("g-loc", T(15.10), T(19.10), "LOKASI STRATEGIK", "KG HUTAN PUTIH, MACHANG", ysize=80,
      extra=f'<div class="pin" id="pin">{PIN}<div class="ring" id="ring"></div></div>', sub="4 KM DARI BANDAR MACHANG")
@@ -256,6 +291,13 @@ CSS = f'''
     .ring {{ position: absolute; left: 50%; bottom: -4px; width: 70px; height: 22px; margin-left: -35px; border-radius: 50%; border: 4px solid {YEL}; opacity: 0; }}
     .ic {{ width: 92px; height: 92px; border-radius: 50%; border: 3px solid {YEL}; background: rgba(16,21,29,.55); display: flex;
       align-items: center; justify-content: center; margin-bottom: 14px; box-shadow: 0 8px 20px rgba(0,0,0,.35); }}
+    .scn3 {{ position: absolute; inset: 0; overflow: hidden; background: {INK}; perspective: 1500px; }}
+    .tilt {{ position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: 50% 62%; transform-style: preserve-3d; }}
+    .tilt img {{ position: absolute; inset: 0; width: 1080px; height: 1920px; object-fit: cover; }}
+    .lotsvg {{ position: absolute; inset: 0; }}
+    .lotpin {{ position: absolute; transform: translate(-50%, -50%) rotateX(-42deg); text-align: center; white-space: nowrap; }}
+    .lp-t {{ font-weight: 900; font-size: 54px; color: {WHT}; {SH} }}
+    .lp-s {{ font-weight: 800; font-size: 44px; color: {YEL}; {SH} }}
     .subs {{ position: absolute; left: 60px; right: 60px; top: 1350px; height: 170px; }}
     .cue {{ position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; }}
     .cue span {{ display: block; max-width: 940px; font-weight: 700; font-size: 46px; line-height: 1.22; color: {WHT};

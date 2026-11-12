@@ -24,7 +24,6 @@
       <video id="v2" class="clip tal" src="assets/video/talent.mp4" data-start="30.47" data-duration="10.16" data-media-start="34.03" data-track-index="1" playsinline data-has-audio="true" data-volume="1" data-fade-in="0.03" data-fade-out="0.03"></video>
       <video id="v3" class="clip tal" src="assets/video/talent.mp4" data-start="40.63" data-duration="30.04" data-media-start="44.94" data-track-index="1" playsinline data-has-audio="true" data-volume="1" data-fade-in="0.03" data-fade-out="0.03"></video>
       </div>
-      <div id="b-lot-w" class="bw"><video id="b-lot" class="clip full" src="assets/video/drone-0169.mp4" data-start="8.45" data-duration="3.5" data-media-start="0.3" data-track-index="2" muted playsinline></video></div>
       <div id="b-loc-w" class="bw"><video id="b-loc" class="clip full" src="assets/video/aerial-C51AA0CC.mp4" data-start="13.95" data-duration="4.27" data-media-start="1.5" data-track-index="2" muted playsinline></video></div>
       <div id="b-wide-w" class="bw"><video id="b-wide" class="clip full" src="assets/video/aerial-D9D2F1E2.mp4" data-start="18.22" data-duration="2.95" data-media-start="0.0" data-track-index="2" muted playsinline></video></div>
       <div id="b-lot2-w" class="bw"><video id="b-lot2" class="clip full" src="assets/video/drone-0169.mp4" data-start="21.17" data-duration="3.85" data-media-start="4.0" data-track-index="2" muted playsinline></video></div>
@@ -63,7 +62,7 @@
     </div>
     <script>
       const tl = gsap.timeline({ paused: true });
-      [["b-lot", 8.45, 11.95], ["b-loc", 13.95, 18.22], ["b-wide", 18.22, 21.17], ["b-lot2", 21.17, 25.02], ["b-map", 25.02, 26.12], ["b-town", 30.07, 34.64], ["b-road", 34.64, 37.04], ["b-drain", 37.04, 40.54], ["b-nb1", 41.79, 44.69], ["b-nb2", 50.84, 55.64]].forEach(([id, s, e]) => {
+      [["b-loc", 13.95, 18.22], ["b-wide", 18.22, 21.17], ["b-lot2", 21.17, 25.02], ["b-map", 25.02, 26.12], ["b-town", 30.07, 34.64], ["b-road", 34.64, 37.04], ["b-drain", 37.04, 40.54], ["b-nb1", 41.79, 44.69], ["b-nb2", 50.84, 55.64]].forEach(([id, s, e]) => {
         tl.fromTo("#" + id + "-w", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, s);
         tl.fromTo("#" + id, { scale: 1.0 }, { scale: 1.08, duration: e - s, ease: "none" }, s);
       });

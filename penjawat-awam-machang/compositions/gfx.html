@@ -9,6 +9,13 @@
     .ring { position: absolute; left: 50%; bottom: -4px; width: 70px; height: 22px; margin-left: -35px; border-radius: 50%; border: 4px solid #F5C542; opacity: 0; }
     .ic { width: 92px; height: 92px; border-radius: 50%; border: 3px solid #F5C542; background: rgba(16,21,29,.55); display: flex;
       align-items: center; justify-content: center; margin-bottom: 14px; box-shadow: 0 8px 20px rgba(0,0,0,.35); }
+    .scn3 { position: absolute; inset: 0; overflow: hidden; background: #10151D; perspective: 1500px; }
+    .tilt { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: 50% 62%; transform-style: preserve-3d; }
+    .tilt img { position: absolute; inset: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    .lotsvg { position: absolute; inset: 0; }
+    .lotpin { position: absolute; transform: translate(-50%, -50%) rotateX(-42deg); text-align: center; white-space: nowrap; }
+    .lp-t { font-weight: 900; font-size: 54px; color: #FFFFFF; text-shadow: 0 3px 6px rgba(0,0,0,.5), 0 10px 28px rgba(0,0,0,.55); }
+    .lp-s { font-weight: 800; font-size: 44px; color: #F5C542; text-shadow: 0 3px 6px rgba(0,0,0,.5), 0 10px 28px rgba(0,0,0,.55); }
     .subs { position: absolute; left: 60px; right: 60px; top: 1350px; height: 170px; }
     .cue { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; }
     .cue span { display: block; max-width: 940px; font-weight: 700; font-size: 46px; line-height: 1.22; color: #FFFFFF;
@@ -16,17 +23,26 @@
     .cue b { color: #F5C542; font-weight: 800; }
   </style>
   <div id="root" data-composition-id="gfx" data-width="1080" data-height="1920" data-duration="70.67">
-    <div class="grp clip" id="g-hook" data-start="0.35" data-duration="5.6" style="top:330px"><div class="hw" id="g-hook-w">KHAS UNTUK PENJAWAT AWAM</div><div class="hy" id="g-hook-y" style="font-size:104px">NAK BINA RUMAH<br/>DI MACHANG?</div></div>
-    <div class="grp clip" id="g-last" data-start="8.55" data-duration="3.4" style="top:330px"><div class="hw" id="g-last-w">TINGGAL</div><div class="hy" id="g-last-y" style="font-size:110px">1 LOT TERAKHIR!</div></div>
-    <div class="grp clip" id="g-loc" data-start="14.17" data-duration="4.0" style="top:330px"><div class="pin" id="pin"><svg viewBox="0 0 48 64" width="58" height="76"><path d="M24 1C11.3 1 1 11.3 1 24c0 16.5 23 39 23 39s23-22.5 23-39C47 11.3 36.7 1 24 1z" fill="#F5C542"/><circle cx="24" cy="24" r="8.5" fill="#10151D"/></svg><div class="ring" id="ring"></div></div><div class="hw" id="g-loc-w">LOKASI STRATEGIK</div><div class="hy" id="g-loc-y" style="font-size:80px">KG HUTAN PUTIH, MACHANG</div><div class="hs" id="g-loc-s">4 KM DARI BANDAR MACHANG</div></div>
-    <div class="grp clip" id="g-land" data-start="21.27" data-duration="3.75" style="top:330px"><div class="hw" id="g-land-w">KELUASAN TANAH</div><div class="hy" id="g-land-y" style="font-size:130px"><span id="n7244">7,244</span> KPS</div></div>
-    <div class="grp clip" id="g-1400" data-start="26.17" data-duration="4.3" style="top:330px"><div class="hw" id="g-1400-w">BINA RUMAH BERMULA</div><div class="hy" id="g-1400-y" style="font-size:130px"><span id="n1400">1,400</span> KPS</div></div>
-    <div class="grp clip" id="g-strat" data-start="30.84" data-duration="3.8" style="top:330px"><div class="hw" id="g-strat-w">LOKASI STRATEGIK</div><div class="hy" id="g-strat-y" style="font-size:80px">4 KM KE BANDAR MACHANG</div></div>
-    <div class="grp clip" id="g-infra" data-start="37.08" data-duration="3.46" style="top:330px"><div class="ic" id="ic-road"><svg viewBox="0 0 48 48" width="58" height="58" fill="none" stroke="#FFFFFF" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4 6 44M32 4l10 40"/><path d="M24 8v6M24 21v6M24 34v6"/></svg></div><div class="hw" id="g-infra-w">KEMUDAHAN SEDIA ADA</div><div class="hy" id="g-infra-y" style="font-size:80px">REZAB JALAN &amp; SALIRAN</div></div>
-    <div class="grp clip" id="g-kj" data-start="44.79" data-duration="5.8" style="top:330px"><div class="ic" id="ic-kj"><svg viewBox="0 0 48 48" width="58" height="58" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 26 14 16l12 10"/><path d="M5 24v18h18V24"/><path d="M22 20 34 10l12 10"/><path d="M26 18v24h17V18"/></svg></div><div class="hw" id="g-kj-w">KEJIRANAN SEDIA ADA</div><div class="hy" id="g-kj-y" style="font-size:72px">BANGLO HASIL KERJA MI</div></div>
-    <div class="grp clip" id="g-mi" data-start="51.19" data-duration="4.45" style="top:330px"><div class="hw" id="g-mi-w">SIAP DIBINA OLEH</div><div class="hy" id="g-mi-y" style="font-size:96px">MAHLIGAI IDAMAN</div></div>
-    <div class="grp clip" id="g-price" data-start="58.96" data-duration="2.83" style="top:330px"><div class="hw" id="g-price-w">HARGA PAKEJ BERMULA</div><div class="hy" id="g-price-y" style="font-size:128px"><span id="nrm">RM420,000</span></div></div>
-    <div class="grp clip" id="g-cta" data-start="65.79" data-duration="5.18" style="top:330px"><div class="hw" id="g-cta-w">NAK BINA RUMAH DI MACHANG?</div><div class="hy" id="g-cta-y" style="font-size:116px">KLIK LINK<br/>SEKARANG!</div></div>
+    <div class="clip scn3" id="s-lot3d" data-start="8.45" data-duration="3.5">
+      <div class="tilt" id="tilt"><img src="assets/img/lot-top.jpg" alt="" />
+        <svg class="lotsvg" viewBox="0 0 1080 1920" width="1080" height="1920">
+          <polygon id="lotfill" points="335,753 738,753 738,1148 335,1148" fill="#F5C542" fill-opacity="0.28"/>
+          <polygon id="lotline" points="335,753 738,753 738,1148 335,1148" fill="none" stroke="#F5C542" stroke-width="7" stroke-linejoin="round"/>
+        </svg>
+        <div class="lotpin" id="lotpin" style="left:537px; top:950px"><div class="lp-t">LOT TERAKHIR</div><div class="lp-s">7,244 KPS</div></div>
+      </div>
+    </div>
+    <div class="grp clip" id="g-hook" data-start="0.35" data-duration="5.6" style="top:330px"><div class="hw" id="g-hook-w" style="font-size:54px">KHAS UNTUK PENJAWAT AWAM</div><div class="hy" id="g-hook-y" style="font-size:85px">NAK BINA RUMAH<br/>DI MACHANG?</div></div>
+    <div class="grp clip" id="g-last" data-start="8.55" data-duration="3.4" style="top:330px"><div class="hw" id="g-last-w" style="font-size:56px">TINGGAL</div><div class="hy" id="g-last-y" style="font-size:79px">1 LOT TERAKHIR!</div></div>
+    <div class="grp clip" id="g-loc" data-start="14.17" data-duration="4.0" style="top:330px"><div class="pin" id="pin"><svg viewBox="0 0 48 64" width="58" height="76"><path d="M24 1C11.3 1 1 11.3 1 24c0 16.5 23 39 23 39s23-22.5 23-39C47 11.3 36.7 1 24 1z" fill="#F5C542"/><circle cx="24" cy="24" r="8.5" fill="#10151D"/></svg><div class="ring" id="ring"></div></div><div class="hw" id="g-loc-w" style="font-size:56px">LOKASI STRATEGIK</div><div class="hy" id="g-loc-y" style="font-size:51px">KG HUTAN PUTIH, MACHANG</div><div class="hs" id="g-loc-s">4 KM DARI BANDAR MACHANG</div></div>
+    <div class="grp clip" id="g-land" data-start="21.27" data-duration="3.75" style="top:330px"><div class="hw" id="g-land-w" style="font-size:56px">KELUASAN TANAH</div><div class="hy" id="g-land-y" style="font-size:130px"><span id="n7244">7,244</span> KPS</div></div>
+    <div class="grp clip" id="g-1400" data-start="26.17" data-duration="4.3" style="top:330px"><div class="hw" id="g-1400-w" style="font-size:56px">BINA RUMAH BERMULA</div><div class="hy" id="g-1400-y" style="font-size:130px"><span id="n1400">1,400</span> KPS</div></div>
+    <div class="grp clip" id="g-strat" data-start="30.84" data-duration="3.8" style="top:330px"><div class="hw" id="g-strat-w" style="font-size:56px">LOKASI STRATEGIK</div><div class="hy" id="g-strat-y" style="font-size:54px">4 KM KE BANDAR MACHANG</div></div>
+    <div class="grp clip" id="g-infra" data-start="37.08" data-duration="3.46" style="top:330px"><div class="ic" id="ic-road"><svg viewBox="0 0 48 48" width="58" height="58" fill="none" stroke="#FFFFFF" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4 6 44M32 4l10 40"/><path d="M24 8v6M24 21v6M24 34v6"/></svg></div><div class="hw" id="g-infra-w" style="font-size:56px">KEMUDAHAN SEDIA ADA</div><div class="hy" id="g-infra-y" style="font-size:56px">REZAB JALAN &amp; SALIRAN</div></div>
+    <div class="grp clip" id="g-kj" data-start="44.79" data-duration="5.8" style="top:330px"><div class="ic" id="ic-kj"><svg viewBox="0 0 48 48" width="58" height="58" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 26 14 16l12 10"/><path d="M5 24v18h18V24"/><path d="M22 20 34 10l12 10"/><path d="M26 18v24h17V18"/></svg></div><div class="hw" id="g-kj-w" style="font-size:56px">KEJIRANAN SEDIA ADA</div><div class="hy" id="g-kj-y" style="font-size:56px">BANGLO HASIL KERJA MI</div></div>
+    <div class="grp clip" id="g-mi" data-start="51.19" data-duration="4.45" style="top:330px"><div class="hw" id="g-mi-w" style="font-size:56px">SIAP DIBINA OLEH</div><div class="hy" id="g-mi-y" style="font-size:79px">MAHLIGAI IDAMAN</div></div>
+    <div class="grp clip" id="g-price" data-start="58.96" data-duration="2.83" style="top:330px"><div class="hw" id="g-price-w" style="font-size:56px">HARGA PAKEJ BERMULA</div><div class="hy" id="g-price-y" style="font-size:128px"><span id="nrm">RM420,000</span></div></div>
+    <div class="grp clip" id="g-cta" data-start="65.79" data-duration="5.18" style="top:330px"><div class="hw" id="g-cta-w" style="font-size:50px">NAK BINA RUMAH DI MACHANG?</div><div class="hy" id="g-cta-y" style="font-size:116px">KLIK LINK<br/>SEKARANG!</div></div>
     <div class="subs" id="subs">
       <div class="cue clip" id="cue0" data-start="0.05" data-duration="4.51"><span>Kalau tuan-puan <b>penjawat awam</b> dan nak bina rumah di Kelantan,</span></div>
       <div class="cue clip" id="cue1" data-start="4.56" data-duration="1.42"><span>spesifik di <b>Machang</b>,</span></div>
@@ -63,6 +79,12 @@
     tl.set("#g-last-y", { opacity: 0 }, 0);
     tl.fromTo("#g-last-y", { opacity: 0, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 8.77);
     tl.to("#g-last", { opacity: 0, y: -14, duration: 0.25, ease: "power2.in" }, 11.7);
+    tl.fromTo("#s-lot3d", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 8.45);
+    tl.fromTo("#tilt", { rotationX: 0, scale: 1.0, y: 0 }, { rotationX: 42, scale: 1.32, y: -60, duration: 1.4, ease: "power2.inOut" }, 8.549999999999999);
+    tl.to("#tilt", { rotationZ: -4, duration: 2.0, ease: "sine.inOut" }, 9.95);
+    tl.fromTo("#lotline", { strokeDasharray: 1900, strokeDashoffset: 1900 }, { strokeDashoffset: 0, duration: 0.9, ease: "power2.inOut" }, 9.45);
+    tl.fromTo("#lotfill", { opacity: 0 }, { opacity: 1, duration: 0.5 }, 10.149999999999999);
+    tl.fromTo("#lotpin", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 10.35);
     tl.fromTo("#g-loc-w", { opacity: 0, y: 26 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 14.17);
     tl.set("#g-loc-y", { opacity: 0 }, 0);
     tl.fromTo("#g-loc-y", { opacity: 0, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 14.39);
