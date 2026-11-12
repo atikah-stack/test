@@ -10,7 +10,9 @@ import json, re
 
 WHT, YEL, INK = "#FFFFFF", "#F5C542", "#10151D"
 SAFE_TOP, SAFE_BOT = 288, 1536
-TOTAL = 33.15
+TOTAL = 33.15            # end of the presenter take
+OUTRO = 4.5
+FILM = round(TOTAL + OUTRO, 2)   # take + branded outro card
 
 # B-roll: (id, kind, file, start, end, media start)
 BROLL = [
@@ -31,7 +33,7 @@ for bid, kind, f, s, e, m in BROLL:
         vids.append(f'      <div id="{bid}-w" class="bw clip" data-start="{s}" data-duration="{round(e - s, 3)}" data-track-index="2">'
                     f'<img id="{bid}" class="full" src="assets/img/{f}.jpg" alt="" /></div>')
 
-AUD = [f'      <audio id="bgm" class="clip" src="assets/bgm/track.mp3" data-start="0" data-duration="{TOTAL}" '
+AUD = [f'      <audio id="bgm" class="clip" src="assets/bgm/track.mp3" data-start="0" data-duration="{FILM}" '
        f'data-track-index="4" data-volume="0.09" data-fade-out="1.2"></audio>']
 
 
@@ -50,6 +52,8 @@ for a in [
     ("cta", "whoosh", 28.75, 0.57, 0.15), ("cta2", "pop", 31.32, 0.72, 0.15),
 ]:
     sfx(*a)
+sfx("open", "whoosh-short", 0.12, 0.57, 0.14); sfx("open2", "pop", 0.50, 0.72, 0.13)
+sfx("outro", "whoosh", TOTAL - 0.02, 0.57, 0.16); sfx("outro2", "impact-bass-1", TOTAL + 0.3, 1.6, 0.15)
 
 push = [(b[0], b[3], b[4]) for b in BROLL]
 index = f'''<!doctype html>
@@ -70,13 +74,13 @@ index = f'''<!doctype html>
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="{TOTAL}" data-width="1080" data-height="1920">
+    <div id="root" data-composition-id="main" data-start="0" data-duration="{FILM}" data-width="1080" data-height="1920">
       <div id="w-tal">
 {vids[0]}
       </div>
 {chr(10).join(vids[1:])}
       <div id="shade"></div>
-      <div id="gfx" data-composition-id="gfx" data-composition-src="compositions/gfx.html" data-start="0" data-duration="{TOTAL}" data-track-index="3" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:5"></div>
+      <div id="gfx" data-composition-id="gfx" data-composition-src="compositions/gfx.html" data-start="0" data-duration="{FILM}" data-track-index="3" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:5"></div>
 {chr(10).join(AUD)}
     </div>
     <script>
@@ -88,7 +92,7 @@ index = f'''<!doctype html>
       // presenter is framed wide: open on a punch-in, slow push through, closer push on the CTA
       tl.fromTo("#w-tal", {{ scale: 1.25 }}, {{ scale: 1.12, duration: 2.6, ease: "power2.out" }}, 0);
       tl.fromTo("#w-tal", {{ scale: 1.12 }}, {{ scale: 1.3, duration: {round(TOTAL - 26.95, 2)}, ease: "sine.inOut", immediateRender: false }}, 26.95);
-      tl.to("#root", {{ opacity: 0, duration: 0.4 }}, {TOTAL - 0.4});
+      tl.to("#root", {{ opacity: 0, duration: 0.5 }}, {FILM - 0.5});
       window.__timelines["main"] = tl;
     </script>
   </body>
@@ -125,6 +129,15 @@ def count(sel, to, at, d=1.0):
     J.append(f'(() => {{ const o = {{ v: 0 }}; tl.fromTo(o, {{ v: 0 }}, {{ v: {to}, duration: {d}, ease: "power3.out", '
              f'onUpdate: () => {{ document.querySelector("{sel}").textContent = Math.round(o.v).toLocaleString("en-US"); }} }}, {at}); }})();')
 
+
+# Opening: package heading with the location
+H.append(f'''    <div class="grp clip" id="g-open" data-start="0.15" data-duration="2.45" style="top:330px">
+      <div class="loc" id="op-l">{PIN}<span>KG HUTAN PUTIH, MACHANG</span></div>
+      <div class="hw" id="op-w" style="font-size:56px">PAKEJ BINA RUMAH</div><div class="hy" id="op-y" style="font-size:104px">BESERTA TANAH</div></div>''')
+BOXES.append(("g-open", 330, 300))
+tin("#op-l", 0.15); J.append('tl.set("#op-w", { opacity: 0 }, 0);'); tin("#op-w", 0.3)
+J.append('tl.set("#op-y", { opacity: 0 }, 0);'); tin("#op-y", 0.5, "scale")
+J.append('tl.to("#g-open", { opacity: 0, y: -14, duration: 0.25, ease: "power2.in" }, 2.35);')
 
 # Scene 1: credibility over the bungalow aerials
 head("g-row", 2.75, 7.95, "DERETAN BANGLO INI", "HASIL KERJA<br/>MAHLIGAI IDAMAN", ysize=96)
@@ -169,7 +182,15 @@ head("g-1400", 25.16, 28.56, "BINA RUMAH BERMULA", '<span id="n1400">1,400</span
 count("#n1400", 1400, 25.36)
 
 # Scene 6: CTA
-head("g-cta", 28.77, TOTAL, "BERMINAT DENGAN LOT INI?", "HUBUNGI KAMI<br/>SEKARANG!", ysize=108)
+head("g-cta", 28.77, TOTAL - 0.1, "BERMINAT DENGAN LOT INI?", "HUBUNGI KAMI<br/>SEKARANG!", ysize=108)
+
+# Outro: the Mahligai Idaman branches card (supplied image, full frame) with a slow reveal
+H.append(f'''    <div class="clip scn" id="s-outro" data-start="{TOTAL}" data-duration="{OUTRO}"><img id="outro" src="assets/img/outro.png" alt="" />
+      <div class="flash" id="flash"></div></div>''')
+J.append(f'tl.fromTo("#s-outro", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.35 }}, {TOTAL});')
+J.append(f'tl.fromTo("#outro", {{ scale: 1.18, filter: "blur(8px)" }}, {{ scale: 1.0, filter: "blur(0px)", duration: 1.1, ease: "expo.out" }}, {TOTAL});')
+J.append(f'tl.to("#outro", {{ scale: 1.04, duration: {OUTRO - 1.1}, ease: "none" }}, {TOTAL + 1.1});')
+J.append(f'tl.fromTo("#flash", {{ opacity: 0.0 }}, {{ opacity: 0.55, duration: 0.12, yoyo: true, repeat: 1, ease: "power1.out" }}, {TOTAL + 1.6});')
 
 # subtitles (user's CapCut transcript, checked against the audio)
 SUBS = [
@@ -216,6 +237,12 @@ CSS = f'''
     .chip span em {{ font-style: normal; color: {YEL}; }}
     .chip span {{ text-align: center; line-height: 1.08; }}
     .chip svg {{ filter: drop-shadow(0 4px 8px rgba(0,0,0,.5)); }}
+    .loc {{ display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }}
+    .loc span {{ font-weight: 800; font-size: 40px; letter-spacing: .04em; color: {WHT}; {SH} }}
+    .loc svg {{ width: 38px; height: 50px; filter: drop-shadow(0 4px 8px rgba(0,0,0,.5)); }}
+    .scn {{ position: absolute; inset: 0; overflow: hidden; background: {INK}; }}
+    #outro {{ position: absolute; inset: 0; width: 1080px; height: 1920px; object-fit: cover; }}
+    .flash {{ position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.9) 50%, transparent 70%); opacity: 0; mix-blend-mode: overlay; }}
     .subs {{ position: absolute; left: 60px; right: 60px; top: 1350px; height: 170px; }}
     .cue {{ position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; }}
     .cue span {{ display: block; max-width: 940px; font-weight: 700; font-size: 46px; line-height: 1.22; color: {WHT};
@@ -224,7 +251,7 @@ CSS = f'''
 '''
 gfx = f'''<template>
   <style>{CSS}  </style>
-  <div id="root" data-composition-id="gfx" data-width="1080" data-height="1920" data-duration="{TOTAL}">
+  <div id="root" data-composition-id="gfx" data-width="1080" data-height="1920" data-duration="{FILM}">
 {chr(10).join(H)}
   </div>
   <script>
