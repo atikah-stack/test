@@ -1,0 +1,164 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: "Montserrat", sans-serif; color: #fff; --y: #ffd23f; --org: #f27a21; }
+    .abs { position: absolute; }
+    .center { position: absolute; left: 50%; width: 1000px; margin-left: -500px; text-align: center; }
+    .hd { display: block; font-weight: 900; line-height: 1.05; white-space: nowrap; -webkit-text-stroke: 10px rgba(10,10,10,0.9); paint-order: stroke fill; text-shadow: 0 8px 24px rgba(0,0,0,0.5); }
+    .y { color: var(--y); }
+    .grad { position: absolute; left: 0; top: 0; width: 1080px; height: 720px; background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0) 100%); }
+    .dim { position: absolute; inset: 0; background: rgba(8,10,16,0.62); }
+    .pill { display: inline-flex; align-items: center; gap: 14px; padding: 14px 32px; border-radius: 999px; background: rgba(10,12,18,0.78); font-weight: 800; font-size: 48px; line-height: 1; white-space: nowrap; box-shadow: 0 10px 30px rgba(0,0,0,0.35); }
+    .pill.yl { background: var(--y); color: #111; }
+    .pill.or { background: var(--org); color: #111; }
+    .pill svg { width: 46px; height: 46px; }
+    .tag { position: absolute; padding: 8px 18px; border-radius: 10px; background: rgba(255,255,255,0.92); color: #111; font-weight: 800; font-size: 28px; letter-spacing: 0.12em; }
+    .card { position: absolute; left: 70px; width: 940px; border-radius: 36px; background: rgba(18,20,28,0.88); box-shadow: 0 20px 60px rgba(0,0,0,0.45); overflow: hidden; }
+    .card-title { position: absolute; left: 0; width: 940px; text-align: center; font-weight: 900; font-size: 50px; }
+  </style>
+  <div id="root" data-composition-id="gfx" data-width="1080" data-height="1920">
+
+    <!-- 1 · HOOK -->
+    <div id="hgrad" class="grad clip" data-start="0.0" data-duration="3.776" data-layout-ignore></div>
+    <div id="head" class="center clip" style="top: 250px" data-start="0.0" data-duration="3.776">
+      <span id="hd1" class="hd" style="font-size: 70px">LANTAI DAH CANTIK,</span>
+      <span id="hd2" class="hd y" style="font-size: 76px">KENAPA TUTUP LAGI?</span>
+    </div>
+    <svg id="arrow" class="abs clip" style="left: 470px; top: 760px; width: 140px; height: 200px" data-start="0.9" data-duration="2.876" viewBox="0 0 140 200" aria-hidden="true">
+      <path d="M70 8 V150" stroke="#ffd23f" stroke-width="20" stroke-linecap="round"/><path d="M18 120 L70 188 L122 120" fill="none" stroke="#ffd23f" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+    <!-- 2 · RISIKO: kerja yang berlaku -->
+    <div id="w1" class="center clip" style="top: 300px" data-start="8.4" data-duration="1.488"><span class="pill"><svg viewBox="0 0 24 24"><circle cx="12" cy="4.5" r="2.5" fill="#ffd23f"/><path fill="#ffd23f" d="M9 8h5l3 6-2 1-2-3v4l2 7h-2.4L11 17l-1.6 6H7l2-7v-4l-2 3-2-1z"/></svg>PEKERJA KELUAR MASUK</span></div>
+    <div id="w2" class="center clip" style="top: 300px" data-start="9.888" data-duration="1.32"><span class="pill"><svg viewBox="0 0 24 24"><path fill="#ffd23f" d="M3 3h18v18H3zm2 2v6h6V5zm8 0v6h6V5zm-8 8v6h14v-6zm4 2h6v2H9z"/></svg>PASANG KABINET</span></div>
+    <div id="w3" class="center clip" style="top: 300px" data-start="11.208" data-duration="1.247"><span class="pill"><svg viewBox="0 0 24 24"><path fill="#ffd23f" d="M3 7l9-4 9 4v10l-9 4-9-4zm9 2l6-2.6-6-2.7-6 2.7zm-1 1.7L5 8.1v7.6l6 2.7z"/></svg>ANGKUT BARANG</span></div>
+
+    <!-- 3 · ILUSTRASI pasir bergesel -->
+    <div id="il-dim" class="dim clip" data-start="12.455" data-duration="7.43" data-layout-ignore></div>
+    <div id="il" class="card clip" style="top: 330px; height: 860px" data-start="12.455" data-duration="7.43">
+      <span class="tag" style="left: 30px; top: 28px">ILUSTRASI</span>
+      <div class="card-title" style="top: 110px">PASIR HALUS <span style="color: var(--y)">+ GESERAN</span></div>
+      <svg class="abs" style="left: 0; top: 200px; width: 940px; height: 640px" viewBox="0 0 940 640" aria-hidden="true">
+        <defs><linearGradient id="flr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9e2d6"/><stop offset="1" stop-color="#cfc6b7"/></linearGradient></defs>
+        <rect x="40" y="360" width="860" height="230" rx="16" fill="url(#flr)"/>
+        <path d="M330 360 V590 M620 360 V590" stroke="#b9b0a1" stroke-width="3"/>
+        <g id="scr" stroke="#7d7466" stroke-width="4" stroke-linecap="round" fill="none">
+          <path id="sc1" d="M180 400 L420 392"/><path id="sc2" d="M230 430 L520 421"/><path id="sc3" d="M300 462 L620 452"/><path id="sc4" d="M200 494 L470 488"/>
+        </g>
+        <g id="grains" fill="#b07d3d"><circle cx="300" cy="352" r="7"/><circle cx="340" cy="354" r="5"/><circle cx="385" cy="351" r="8"/><circle cx="430" cy="354" r="5"/><circle cx="470" cy="352" r="7"/><circle cx="512" cy="354" r="5"/></g>
+        <g id="shoe"><path d="M250 330 Q250 230 360 220 L560 214 Q640 214 650 290 L650 340 Q650 352 636 352 L264 352 Q250 352 250 340 Z" fill="#2c2f38"/><rect x="250" y="336" width="400" height="16" rx="8" fill="#15171c"/></g>
+        <text x="470" y="630" text-anchor="middle" font-family="Montserrat" font-weight="800" font-size="34" fill="#ffd23f" id="il-cap">KESAN CALAR PADA LANTAI</text>
+      </svg>
+    </div>
+
+    <!-- 4 · PENGENALAN PRODUK (kad jenama) -->
+    <div id="brand" class="abs clip" style="inset: 0; background: #f27a21" data-start="23.183" data-duration="1.528">
+      <img id="brand-img" src="assets/brand.jpg" alt="Cobra Mat" style="position: absolute; left: 90px; top: 520px; width: 900px; height: 900px; object-fit: cover" />
+    </div>
+
+    <!-- 5 · SPESIFIKASI -->
+    <div id="u1" class="center clip" style="top: 300px" data-start="24.782" data-duration="3.79"><span id="u1-in" class="pill or" style="font-size: 64px; padding: 18px 44px; font-weight: 900">2MM ULTRA</span></div>
+    <div id="u2" class="center clip" style="top: 430px" data-start="26.932" data-duration="1.64"><span id="u2-in" class="pill"><svg viewBox="0 0 24 24"><path fill="#ffd23f" d="M3 9h18v2H3zm0 4h18v2H3zM12 1l3 3h-2v3h-2V4H9zm0 22l-3-3h2v-3h2v3h2z"/></svg>TEBAL <span style="color: var(--y)">2 MM</span></span></div>
+
+    <div id="prod" class="abs clip" style="inset: 0; background: #ffffff" data-start="28.572" data-duration="4.892">
+      <div class="center" style="top: 240px"><span class="hd" style="font-size: 64px; color: #111; -webkit-text-stroke: 0; text-shadow: none">SAIZ GULUNGAN</span></div>
+      <img id="prod-img" src="assets/product.jpg" alt="Gulungan Cobra Mat" style="position: absolute; left: 50px; top: 330px; width: 980px; height: 980px" />
+      <svg id="dimv" class="abs" style="left: 300px; top: 380px; width: 110px; height: 830px" viewBox="0 0 110 830" aria-hidden="true">
+        <path d="M30 8 H90 M30 822 H90" stroke="#111" stroke-width="6"/><path id="dimv-line" d="M60 8 V822" stroke="#111" stroke-width="6"/>
+        <path d="M44 34 L60 8 L76 34 M44 796 L60 822 L76 796" fill="none" stroke="#111" stroke-width="6"/>
+      </svg>
+      <div id="dim1" class="abs" style="left: 60px; top: 760px"><span class="pill yl" style="font-size: 46px">1 M LEBAR</span></div>
+      <div id="dim2" class="abs" style="left: 690px; top: 760px"><span class="pill" style="font-size: 46px; flex-direction: column; gap: 6px; padding: 16px 30px">12 M<span style="font-size: 30px; color: var(--y)">PANJANG</span></span></div>
+    </div>
+
+    <div id="k1" class="center clip" style="top: 300px" data-start="33.981" data-duration="4.201"><span class="pill"><svg viewBox="0 0 24 24"><path fill="#ffd23f" d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5z"/></svg>TAHAN LASAK</span></div>
+    <div id="k2" class="center clip" style="top: 410px" data-start="35.761" data-duration="2.421"><span class="pill"><svg viewBox="0 0 24 24"><path fill="#ffd23f" d="M2 14h14v6H2zm15-8a4 4 0 0 1 0 8h-1v-2h1a2 2 0 0 0 0-4H5V6z"/></svg>MUDAH DIBENTANG</span></div>
+
+    <!-- 6 · FUNGSI: grafik lapisan -->
+    <div id="ly-dim" class="dim clip" data-start="38.182" data-duration="6.949" data-layout-ignore></div>
+    <div id="ly" class="card clip" style="top: 300px; height: 900px" data-start="38.182" data-duration="6.949">
+      <div class="card-title" style="top: 60px">PERLINDUNGAN <span style="color: var(--y)">TAMBAHAN</span></div>
+      <svg class="abs" style="left: 0; top: 150px; width: 940px; height: 720px" viewBox="0 0 940 720" aria-hidden="true">
+        <g id="ly-floor"><rect x="110" y="470" width="720" height="110" rx="14" fill="#d9d2c6"/><path d="M350 470 V580 M590 470 V580" stroke="#b9b0a1" stroke-width="3"/><text x="470" y="640" text-anchor="middle" font-family="Montserrat" font-weight="800" font-size="36" fill="#fff">LANTAI</text></g>
+        <g id="ly-mat"><rect x="110" y="420" width="720" height="44" rx="10" fill="#f27a21"/><text x="470" y="452" text-anchor="middle" font-family="Montserrat" font-weight="900" font-size="30" fill="#111">PELAPIK</text></g>
+        <g id="ly-dust" fill="#b07d3d"><circle cx="250" cy="410" r="8"/><circle cx="400" cy="412" r="6"/><circle cx="560" cy="409" r="9"/><circle cx="690" cy="412" r="6"/></g>
+        <g id="ly-shield"><path d="M470 60l120 44v90c0 76-52 140-120 164-68-24-120-88-120-164v-90z" fill="#ffd23f"/><path d="M415 210l38 38 74-80" fill="none" stroke="#111" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/></g>
+      </svg>
+    </div>
+
+    <!-- 7 · JENIS LANTAI -->
+    <div id="ft" class="center clip" style="top: 300px" data-start="45.469" data-duration="7.539">
+      <span id="ft1" class="pill yl" style="margin: 0 6px">MOZEK</span><span id="ft2" class="pill yl" style="margin: 0 6px">SPC</span><span id="ft3" class="pill yl" style="margin: 0 6px">VINYL</span>
+    </div>
+    <div id="ftn" class="center clip" style="top: 420px" data-start="50.166" data-duration="2.842"><span id="ftn-in" class="pill" style="font-size: 42px">Pilih pelapik yang sesuai</span></div>
+
+    <!-- 8 · TIP (ilustrasi sapu) -->
+    <div id="tp-dim" class="dim clip" data-start="53.008" data-duration="5.51" data-layout-ignore></div>
+    <div id="tp" class="card clip" style="top: 300px; height: 900px" data-start="53.008" data-duration="5.51">
+      <span class="tag" style="left: 30px; top: 28px">ILUSTRASI</span>
+      <div id="tp-title" class="card-title" style="top: 110px; font-size: 58px; color: var(--y)">BERSIHKAN LANTAI DULU!</div>
+      <svg class="abs" style="left: 0; top: 200px; width: 940px; height: 680px" viewBox="0 0 940 680" aria-hidden="true">
+        <rect x="60" y="470" width="820" height="150" rx="16" fill="#e9e2d6"/><path d="M330 470 V620 M600 470 V620" stroke="#b9b0a1" stroke-width="3"/>
+        <g id="tp-sand" fill="#b07d3d"><circle cx="300" cy="462" r="7"/><circle cx="350" cy="464" r="5"/><circle cx="410" cy="461" r="8"/><circle cx="470" cy="464" r="5"/><circle cx="520" cy="462" r="7"/><circle cx="570" cy="464" r="5"/></g>
+        <g id="broom"><rect x="455" y="40" width="22" height="330" rx="10" fill="#8a5a2b"/><path d="M380 360 H552 L590 462 H342 Z" fill="#ffd23f"/><path d="M372 400 H560" stroke="#c9a12a" stroke-width="6"/><path d="M380 430 V462 M420 430 V462 M460 430 V462 M500 430 V462 M540 430 V462" stroke="#c9a12a" stroke-width="5"/></g>
+        <g id="tp-check" opacity="0"><circle cx="760" cy="200" r="80" fill="#2fb36c"/><path d="M720 202l30 30 56-60" fill="none" stroke="#fff" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/></g>
+      </svg>
+    </div>
+
+    <!-- 9 · CTA -->
+    <div id="cgrad" class="grad clip" data-start="58.518" data-duration="6.64" data-layout-ignore></div>
+    <div id="cta" class="center clip" style="top: 250px" data-start="58.518" data-duration="6.64">
+      <span id="ct1" class="hd" style="font-size: 76px">PERNAH NAMPAK</span>
+      <span id="ct2" class="hd y" style="font-size: 82px">ATAU BARU TAHU?</span>
+      <span id="ct3" class="pill yl" style="margin-top: 22px; font-size: 56px; font-weight: 900">KOMEN<svg viewBox="0 0 24 24" style="width: 52px; height: 52px"><path fill="#111" d="M11 3h2v13.2l4.6-4.6 1.4 1.4-7 7-7-7 1.4-1.4 4.6 4.6z"/></svg></span>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const pop = (sel, t, from) => tl.fromTo(sel, Object.assign({ opacity: 0, scale: 0.6 }, from || {}), { opacity: 1, scale: 1, y: 0, x: 0, duration: 0.36, ease: "back.out(2.2)" }, t);
+    // 1 hook
+    tl.fromTo("#hgrad", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 0);
+    pop("#hd1", 0.05, { y: -20 });
+    pop("#hd2", 0.45);
+    tl.fromTo("#arrow", { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.9);
+    tl.to("#arrow", { y: 26, duration: 0.4, ease: "sine.inOut", yoyo: true, repeat: 5 }, 1.3);
+    // 2 chips
+    pop("#w1 .pill", 8.4); pop("#w2 .pill", 9.888); pop("#w3 .pill", 11.208);
+    // 3 illustration: shoe rubs grains back and forth, scratches draw
+    tl.fromTo("#il", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 12.455);
+    tl.fromTo("#il-dim", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 12.455);
+    tl.set(["#sc1", "#sc2", "#sc3", "#sc4"], { strokeDasharray: 340, strokeDashoffset: 340 }, 0);
+    tl.fromTo(["#shoe", "#grains"], { x: -60 }, { x: 140, duration: 0.9, ease: "sine.inOut", yoyo: true, repeat: 5 }, 13.055);
+    ["#sc1", "#sc2", "#sc3", "#sc4"].forEach((s, i) => tl.to(s, { strokeDashoffset: 0, duration: 1.1, ease: "power1.out" }, 13.455 + i * 0.9));
+    tl.fromTo("#il-cap", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 17.055);
+    // 4 brand card
+    tl.fromTo("#brand-img", { scale: 0.7, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.8)" }, 23.183);
+    // 5 specs
+    pop("#u1-in", 24.782); pop("#u2-in", 26.932, { y: 16 });
+    tl.fromTo("#prod-img", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 28.572);
+    tl.fromTo("#dimv", { opacity: 0, scaleY: 0.2, transformOrigin: "50% 50%" }, { opacity: 1, scaleY: 1, duration: 0.45, ease: "power3.out" }, 30.142);
+    pop("#dim1 .pill", 30.392, { x: -30 });
+    pop("#dim2 .pill", 31.852, { x: 30 });
+    pop("#k1 .pill", 33.981); pop("#k2 .pill", 35.761, { y: 16 });
+    // 6 layers
+    tl.fromTo("#ly-dim", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 38.182);
+    tl.fromTo("#ly", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 38.182);
+    tl.fromTo("#ly-mat", { y: -220, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, ease: "bounce.out" }, 39.616);
+    tl.fromTo("#ly-dust", { y: -160, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "power2.in" }, 40.516);
+    tl.fromTo("#ly-shield", { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.45, ease: "back.out(2.4)" }, 41.216);
+    // 7 floor types
+    pop("#ft1", 45.469); pop("#ft2", 46.489); pop("#ft3", 47.549); pop("#ftn-in", 50.166, { y: 14 });
+    // 8 tip: broom sweeps the sand away, then a tick
+    tl.fromTo("#tp-dim", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 53.008);
+    tl.fromTo("#tp", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 53.008);
+    pop("#tp-title", 54.052);
+    tl.fromTo("#broom", { rotation: -14, transformOrigin: "50% 100%" }, { rotation: 14, duration: 0.45, ease: "sine.inOut", yoyo: true, repeat: 5 }, 53.408);
+    tl.fromTo("#tp-sand", { x: 0, opacity: 1 }, { x: 420, opacity: 0, duration: 2.4, ease: "power1.in" }, 53.808);
+    tl.fromTo("#tp-check", { opacity: 0, scale: 0.5, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2.4)" }, 56.408);
+    // 9 CTA
+    tl.fromTo("#cgrad", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 58.518);
+    pop("#ct1", 58.618, { y: -18 }); pop("#ct2", 58.968);
+    pop("#ct3", 59.418, { y: 18 });
+    tl.to("#ct3 svg", { y: 10, duration: 0.35, ease: "sine.inOut", yoyo: true, repeat: 7 }, 59.918);
+    window.__timelines["gfx"] = tl;
+  </script>
+</template>
