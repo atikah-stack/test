@@ -178,11 +178,33 @@ head("g-hook", T(2.65), T(7.70), "PAKEJ TANAH BESERTA", "BINA RUMAH")
 
 # 2. location (over the aerial)
 head("g-loc", T(14.36), T(15.40), "LOKASI PILIHAN ANDA", "MACHANG, KELANTAN",
-     extra=f'<div class="pin" id="pin">{PIN}<div class="ring" id="ring"></div></div>', ysize=92)
+     extra=f'<div class="pin" id="pin">{PIN}<div class="ring" id="ring"></div></div>', ysize=76)
 J.append(f'tl.fromTo("#pin", {{ y: -60, opacity: 0 }}, {{ y: 0, opacity: 1, duration: 0.5, ease: "power3.out" }}, {T(14.36)});')
 J.append(f'tl.fromTo("#ring", {{ scale: 0.3, opacity: 0.8 }}, {{ scale: 1.8, opacity: 0, duration: 0.9, ease: "power2.out", immediateRender: false }}, {T(14.7)});')
 
 # 3. land reveal: heading on the presenter, then the verified lot map (it carries its own 7,244 KPS label)
+# 3D land map under the heading: the top-down drone photo tilts and the empty last lot
+# (between the dark-roof house and the walled grey house) is outlined.
+k = 1080 / 1449
+poly = [(450, 1010), (990, 1010), (990, 1540), (450, 1540)]
+pts = " ".join(f"{round(x * k)},{round(y * k)}" for x, y in poly)
+cx = round(sum(x for x, _ in poly) / 4 * k); cy = round(sum(y for _, y in poly) / 4 * k)
+s3, e3 = T(15.83), T(19.90)
+H.insert(0, f'''    <div class="clip scn3" id="s-lot3d" data-start="{s3}" data-duration="{round(e3 - s3, 3)}">
+      <div class="tilt" id="tilt"><img src="assets/img/lot-top.jpg" alt="" />
+        <svg class="lotsvg" viewBox="0 0 1080 1920" width="1080" height="1920">
+          <polygon id="lotfill" points="{pts}" fill="{YEL}" fill-opacity="0.28"/>
+          <polygon id="lotline" points="{pts}" fill="none" stroke="{YEL}" stroke-width="7" stroke-linejoin="round"/>
+        </svg>
+        <div class="lotpin" id="lotpin" style="left:{cx}px; top:{cy}px"><div class="lp-t">LOT TERAKHIR</div></div>
+      </div>
+    </div>''')
+J.append(f'tl.fromTo("#s-lot3d", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.25 }}, {s3});')
+J.append(f'tl.fromTo("#tilt", {{ rotationX: 0, scale: 1.0, y: 0 }}, {{ rotationX: 42, scale: 1.32, y: -60, duration: 1.4, ease: "power2.inOut" }}, {s3 + 0.1});')
+J.append(f'tl.to("#tilt", {{ rotationZ: -4, duration: {round(e3 - s3 - 1.5, 2)}, ease: "sine.inOut" }}, {s3 + 1.5});')
+J.append(f'tl.fromTo("#lotline", {{ strokeDasharray: 1900, strokeDashoffset: 1900 }}, {{ strokeDashoffset: 0, duration: 0.9, ease: "power2.inOut" }}, {s3 + 1.0});')
+J.append(f'tl.fromTo("#lotfill", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.5 }}, {s3 + 1.7});')
+J.append(f'tl.fromTo("#lotpin", {{ opacity: 0, y: 30 }}, {{ opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }}, {s3 + 1.9});')
 head("g-lot", T(15.83), T(19.90), "1 LOT BANGLO TERAKHIR", '<span id="n7244">7,244</span> KPS', ysize=130)
 count("#n7244", 7244, T(15.83) + 0.22, 1.2)
 H.append(f'    <div class="clip scn" id="s-map" data-start="{T(19.90)}" data-duration="{round(T(22.06) - T(19.90), 3)}"><div class="mapbg"></div>'
@@ -216,7 +238,7 @@ hide("#cnt"); tin("#cnt", T(43.75), "scale", 0.3)
 head("g-mi", T(46.20), T(49.50), "4 BANGLO HASIL KERJA", "MAHLIGAI IDAMAN", ysize=96)
 
 # 7. scarcity and CTA
-head("g-last", T(50.72), T(54.40), "TINGGAL", "1 LOT TERAKHIR!", ysize=120)
+head("g-last", T(50.72), T(54.40), "TINGGAL", "1 LOT TERAKHIR!", ysize=96)
 head("g-cta", T(57.87), TOTAL + 0.3, "BERMINAT?", "HUBUNGI KAMI SEKARANG", ysize=70)
 
 # ---------------- subtitles: white, soft shadow, max two lines, Y 1350-1520 ----------------
@@ -277,6 +299,12 @@ CSS = f'''
     .hp {{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; }}
     .cnt {{ position: absolute; left: 0; right: 0; top: 1180px; text-align: center; font-weight: 900; font-size: 140px; line-height: 1; color: {YEL}; {SH} }}
     .cnt small {{ font-size: 64px; color: {WHT}; }}
+    .scn3 {{ position: absolute; inset: 0; overflow: hidden; background: {INK}; perspective: 1500px; }}
+    .tilt {{ position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: 50% 62%; transform-style: preserve-3d; }}
+    .tilt img {{ position: absolute; inset: 0; width: 1080px; height: 1920px; object-fit: cover; }}
+    .lotsvg {{ position: absolute; inset: 0; }}
+    .lotpin {{ position: absolute; transform: translate(-50%, -50%) rotateX(-42deg); text-align: center; white-space: nowrap; }}
+    .lp-t {{ font-weight: 900; font-size: 54px; color: {WHT}; {SH} }}
     .subs {{ position: absolute; left: 60px; right: 60px; top: 1350px; height: 170px; }}
     .cue {{ position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; }}
     .cue span {{ display: block; max-width: 940px; font-weight: 700; font-size: 46px; line-height: 1.22; color: {WHT};
