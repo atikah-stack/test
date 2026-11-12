@@ -14,7 +14,7 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="15.1" data-width="1080" data-height="1920">
+    <div id="root" data-composition-id="main" data-start="0" data-duration="17.8" data-width="1080" data-height="1920">
       <!-- PASANGAN 1 · fasad sisi (gable kecil + tiang) -->
       <div id="cam-b1" class="cam" style="z-index: 1"><video id="b1" class="clip shot" src="assets/shots/b1.mp4" data-start="0" data-duration="1.8" data-media-start="0" data-track-index="1" muted playsinline></video></div>
       <div id="cam-a1" class="cam" style="z-index: 2"><video id="a1" class="clip shot" src="assets/shots/a1.mp4" data-start="1.8" data-duration="2.9" data-media-start="0" data-track-index="2" muted playsinline></video></div>
@@ -23,26 +23,26 @@
       <div id="cam-a2" class="cam" style="z-index: 4"><video id="a2" class="clip shot" src="assets/shots/a2.mp4" data-start="6.3" data-duration="2.9" data-media-start="0" data-track-index="2" muted playsinline></video></div>
       <!-- PASANGAN 3 · depan rumah (shot lebar) -->
       <div id="cam-b3" class="cam" style="z-index: 5"><video id="b3" class="clip shot" src="assets/shots/b3.mp4" data-start="8.9" data-duration="1.9" data-media-start="0" data-track-index="1" muted playsinline></video></div>
-      <div id="cam-a3" class="cam" style="z-index: 6"><video id="a3" class="clip shot" src="assets/shots/a3.mp4" data-start="10.8" data-duration="4.3" data-media-start="0" data-track-index="2" muted playsinline></video></div>
+      <div id="cam-a3" class="cam" style="z-index: 6"><video id="a3" class="clip shot" src="assets/shots/a3.mp4" data-start="10.8" data-duration="7.0" data-media-start="0" data-track-index="2" muted playsinline></video></div>
 
       <!-- whoosh halus pada setiap before → after -->
       <audio id="wh1" class="clip" src="assets/shots/whoosh-short.mp3" data-start="1.6" data-duration="0.57" data-track-index="8" data-volume="0.22"></audio>
       <audio id="wh2" class="clip" src="assets/shots/whoosh-short.mp3" data-start="6.1" data-duration="0.57" data-track-index="9" data-volume="0.22"></audio>
       <audio id="wh3" class="clip" src="assets/shots/whoosh-short.mp3" data-start="10.6" data-duration="0.57" data-track-index="8" data-volume="0.22"></audio>
 
-      <div id="copy" data-composition-id="copy" data-composition-src="compositions/copy.html" data-start="0" data-duration="15.1" data-track-index="5" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 40"></div>
+      <div id="copy" data-composition-id="copy" data-composition-src="compositions/copy.html" data-start="0" data-duration="17.8" data-track-index="5" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 40"></div>
       <div id="fade"></div>
     </div>
     <script>
       const tl = gsap.timeline({ paused: true });
       // the same gentle push on every shot keeps motion consistent across cuts
-      [["#cam-b1",0,1.8],["#cam-a1",1.8,2.9],["#cam-b2",4.4,1.9],["#cam-a2",6.3,2.9],["#cam-b3",8.9,1.9],["#cam-a3",10.8,4.3]].forEach(([id,t,d]) => {
-        tl.fromTo(id, { scale: 1.0 }, { scale: 1.0 + 0.012 * d, duration: d, ease: "none" }, t);
+      [["#cam-b1",0,1.8],["#cam-a1",1.8,2.9],["#cam-b2",4.4,1.9],["#cam-a2",6.3,2.9],["#cam-b3",8.9,1.9],["#cam-a3",10.8,7.0]].forEach(([id,t,d]) => {
+        tl.fromTo(id, { scale: 1.0 }, { scale: 1.0 + Math.min(0.012 * d, 0.05), duration: d, ease: "none" }, t);
       });
       // short dissolves between pairs
       tl.fromTo("#b2", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "sine.inOut" }, 4.4);
       tl.fromTo("#b3", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "sine.inOut" }, 8.9);
-      tl.fromTo("#fade", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "sine.in" }, 14.59);
+      tl.fromTo("#fade", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "sine.in" }, 17.29);
       window.__timelines["main"] = tl;
     </script>
   </body>

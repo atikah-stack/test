@@ -1,41 +1,73 @@
 <template>
   <style>
     #root { position: absolute; inset: 0; font-family: "Montserrat", sans-serif; color: #fff; --gold: #f6c33b; }
-    #hgrad { position: absolute; left: 0; top: 0; width: 1080px; height: 560px; background: linear-gradient(180deg, rgba(6,10,20,0.55) 0%, rgba(6,10,20,0.25) 60%, rgba(6,10,20,0) 100%); }
-    #head { position: absolute; left: 50%; top: 190px; width: 1000px; margin-left: -500px; text-align: center; }
-    .hl { display: block; font-weight: 900; line-height: 1.04; letter-spacing: -0.005em; white-space: nowrap; text-shadow: 0 6px 22px rgba(0,0,0,0.55), 0 2px 4px rgba(0,0,0,0.4); }
-    #h1 { font-size: 66px; }
-    #h2 { font-size: 80px; color: var(--gold); }
+    .grad { position: absolute; left: 0; top: 0; width: 1080px; height: 640px; background: linear-gradient(180deg, rgba(6,10,20,0.6) 0%, rgba(6,10,20,0.28) 60%, rgba(6,10,20,0) 100%); }
+    /* hook, styled after the reference: logo, white line, larger gold line */
+    #logo { position: absolute; left: 50%; top: 172px; width: 140px; margin-left: -70px; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.45)); }
+    #head { position: absolute; left: 50%; top: 285px; width: 1020px; margin-left: -510px; text-align: center; }
+    .hl { display: block; font-weight: 800; line-height: 1.06; letter-spacing: -0.005em; white-space: nowrap; text-shadow: 0 6px 22px rgba(0,0,0,0.55), 0 2px 4px rgba(0,0,0,0.4); }
+    #h1 { font-size: 70px; }
+    #h2 { font-size: 84px; color: var(--gold); }
+    /* location */
+    #loc { position: absolute; left: 50%; top: 1300px; width: 800px; margin-left: -400px; text-align: center; }
+    #loc-in { display: inline-flex; align-items: center; gap: 12px; padding: 12px 28px 12px 18px; border-radius: 999px; background: rgba(8,12,22,0.66); font-weight: 800; font-size: 40px; letter-spacing: 0.03em; line-height: 1; white-space: nowrap; }
+    #loc-in svg { width: 44px; height: 44px; }
+    /* labels */
     .lab { position: absolute; left: 50%; top: 1400px; width: 700px; margin-left: -350px; text-align: center; }
     .lab-in { display: inline-block; padding: 12px 28px 14px; border-radius: 999px; background: rgba(8,12,22,0.62); font-weight: 800; font-size: 40px; letter-spacing: 0.04em; line-height: 1; white-space: nowrap; }
     .lab-in.after { color: var(--gold); }
+    /* CTA */
+    #cta { position: absolute; left: 50%; top: 180px; width: 1020px; margin-left: -510px; text-align: center; }
+    #c1 { font-size: 54px; }
+    #c2 { font-size: 86px; color: var(--gold); }
   </style>
   <div id="root" data-composition-id="copy" data-width="1080" data-height="1920">
-    <div id="hgrad" class="clip" data-start="0" data-duration="4.4" data-layout-ignore></div>
+    <!-- HOOK 0–4.4 s -->
+    <div id="hgrad" class="grad clip" data-start="0" data-duration="4.4" data-layout-ignore></div>
+    <img id="logo" class="clip" src="assets/shots/logo.png" data-start="0" data-duration="4.4" alt="Mahligai Idaman" />
     <div id="head" class="clip" data-start="0" data-duration="4.4">
       <span id="h1" class="hl">DULU MASIH DIBINA</span>
       <span id="h2" class="hl">KINI DAH JADI NYATA!</span>
     </div>
+    <div id="loc" class="clip" data-start="0.5" data-duration="3.9">
+      <span id="loc-in"><svg id="pin" viewBox="0 0 24 24" aria-hidden="true"><path fill="#f6c33b" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.6A2.6 2.6 0 1 1 12 6.4a2.6 2.6 0 0 1 0 5.2z"/></svg>KOK LANAS, KELANTAN</span>
+    </div>
 
+    <!-- LABELS -->
     <div id="lb1" class="lab clip" data-start="0" data-duration="1.8"><span class="lab-in">SEMASA PEMBINAAN</span></div>
     <div id="la1" class="lab clip" data-start="1.8" data-duration="2.6"><span class="lab-in after">SELEPAS SIAP</span></div>
     <div id="lb2" class="lab clip" data-start="4.4" data-duration="1.9"><span class="lab-in">SEMASA PEMBINAAN</span></div>
     <div id="la2" class="lab clip" data-start="6.3" data-duration="2.6"><span class="lab-in after">SELEPAS SIAP</span></div>
     <div id="lb3" class="lab clip" data-start="8.9" data-duration="1.9"><span class="lab-in">SEMASA PEMBINAAN</span></div>
-    <div id="la3" class="lab clip" data-start="10.8" data-duration="4.3"><span class="lab-in after">SELEPAS SIAP</span></div>
+    <div id="la3" class="lab clip" data-start="10.8" data-duration="3.8"><span class="lab-in after">SELEPAS SIAP</span></div>
+
+    <!-- CTA 14.6 s – end -->
+    <div id="cgrad" class="grad clip" data-start="14.6" data-duration="3.2" data-layout-ignore></div>
+    <div id="cta" class="clip" data-start="14.6" data-duration="3.2">
+      <span id="c1" class="hl">FOLLOW UNTUK NANTIKAN</span>
+      <span id="c2" class="hl">FULL HOUSE TOUR</span>
+    </div>
   </div>
   <script>
     const tl = gsap.timeline({ paused: true });
-    // heading: line 1 on the "before", the gold line pops in on the first reveal
+    // hook: logo drops in, white line slides, gold line pops on the first reveal
     tl.fromTo("#hgrad", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0);
-    tl.fromTo("#h1", { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.05);
+    tl.fromTo("#logo", { opacity: 0, y: -24, scale: 0.85 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "back.out(1.8)" }, 0.0);
+    tl.fromTo("#h1", { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.38, ease: "power3.out" }, 0.18);
     tl.fromTo("#h2", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.42, ease: "back.out(2.2)" }, 1.8);
-    tl.to("#head", { opacity: 0, duration: 0.4, ease: "sine.in" }, 3.9);
+    tl.fromTo("#loc-in", { opacity: 0, y: 14, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "back.out(2)" }, 0.5);
+    tl.fromTo("#pin", { y: -10 }, { y: 0, duration: 0.45, ease: "bounce.out" }, 0.55);
+    tl.to(["#logo", "#head", "#loc"], { opacity: 0, duration: 0.4, ease: "sine.in" }, 3.9);
     tl.to("#hgrad", { opacity: 0, duration: 0.4 }, 3.9);
-    // labels: soft swap, same spot every time
+    // labels
     [["#lb1",0],["#la1",1.8],["#lb2",4.4],["#la2",6.3],["#lb3",8.9],["#la3",10.8]].forEach(([id,t]) => {
       tl.fromTo(id + " .lab-in", { opacity: 0, y: 10, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.22, ease: "back.out(2)" }, t);
     });
+    tl.to("#la3 .lab-in", { opacity: 0, duration: 0.25 }, 14.3);
+    // CTA
+    tl.fromTo("#cgrad", { opacity: 0 }, { opacity: 1, duration: 0.35 }, 14.6);
+    tl.fromTo("#c1", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.38, ease: "power3.out" }, 14.65);
+    tl.fromTo("#c2", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2.2)" }, 14.95);
     window.__timelines["copy"] = tl;
   </script>
 </template>
