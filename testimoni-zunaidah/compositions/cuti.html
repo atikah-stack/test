@@ -1,0 +1,29 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Poppins","Montserrat",sans-serif; color:#fff; }
+    .y { color:#f6c343; }
+    .hd { position:absolute; left:60px; right:60px; text-align:center; font-weight:800; line-height:1.05; text-transform:uppercase;
+      -webkit-text-stroke:3px rgba(20,12,8,.85); paint-order:stroke fill;
+      text-shadow:0 5px 16px rgba(0,0,0,.6), 0 2px 3px rgba(0,0,0,.5); }
+    .hd div { white-space:nowrap; }
+    .pill { position:absolute; display:inline-flex; align-items:center; gap:14px; padding:14px 28px; border-radius:50px; background:rgba(0,0,0,.6);
+      font-weight:800; font-size:46px; white-space:nowrap; text-transform:uppercase; }
+    .pill svg { width:48px; height:48px; color:#f6c343; }
+    .center { left:50%; transform:translateX(-50%); }
+</style>
+  <div id="root" data-composition-id="cuti" data-width="1080" data-height="1920">
+    <div id="cuti-w0" class="clip" data-start="0" data-duration="3" data-track-index="0" style="position:absolute; inset:0">
+      <div id="hc" style="position:absolute; left:50%; transform:translateX(-50%); top:310px; display:flex; flex-direction:column; align-items:center; gap:10px">
+        <div style="display:flex; gap:18px"><div style="width:62px; height:62px; color:#f6c343"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M7 2h2v2h6V2h2v2h3a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3zM5 9v10h14V9zm2 2h4v4H7z"/></svg></div><div style="width:62px; height:62px; color:#fff"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg></div></div>
+        <div class="hd" style="position:relative; left:auto; right:auto; font-size:64px">“HARI CUTI PUN</div>
+        <div class="hd y" style="position:relative; left:auto; right:auto; font-size:74px">ADA JAWAB”</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#hc", { opacity:0, scale:0.6 }, { opacity:1, scale:1, duration:0.28, ease:"back.out(2.2)" }, 0);
+    tl.to("#cuti-w0", { opacity:0, duration:0.15, ease:"sine.in" }, 2.83);
+    window.__timelines["cuti"] = tl;
+  </script>
+</template>

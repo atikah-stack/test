@@ -1,0 +1,29 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Poppins","Montserrat",sans-serif; color:#fff; }
+    .y { color:#f6c343; }
+    .hd { position:absolute; left:60px; right:60px; text-align:center; font-weight:800; line-height:1.05; text-transform:uppercase;
+      -webkit-text-stroke:3px rgba(20,12,8,.85); paint-order:stroke fill;
+      text-shadow:0 5px 16px rgba(0,0,0,.6), 0 2px 3px rgba(0,0,0,.5); }
+    .hd div { white-space:nowrap; }
+    .pill { position:absolute; display:inline-flex; align-items:center; gap:14px; padding:14px 28px; border-radius:50px; background:rgba(0,0,0,.6);
+      font-weight:800; font-size:46px; white-space:nowrap; text-transform:uppercase; }
+    .pill svg { width:48px; height:48px; color:#f6c343; }
+    .center { left:50%; transform:translateX(-50%); }
+</style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
+    <div id="hook-w0" class="clip" data-start="0" data-duration="1.95" data-track-index="0" style="position:absolute; inset:0">
+      <div id="hk" class="hd" style="top:300px">
+        <div id="hk1" style="font-size:74px">APA YANG BUAT PUAN</div>
+        <div id="hk2" class="y" style="font-size:104px">BAGI 10/10?</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#hk1", { opacity:0, scale:0.6 }, { opacity:1, scale:1, duration:0.28, ease:"back.out(2.2)" }, 0);
+    tl.fromTo("#hk2", { opacity:0, scale:0.6 }, { opacity:1, scale:1, duration:0.28, ease:"back.out(2.2)" }, 0.55);
+    tl.to("#hook-w0", { opacity:0, duration:0.15, ease:"sine.in" }, 1.78);
+    window.__timelines["hook"] = tl;
+  </script>
+</template>

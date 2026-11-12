@@ -1,0 +1,30 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Poppins","Montserrat",sans-serif; color:#fff; }
+    .y { color:#f6c343; }
+    .hd { position:absolute; left:60px; right:60px; text-align:center; font-weight:800; line-height:1.05; text-transform:uppercase;
+      -webkit-text-stroke:3px rgba(20,12,8,.85); paint-order:stroke fill;
+      text-shadow:0 5px 16px rgba(0,0,0,.6), 0 2px 3px rgba(0,0,0,.5); }
+    .hd div { white-space:nowrap; }
+    .pill { position:absolute; display:inline-flex; align-items:center; gap:14px; padding:14px 28px; border-radius:50px; background:rgba(0,0,0,.6);
+      font-weight:800; font-size:46px; white-space:nowrap; text-transform:uppercase; }
+    .pill svg { width:48px; height:48px; color:#f6c343; }
+    .center { left:50%; transform:translateX(-50%); }
+</style>
+  <div id="root" data-composition-id="sepuluh" data-width="1080" data-height="1920">
+    <div id="sepuluh-w0" class="clip" data-start="0" data-duration="4.3" data-track-index="0" style="position:absolute; inset:0">
+      <div id="tt" style="position:absolute; left:50%; transform:translateX(-50%) rotate(-6deg); top:300px; padding:6px 30px 10px; border:7px solid #f6c343; border-radius:22px; background:rgba(0,0,0,.4)">
+        <div style="font-weight:800; font-size:150px; line-height:1; color:#f6c343; -webkit-text-stroke:3px rgba(20,12,8,.8); paint-order:stroke fill; text-shadow:0 6px 18px rgba(0,0,0,.55)">10/10</div>
+      </div>
+      <div id="ph" class="pill center" style="top:540px; font-size:38px"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l3 6.9 7.4.6-5.6 4.9 1.7 7.3L12 17.8 5.5 21.7l1.7-7.3L1.6 9.5 9 8.9z"/></svg><span>PUAS HATI DENGAN <span class="y">HASIL KERJA</span></span></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#tt", { opacity:0, scale:2.2 }, { opacity:1, scale:1, duration:0.25, ease:"power4.in" }, 0);
+    tl.fromTo("#tt", { y:0 }, { y:6, duration:0.06, yoyo:true, repeat:1, immediateRender:false }, 0.25);
+    tl.fromTo("#ph", { opacity:0, scale:0.6 }, { opacity:1, scale:1, duration:0.28, ease:"back.out(2.2)" }, 1.9);
+    tl.to("#sepuluh-w0", { opacity:0, duration:0.15, ease:"sine.in" }, 4.13);
+    window.__timelines["sepuluh"] = tl;
+  </script>
+</template>

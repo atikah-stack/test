@@ -1,0 +1,34 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Poppins","Montserrat",sans-serif; color:#fff; }
+    .y { color:#f6c343; }
+    .hd { position:absolute; left:60px; right:60px; text-align:center; font-weight:800; line-height:1.05; text-transform:uppercase;
+      -webkit-text-stroke:3px rgba(20,12,8,.85); paint-order:stroke fill;
+      text-shadow:0 5px 16px rgba(0,0,0,.6), 0 2px 3px rgba(0,0,0,.5); }
+    .hd div { white-space:nowrap; }
+    .pill { position:absolute; display:inline-flex; align-items:center; gap:14px; padding:14px 28px; border-radius:50px; background:rgba(0,0,0,.6);
+      font-weight:800; font-size:46px; white-space:nowrap; text-transform:uppercase; }
+    .pill svg { width:48px; height:48px; color:#f6c343; }
+    .center { left:50%; transform:translateX(-50%); }
+</style>
+  <div id="root" data-composition-id="hubungi" data-width="1080" data-height="1920">
+    <div id="hubungi-w0" class="clip" data-start="0" data-duration="2.9" data-track-index="0" style="position:absolute; inset:0">
+      <div id="hb-w" style="position:absolute; left:0; right:0; top:330px; display:flex; flex-direction:column; align-items:center; gap:14px">
+        <div id="hb-i" style="position:relative; width:120px; height:120px; border-radius:50%; background:#25a85a; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 22px rgba(0,0,0,.35)">
+          <div style="width:64px; height:64px; color:#fff"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg></div>
+          <div id="hb-b" style="position:absolute; right:-6px; top:-6px; width:46px; height:46px; border-radius:50%; background:#e53935; border:3px solid #fff; font-weight:800; font-size:28px; display:flex; align-items:center; justify-content:center">1</div>
+        </div>
+        <div id="hb-t" class="pill" style="position:relative">TERUS BOLEH <span class="y">HUBUNGI</span></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#hb-i", { opacity:0, scale:0.6 }, { opacity:1, scale:1, duration:0.28, ease:"back.out(2.2)" }, 0);
+    tl.fromTo("#hb-b", { scale:0 }, { scale:1, duration:0.25, ease:"back.out(2.5)" }, 0.25);
+    tl.fromTo("#hb-i", { rotation:0 }, { rotation:10, duration:0.06, yoyo:true, repeat:5, ease:"sine.inOut", immediateRender:false }, 0.3);
+    tl.fromTo("#hb-t", { opacity:0, scale:0.6 }, { opacity:1, scale:1, duration:0.28, ease:"back.out(2.2)" }, 0.35);
+    tl.to("#hubungi-w0", { opacity:0, duration:0.15, ease:"sine.in" }, 2.73);
+    window.__timelines["hubungi"] = tl;
+  </script>
+</template>

@@ -1,0 +1,30 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Poppins","Montserrat",sans-serif; color:#fff; }
+    .y { color:#f6c343; }
+    .hd { position:absolute; left:60px; right:60px; text-align:center; font-weight:800; line-height:1.05; text-transform:uppercase;
+      -webkit-text-stroke:3px rgba(20,12,8,.85); paint-order:stroke fill;
+      text-shadow:0 5px 16px rgba(0,0,0,.6), 0 2px 3px rgba(0,0,0,.5); }
+    .hd div { white-space:nowrap; }
+    .pill { position:absolute; display:inline-flex; align-items:center; gap:14px; padding:14px 28px; border-radius:50px; background:rgba(0,0,0,.6);
+      font-weight:800; font-size:46px; white-space:nowrap; text-transform:uppercase; }
+    .pill svg { width:48px; height:48px; color:#f6c343; }
+    .center { left:50%; transform:translateX(-50%); }
+</style>
+  <div id="root" data-composition-id="gold" data-width="1080" data-height="1920">
+    <div id="gold-w0" class="clip" data-start="0" data-duration="1.75" data-track-index="0" style="position:absolute; inset:0">
+      <div id="gd" style="position:absolute; left:50%; transform:translateX(-50%); top:330px; padding:18px 36px 20px; border-radius:24px; background:rgba(0,0,0,.62); border:4px solid #d4a72c; text-align:center; overflow:hidden">
+        <div style="font-weight:700; font-size:32px; white-space:nowrap">PILIHAN PUAN:</div>
+        <div style="font-weight:800; font-size:70px; line-height:1.05; color:#e8bb3a; white-space:nowrap">PAKEJ GOLD</div>
+        <div id="gd-sh" style="position:absolute; top:-20px; bottom:-20px; width:90px; left:-140px; background:linear-gradient(100deg, rgba(255,255,255,0) 0%, rgba(255,240,190,.55) 50%, rgba(255,255,255,0) 100%)"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#gd", { opacity:0, y:-18, scale:0.9 }, { opacity:1, y:0, scale:1, duration:0.3, ease:"back.out(1.8)" }, 0);
+    tl.fromTo("#gd-sh", { x:0 }, { x:720, duration:0.7, ease:"power2.inOut" }, 0.3);
+    tl.to("#gold-w0", { opacity:0, duration:0.15, ease:"sine.in" }, 1.58);
+    window.__timelines["gold"] = tl;
+  </script>
+</template>

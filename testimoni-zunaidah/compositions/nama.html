@@ -1,0 +1,31 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Poppins","Montserrat",sans-serif; color:#fff; }
+    .y { color:#f6c343; }
+    .hd { position:absolute; left:60px; right:60px; text-align:center; font-weight:800; line-height:1.05; text-transform:uppercase;
+      -webkit-text-stroke:3px rgba(20,12,8,.85); paint-order:stroke fill;
+      text-shadow:0 5px 16px rgba(0,0,0,.6), 0 2px 3px rgba(0,0,0,.5); }
+    .hd div { white-space:nowrap; }
+    .pill { position:absolute; display:inline-flex; align-items:center; gap:14px; padding:14px 28px; border-radius:50px; background:rgba(0,0,0,.6);
+      font-weight:800; font-size:46px; white-space:nowrap; text-transform:uppercase; }
+    .pill svg { width:48px; height:48px; color:#f6c343; }
+    .center { left:50%; transform:translateX(-50%); }
+</style>
+  <div id="root" data-composition-id="nama" data-width="1080" data-height="1920">
+    <div id="nama-w0" class="clip" data-start="0" data-duration="3.6" data-track-index="0" style="position:absolute; inset:0">
+      <div id="nm" style="position:absolute; left:70px; top:1090px; display:flex; align-items:stretch; border-radius:16px; overflow:hidden; box-shadow:0 10px 26px rgba(0,0,0,.35)">
+        <div style="width:12px; background:#f6c343"></div>
+        <div style="background:#7a1f2b; padding:16px 30px 18px 22px">
+          <div style="font-weight:800; font-size:46px; line-height:1.1; white-space:nowrap">PN ZUNAIDAH ISHAK</div>
+          <div style="font-weight:600; font-size:30px; color:#f6c343; margin-top:4px; white-space:nowrap">Klien Mahligai Idaman</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#nm", { opacity:0, x:-60 }, { opacity:1, x:0, duration:0.4, ease:"power3.out" }, 0);
+    tl.to("#nama-w0", { opacity:0, duration:0.15, ease:"sine.in" }, 3.43);
+    window.__timelines["nama"] = tl;
+  </script>
+</template>
