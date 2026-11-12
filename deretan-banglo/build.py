@@ -158,8 +158,8 @@ count("#n7244", 7244, 12.80, 1.2)
 
 # Scene 4: location, then the three nearby points one by one on the verified map
 head("g-loc", 17.50, 19.30, "LOKASI STRATEGIK", "KG HUTAN PUTIH, MACHANG", ysize=80)
-BOXES.append(("near", 330, 90))
-for i, (txt, at) in enumerate([("MASJID BERDEKATAN", 19.45), ("KLINIK BERDEKATAN", 20.65), ("BERHAMPIRAN BANDAR MACHANG", 21.69)]):
+BOXES.append(("near", 330, 150))
+for i, (txt, at) in enumerate([("MASJID BERDEKATAN", 19.45), ("KLINIK BERDEKATAN", 20.65), ("BERHAMPIRAN<br/><em>BANDAR MACHANG</em>", 21.69)]):
     end = [20.65, 21.69, 23.62][i]
     H.append(f'    <div class="clip chip" id="ch{i}" data-start="{at}" data-duration="{round(end - at, 3)}">{PIN}<span>{txt}</span></div>')
     tin(f"#ch{i}", at, "up", 0.4)
@@ -213,6 +213,8 @@ CSS = f'''
     .lotpin {{ position: absolute; transform: translate(-50%, -50%) rotateX(-42deg); white-space: nowrap; font-weight: 900; font-size: 54px; color: {WHT}; {SH} }}
     .chip {{ position: absolute; left: 0; right: 0; top: 340px; display: flex; align-items: center; justify-content: center; gap: 16px; }}
     .chip span {{ font-weight: 800; font-size: 52px; color: {WHT}; white-space: nowrap; {SH} }}
+    .chip span em {{ font-style: normal; color: {YEL}; }}
+    .chip span {{ text-align: center; line-height: 1.08; }}
     .chip svg {{ filter: drop-shadow(0 4px 8px rgba(0,0,0,.5)); }}
     .subs {{ position: absolute; left: 60px; right: 60px; top: 1350px; height: 170px; }}
     .cue {{ position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; }}
