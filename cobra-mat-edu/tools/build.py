@@ -2,6 +2,8 @@ import sys, json
 sys.path.insert(0,'tools'); from timing import M, VO_END, TAIL
 SEG=json.load(open('tools/segs.json'))
 END=round(M(VO_END)+TAIL,3)
+OUT=5.0
+TOTAL=round(END+OUT,3)
 f=lambda x: round(x,3)
 
 # ---------- index.html ----------
@@ -34,7 +36,7 @@ open('index.html','w').write(f'''<!doctype html>
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="{END}" data-width="1080" data-height="1920">
+    <div id="root" data-composition-id="main" data-start="0" data-duration="{TOTAL}" data-width="1080" data-height="1920">
 {chr(10).join(vids)}
 
       <!-- VO asal (jeda dipendekkan) -->
@@ -43,6 +45,9 @@ open('index.html','w').write(f'''<!doctype html>
 {aud}
 
       <div id="gfx" data-composition-id="gfx" data-composition-src="compositions/gfx.html" data-start="0" data-duration="{END}" data-track-index="5" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 40"></div>
+      <div id="outro" data-composition-id="outro" data-composition-src="compositions/outro.html" data-start="{END}" data-duration="{OUT}" data-track-index="7" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 60"></div>
+      <audio id="fx-out" class="clip" src="assets/whoosh.mp3" data-start="{f(END-0.2)}" data-duration="1.2" data-track-index="12" data-volume="0.18"></audio>
+      <audio id="fx-out2" class="clip" src="assets/pop.mp3" data-start="{f(END+2.5)}" data-duration="0.72" data-track-index="12" data-volume="0.28"></audio>
       <div id="subs" data-composition-id="subs" data-composition-src="compositions/subs.html" data-start="0" data-duration="{END}" data-track-index="6" data-track-kind="captions" data-width="1080" data-height="1920" style="z-index: 50"></div>
       <div id="fade"></div>
     </div>
@@ -53,7 +58,7 @@ open('index.html','w').write(f'''<!doctype html>
         const z = i === 0 ? 0.1 : Math.min(0.012 * d, 0.05);
         tl.fromTo(id, {{ scale: i % 2 ? 1.0 + z : 1.0 }}, {{ scale: i % 2 ? 1.0 : 1.0 + z, duration: d, ease: "none" }}, t);
       }});
-      tl.fromTo("#fade", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.5, ease: "sine.in" }}, {f(END-0.51)});
+      tl.fromTo("#fade", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.5, ease: "sine.in" }}, {f(TOTAL-0.51)});
       window.__timelines["main"] = tl;
     </script>
   </body>

@@ -3,9 +3,10 @@
     #root { position: absolute; inset: 0; font-family: "Montserrat", sans-serif; color: #fff; --y: #ffd23f; --org: #f27a21; }
     .abs { position: absolute; }
     .center { position: absolute; left: 50%; width: 1000px; margin-left: -500px; text-align: center; }
-    .hd { display: block; font-weight: 900; line-height: 1.05; white-space: nowrap; -webkit-text-stroke: 10px rgba(10,10,10,0.9); paint-order: stroke fill; text-shadow: 0 8px 24px rgba(0,0,0,0.5); }
-    .y { color: var(--y); }
-    .grad { position: absolute; left: 0; top: 0; width: 1080px; height: 720px; background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0) 100%); }
+    .hd { display: block; font-weight: 800; line-height: 1.04; letter-spacing: -0.005em; white-space: nowrap; text-shadow: 0 6px 24px rgba(0,0,0,0.6), 0 2px 5px rgba(0,0,0,0.45); }
+    .y { color: #f6c33b; }
+    #logo { position: absolute; left: 50%; top: 168px; width: 132px; margin-left: -66px; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5)); }
+        .grad { position: absolute; left: 0; top: 0; width: 1080px; height: 720px; background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0) 100%); }
     .dim { position: absolute; inset: 0; background: rgba(8,10,16,0.62); }
     .pill { display: inline-flex; align-items: center; gap: 14px; padding: 14px 32px; border-radius: 999px; background: rgba(10,12,18,0.78); font-weight: 800; font-size: 48px; line-height: 1; white-space: nowrap; box-shadow: 0 10px 30px rgba(0,0,0,0.35); }
     .pill.yl { background: var(--y); color: #111; }
@@ -19,11 +20,12 @@
 
     <!-- 1 · HOOK -->
     <div id="hgrad" class="grad clip" data-start="0.0" data-duration="3.776" data-layout-ignore></div>
-    <div id="head" class="center clip" style="top: 250px" data-start="0.0" data-duration="3.776">
-      <span id="hd1" class="hd" style="font-size: 70px">LANTAI DAH CANTIK,</span>
-      <span id="hd2" class="hd y" style="font-size: 76px">KENAPA TUTUP LAGI?</span>
+    <img id="logo" class="clip" src="assets/logo.png" alt="Mahligai Idaman" data-start="0.0" data-duration="3.776" />
+    <div id="head" class="center clip" style="top: 275px" data-start="0.0" data-duration="3.776">
+      <span id="hd1" class="hd" style="font-size: 72px">LANTAI DAH CANTIK,</span>
+      <span id="hd2" class="hd y" style="font-size: 80px">KENAPA TUTUP LAGI?</span>
     </div>
-    <svg id="arrow" class="abs clip" style="left: 470px; top: 760px; width: 140px; height: 200px" data-start="0.9" data-duration="2.876" viewBox="0 0 140 200" aria-hidden="true">
+    <svg id="arrow" class="abs clip" style="left: 470px; top: 800px; width: 140px; height: 200px" data-start="0.9" data-duration="2.876" viewBox="0 0 140 200" aria-hidden="true">
       <path d="M70 8 V150" stroke="#ffd23f" stroke-width="20" stroke-linecap="round"/><path d="M18 120 L70 188 L122 120" fill="none" stroke="#ffd23f" stroke-width="20" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
 
@@ -117,6 +119,7 @@
     const pop = (sel, t, from) => tl.fromTo(sel, Object.assign({ opacity: 0, scale: 0.6 }, from || {}), { opacity: 1, scale: 1, y: 0, x: 0, duration: 0.36, ease: "back.out(2.2)" }, t);
     // 1 hook
     tl.fromTo("#hgrad", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 0);
+    tl.fromTo("#logo", { opacity: 0, y: -24, scale: 0.85 }, { opacity: 1, y: 0, scale: 1, duration: 0.42, ease: "back.out(1.8)" }, 0);
     pop("#hd1", 0.05, { y: -20 });
     pop("#hd2", 0.45);
     tl.fromTo("#arrow", { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.9);
