@@ -174,7 +174,7 @@ def count(sel, to, at, d=0.9, prefix=""):
 
 
 # 1. hook
-head("g-hook", T(2.65), T(7.70), "PAKEJ TANAH BESERTA", "BINA RUMAH")
+head("g-hook", T(2.65), T(7.70), "PAKEJ BINA RUMAH", "BESERTA TANAH", ysize=100)
 
 # 2. location (over the aerial)
 head("g-loc", T(14.36), T(15.40), "LOKASI PILIHAN ANDA", "MACHANG, KELANTAN",
