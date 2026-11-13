@@ -1,0 +1,144 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: Montserrat, sans-serif; color: #FFFFFF; }
+    .grp { position: absolute; left: 30px; right: 30px; display: flex; flex-direction: column; align-items: center; }
+    .hw { font-weight: 800; line-height: 1.06; text-align: center; white-space: nowrap; text-transform: uppercase; color: #FFFFFF; text-shadow: 0 3px 6px rgba(0,0,0,.5), 0 10px 28px rgba(0,0,0,.55); }
+    .hy { font-weight: 900; line-height: 1.0; letter-spacing: -.02em; text-align: center; white-space: nowrap; text-transform: uppercase; color: #FFD43B; text-shadow: 0 3px 6px rgba(0,0,0,.5), 0 10px 28px rgba(0,0,0,.55); }
+    .hs { margin-top: 12px; font-weight: 700; font-size: 38px; letter-spacing: .12em; color: #FFFFFF; text-shadow: 0 3px 6px rgba(0,0,0,.5), 0 10px 28px rgba(0,0,0,.55); }
+    .rule { width: 300px; height: 6px; margin-top: 16px; border-radius: 3px; background: #FFD43B; transform-origin: 50% 50%; box-shadow: 0 4px 14px rgba(0,0,0,.4); }
+    .rule.wide { width: 640px; }
+    .hlw { position: relative; margin-top: 12px; padding: 4px 26px 6px; }
+    .hlbg { position: absolute; inset: 0; border-radius: 12px; background: rgba(14,20,29,.72); transform-origin: 0 50%; z-index: -1; }
+    .loc { display: flex; align-items: center; gap: 12px; margin: 14px 0 6px; }
+    .loc span { font-weight: 800; font-size: 40px; letter-spacing: .04em; color: #FFFFFF; text-shadow: 0 3px 6px rgba(0,0,0,.5), 0 10px 28px rgba(0,0,0,.55); }
+    .loc svg { filter: drop-shadow(0 4px 8px rgba(0,0,0,.5)); }
+    .card { position: absolute; left: 40px; right: 40px; top: -24px; bottom: -6px; border-radius: 22px; background: rgba(12,18,28,.78); z-index: -1; }
+    #g5 { isolation: isolate; }
+    .kmchip { display: flex; align-items: center; gap: 14px; margin-top: 18px; padding: 12px 26px 12px 18px; border-radius: 999px;
+      background: rgba(14,20,29,.78); border: 3px solid #FFD43B; }
+    .kmchip span { font-weight: 700; font-size: 40px; color: #FFFFFF; white-space: nowrap; }
+    .kmchip b { color: #FFD43B; font-weight: 900; }
+    .ckrow { display: flex; align-items: center; gap: 20px; width: 960px; margin-bottom: 18px; padding: 16px 24px; border-radius: 16px;
+      background: rgba(14,20,29,.72); }
+    .ckb { width: 62px; height: 62px; border-radius: 50%; background: #FFD43B; display: flex; align-items: center; justify-content: center; flex: none; }
+    .ckrow span { font-weight: 800; font-size: 38px; color: #FFFFFF; white-space: nowrap; }
+    .ckrow b { color: #FFD43B; font-weight: 900; }
+    .scn { position: absolute; inset: 0; overflow: hidden; background: #0E141D; }
+    #routeimg { position: absolute; inset: 0; width: 1080px; height: 1920px; object-fit: cover; transform-origin: 50% 60%; }
+    .scn3 { position: absolute; inset: 0; overflow: hidden; background: #0E141D; perspective: 1600px; }
+    .tilt { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: 50% 62%; transform-style: preserve-3d; }
+    .tilt img { position: absolute; inset: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    .lotsvg { position: absolute; inset: 0; }
+    .shadow { filter: blur(14px); transform: translate(10px, 14px); }
+    .extw { position: absolute; inset: 0; transform-style: preserve-3d; transform-origin: 50% 50%; }
+    .lotpin { position: absolute; transform: translate(-50%, -50%) translateZ(60px) rotateX(-46deg); text-align: center; white-space: nowrap; }
+    .lp-s { font-weight: 900; font-size: 58px; color: #FFFFFF; padding: 8px 22px; border-radius: 12px; background: rgba(14,20,29,.7); border: 3px solid #FFD43B; }
+  </style>
+  <div id="root" data-composition-id="gfx" data-width="1080" data-height="1920" data-duration="38.0">
+    <div class="clip scn3" id="s-end" data-start="35.0" data-duration="3.0">
+      <div class="tilt" id="e-tilt"><img src="assets/img/lot-top.jpg" alt="" />
+        <svg class="lotsvg" viewBox="0 0 1080 1920" width="1080" height="1920"><polygon class="shadow" points="335,753 738,753 738,1148 335,1148" fill="#000" fill-opacity=".35"/></svg>
+        <div class="extw" id="e-ext"><svg class="lotsvg ext" viewBox="0 0 1080 1920" width="1080" height="1920" style="transform: translateZ(4px)"><polygon points="335,753 738,753 738,1148 335,1148" fill="#FFD43B" fill-opacity="0.07" stroke="#FFD43B" stroke-opacity="0.35" stroke-width="2"/></svg><svg class="lotsvg ext" viewBox="0 0 1080 1920" width="1080" height="1920" style="transform: translateZ(9px)"><polygon points="335,753 738,753 738,1148 335,1148" fill="#FFD43B" fill-opacity="0.07" stroke="#FFD43B" stroke-opacity="0.35" stroke-width="2"/></svg><svg class="lotsvg ext" viewBox="0 0 1080 1920" width="1080" height="1920" style="transform: translateZ(14px)"><polygon points="335,753 738,753 738,1148 335,1148" fill="#FFD43B" fill-opacity="0.07" stroke="#FFD43B" stroke-opacity="0.35" stroke-width="2"/></svg><svg class="lotsvg ext" viewBox="0 0 1080 1920" width="1080" height="1920" style="transform: translateZ(19px)"><polygon points="335,753 738,753 738,1148 335,1148" fill="#FFD43B" fill-opacity="0.07" stroke="#FFD43B" stroke-opacity="0.35" stroke-width="2"/></svg><svg class="lotsvg ext" viewBox="0 0 1080 1920" width="1080" height="1920" style="transform: translateZ(24px)"><polygon points="335,753 738,753 738,1148 335,1148" fill="#FFD43B" fill-opacity="0.07" stroke="#FFD43B" stroke-opacity="0.35" stroke-width="2"/></svg><svg class="lotsvg ext" viewBox="0 0 1080 1920" width="1080" height="1920" style="transform: translateZ(29px)"><polygon points="335,753 738,753 738,1148 335,1148" fill="#FFD43B" fill-opacity="0.07" stroke="#FFD43B" stroke-opacity="0.35" stroke-width="2"/></svg></div>
+        <svg class="lotsvg top" viewBox="0 0 1080 1920" width="1080" height="1920" style="transform: translateZ(34px)">
+          <polygon id="e-fill" points="335,753 738,753 738,1148 335,1148" fill="#FFD43B" fill-opacity="0.18"/>
+          <polygon id="e-line" points="335,753 738,753 738,1148 335,1148" fill="none" stroke="#FFD43B" stroke-width="8" stroke-linejoin="round"/>
+        </svg>
+        <div class="lotpin" id="e-pin" style="left:536px; top:950px"><div class="lp-s">7,244 KPS</div></div>
+      </div>
+    </div>
+    <div class="clip scn" id="s-route" data-start="20.0" data-duration="5.0"><img id="routeimg" src="assets/img/lot-map.jpg" alt="" /></div>
+    <div class="clip scn3" id="s-map" data-start="7.4" data-duration="7.6">
+      <div class="tilt" id="m-tilt"><img src="assets/img/lot-top.jpg" alt="" />
+        <svg class="lotsvg" viewBox="0 0 1080 1920" width="1080" height="1920"><polygon class="shadow" points="335,753 738,753 738,1148 335,1148" fill="#000" fill-opacity=".35"/></svg>
+        <div class="extw" id="m-ext"><svg class="lotsvg ext" viewBox="0 0 1080 1920" width="1080" height="1920" style="transform: translateZ(4px)"><polygon points="335,753 738,753 738,1148 335,1148" fill="#FFD43B" fill-opacity="0.07" stroke="#FFD43B" stroke-opacity="0.35" stroke-width="2"/></svg><svg class="lotsvg ext" viewBox="0 0 1080 1920" width="1080" height="1920" style="transform: translateZ(9px)"><polygon points="335,753 738,753 738,1148 335,1148" fill="#FFD43B" fill-opacity="0.07" stroke="#FFD43B" stroke-opacity="0.35" stroke-width="2"/></svg><svg class="lotsvg ext" viewBox="0 0 1080 1920" width="1080" height="1920" style="transform: translateZ(14px)"><polygon points="335,753 738,753 738,1148 335,1148" fill="#FFD43B" fill-opacity="0.07" stroke="#FFD43B" stroke-opacity="0.35" stroke-width="2"/></svg><svg class="lotsvg ext" viewBox="0 0 1080 1920" width="1080" height="1920" style="transform: translateZ(19px)"><polygon points="335,753 738,753 738,1148 335,1148" fill="#FFD43B" fill-opacity="0.07" stroke="#FFD43B" stroke-opacity="0.35" stroke-width="2"/></svg><svg class="lotsvg ext" viewBox="0 0 1080 1920" width="1080" height="1920" style="transform: translateZ(24px)"><polygon points="335,753 738,753 738,1148 335,1148" fill="#FFD43B" fill-opacity="0.07" stroke="#FFD43B" stroke-opacity="0.35" stroke-width="2"/></svg><svg class="lotsvg ext" viewBox="0 0 1080 1920" width="1080" height="1920" style="transform: translateZ(29px)"><polygon points="335,753 738,753 738,1148 335,1148" fill="#FFD43B" fill-opacity="0.07" stroke="#FFD43B" stroke-opacity="0.35" stroke-width="2"/></svg></div>
+        <svg class="lotsvg top" viewBox="0 0 1080 1920" width="1080" height="1920" style="transform: translateZ(34px)">
+          <polygon id="m-fill" points="335,753 738,753 738,1148 335,1148" fill="#FFD43B" fill-opacity="0.18"/>
+          <polygon id="m-line" points="335,753 738,753 738,1148 335,1148" fill="none" stroke="#FFD43B" stroke-width="8" stroke-linejoin="round"/>
+        </svg>
+        <div class="lotpin" id="m-pin" style="left:536px; top:950px"><div class="lp-s">7,244 KPS</div></div>
+      </div>
+    </div>
+    <div class="grp clip" id="g1" data-start="0.3" data-duration="3.55" style="top:340px"><div class="hw" id="g1w" style="font-size:58px">PAKEJ BINA RUMAH</div><div class="hy" id="g1y" style="font-size:94px">BESERTA TANAH</div><div class="rule" id="g1r"></div><div class="hs" id="g1s">KHAS UNTUK ORANG KELANTAN</div></div>
+    <div class="grp clip" id="g2" data-start="4.2" data-duration="3.1" style="top:360px"><div class="hw" id="g2w" style="font-size:60px">PENJAWAT AWAM YANG<br/>NAK BINA RUMAH</div><div class="hlw"><div class="hlbg" id="g2bg"></div><div class="hy" id="g2y" style="font-size:71px">TAPI TAKDE TANAH?</div></div></div>
+    <div class="grp clip" id="g3" data-start="11.4" data-duration="3.4" style="top:330px"><div class="loc" id="g3l"><svg viewBox="0 0 48 64" width="40" height="52"><path d="M24 1C11.3 1 1 11.3 1 24c0 16.5 23 39 23 39s23-22.5 23-39C47 11.3 36.7 1 24 1z" fill="#FFD43B"/><circle cx="24" cy="24" r="8.5" fill="#0E141D"/></svg><span>KG HUTAN PUTIH, MACHANG</span></div><div class="hw" id="g3w" style="font-size:52px">KELUASAN TANAH</div><div class="hy" id="g3y" style="font-size:124px"><span id="n7244">7,244</span> KPS</div></div>
+    <div class="grp clip" id="g4a" data-start="15.4" data-duration="1.9" style="top:360px"><div class="hw" id="g4aw" style="font-size:54px">BOLEH BINA RUMAH BERMULA</div><div class="hy" id="g4ay" style="font-size:124px"><span id="n1400">1,400</span> KPS</div></div>
+    <div class="grp clip" id="g4b" data-start="17.45" data-duration="2.4" style="top:350px"><div class="hw" id="g4bw" style="font-size:58px">HARGA PAKEJ BERMULA</div><div class="hy" id="g4by" style="font-size:135px"><span id="nrm">RM420,000</span></div><div class="rule wide" id="g4br"></div></div>
+    <div class="grp clip" id="g5" data-start="20.3" data-duration="4.5" style="top:300px"><div class="card" id="g5c"></div><div class="hw" id="g5w" style="font-size:60px">LOKASI STRATEGIK</div><div class="hy" id="g5y" style="font-size:94px">&amp; MUDAH AKSES</div><div class="kmchip" id="g5k"><svg viewBox="0 0 48 64" width="40" height="52"><path d="M24 1C11.3 1 1 11.3 1 24c0 16.5 23 39 23 39s23-22.5 23-39C47 11.3 36.7 1 24 1z" fill="#FFD43B"/><circle cx="24" cy="24" r="8.5" fill="#0E141D"/></svg><span><b>4 KM</b> DARI BANDAR MACHANG</span></div></div>
+    <div class="grp clip" id="g6" data-start="25.3" data-duration="6.55" style="top:380px"><div class="ckrow" id="ck0"><div class="ckb"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#0E141D" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path class="ck" d="M5 12.5 10 17 19 7"/></svg></div><span>TANAH <b>SEDIA</b> UNTUK BINA RUMAH</span></div><div class="ckrow" id="ck1"><div class="ckb"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#0E141D" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path class="ck" d="M5 12.5 10 17 19 7"/></svg></div><span>ADA <b>RIZAB JALAN TAR</b></span></div><div class="ckrow" id="ck2"><div class="ckb"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="#0E141D" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path class="ck" d="M5 12.5 10 17 19 7"/></svg></div><span>SISTEM <b>SALIRAN LONGKANG</b> LENGKAP</span></div></div>
+    <div class="grp clip" id="g7" data-start="32.3" data-duration="2.55" style="top:360px"><div class="hw" id="g7w" style="font-size:60px">KAWASAN KEJIRANAN</div><div class="hy" id="g7y" style="font-size:124px">SEDIA ADA</div></div>
+    <div class="grp clip" id="g8" data-start="35.3" data-duration="2.7" style="top:330px"><div class="hw" id="g8w" style="font-size:64px">ANDA BERMINAT?</div><div class="hy" id="g8y" style="font-size:81px">HUBUNGI SEGERA!</div><div class="rule" id="g8r"></div><div class="loc" id="g8l"><svg viewBox="0 0 48 64" width="40" height="52"><path d="M24 1C11.3 1 1 11.3 1 24c0 16.5 23 39 23 39s23-22.5 23-39C47 11.3 36.7 1 24 1z" fill="#FFD43B"/><circle cx="24" cy="24" r="8.5" fill="#0E141D"/></svg><span>KG HUTAN PUTIH, MACHANG</span></div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#g1w", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power3.out" }, 0.35);
+    tl.set("#g1y", { opacity: 0 }, 0);
+    tl.fromTo("#g1y", { opacity: 0, scale: 0.86 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "power3.out" }, 0.6);
+    tl.fromTo("#g1r", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 1.25);
+    tl.set("#g1s", { opacity: 0 }, 0);
+    tl.fromTo("#g1s", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power3.out" }, 1.45);
+    tl.to("#g1", { opacity: 0, y: -16, duration: 0.3, ease: "power2.in" }, 3.6);
+    tl.fromTo("#g2w", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power3.out" }, 4.25);
+    tl.set("#g2y", { opacity: 0 }, 0);
+    tl.fromTo("#g2y", { opacity: 0, scale: 0.86 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power3.out" }, 4.95);
+    tl.fromTo("#g2bg", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "power3.out" }, 5.25);
+    tl.to("#g2", { opacity: 0, y: -16, duration: 0.3, ease: "power2.in" }, 7.05);
+    tl.fromTo("#s-map", { opacity: 0 }, { opacity: 1, duration: 0.35 }, 7.4);
+    tl.fromTo("#m-tilt", { rotationX: 0, rotationZ: 0, scale: 1.05, y: 0 }, { rotationX: 46, rotationZ: -6, scale: 1.34, y: -70, duration: 2.6, ease: "power2.inOut" }, 7.5);
+    tl.to("#m-tilt", { rotationZ: 4, duration: 4.9, ease: "sine.inOut" }, 10.1);
+    tl.fromTo("#m-line", { strokeDasharray: 1900, strokeDashoffset: 1900 }, { strokeDashoffset: 0, duration: 1.6, ease: "power2.inOut" }, 8.4);
+    tl.fromTo("#m-ext", { opacity: 0, scaleZ: 0 }, { opacity: 1, scaleZ: 1, duration: 0.8, ease: "power3.out" }, 10.0);
+    tl.fromTo("#m-fill", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 10.3);
+    tl.fromTo("#m-pin", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 10.6);
+    tl.fromTo("#m-line", { filter: "drop-shadow(0 0 0px #FFD43B)" }, { filter: "drop-shadow(0 0 10px #FFD43B)", duration: 0.8, yoyo: true, repeat: 3, ease: "sine.inOut" }, 10.4);
+    tl.fromTo("#g3l", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power3.out" }, 11.45);
+    tl.set("#g3w", { opacity: 0 }, 0);
+    tl.fromTo("#g3w", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power3.out" }, 11.75);
+    tl.set("#g3y", { opacity: 0 }, 0);
+    tl.fromTo("#g3y", { opacity: 0, scale: 0.86 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power3.out" }, 12.0);
+    (() => { const o = { v: 0 }; tl.fromTo(o, { v: 0 }, { v: 7244, duration: 1.2, ease: "power3.out", onUpdate: () => { document.querySelector("#n7244").textContent = "" + Math.round(o.v).toLocaleString("en-US"); } }, 12.0); })();
+    tl.to("#g3", { opacity: 0, y: -16, duration: 0.3, ease: "power2.in" }, 14.6);
+    tl.fromTo("#g4aw", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power3.out" }, 15.45);
+    tl.set("#g4ay", { opacity: 0 }, 0);
+    tl.fromTo("#g4ay", { opacity: 0, scale: 0.86 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power3.out" }, 15.65);
+    (() => { const o = { v: 0 }; tl.fromTo(o, { v: 0 }, { v: 1400, duration: 1.0, ease: "power3.out", onUpdate: () => { document.querySelector("#n1400").textContent = "" + Math.round(o.v).toLocaleString("en-US"); } }, 15.65); })();
+    tl.to("#g4a", { opacity: 0, y: -16, duration: 0.3, ease: "power2.in" }, 17.1);
+    tl.fromTo("#g4bw", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power3.out" }, 17.5);
+    tl.set("#g4by", { opacity: 0 }, 0);
+    tl.fromTo("#g4by", { opacity: 0, scale: 0.86 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "power3.out" }, 17.75);
+    (() => { const o = { v: 0 }; tl.fromTo(o, { v: 0 }, { v: 420000, duration: 1.1, ease: "power3.out", onUpdate: () => { document.querySelector("#nrm").textContent = "RM" + Math.round(o.v).toLocaleString("en-US"); } }, 17.75); })();
+    tl.fromTo("#g4br", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, 18.6);
+    tl.to("#g4b", { opacity: 0, y: -16, duration: 0.3, ease: "power2.in" }, 19.6);
+    tl.fromTo("#s-route", { opacity: 0 }, { opacity: 1, duration: 0.35 }, 20.0);
+    tl.fromTo("#routeimg", { scale: 1.12 }, { scale: 1.0, duration: 5.0, ease: "power1.out" }, 20.0);
+    tl.fromTo("#g5c", { opacity: 0 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "power3.out" }, 20.3);
+    tl.fromTo("#g5w", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power3.out" }, 20.35);
+    tl.set("#g5y", { opacity: 0 }, 0);
+    tl.fromTo("#g5y", { opacity: 0, scale: 0.86 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power3.out" }, 20.6);
+    tl.set("#g5k", { opacity: 0 }, 0);
+    tl.fromTo("#g5k", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power3.out" }, 21.8);
+    tl.to("#g5", { opacity: 0, y: -16, duration: 0.3, ease: "power2.in" }, 24.55);
+    tl.set("#ck0", { opacity: 0 }, 0);
+    tl.fromTo("#ck0", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power3.out" }, 25.4);
+    tl.fromTo("#ck0 .ck", { strokeDasharray: 30, strokeDashoffset: 30 }, { strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }, 25.599999999999998);
+    tl.set("#ck1", { opacity: 0 }, 0);
+    tl.fromTo("#ck1", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power3.out" }, 27.7);
+    tl.fromTo("#ck1 .ck", { strokeDasharray: 30, strokeDashoffset: 30 }, { strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }, 27.9);
+    tl.set("#ck2", { opacity: 0 }, 0);
+    tl.fromTo("#ck2", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power3.out" }, 30.0);
+    tl.fromTo("#ck2 .ck", { strokeDasharray: 30, strokeDashoffset: 30 }, { strokeDashoffset: 0, duration: 0.4, ease: "power2.out" }, 30.2);
+    tl.to("#g6", { opacity: 0, y: -16, duration: 0.3, ease: "power2.in" }, 31.6);
+    tl.fromTo("#g7w", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power3.out" }, 32.35);
+    tl.set("#g7y", { opacity: 0 }, 0);
+    tl.fromTo("#g7y", { opacity: 0, scale: 0.86 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power3.out" }, 32.6);
+    tl.to("#g7", { opacity: 0, y: -16, duration: 0.3, ease: "power2.in" }, 34.6);
+    tl.fromTo("#s-end", { opacity: 0 }, { opacity: 1, duration: 0.35 }, 35.0);
+    tl.fromTo("#e-tilt", { rotationX: 46, rotationZ: 4, scale: 1.34, y: -70 }, { rotationX: 46, rotationZ: -2, scale: 1.42, y: -80, duration: 3.0, ease: "sine.inOut" }, 35.0);
+    tl.fromTo("#g8w", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power3.out" }, 35.35);
+    tl.set("#g8y", { opacity: 0 }, 0);
+    tl.fromTo("#g8y", { opacity: 0, scale: 0.86 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "power3.out" }, 35.6);
+    tl.fromTo("#g8r", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 36.0);
+    tl.set("#g8l", { opacity: 0 }, 0);
+    tl.fromTo("#g8l", { opacity: 0, y: 30 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power3.out" }, 36.2);
+    window.__timelines["gfx"] = tl;
+  </script>
+</template>
