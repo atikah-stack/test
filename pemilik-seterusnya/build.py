@@ -147,7 +147,7 @@ def fit(text, size, k, maxw=880):
 def head(hid, s, e, white, yellow, top=330, wsize=56, ysize=106, pre="", post=""):
     BOXES.append((hid, top, 330))
     H.append(f'    <div class="grp clip" id="{hid}" data-start="{round(s, 3)}" data-duration="{round(e - s, 3)}" style="top:{top}px">{pre}'
-             f'<div class="hw" id="{hid}-w" style="font-size:{fit(white, wsize, 0.66)}px">{white}</div>'
+             f'<div class="hw" id="{hid}-w" style="font-size:{fit(white, min(ysize, 112), 0.70)}px">{white}</div>'
              f'<div class="hy" id="{hid}-y" style="font-size:{fit(yellow, ysize, 0.72)}px">{yellow}</div>{post}</div>')
     tin(f"#{hid}-w", s); hide(f"#{hid}-y"); tin(f"#{hid}-y", s + 0.2, "scale")
     J.append(f'tl.to("#{hid}", {{ opacity: 0, y: -14, duration: 0.25, ease: "power2.in" }}, {round(e - 0.25, 3)});')
@@ -209,10 +209,10 @@ count("#n7244", 7244, T(19.57), 1.2)
 
 # 04 house size (drone) then price (talent)
 head("g4a", T(26.45), T(28.60), "KELUASAN RUMAH BERMULA", '<span id="n1400">1,400</span> KPS', ysize=124)
-count("#n1400", 1400, T(27.29), 0.8)
+count("#n1400", 1400, T(26.45) + 0.2, 0.8)
 head("g4b", T(28.95), T(32.46), "HARGA BERMULA", '<span id="nrm">RM420,000</span>', ysize=150, wsize=60,
      post='<div class="rule wide" id="g4r"></div>')
-count("#nrm", 420000, T(30.39), 1.1, "RM")
+count("#nrm", 420000, T(28.95) + 0.2, 1.1, "RM")
 J.append(f'tl.fromTo("#g4r", {{ scaleX: 0 }}, {{ scaleX: 1, duration: 0.5, ease: "power3.out" }}, {T(31.2)});')
 
 # 05 infrastructure (talent stands at the drain, then on the tar road)
@@ -275,7 +275,7 @@ SH = "text-shadow: 0 3px 6px rgba(0,0,0,.5), 0 10px 28px rgba(0,0,0,.55);"
 CSS = f'''
     #root {{ position: absolute; inset: 0; overflow: hidden; font-family: Montserrat, sans-serif; color: {WHT}; }}
     .grp {{ position: absolute; left: 30px; right: 30px; display: flex; flex-direction: column; align-items: center; }}
-    .hw {{ font-weight: 800; line-height: 1.06; text-align: center; white-space: nowrap; text-transform: uppercase; color: {WHT}; {SH} }}
+    .hw {{ font-weight: 900; line-height: 1.02; letter-spacing: -.01em; text-align: center; white-space: nowrap; text-transform: uppercase; color: {WHT}; {SH} }}
     .hy {{ font-weight: 900; line-height: 1.0; letter-spacing: -.02em; text-align: center; white-space: nowrap; text-transform: uppercase; color: {YEL}; {SH} }}
     .hs {{ margin-top: 10px; font-weight: 700; font-size: 34px; letter-spacing: .08em; color: {WHT}; {SH} }}
     .rule {{ width: 280px; height: 6px; margin-top: 14px; border-radius: 3px; background: {YEL}; box-shadow: 0 4px 14px rgba(0,0,0,.4); }}
@@ -294,9 +294,9 @@ CSS = f'''
       color: {WHT}; padding: 8px 22px; border-radius: 12px; background: rgba(14,20,29,.7); border: 3px solid {YEL}; }}
     .subs {{ position: absolute; left: 60px; right: 60px; top: 1380px; height: 170px; }}
     .cue {{ position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; }}
-    .cue span {{ display: block; max-width: 940px; font-weight: 700; font-size: 46px; line-height: 1.22; color: {WHT};
-      text-shadow: 0 2px 4px rgba(0,0,0,.75), 0 6px 18px rgba(0,0,0,.55); }}
-    .cue b {{ color: {YEL}; font-weight: 800; }}
+    .cue span {{ display: inline; max-width: 940px; font-weight: 700; font-size: 44px; line-height: 1.55; color: {WHT};
+      background: rgba(22,22,24,.86); padding: 8px 22px; border-radius: 12px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }}
+    .cue b {{ color: {WHT}; font-weight: 700; }}
 '''
 gfx = f'''<template>
   <style>{CSS}  </style>
