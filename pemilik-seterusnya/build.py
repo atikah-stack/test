@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Finishes the user's partial edit "Pemilik seterusnya" (Abe, Kg Hutan Putih) as a 9:16, 30 fps ad.
 
-The partial edit (68 s, its own whip transitions: land -> drain -> road -> neighbourhood, whip-out
-at the end) is tightened to ~44 s by keeping the segments below (SOURCE seconds of that edit).
-The drain -> road whip and the closing whip are kept as they are. Drone B-roll covers the jump
+The source is the user's edit without transitions (68 s, hard cuts land -> drain -> road ->
+neighbourhood), tightened to ~44 s by keeping the segments below (SOURCE seconds of that edit).
+Drone B-roll covers the jump
 cuts and illustrates location, land, house size and neighbourhood; the 3D lot map is reused at the
 close. Safe zone: top 15% (Y < 288) and bottom 18% (Y > 1574) carry nothing.
 """
@@ -64,13 +64,12 @@ for name, f, src, d, v in [
     ("size", "whoosh-short", 23.60, 0.57, 0.15), ("n1400", "pop", 27.29, 0.72, 0.17),
     ("price", "whoosh", 28.60, 0.57, 0.17), ("rm", "impact-bass-1", 30.39, 1.6, 0.22),
     ("drain", "whoosh-short", 39.48, 0.57, 0.15), ("ck1", "click", 40.30, 0.36, 0.22),
-    ("whip1", "whoosh", 42.10, 0.57, 0.22),                        # the existing drain -> road whip
+    ("cut1", "whoosh", 42.30, 0.57, 0.2),                          # hard cut drain -> road
     ("rd", "whoosh-short", 43.86, 0.57, 0.14), ("ck2", "click", 44.75, 0.36, 0.22),
     ("nb", "whoosh-short", 48.80, 0.57, 0.15), ("nbp", "pop", 49.85, 0.72, 0.16),
     ("mi", "whoosh-short", 54.42, 0.57, 0.14), ("mip", "pop", 54.70, 0.72, 0.15), ("mi2", "whoosh-short", 56.78, 0.57, 0.13),
     ("riser", "riser", 62.6 - 2.6, 2.6, 0.12), ("q", "impact-bass-2", 62.67, 2.0, 0.17),
     ("cta", "pop", 64.90, 0.72, 0.18), ("cta2", "impact-bass-1", 65.31, 1.6, 0.18),
-    ("whip2", "whoosh", 66.70, 0.57, 0.22),                        # the existing whip-out at the end
 ]:
     sfx(name, f, T(src), d, v)
 
