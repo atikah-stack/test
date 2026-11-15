@@ -14,7 +14,7 @@ SAFE_TOP, SAFE_BOT = 288, 1574
 
 SEGS = [(0.08, 5.62), (6.40, 10.12), (17.60, 23.40), (23.62, 32.46), (39.50, 42.50),
         (43.88, 46.40), (48.82, 51.12), (54.44, 59.04), (59.04, 67.68)]
-SEGS = [SEGS[0], SEGS[1], SEGS[2], (23.62, 42.50), SEGS[5], SEGS[6], (54.44, 67.68)]   # 32.46-39.50 kept: 'nak tahu kelebihan ... pertama'
+SEGS = [SEGS[0], SEGS[1], SEGS[2], (23.62, 46.40), SEGS[6], (54.44, 67.68)]   # kept: 'nak tahu kelebihan ... pertama' and 'kelebihan kedua'
 starts, t = [], 0.0
 for a, b in SEGS:
     starts.append(round(t, 3)); t += b - a
@@ -68,6 +68,7 @@ for name, f, src, d, v in [
     ("ant", "whoosh", 36.28, 0.57, 0.15), ("one", "impact-bass-1", 38.33, 1.6, 0.2),
     ("drain", "whoosh-short", 39.48, 0.57, 0.15), ("ck1", "click", 40.30, 0.36, 0.22),
     ("cut1", "whoosh", 42.30, 0.57, 0.2),                          # hard cut drain -> road
+    ("dua", "whoosh-short", 42.62, 0.57, 0.15), ("two", "impact-bass-1", 43.34, 1.6, 0.2),
     ("rd", "whoosh-short", 43.86, 0.57, 0.14), ("ck2", "click", 44.75, 0.36, 0.22),
     ("nb", "whoosh-short", 48.80, 0.57, 0.15), ("nbp", "pop", 49.85, 0.72, 0.16),
     ("mi", "whoosh-short", 54.42, 0.57, 0.14), ("mip", "pop", 54.70, 0.72, 0.15), ("mi2", "whoosh-short", 56.78, 0.57, 0.13),
@@ -229,6 +230,15 @@ tin("#g4e-w", T(36.33)); hide("#g4e-n"); hide("#g4e-y")
 tin("#g4e-n", T(38.33), "scale", 0.45); tin("#g4e-y", T(38.40), "scale")
 J.append(f'tl.to("#g4e", {{ opacity: 0, y: -14, duration: 0.25, ease: "power2.in" }}, {round(T(40.20) - 0.25, 3)});')
 
+# 04c "kelebihan kedua" (on the road shot)
+BOXES.append(("g4f", 330, 330))
+H.append(f'''    <div class="grp clip" id="g4f" data-start="{T(42.62)}" data-duration="{round(T(43.90) - T(42.62), 3)}" style="top:330px">
+      <div class="hw" id="g4f-w" style="font-size:112px">KELEBIHAN</div>
+      <div class="numw"><div class="num" id="g4f-n">2</div><div class="hy" id="g4f-y" style="font-size:112px">KEDUA</div></div></div>''')
+tin("#g4f-w", T(42.62)); hide("#g4f-n"); hide("#g4f-y")
+tin("#g4f-n", T(43.34), "scale", 0.4); tin("#g4f-y", T(43.40), "scale", 0.4)
+J.append(f'tl.to("#g4f", {{ opacity: 0, y: -14, duration: 0.2, ease: "power2.in" }}, {round(T(43.90) - 0.2, 3)});')
+
 # 05 infrastructure (talent stands at the drain, then on the tar road)
 for gid, s, e, w, y in [("g5a", 40.27, 42.10, "SISTEM SALIRAN LONGKANG", "LENGKAP"), ("g5b", 44.70, 46.40, "AKSES JALAN", "TAR")]:
     BOXES.append((gid, 330, 230))
@@ -268,6 +278,7 @@ SUBS = [
     (36.33, "Antara kelebihan ni ialah,"),
     (38.33, "**pertama**,"),
     (39.57, "Kita siap bagi **sistem saliran longkang** lagi, tuan-puan."),
+    (42.69, "Kelebihan **kedua**,"),
     (43.93, "Kita siap bagi **akses jalan tar** lagi, tuan-puan."),
     (48.88, "Tanah ni dah ada **kejiranan**, tuan-puan."),
     (54.49, "Keempat-empat bijik rumah ni, tuan-puan,"),
