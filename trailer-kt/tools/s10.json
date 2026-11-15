@@ -1,0 +1,7 @@
+{"video":"/home/user/test/trailer-kt/assets/v/s10-dusk.mp4","out":"s10_tracks.json","refs":[
+ {"frame":0,"lights":[
+  {"name":"greenL","xy":[269,964],"size":15},{"name":"greenR","xy":[445,964],"size":15},
+  {"name":"pillarL","xy":[256,1175],"size":13},{"name":"pillarR","xy":[734,1174],"size":13},
+  {"name":"whiteW","xy":[846,1136],"size":13}]},
+ {"frame":189,"lights":[{"name":"entL","xy":[537,1041],"size":18},{"name":"entR","xy":[886,1041],"size":18}]}
+]}

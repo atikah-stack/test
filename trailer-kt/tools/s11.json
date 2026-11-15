@@ -1,0 +1,6 @@
+{"video":"/home/user/test/trailer-kt/assets/v/s11-final.mp4","out":"s11_tracks.json","refs":[
+ {"frame":72,"lights":[{"name":"greenBig","xy":[211,936],"size":40},{"name":"balc","xy":[740,1079],"size":14}]},
+ {"frame":171,"lights":[{"name":"greenL","xy":[305,959],"size":11},{"name":"greenR","xy":[449,949],"size":11},
+  {"name":"balcR","xy":[641,1009],"size":8},{"name":"pillar","xy":[254,1124],"size":10},{"name":"porchR","xy":[606,1071],"size":8},
+  {"name":"entL","xy":[898,1007],"size":7},{"name":"entR","xy":[993,957],"size":7}]}
+]}

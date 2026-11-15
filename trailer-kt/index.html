@@ -34,8 +34,7 @@
       <video id="v6" class="v clip" src="assets/v/s6-kitchen.mp4" muted playsinline data-start="12.04" data-duration="1.58" data-track-index="0"></video>
       <video id="v7" class="v clip" src="assets/v/s7-master.mp4" muted playsinline data-start="13.62" data-duration="1.58" data-track-index="0"></video>
       <video id="v9" class="v clip" src="assets/v/s9-stairs.mp4" muted playsinline data-start="15.2" data-duration="0.79" data-track-index="0"></video>
-      <video id="v10" class="v clip" src="assets/v/s10-dusk.mp4" muted playsinline data-start="15.99" data-duration="5.52" data-track-index="0"></video>
-      <video id="v10n" class="v clip" src="assets/v/s10-dusk-night.mp4" muted playsinline data-start="15.99" data-duration="5.52" data-track-index="1" style="opacity:0"></video>
+      <video id="v10" class="v clip" src="assets/v/s10-dusk-night.mp4" muted playsinline data-start="15.99" data-duration="5.52" data-track-index="0"></video>
       <video id="v11" class="v clip" src="assets/v/s11-final-night.mp4" muted playsinline data-start="21.51" data-duration="3.43" data-media-start="2.37" data-track-index="0"></video>
 
       <div id="vig" class="vig clip" data-start="0" data-duration="24.94" data-track-index="2"></div>
@@ -68,7 +67,7 @@
       const tl = gsap.timeline({ paused: true });
       const shots = [["#v1",0,3.37],["#v2",3.37,2.36],["#v3",5.73,2.37],["#v4",8.1,1.58],["#v5",9.68,2.36],["#v6",12.04,1.58],["#v7",13.62,1.58],["#v9",15.2,0.79],["#v11",21.51,3.43]];
       shots.forEach(([id,s,d]) => tl.fromTo(id, { scale:1.0 }, { scale:1.05, duration:d, ease:"none" }, s));
-      tl.fromTo(["#v10","#v10n"], { scale:1.0 }, { scale:1.05, duration:5.52, ease:"none" }, 15.99);
+      tl.fromTo("#v10", { scale:1.0 }, { scale:1.05, duration:5.52, ease:"none" }, 15.99);
 
       tl.set("#blk", { opacity:1 }, 0);
       tl.to("#blk", { opacity:0, duration:0.7, ease:"power2.out" }, 0);
@@ -77,9 +76,6 @@
       tl.to("#blk", { opacity:1, duration:0.2, ease:"power1.in" }, 15.79);
       tl.to("#blk", { opacity:0, duration:0.5, ease:"power1.out" }, 15.99);
       tl.to("#blk", { opacity:1, duration:0.8, ease:"power1.in" }, 24.14);
-
-      tl.set("#v10n", { opacity:0 }, 15.99);
-      tl.to("#v10n", { opacity:1, duration:3.6, ease:"sine.inOut" }, 16.6);
 
       const reveal = (sel, at, hold) => {
         tl.fromTo(sel, { opacity:0, y:18, filter:"blur(10px)" }, { opacity:1, y:0, filter:"blur(0px)", duration:0.9, ease:"power2.out" }, at);
