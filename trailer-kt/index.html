@@ -26,17 +26,8 @@
   </head>
   <body>
     <div id="root" data-composition-id="main" data-start="0" data-duration="24.94" data-width="1080" data-height="1920">
-      <video id="v1" class="v clip" src="assets/v/s1-estab.mp4" muted playsinline data-start="0" data-duration="3.37" data-track-index="0"></video>
-      <video id="v2" class="v clip" src="assets/v/s2-facade.mp4" muted playsinline data-start="3.37" data-duration="2.36" data-track-index="0"></video>
-      <video id="v3" class="v clip" src="assets/v/s3-chandelier.mp4" muted playsinline data-start="5.73" data-duration="2.37" data-track-index="0"></video>
-      <video id="v4" class="v clip" src="assets/v/s4-lounge.mp4" muted playsinline data-start="8.1" data-duration="1.58" data-track-index="0"></video>
-      <video id="v5" class="v clip" src="assets/v/s5-dining.mp4" muted playsinline data-start="9.68" data-duration="2.36" data-track-index="0"></video>
-      <video id="v6" class="v clip" src="assets/v/s6-kitchen.mp4" muted playsinline data-start="12.04" data-duration="1.58" data-track-index="0"></video>
-      <video id="v7" class="v clip" src="assets/v/s7-master.mp4" muted playsinline data-start="13.62" data-duration="1.58" data-track-index="0"></video>
-      <video id="v9" class="v clip" src="assets/v/s9-stairs.mp4" muted playsinline data-start="15.2" data-duration="0.79" data-track-index="0"></video>
-      <video id="v10" class="v clip" src="assets/v/s10-dusk-night.mp4" muted playsinline data-start="15.99" data-duration="5.52" data-track-index="0"></video>
-      <video id="v11" class="v clip" src="assets/v/s11-final-night.mp4" muted playsinline data-start="21.51" data-duration="3.43" data-media-start="2.37" data-track-index="0"></video>
 
+      <video id="vb" class="v clip" src="assets/v/baked-whip.mp4" muted playsinline data-start="0" data-duration="24.94" data-track-index="0"></video>
       <div id="vig" class="vig clip" data-start="0" data-duration="24.94" data-track-index="2"></div>
 
       <div id="t1" class="t clip" data-start="0.5" data-duration="2.87" data-track-index="3" style="top:1250px">
@@ -65,16 +56,9 @@
     <script>
       window.__timelines = window.__timelines || {};
       const tl = gsap.timeline({ paused: true });
-      const shots = [["#v1",0,3.37],["#v2",3.37,2.36],["#v3",5.73,2.37],["#v4",8.1,1.58],["#v5",9.68,2.36],["#v6",12.04,1.58],["#v7",13.62,1.58],["#v9",15.2,0.79],["#v11",21.51,3.43]];
-      shots.forEach(([id,s,d]) => tl.fromTo(id, { scale:1.0 }, { scale:1.05, duration:d, ease:"none" }, s));
-      tl.fromTo("#v10", { scale:1.0 }, { scale:1.05, duration:5.52, ease:"none" }, 15.99);
 
       tl.set("#blk", { opacity:1 }, 0);
       tl.to("#blk", { opacity:0, duration:0.7, ease:"power2.out" }, 0);
-      tl.to("#blk", { opacity:1, duration:0.18, ease:"power1.in" }, 5.55);
-      tl.to("#blk", { opacity:0, duration:0.35, ease:"power1.out" }, 5.73);
-      tl.to("#blk", { opacity:1, duration:0.2, ease:"power1.in" }, 15.79);
-      tl.to("#blk", { opacity:0, duration:0.5, ease:"power1.out" }, 15.99);
       tl.to("#blk", { opacity:1, duration:0.8, ease:"power1.in" }, 24.14);
 
       const reveal = (sel, at, hold) => {
