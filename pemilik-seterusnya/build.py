@@ -14,7 +14,7 @@ SAFE_TOP, SAFE_BOT = 288, 1574
 
 SEGS = [(0.08, 5.62), (6.40, 10.12), (17.60, 23.40), (23.62, 32.46), (39.50, 42.50),
         (43.88, 46.40), (48.82, 51.12), (54.44, 59.04), (59.04, 67.68)]
-SEGS = [SEGS[0], SEGS[1], SEGS[2], SEGS[3], SEGS[4], SEGS[5], SEGS[6], (54.44, 67.68)]
+SEGS = [SEGS[0], SEGS[1], SEGS[2], (23.62, 42.50), SEGS[5], SEGS[6], (54.44, 67.68)]   # 32.46-39.50 kept: 'nak tahu kelebihan ... pertama'
 starts, t = [], 0.0
 for a, b in SEGS:
     starts.append(round(t, 3)); t += b - a
@@ -63,6 +63,9 @@ for name, f, src, d, v in [
     ("map", "whoosh-cinematic", 17.4, 3.0, 0.14), ("trace", "riser", 18.0, 2.6, 0.12), ("n7244", "impact-bass-2", 19.6, 2.0, 0.18),
     ("size", "whoosh-short", 23.60, 0.57, 0.15), ("n1400", "pop", 27.29, 0.72, 0.17),
     ("price", "whoosh", 28.60, 0.57, 0.17), ("rm", "impact-bass-1", 30.39, 1.6, 0.22),
+    ("kel", "whoosh-short", 32.55, 0.57, 0.15), ("kelp", "pop", 32.95, 0.72, 0.16),
+    ("jom", "whoosh-short", 34.50, 0.57, 0.15), ("jomp", "pop", 34.75, 0.72, 0.16),
+    ("ant", "whoosh", 36.28, 0.57, 0.15), ("one", "impact-bass-1", 38.33, 1.6, 0.2),
     ("drain", "whoosh-short", 39.48, 0.57, 0.15), ("ck1", "click", 40.30, 0.36, 0.22),
     ("cut1", "whoosh", 42.30, 0.57, 0.2),                          # hard cut drain -> road
     ("rd", "whoosh-short", 43.86, 0.57, 0.14), ("ck2", "click", 44.75, 0.36, 0.22),
@@ -215,6 +218,17 @@ head("g4b", T(28.95), T(32.46), "HARGA BERMULA", '<span id="nrm">RM420,000</span
 count("#nrm", 420000, T(28.95) + 0.2, 1.1, "RM")
 J.append(f'tl.fromTo("#g4r", {{ scaleX: 0 }}, {{ scaleX: 1, duration: 0.5, ease: "power3.out" }}, {T(31.2)});')
 
+# 04b "nak tahu kelebihannya? jom saya bagitahu! antara kelebihannya yang pertama"
+head("g4c", T(32.61), T(34.50), "NAK TAHU", "KELEBIHANNYA?", ysize=112)
+head("g4d", T(34.55), T(36.25), "JOM SAYA", "BAGITAHU!", ysize=124)
+BOXES.append(("g4e", 330, 330))
+H.append(f'''    <div class="grp clip" id="g4e" data-start="{T(36.33)}" data-duration="{round(T(40.20) - T(36.33), 3)}" style="top:330px">
+      <div class="hw" id="g4e-w" style="font-size:{fit("ANTARA KELEBIHANNYA", 112, 0.70)}px">ANTARA KELEBIHANNYA</div>
+      <div class="numw"><div class="num" id="g4e-n">1</div><div class="hy" id="g4e-y" style="font-size:112px">PERTAMA</div></div></div>''')
+tin("#g4e-w", T(36.33)); hide("#g4e-n"); hide("#g4e-y")
+tin("#g4e-n", T(38.33), "scale", 0.45); tin("#g4e-y", T(38.40), "scale")
+J.append(f'tl.to("#g4e", {{ opacity: 0, y: -14, duration: 0.25, ease: "power2.in" }}, {round(T(40.20) - 0.25, 3)});')
+
 # 05 infrastructure (talent stands at the drain, then on the tar road)
 for gid, s, e, w, y in [("g5a", 40.27, 42.10, "SISTEM SALIRAN LONGKANG", "LENGKAP"), ("g5b", 44.70, 46.40, "AKSES JALAN", "TAR")]:
     BOXES.append((gid, 330, 230))
@@ -249,6 +263,10 @@ SUBS = [
     (23.66, "Tuan-puan boleh bina rumah di atas tanah ni"),
     (25.56, "berkeluasan bermula **1,400 kaki persegi**"),
     (29.02, "dengan harga bermula **RM420,000**."),
+    (32.43, "Tuan-puan nak tahu apa **kelebihan** ni, tuan-puan?"),
+    (34.55, "Jom saya bagitahu!"),
+    (36.33, "Antara kelebihan ni ialah,"),
+    (38.33, "**pertama**,"),
     (39.57, "Kita siap bagi **sistem saliran longkang** lagi, tuan-puan."),
     (43.93, "Kita siap bagi **akses jalan tar** lagi, tuan-puan."),
     (48.88, "Tanah ni dah ada **kejiranan**, tuan-puan."),
@@ -284,6 +302,9 @@ CSS = f'''
     .ring {{ position: absolute; left: 50%; bottom: -6px; width: 64px; height: 20px; margin-left: -32px; border-radius: 50%; border: 4px solid {YEL}; opacity: 0; }}
     .ckh {{ display: flex; align-items: center; gap: 16px; }}
     .ckb {{ width: 58px; height: 58px; border-radius: 50%; background: {YEL}; display: flex; align-items: center; justify-content: center; flex: none; box-shadow: 0 6px 14px rgba(0,0,0,.4); }}
+    .numw {{ display: flex; align-items: center; gap: 20px; }}
+    .num {{ width: 120px; height: 120px; border-radius: 50%; background: {YEL}; color: {INK}; font-weight: 900; font-size: 84px;
+      display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 22px rgba(0,0,0,.45); }}
     .scn3 {{ position: absolute; inset: 0; overflow: hidden; background: {INK}; perspective: 1600px; }}
     .tilt {{ position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; transform-origin: 50% 62%; transform-style: preserve-3d; }}
     .tilt img {{ position: absolute; inset: 0; width: 1080px; height: 1920px; object-fit: cover; }}
