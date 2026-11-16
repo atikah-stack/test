@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ms">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; }
+      .shot { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="78.08" data-width="1080" data-height="1920">
+      <video id="main-v" class="clip shot" src="assets/shots/main.mp4" data-start="0" data-duration="78.08" data-media-start="0" data-track-index="1" muted playsinline style="z-index: 1"></video>
+      <audio id="music" class="clip" src="assets/shots/music.m4a" data-start="0" data-duration="78.08" data-track-index="8" data-volume="1"></audio>
+      <!-- bunyi comel: sparkle/boing pada heading, blip/ding/pop pada setiap label bilik -->
+      <audio id="fx0" class="clip" src="assets/sparkle.mp3" data-start="0.0" data-duration="1.8" data-track-index="10" data-volume="0.35"></audio>
+      <audio id="fx1" class="clip" src="assets/boing.wav" data-start="0.55" data-duration="0.6" data-track-index="11" data-volume="0.5"></audio>
+      <audio id="fx2" class="clip" src="assets/pop.mp3" data-start="1.15" data-duration="0.72" data-track-index="10" data-volume="0.4"></audio>
+      <audio id="fx3" class="clip" src="assets/blip.wav" data-start="3.5" data-duration="0.22" data-track-index="11" data-volume="0.4"></audio>
+      <audio id="fx4" class="clip" src="assets/ding2.wav" data-start="9.0" data-duration="0.24" data-track-index="10" data-volume="0.4"></audio>
+      <audio id="fx5" class="clip" src="assets/pop.mp3" data-start="12.5" data-duration="0.72" data-track-index="11" data-volume="0.4"></audio>
+      <audio id="fx6" class="clip" src="assets/blip.wav" data-start="17.0" data-duration="0.22" data-track-index="10" data-volume="0.4"></audio>
+      <audio id="fx7" class="clip" src="assets/ding2.wav" data-start="21.5" data-duration="0.24" data-track-index="11" data-volume="0.4"></audio>
+      <audio id="fx8" class="clip" src="assets/pop.mp3" data-start="30.5" data-duration="0.72" data-track-index="10" data-volume="0.4"></audio>
+      <audio id="fx9" class="clip" src="assets/blip.wav" data-start="35.25" data-duration="0.22" data-track-index="11" data-volume="0.4"></audio>
+      <audio id="fx10" class="clip" src="assets/ding2.wav" data-start="39.5" data-duration="0.24" data-track-index="10" data-volume="0.4"></audio>
+      <audio id="fx11" class="clip" src="assets/pop.mp3" data-start="48.25" data-duration="0.72" data-track-index="11" data-volume="0.4"></audio>
+      <audio id="fx12" class="clip" src="assets/blip.wav" data-start="53.75" data-duration="0.22" data-track-index="10" data-volume="0.4"></audio>
+      <audio id="fx13" class="clip" src="assets/ding2.wav" data-start="58.5" data-duration="0.24" data-track-index="11" data-volume="0.4"></audio>
+      <audio id="fx14" class="clip" src="assets/pop.mp3" data-start="62.0" data-duration="0.72" data-track-index="10" data-volume="0.4"></audio>
+      <audio id="fx15" class="clip" src="assets/blip.wav" data-start="65.0" data-duration="0.22" data-track-index="11" data-volume="0.4"></audio>
+      <audio id="fx16" class="clip" src="assets/ding2.wav" data-start="70.0" data-duration="0.24" data-track-index="10" data-volume="0.4"></audio>
+      <audio id="fx17" class="clip" src="assets/pop.mp3" data-start="71.75" data-duration="0.72" data-track-index="11" data-volume="0.4"></audio>
+      <audio id="fx18" class="clip" src="assets/boing.wav" data-start="76.6" data-duration="0.6" data-track-index="10" data-volume="0.45"></audio>
+      <div id="head" data-composition-id="head" data-composition-src="compositions/head.html" data-start="0" data-duration="3.5" data-track-index="5" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 40"></div>
+    </div>
+    <script>
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>
