@@ -27,6 +27,19 @@ def text_mask(bgr,cfg):
     keep=np.zeros(n,np.uint8)
     a=st[:,cv2.CC_STAT_AREA]; keep[1:]=((a[1:]>=cfg.get("minA",12))&(a[1:]<=cfg.get("maxA",25000))).astype(np.uint8)
     cand=keep[lab]*255
+    if cfg.get("wordshape"):
+        g=cfg.get("wgroup",15)
+        cl=cv2.morphologyEx(cand,cv2.MORPH_CLOSE,cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(g,g)))
+        n2,lab2,st2,_=cv2.connectedComponentsWithStats(cl)
+        keepw=np.zeros(n2,np.uint8)
+        for i in range(1,n2):
+            ys,xs=np.where(lab2==i) if st2[i,cv2.CC_STAT_AREA]<60000 else (None,None)
+            if ys is None: continue
+            (cx,cy),(w,h),a=cv2.minAreaRect(np.stack([xs,ys],1).astype(np.float32))
+            L,S=max(w,h),max(1,min(w,h))
+            if L>=cfg.get("minL",55) and L/S>=cfg.get("aspect",2.6) and S<=cfg.get("maxS",110): keepw[i]=1
+        out=(keepw[lab2]*255).astype(np.uint8)
+        return cv2.dilate(out,cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(25,25)))
     # group glyphs into words: close horizontally/vertically
     g=cfg.get("group",25)
     cand=cv2.morphologyEx(cand,cv2.MORPH_CLOSE,cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(g*2+1,g*2+1)))
