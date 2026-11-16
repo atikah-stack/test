@@ -12,7 +12,7 @@ def frames(path):
         if len(b)<W*H*3: break
         out.append(np.frombuffer(b,np.uint8).reshape(H,W,3))
     return out
-PAT=re.compile(r"(C[O0]B|[O0]BR|BRA|EOBR|COCR|M[A4]T|ULTR|LTRA|C[O0]BRA)",re.I)
+PAT=re.compile(r"(C[O0D]B|[O0D]BR|BRA|EOBR|COCR|M[A4]T|ULT|LTR|TRA\\b|C[O0]BRA)",re.I)
 def brand(t):
     t=t.replace(" ","").upper()
     return bool(PAT.search(t)) or t in ("RA","MA","AT","CO")
@@ -27,19 +27,22 @@ for f in range(n-1):
     g=st.ravel()==1
     Hm,_=cv2.findHomography(p0[g],p1[g],cv2.RANSAC,2.0) if g.sum()>8 else (None,None)
     Hs.append(Hm if Hm is not None else np.eye(3))
+ANG=[0,90,-90,35,-35] if rot else [0]
+def rot_img(img,a):
+    if a==0: return img,None
+    c=(W/2,H/2); M=cv2.getRotationMatrix2D(c,a,1.0)
+    cos,sin=abs(M[0,0]),abs(M[0,1]); nw,nh=int(H*sin+W*cos),int(H*cos+W*sin)
+    M[0,2]+=nw/2-c[0]; M[1,2]+=nh/2-c[1]
+    return cv2.warpAffine(img,M,(nw,nh),borderValue=(0,0,0)),cv2.invertAffineTransform(M)
 def detect(img):
     polys=[]
-    variants=[(img,None)]
-    if rot:
-        variants.append((cv2.rotate(img,cv2.ROTATE_90_CLOCKWISE),"cw"))
-        variants.append((cv2.rotate(img,cv2.ROTATE_90_COUNTERCLOCKWISE),"ccw"))
-    for im,r in variants:
+    for a in ANG:
+        im,Mi=rot_img(img,a)
         res,_=ocr(im)
         for box,txt,sc in (res or []):
             if not brand(txt): continue
             b=np.array(box,np.float32)
-            if r=="cw":   b=np.stack([b[:,1], H-1-b[:,0]],1)   # map back from rotated cw
-            if r=="ccw":  b=np.stack([W-1-b[:,1], b[:,0]],1)
+            if Mi is not None: b=(np.hstack([b,np.ones((len(b),1),np.float32)])@Mi.T).astype(np.float32)
             polys.append(b)
     return polys
 det=[]
