@@ -23,9 +23,9 @@ GRADE = ("eq=contrast=1.04:brightness=0.015:saturation=0.93:gamma=1.03,"
 
 # scene, file, src_in, dur, zoom_from, zoom_to, anchor_y (0=top..1=bottom)
 SEGS = [
-    ("hook", 7771, 47.20, 1.00, 1.06, 1.12, 0.5),  # suction cups tilted — strongest product shot
-    ("hook", 7773, 12.00, 1.00, 1.00, 1.05, 0.5),  # holder on the phone back, daylight
-    ("hook", 7775, 7.55, 1.00, 1.04, 1.10, 0.5),   # phone on window
+    ("hook", 7775, 6.60, 1.20, 1.14, 1.24, 0.5),  # tap on the phone stuck to the window -> screen lights, it stays put
+    ("hook", 7771, 47.40, 1.00, 1.08, 1.14, 0.5),  # cut to the holder: suction cups tilted
+    ("hook", 7773, 12.00, 0.80, 1.00, 1.05, 0.5),  # holder on the phone back, daylight
     ("unbox", 7770, 1.90, 1.30, 1.00, 1.04, 0.3),  # box front
     ("unbox", 7771, 18.60, 2.20, 1.00, 1.04, 0.3), # opening the box
     ("unbox", 7771, 24.80, 2.50, 1.00, 1.07, 0.5), # pulling it out, teal ring through plastic
@@ -43,12 +43,11 @@ SEGS = [
 TAIL = 0.4  # hold last frame
 
 TEXTS = [  # text, start, end, x-mode
-    ("Kecil je, tapi menarik!", 0.15, 1.92, "c"),
+    ("Kecil je, tapi kuat!", 1.28, 2.95, "c"),
     ("Unboxing Time", 3.20, 6.40, "c"),
     ("Minimal & Compact", 9.25, 14.60, "c"),
     ("Magnetic Mount", 15.25, 18.85, "r"),
     ("Triple Suction", 19.15, 22.25, "c"),
-    ("Worth To Check Out!", 25.85, 28.50, "c"),
 ]
 FONT = "assets/fonts/Poppins-SemiBold.ttf"
 FS, TY = 62, 0.40  # font size, text centre at 40% of height
@@ -98,14 +97,13 @@ vchain = f"[0:v]tpad=stop_mode=clone:stop_duration={TAIL},{','.join(draws)},fade
 # 3) audio: original product sound low, music bed ducked under VO, VO lines, light SFX
 ins = ["-i", "build/base.mp4", "-i", "assets/audio/music.wav"]
 amix, k = [], 2
-fx = [("assets/sfx/whoosh-short.mp3", 0.00, 0.20), ("assets/sfx/pop.mp3", 0.20, 0.10),
+fx = [("assets/sfx/click-soft.mp3", 0.78, 0.30), ("assets/sfx/whoosh-short.mp3", 1.12, 0.18), ("assets/sfx/pop.mp3", 1.30, 0.10),
       ("assets/sfx/whoosh-short.mp3", scene_start["unbox"] - 0.08, 0.13),
       ("assets/sfx/click-soft.mp3", scene_start["reveal"] + 0.05, 0.22),
       ("assets/sfx/pop.mp3", scene_start["detail"] + 0.15, 0.09),
       ("assets/sfx/click-soft.mp3", scene_start["detail"] + 1.95, 0.20),  # ring flip
       ("assets/sfx/pop.mp3", 19.15, 0.08),
-      ("assets/sfx/whoosh-short.mp3", scene_start["final"] - 0.08, 0.12),
-      ("assets/sfx/sparkle.mp3", 25.85, 0.07)]
+      ("assets/sfx/whoosh-short.mp3", scene_start["final"] - 0.08, 0.12)]
 for path, at, vol in fx:
     ins += ["-i", path]
     amix.append(f"[{k}:a]volume={vol},adelay={int(at*1000)}|{int(at*1000)}[s{k}]"); k += 1
