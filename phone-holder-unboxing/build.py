@@ -10,6 +10,7 @@ Sources (Google Drive originals, iPhone HLG HDR, put in assets/src/):
 Two edits, no voice-over: music bed + light SFX + minimalist headings.
   python3 make-music.py && python3 build.py a    ->  renders/phone-holder-unboxing.mp4    (version A)
   python3 make-music.py b && python3 build.py b  ->  renders/phone-holder-unboxing-b.mp4  (version B)
+  python3 make-music.py c && python3 build.py c  ->  renders/phone-holder-kelebihan-c.mp4 (version C: benefits only)
 (VO support kept: assets/audio/vo1..vo5.* are mixed in at each scene start if present.)
 """
 import os, subprocess, glob, sys
@@ -56,6 +57,36 @@ if VAR == "a":  # Version A: hook on the window tap, scene-by-scene unboxing sto
     FX = [("click-soft", 0.78, 0.30), ("whoosh-short", 1.12, 0.18), ("pop", 1.30, 0.10),
           ("whoosh-short", "unbox-0.08", 0.13), ("click-soft", "reveal+0.05", 0.22), ("pop", "detail+0.15", 0.09),
           ("click-soft", "detail+1.95", 0.20), ("pop", 20.55, 0.08), ("whoosh-short", "final-0.08", 0.12)]
+elif VAR == "c":  # Version C: no unboxing — hook, then one benefit per beat of the edit, 88 BPM bed
+    MUSIC, OUT = "assets/audio/music-c.wav", "renders/phone-holder-kelebihan-c.mp4"
+    SEGS = [
+        ("hook", 7772, 9.00, 1.20, 1.00, 1.05, 0.5),    # phone floating on the window
+        ("hook", 7771, 47.40, 3.00, 1.04, 1.14, 0.5),   # suction cups tilted, slow push
+        ("suction", 7771, 44.60, 1.60, 1.04, 1.09, 0.0),# suction face
+        ("suction", 7773, 12.00, 1.60, 1.00, 1.05, 0.5),# pad on the phone, daylight
+        ("suction", 7771, 86.40, 1.20, 1.00, 1.04, 0.5),# pressing the pad on
+        ("magnet", 7771, 52.40, 1.80, 1.02, 1.06, 0.5), # magnetic plate
+        ("magnet", 7771, 54.60, 2.60, 1.00, 1.06, 0.5), # ring flips out
+        ("free", 7775, 6.60, 1.30, 1.14, 1.22, 0.5),    # tap the phone on the window, it stays
+        ("free", 7775, 7.90, 1.80, 1.08, 1.14, 0.5),
+        ("compact", 7771, 89.00, 2.00, 1.00, 1.05, 0.5),# small pad on the phone back
+        ("compact", 7771, 92.40, 2.30, 1.00, 1.08, 0.5),
+        ("multi", 7772, 18.00, 2.20, 1.02, 1.06, 0.5),  # recording a video hands-free
+        ("multi", 7772, 20.80, 1.80, 1.04, 1.10, 0.5),  # filming herself, phone stays on the glass
+    ]
+    def at(sc, off): return f"{sc}+{off}"
+    TEXTS = [  # "^" starts a smaller sub-line
+        ("Kecil, tapi banyak kelebihan", 1.30, 4.05, "c"),
+        ("Triple Suction^Cengkaman kuat & stabil", "suction+0.15", "magnet-0.10", "c"),
+        ("Magnetic Mount^Pasang & tanggal cepat", "magnet+0.15", "free-0.10", "r"),
+        ("Hands-Free^Tak perlu pegang", "free+0.25", "compact-0.10", "l"),
+        ("Portable & Compact^Kecil, senang dibawa", "compact+0.15", "multi-0.10", "c"),
+        ("Multi-Usage^Record & tonton", "multi+0.15", "END-0.15", "l"),
+    ]
+    FX = [("whoosh-short", 1.12, 0.16), ("pop", 1.30, 0.10), ("pop", "suction+0.15", 0.09),
+          ("click-soft", "magnet+0.15", 0.20), ("click-soft", "magnet+2.15", 0.22), ("click-soft", "free+0.60", 0.28),
+          ("pop", "compact+0.15", 0.09), ("pop", "multi+0.15", 0.09),
+          ("whoosh-short", "magnet-0.08", 0.10), ("whoosh-short", "free-0.08", 0.10), ("whoosh-short", "multi-0.08", 0.10)]
 else:  # Version B: question hook, every cut on the beat of a brighter 92 BPM bed, unbox -> details -> in use
     MUSIC, OUT = "assets/audio/music-b.wav", "renders/phone-holder-unboxing-b.mp4"
     B = 60 / 92
@@ -120,32 +151,40 @@ with open(f"build/list-{VAR}.txt", "w") as fh:
     fh.writelines(f"file '{os.path.basename(p)}'\n" for p in parts)
 run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", f"build/list-{VAR}.txt", "-c", "copy", f"build/base-{VAR}.mp4"])
 
-# 2) text overlays (fade + tiny rise), subtle soft shadow
-def alpha(s, e, f=0.35):
-    return f"if(lt(t,{s}),0,if(lt(t,{s}+{f}),(t-{s})/{f},if(lt(t,{e}-{f}),1,if(lt(t,{e}),({e}-t)/{f},0))))"
-draws = []
-LH = int(FS * 1.3)  # "|" splits a heading into lines; the block stays centred on TY
-for txt, s, e, xm in TEXTS:
-    lines = txt.split("|")
-    for li, line in enumerate(lines):
-        tx = line.replace(":", "\\:").replace("'", "’").replace(",", "\\,")
-        x = {"c": "(w-text_w)/2", "r": "w-text_w-96", "l": "96"}[xm]
-        cy = int(H * TY + (li - (len(lines) - 1) / 2) * LH)
-        y = f"{cy}-ascent*0.72+14*(1-min(1\\,max(0\\,(t-{s})/0.45)))"
-        common = f"fontfile={FONT}:text='{tx}':fontsize={FS}:x={x}:y={y}:enable='between(t,{s},{e})'"
-        draws.append(f"drawtext={common}:fontcolor=black@0.22:alpha='{alpha(s, e)}':shadowx=0:shadowy=0:borderw=6:bordercolor=black@0.10")
-        draws.append(f"drawtext={common}:fontcolor=0xFFF8EE:alpha='{alpha(s, e)}':shadowcolor=black@0.38:shadowx=0:shadowy=3")
-vchain = f"[0:v]tpad=stop_mode=clone:stop_duration={TAIL},{','.join(draws)},fade=t=out:st={TOTAL-0.35}:d=0.35:color=black[v]"
-
-# 3) audio: original product sound low, music bed ducked under VO, VO lines, light SFX
-ins = ["-i", f"build/base-{VAR}.mp4", "-i", MUSIC]
-amix, k = [], 2
 def when(v):  # number, or "scene+offset" / "scene-offset"
     if not isinstance(v, str): return v
     for sign in "+-":
         if sign in v:
             sc, off = v.split(sign); return scene_start[sc] + (float(off) if sign == "+" else -float(off))
     return scene_start[v]
+
+# 2) text overlays (fade + tiny rise), subtle soft shadow
+def alpha(s, e, f=0.35):
+    return f"if(lt(t,{s}),0,if(lt(t,{s}+{f}),(t-{s})/{f},if(lt(t,{e}-{f}),1,if(lt(t,{e}),({e}-t)/{f},0))))"
+draws = []
+FONT_SUB, FS_SUB = "assets/fonts/Poppins-Medium.ttf", 42
+LH, LH_SUB = int(FS * 1.3), int(FS_SUB * 1.45)
+def tsec(v):  # number, "scene+off", or "END-off"
+    if isinstance(v, str) and v.startswith("END"): return TOTAL - TAIL - float(v[4:])
+    return when(v)
+for txt, s, e, xm in TEXTS:
+    s, e = round(tsec(s), 3), round(tsec(e), 3)
+    head, *sub = txt.split("^")
+    rows = [(l, FONT, FS, LH, "0xFFF8EE") for l in head.split("|")] + [(l, FONT_SUB, FS_SUB, LH_SUB, "0xF3ECE0") for l in sub]
+    total_h = sum(r[3] for r in rows); top = H * TY - total_h / 2
+    for line, font, fs, lh, col in rows:
+        cy = int(top + lh / 2); top += lh
+        tx = line.replace(":", "\\:").replace("'", "\u2019").replace(",", "\\,")
+        x = {"c": "(w-text_w)/2", "r": "w-text_w-96", "l": "96"}[xm]
+        y = f"{cy}-ascent*0.72+14*(1-min(1\\,max(0\\,(t-{s})/0.45)))"
+        common = f"fontfile={font}:text='{tx}':fontsize={fs}:x={x}:y={y}:enable='between(t,{s},{e})'"
+        draws.append(f"drawtext={common}:fontcolor=black@0.22:alpha='{alpha(s, e)}':shadowx=0:shadowy=0:borderw=6:bordercolor=black@0.10")
+        draws.append(f"drawtext={common}:fontcolor={col}:alpha='{alpha(s, e)}':shadowcolor=black@0.40:shadowx=0:shadowy=3")
+vchain = f"[0:v]tpad=stop_mode=clone:stop_duration={TAIL},{','.join(draws)},fade=t=out:st={TOTAL-0.35}:d=0.35:color=black[v]"
+
+# 3) audio: original product sound low, music bed ducked under VO, VO lines, light SFX
+ins = ["-i", f"build/base-{VAR}.mp4", "-i", MUSIC]
+amix, k = [], 2
 fx = [(f"assets/sfx/{n}.mp3", when(at), vol) for n, at, vol in FX]
 for path, at, vol in fx:
     ins += ["-i", path]

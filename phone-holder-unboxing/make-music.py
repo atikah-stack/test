@@ -2,16 +2,17 @@
 """Soft aesthetic lo-fi bed (procedural, royalty-free).
   python3 make-music.py      -> assets/audio/music.wav    84 BPM, Fmaj7-Em7-Dm7-Cmaj7 (version A)
   python3 make-music.py b    -> assets/audio/music-b.wav  92 BPM, Cmaj7-Am7-Fmaj7-G6, brighter (version B)
+  python3 make-music.py c    -> assets/audio/music-c.wav  88 BPM, Am7-Fmaj7-Cmaj7-Gmaj7 (version C)
 """
 import numpy as np, wave, os, sys
 
 VAR = sys.argv[1] if len(sys.argv) > 1 else "a"
 SR, DUR = 44100, 32.0
-BPM = 92 if VAR == "b" else 84
+BPM = {"b": 92, "c": 88}.get(VAR, 84)
 beat = 60 / BPM
 n = int(SR * DUR)
 L = np.zeros(n); R = np.zeros(n)
-rng = np.random.default_rng(11 if VAR == "b" else 7)
+rng = np.random.default_rng({"b": 11, "c": 23}.get(VAR, 7))
 
 def hz(m): return 440 * 2 ** ((m - 69) / 12)
 
@@ -35,7 +36,10 @@ def add(sig, at, pan=0.0):
     sig = sig[: j - i]
     L[i:j] += sig * (1 - pan) ; R[i:j] += sig * (1 + pan)
 
-if VAR == "b":
+if VAR == "c":
+    chords = [[45, 48, 52, 55], [41, 45, 48, 52], [48, 52, 55, 59], [43, 47, 50, 54]]  # Am7 Fmaj7 Cmaj7 Gmaj7
+    roots = [33, 41, 36, 43]
+elif VAR == "b":
     chords = [[48, 52, 55, 59], [45, 48, 52, 55], [53, 57, 60, 64], [55, 59, 62, 64]]  # Cmaj7 Am7 Fmaj7 G6
     roots = [36, 33, 41, 43]
 else:
@@ -71,7 +75,7 @@ for d, g in [(0.113, 0.22), (0.171, 0.18), (0.263, 0.12)]:
 fade = np.ones(n); fo = int(2.5 * SR); fade[-fo:] = np.linspace(1, 0, fo); fade[: int(0.4*SR)] = np.linspace(0, 1, int(0.4*SR))
 st = np.stack([L * fade, R * fade], 1); st /= np.abs(st).max() / 0.8
 os.makedirs("assets/audio", exist_ok=True)
-OUT = "assets/audio/music-b.wav" if VAR == "b" else "assets/audio/music.wav"
+OUT = "assets/audio/music.wav" if VAR == "a" else f"assets/audio/music-{VAR}.wav"
 with wave.open(OUT, "wb") as w:
     w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes((st * 32767).astype("<i2").tobytes())
 print(OUT, BPM, DUR)
