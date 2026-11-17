@@ -3,3 +3,4 @@ renders/
 node_modules/
 assets/src/
 assets/shots/*.mp4
+assets/graded/
