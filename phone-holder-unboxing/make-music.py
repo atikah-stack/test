@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
-"""Soft aesthetic lo-fi bed (procedural, royalty-free) -> assets/audio/music.wav. 84 BPM, Fmaj7-Em7-Dm7-Cmaj7."""
-import numpy as np, wave, os
+"""Soft aesthetic lo-fi bed (procedural, royalty-free).
+  python3 make-music.py      -> assets/audio/music.wav    84 BPM, Fmaj7-Em7-Dm7-Cmaj7 (version A)
+  python3 make-music.py b    -> assets/audio/music-b.wav  92 BPM, Cmaj7-Am7-Fmaj7-G6, brighter (version B)
+"""
+import numpy as np, wave, os, sys
 
-SR, BPM, DUR = 44100, 84, 32.0
+VAR = sys.argv[1] if len(sys.argv) > 1 else "a"
+SR, DUR = 44100, 32.0
+BPM = 92 if VAR == "b" else 84
 beat = 60 / BPM
 n = int(SR * DUR)
 L = np.zeros(n); R = np.zeros(n)
-rng = np.random.default_rng(7)
+rng = np.random.default_rng(11 if VAR == "b" else 7)
 
 def hz(m): return 440 * 2 ** ((m - 69) / 12)
 
@@ -30,8 +35,12 @@ def add(sig, at, pan=0.0):
     sig = sig[: j - i]
     L[i:j] += sig * (1 - pan) ; R[i:j] += sig * (1 + pan)
 
-chords = [[53, 57, 60, 64], [52, 55, 59, 62], [50, 53, 57, 60], [48, 52, 55, 59]]  # Fmaj7 Em7 Dm7 Cmaj7
-roots = [41, 40, 38, 36]
+if VAR == "b":
+    chords = [[48, 52, 55, 59], [45, 48, 52, 55], [53, 57, 60, 64], [55, 59, 62, 64]]  # Cmaj7 Am7 Fmaj7 G6
+    roots = [36, 33, 41, 43]
+else:
+    chords = [[53, 57, 60, 64], [52, 55, 59, 62], [50, 53, 57, 60], [48, 52, 55, 59]]  # Fmaj7 Em7 Dm7 Cmaj7
+    roots = [41, 40, 38, 36]
 bar = 4 * beat
 t0 = 0.0; k = 0
 while t0 < DUR:
@@ -62,6 +71,7 @@ for d, g in [(0.113, 0.22), (0.171, 0.18), (0.263, 0.12)]:
 fade = np.ones(n); fo = int(2.5 * SR); fade[-fo:] = np.linspace(1, 0, fo); fade[: int(0.4*SR)] = np.linspace(0, 1, int(0.4*SR))
 st = np.stack([L * fade, R * fade], 1); st /= np.abs(st).max() / 0.8
 os.makedirs("assets/audio", exist_ok=True)
-with wave.open("assets/audio/music.wav", "wb") as w:
+OUT = "assets/audio/music-b.wav" if VAR == "b" else "assets/audio/music.wav"
+with wave.open(OUT, "wb") as w:
     w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes((st * 32767).astype("<i2").tobytes())
-print("music.wav", DUR)
+print(OUT, BPM, DUR)
