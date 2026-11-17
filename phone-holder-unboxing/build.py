@@ -43,7 +43,7 @@ SEGS = [
 TAIL = 0.4  # hold last frame
 
 TEXTS = [  # text, start, end, x-mode
-    ("Kecil je, tapi kuat!", 1.28, 2.95, "c"),
+    ("Didn't expect to love|this little thing", 1.28, 2.95, "c"),
     ("Unboxing Time", 3.20, 6.40, "c"),
     ("Minimal & Compact", 9.25, 14.60, "c"),
     ("Magnetic Mount", 15.25, 18.85, "r"),
@@ -85,13 +85,17 @@ run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", "build/l
 def alpha(s, e, f=0.35):
     return f"if(lt(t,{s}),0,if(lt(t,{s}+{f}),(t-{s})/{f},if(lt(t,{e}-{f}),1,if(lt(t,{e}),({e}-t)/{f},0))))"
 draws = []
+LH = int(FS * 1.3)  # "|" splits a heading into lines; the block stays centred on TY
 for txt, s, e, xm in TEXTS:
-    tx = txt.replace(":", "\\:").replace("'", "’").replace(",", "\\,")
-    x = {"c": "(w-text_w)/2", "r": "w-text_w-96", "l": "96"}[xm]
-    y = f"{int(H*TY)}-text_h/2+14*(1-min(1\\,max(0\\,(t-{s})/0.45)))"
-    common = f"fontfile={FONT}:text='{tx}':fontsize={FS}:x={x}:y={y}:enable='between(t,{s},{e})'"
-    draws.append(f"drawtext={common}:fontcolor=black@0.22:alpha='{alpha(s, e)}':shadowx=0:shadowy=0:borderw=6:bordercolor=black@0.10")
-    draws.append(f"drawtext={common}:fontcolor=0xFFF8EE:alpha='{alpha(s, e)}':shadowcolor=black@0.38:shadowx=0:shadowy=3")
+    lines = txt.split("|")
+    for li, line in enumerate(lines):
+        tx = line.replace(":", "\\:").replace("'", "’").replace(",", "\\,")
+        x = {"c": "(w-text_w)/2", "r": "w-text_w-96", "l": "96"}[xm]
+        cy = int(H * TY + (li - (len(lines) - 1) / 2) * LH)
+        y = f"{cy}-ascent*0.72+14*(1-min(1\\,max(0\\,(t-{s})/0.45)))"
+        common = f"fontfile={FONT}:text='{tx}':fontsize={FS}:x={x}:y={y}:enable='between(t,{s},{e})'"
+        draws.append(f"drawtext={common}:fontcolor=black@0.22:alpha='{alpha(s, e)}':shadowx=0:shadowy=0:borderw=6:bordercolor=black@0.10")
+        draws.append(f"drawtext={common}:fontcolor=0xFFF8EE:alpha='{alpha(s, e)}':shadowcolor=black@0.38:shadowx=0:shadowy=3")
 vchain = f"[0:v]tpad=stop_mode=clone:stop_duration={TAIL},{','.join(draws)},fade=t=out:st={TOTAL-0.35}:d=0.35:color=black[v]"
 
 # 3) audio: original product sound low, music bed ducked under VO, VO lines, light SFX
