@@ -1,61 +1,78 @@
 <!doctype html>
-<html lang="en">
+<html lang="ms">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=1920, height=1080" />
+    <meta name="viewport" content="width=1080, height=1920" />
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
     <style>
-      /* Placeholders: replace all three with the film's own palette and display face. */
-      :root {
-        --ground: #000;
-        --ink: #ffffff;
-        --font-display: sans-serif;
-      }
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      html,
-      body {
-        margin: 0;
-        width: 1920px;
-        height: 1080px;
-        overflow: hidden;
-        background: var(--ground);
-      }
-      #root {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: var(--font-display);
-      }
-      #title {
-        color: var(--ink);
-        font-size: 72px;
-        font-weight: 600;
-        letter-spacing: -0.03em;
-      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; }
+      .cam { position: absolute; inset: 0; transform-origin: 50% 40%; }
+      .shot { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }
+      #fade { position: absolute; inset: 0; background: #000; opacity: 0; z-index: 90; }
     </style>
   </head>
   <body>
-    <div
-      id="root"
-      data-composition-id="main"
-      data-start="0"
-      data-duration="10"
-      data-width="1920"
-      data-height="1080"
-    >
-      <h1 id="title" class="clip" data-start="0" data-duration="10" data-track-index="0">Title</h1>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="73.0" data-width="1080" data-height="1920">
+      <div id="cam-s01" class="cam" style="z-index:1"><video id="v-s01" class="clip shot" src="assets/graded/IMG_1713.mp4" data-start="0.0" data-duration="4.88" data-media-start="0.0" data-track-index="1" muted playsinline></video></div>
+      <div id="cam-s02" class="cam" style="z-index:2"><video id="v-s02" class="clip shot" src="assets/graded/IMG_1710.mp4" data-start="4.88" data-duration="3.38" data-media-start="0.0" data-track-index="2" muted playsinline></video></div>
+      <div id="cam-t1" class="cam" style="z-index:3"><video id="v-t1" class="clip shot" src="assets/graded/IMG_1707.mp4" data-start="8.26" data-duration="0.94" data-media-start="9.0" data-track-index="1" muted playsinline></video></div>
+      <div id="cam-t2" class="cam" style="z-index:4"><video id="v-t2" class="clip shot" src="assets/graded/IMG_1690.mp4" data-start="9.2" data-duration="1.0" data-media-start="4.0" data-track-index="2" muted playsinline></video></div>
+      <div id="cam-t3" class="cam" style="z-index:5"><video id="v-t3" class="clip shot" src="assets/graded/IMG_1703.mp4" data-start="10.2" data-duration="1.0" data-media-start="6.5" data-track-index="1" muted playsinline></video></div>
+      <div id="cam-t4" class="cam" style="z-index:6"><video id="v-t4" class="clip shot" src="assets/graded/IMG_1715.mp4" data-start="11.2" data-duration="0.98" data-media-start="7.5" data-track-index="2" muted playsinline></video></div>
+      <div id="cam-f1a" class="cam" style="z-index:7"><video id="v-f1a" class="clip shot" src="assets/graded/IMG_1718.mp4" data-start="12.18" data-duration="2.42" data-media-start="0.0" data-track-index="1" muted playsinline></video></div>
+      <div id="cam-f1b" class="cam" style="z-index:8"><video id="v-f1b" class="clip shot" src="assets/graded/IMG_1709.mp4" data-start="14.6" data-duration="4.34" data-media-start="0.3" data-track-index="2" muted playsinline></video></div>
+      <div id="cam-f1c" class="cam" style="z-index:9"><video id="v-f1c" class="clip shot" src="assets/graded/IMG_1707.mp4" data-start="18.94" data-duration="2.9" data-media-start="0.0" data-track-index="1" muted playsinline></video></div>
+      <div id="cam-f2a" class="cam" style="z-index:10"><video id="v-f2a" class="clip shot" src="assets/graded/IMG_1690.mp4" data-start="21.84" data-duration="2.16" data-media-start="0.0" data-track-index="2" muted playsinline></video></div>
+      <div id="cam-f2b" class="cam" style="z-index:11"><video id="v-f2b" class="clip shot" src="assets/graded/IMG_1691.mp4" data-start="24.0" data-duration="4.78" data-media-start="0.0" data-track-index="1" muted playsinline></video></div>
+      <div id="cam-f2c" class="cam" style="z-index:12"><video id="v-f2c" class="clip shot" src="assets/graded/IMG_1714.mp4" data-start="28.78" data-duration="3.96" data-media-start="0.0" data-track-index="2" muted playsinline></video></div>
+      <div id="cam-f2d" class="cam" style="z-index:13"><video id="v-f2d" class="clip shot" src="assets/graded/IMG_1712.mp4" data-start="32.74" data-duration="3.7" data-media-start="0.0" data-track-index="1" muted playsinline></video></div>
+      <div id="cam-f3a" class="cam" style="z-index:14"><video id="v-f3a" class="clip shot" src="assets/graded/IMG_1698.mp4" data-start="36.44" data-duration="3.52" data-media-start="0.0" data-track-index="2" muted playsinline></video></div>
+      <div id="cam-f3b" class="cam" style="z-index:15"><video id="v-f3b" class="clip shot" src="assets/graded/IMG_1694.mp4" data-start="39.96" data-duration="3.24" data-media-start="0.0" data-track-index="1" muted playsinline></video></div>
+      <div id="cam-f3c" class="cam" style="z-index:16"><video id="v-f3c" class="clip shot" src="assets/graded/IMG_1703.mp4" data-start="43.2" data-duration="3.0" data-media-start="0.0" data-track-index="2" muted playsinline></video></div>
+      <div id="cam-f3d" class="cam" style="z-index:17"><video id="v-f3d" class="clip shot" src="assets/graded/IMG_1700.mp4" data-start="46.2" data-duration="2.66" data-media-start="0.0" data-track-index="1" muted playsinline></video></div>
+      <div id="cam-f4a" class="cam" style="z-index:18"><video id="v-f4a" class="clip shot" src="assets/graded/IMG_1715.mp4" data-start="48.86" data-duration="3.84" data-media-start="0.0" data-track-index="2" muted playsinline></video></div>
+      <div id="cam-f4b" class="cam" style="z-index:19"><video id="v-f4b" class="clip shot" src="assets/graded/IMG_1690.mp4" data-start="52.7" data-duration="2.3" data-media-start="2.4" data-track-index="1" muted playsinline></video></div>
+      <div id="cam-f4c" class="cam" style="z-index:20"><video id="v-f4c" class="clip shot" src="assets/graded/IMG_1712.mp4" data-start="55.0" data-duration="3.42" data-media-start="3.0" data-track-index="2" muted playsinline></video></div>
+      <div id="cam-r1" class="cam" style="z-index:21"><video id="v-r1" class="clip shot" src="assets/graded/IMG_1718.mp4" data-start="58.42" data-duration="1.62" data-media-start="3.8" data-track-index="1" muted playsinline></video></div>
+      <div id="cam-r2" class="cam" style="z-index:22"><video id="v-r2" class="clip shot" src="assets/graded/IMG_1691.mp4" data-start="60.04" data-duration="1.42" data-media-start="4.85" data-track-index="2" muted playsinline></video></div>
+      <div id="cam-r3" class="cam" style="z-index:23"><video id="v-r3" class="clip shot" src="assets/graded/IMG_1694.mp4" data-start="61.46" data-duration="1.16" data-media-start="3.3" data-track-index="1" muted playsinline></video></div>
+      <div id="cam-r4" class="cam" style="z-index:24"><video id="v-r4" class="clip shot" src="assets/graded/IMG_1713.mp4" data-start="62.62" data-duration="1.2" data-media-start="5.0" data-track-index="2" muted playsinline></video></div>
+      <div id="cam-h" class="cam" style="z-index:25"><video id="v-h" class="clip shot" src="assets/graded/IMG_1686.mp4" data-start="63.82" data-duration="3.12" data-media-start="0.0" data-track-index="1" muted playsinline></video></div>
+      <div id="cam-cta" class="cam" style="z-index:26"><video id="v-cta" class="clip shot" src="assets/graded/IMG_1710.mp4" data-start="66.94" data-duration="6.06" data-media-start="3.5" data-track-index="2" muted playsinline></video></div>
+      <audio id="vo" class="clip" src="assets/shots/vo.m4a" data-start="0" data-duration="73.0" data-track-index="8" data-volume="1"></audio>
+      <audio id="fx0" class="clip" src="assets/whoosh-short.mp3" data-start="0.1" data-duration="0.57" data-track-index="10" data-volume="0.25"></audio>
+      <audio id="fx1" class="clip" src="assets/sparkle.mp3" data-start="0.7" data-duration="1.8" data-track-index="11" data-volume="0.18"></audio>
+      <audio id="fx2" class="clip" src="assets/pop.mp3" data-start="14.6" data-duration="0.72" data-track-index="10" data-volume="0.3"></audio>
+      <audio id="fx3" class="clip" src="assets/whoosh-short.mp3" data-start="15.2" data-duration="0.57" data-track-index="11" data-volume="0.18"></audio>
+      <audio id="fx4" class="clip" src="assets/pop.mp3" data-start="24.28" data-duration="0.72" data-track-index="10" data-volume="0.3"></audio>
+      <audio id="fx5" class="clip" src="assets/click-soft.mp3" data-start="28.32" data-duration="0.4" data-track-index="11" data-volume="0.3"></audio>
+      <audio id="fx6" class="clip" src="assets/pop.mp3" data-start="37.58" data-duration="0.72" data-track-index="10" data-volume="0.3"></audio>
+      <audio id="fx7" class="clip" src="assets/pop.mp3" data-start="51.3" data-duration="0.72" data-track-index="11" data-volume="0.3"></audio>
+      <audio id="fx8" class="clip" src="assets/click-soft.mp3" data-start="58.42" data-duration="0.4" data-track-index="10" data-volume="0.28"></audio>
+      <audio id="fx9" class="clip" src="assets/click-soft.mp3" data-start="60.04" data-duration="0.4" data-track-index="11" data-volume="0.28"></audio>
+      <audio id="fx10" class="clip" src="assets/click-soft.mp3" data-start="61.46" data-duration="0.4" data-track-index="10" data-volume="0.28"></audio>
+      <audio id="fx11" class="clip" src="assets/click-soft.mp3" data-start="62.62" data-duration="0.4" data-track-index="11" data-volume="0.28"></audio>
+      <audio id="fx12" class="clip" src="assets/sparkle.mp3" data-start="65.34" data-duration="1.8" data-track-index="10" data-volume="0.2"></audio>
+      <audio id="fx13" class="clip" src="assets/pop.mp3" data-start="66.94" data-duration="0.72" data-track-index="11" data-volume="0.32"></audio>
+      <div id="gfx" data-composition-id="gfx" data-composition-src="compositions/gfx.html" data-start="0" data-duration="73.0" data-track-index="5" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index: 40"></div>
+      <div id="subs" data-composition-id="subs" data-composition-src="compositions/subs.html" data-start="0" data-duration="73.0" data-track-index="6" data-track-kind="captions" data-width="1080" data-height="1920" style="z-index: 50"></div>
+      <div id="fade"></div>
     </div>
     <script>
       const tl = gsap.timeline({ paused: true });
-      // Example: tl.fromTo("#title", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 0);
+      [["#cam-s01",0.0,4.88,0.05,0],["#cam-s02",4.88,3.38,0.03,1],["#cam-t1",8.26,0.94,0.02,0],["#cam-t2",9.2,1.0,0.02,1],["#cam-t3",10.2,1.0,0.02,0],["#cam-t4",11.2,0.98,0.02,1],["#cam-f1a",12.18,2.42,0.03,0],["#cam-f1b",14.6,4.34,0.0,1],["#cam-f1c",18.94,2.9,0.03,0],["#cam-f2a",21.84,2.16,0.04,1],["#cam-f2b",24.0,4.78,0.05,0],["#cam-f2c",28.78,3.96,0.05,1],["#cam-f2d",32.74,3.7,0.03,0],["#cam-f3a",36.44,3.52,0.03,1],["#cam-f3b",39.96,3.24,0.03,0],["#cam-f3c",43.2,3.0,0.03,1],["#cam-f3d",46.2,2.66,0.03,0],["#cam-f4a",48.86,3.84,0.03,1],["#cam-f4b",52.7,2.3,0.03,0],["#cam-f4c",55.0,3.42,0.03,1],["#cam-r1",58.42,1.62,0.02,0],["#cam-r2",60.04,1.42,0.02,1],["#cam-r3",61.46,1.16,0.02,0],["#cam-r4",62.62,1.2,0.02,1],["#cam-h",63.82,3.12,0.03,0],["#cam-cta",66.94,6.06,0.03,1]].forEach(([id, t, d, z, odd]) => {
+        if (z === 0) return;
+        tl.fromTo(id, { scale: odd ? 1 + z : 1 }, { scale: odd ? 1 : 1 + z, duration: d, ease: "none" }, t);
+      });
+      // short soft dissolve into each feature block
+      ["#v-f1a", "#v-f2a", "#v-f3a", "#v-f4a", "#v-h"].forEach((id) => {
+        const el = document.querySelector(id);
+        tl.fromTo(id, { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "sine.inOut" }, parseFloat(el.dataset.start));
+      });
+      tl.fromTo("#fade", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "sine.in" }, 72.49);
       window.__timelines["main"] = tl;
-      tl.seek(0);
     </script>
   </body>
 </html>

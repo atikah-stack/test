@@ -1,0 +1,89 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; font-family: "Montserrat", sans-serif; color: #fff; --y: #f6c33b; }
+    .grad { position: absolute; left: 0; top: 0; width: 1080px; height: 900px; background: linear-gradient(180deg, rgba(10,14,22,0.5) 0%, rgba(10,14,22,0.28) 60%, rgba(10,14,22,0) 100%); }
+    .hb { position: absolute; left: 60px; width: 880px; text-align: center; }
+    .hl { display: block; font-weight: 800; line-height: 1.04; letter-spacing: -0.005em; white-space: nowrap; text-shadow: 0 6px 24px rgba(0,0,0,0.55), 0 2px 5px rgba(0,0,0,0.4); }
+    .y { color: var(--y); }
+    .lab { position: absolute; left: 70px; top: 1240px; width: 860px; text-align: center; }
+    .lab-in { display: inline-flex; align-items: center; gap: 16px; padding: 12px 30px 12px 12px; border-radius: 999px; background: rgba(12,14,20,0.74); box-shadow: 0 10px 28px rgba(0,0,0,0.3); font-weight: 800; font-size: 44px; line-height: 1; white-space: nowrap; }
+    .num { display: inline-flex; align-items: center; justify-content: center; width: 70px; height: 70px; border-radius: 50%; background: var(--y); color: #111; font-weight: 900; font-size: 34px; }
+    .sub { display: inline-block; padding: 10px 24px; border-radius: 999px; background: var(--y); color: #111; font-weight: 900; font-size: 38px; letter-spacing: 0.04em; }
+    .rc { position: absolute; left: 70px; width: 860px; text-align: center; }
+    .rc-in { display: inline-flex; align-items: center; gap: 12px; padding: 10px 24px 10px 10px; border-radius: 999px; background: rgba(12,14,20,0.74); font-weight: 800; font-size: 36px; white-space: nowrap; }
+    .rc-in .num { width: 54px; height: 54px; font-size: 26px; }
+  </style>
+  <div id="root" data-composition-id="gfx" data-width="1080" data-height="1920">
+    <!-- HEADING -->
+    <div id="hgrad" class="grad clip" data-start="0" data-duration="3.9" data-layout-ignore></div>
+    <div id="head" class="hb clip" style="top: 330px" data-start="0" data-duration="3.9">
+      <span id="h1" class="hl" style="font-size: 82px">INILAH PESONA</span>
+      <span id="h2" class="hl y" style="font-size: 118px">FARMHOUSE!</span>
+    </div>
+
+    <!-- 01 BUMBUNG: outline segi tiga mengikut bumbung IMG_1709 -->
+    <svg id="tri" class="clip" style="position: absolute; left: 0; top: 0; width: 1080px; height: 1920px" data-start="14.6" data-duration="2.6" data-layout-ignore viewBox="0 0 1080 1920" aria-hidden="true">
+      <g id="tri-g"><path id="tri-p" d="M534 640 L28 955 L1052 960 Z" fill="none" stroke="#f6c33b" stroke-width="9" stroke-linejoin="round"/></g>
+    </svg>
+    <div id="l1" class="lab clip" data-start="14.6" data-duration="7.24"><span class="lab-in"><span class="num">01</span>BUMBUNG SEGI TIGA</span></div>
+
+    <!-- 02 DINDING: anak panah ke jalur sebenar IMG_1691 -->
+    <svg id="ptr" class="clip" style="position: absolute; left: 0; top: 0; width: 1080px; height: 1920px" data-start="24.28" data-duration="4.5" data-layout-ignore viewBox="0 0 1080 1920" aria-hidden="true">
+      <circle id="ptr-dot" cx="300" cy="620" r="18" fill="#f6c33b" stroke="#fff" stroke-width="5"/>
+      <path id="ptr-line" d="M560 900 Q 420 820 318 640" fill="none" stroke="#f6c33b" stroke-width="8" stroke-linecap="round"/>
+    </svg>
+    <div id="l2" class="lab clip" data-start="24.28" data-duration="12.16"><span class="lab-in"><span class="num">02</span>DINDING BERJALUR</span></div>
+    <div id="l2s" class="lab clip" style="top: 1150px" data-start="28.32" data-duration="8.12"><span id="l2s-in" class="sub">SHERA BOARD</span></div>
+
+    <!-- 03 BERANDA -->
+    <div id="l3" class="lab clip" data-start="37.58" data-duration="11.28"><span class="lab-in"><span class="num">03</span>BERANDA DEPAN</span></div>
+
+    <!-- 04 WARNA PUTIH -->
+    <div id="l4" class="lab clip" data-start="51.3" data-duration="7.12"><span class="lab-in"><span class="num">04</span>WARNA PUTIH</span></div>
+
+    <!-- RECAP -->
+    <div id="rc1" class="rc clip" style="top: 960px" data-start="58.42" data-duration="5.4"><span class="rc-in"><span class="num">01</span>BUMBUNG SEGI TIGA</span></div>
+    <div id="rc2" class="rc clip" style="top: 1035px" data-start="60.04" data-duration="3.78"><span class="rc-in"><span class="num">02</span>DINDING BERJALUR</span></div>
+    <div id="rc3" class="rc clip" style="top: 1110px" data-start="61.46" data-duration="2.36"><span class="rc-in"><span class="num">03</span>BERANDA DEPAN</span></div>
+    <div id="rc4" class="rc clip" style="top: 1185px" data-start="62.62" data-duration="1.2"><span class="rc-in"><span class="num">04</span>WARNA PUTIH</span></div>
+
+    <!-- CTA -->
+    <div id="cgrad" class="grad clip" data-start="66.94" data-duration="6.06" data-layout-ignore></div>
+    <div id="cta" class="hb clip" style="top: 340px" data-start="66.94" data-duration="6.06">
+      <span id="c1" class="hl" style="font-size: 72px">NAK BINA FARMHOUSE</span>
+      <span id="c2" class="hl y" style="font-size: 104px">MACAM NI?</span>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    const pop = (sel, t, from) => tl.fromTo(sel, Object.assign({ opacity: 0, scale: 0.6 }, from || {}), { opacity: 1, scale: 1, x: 0, y: 0, duration: 0.36, ease: "back.out(2.2)" }, t);
+    const out = (sel, t) => tl.to(sel, { opacity: 0, duration: 0.25, ease: "sine.in" }, t);
+    // heading
+    tl.fromTo("#hgrad", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0);
+    pop("#h1", 0.1, { y: -20, scale: 0.9 });
+    pop("#h2", 0.55, { scale: 0.5 });
+    out(["#head", "#hgrad"], 3.6);
+    // roof outline: draw, track the slow pan, fade
+    tl.set("#tri-p", { strokeDasharray: 2400, strokeDashoffset: 2400 }, 0);
+    tl.to("#tri-p", { strokeDashoffset: 0, duration: 0.9, ease: "power2.inOut" }, 14.7);
+    tl.fromTo("#tri-g", { x: 0 }, { x: -110, duration: 4.34, ease: "none" }, 14.6);
+    out("#tri", 16.9);
+    pop("#l1 .lab-in", 14.6, { y: 14 }); out("#l1", 21.6);
+    // stripes pointer
+    tl.set("#ptr-line", { strokeDasharray: 420, strokeDashoffset: 420 }, 0);
+    tl.to("#ptr-line", { strokeDashoffset: 0, duration: 0.5, ease: "power2.out" }, 24.35);
+    tl.fromTo("#ptr-dot", { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.3, ease: "back.out(3)" }, 24.8);
+    tl.to("#ptr-dot", { scale: 1.35, duration: 0.35, ease: "sine.inOut", yoyo: true, repeat: 5, transformOrigin: "50% 50%" }, 25.2);
+    out("#ptr", 28.5);
+    pop("#l2 .lab-in", 24.28, { y: 14 }); pop("#l2s-in", 28.32, { y: 10 }); out(["#l2", "#l2s"], 36.2);
+    pop("#l3 .lab-in", 37.58, { y: 14 }); out("#l3", 48.6);
+    pop("#l4 .lab-in", 51.3, { y: 14 }); out("#l4", 58.2);
+    // recap
+    pop("#rc1 .rc-in", 58.42, { x: -30 }); pop("#rc2 .rc-in", 60.04, { x: -30 }); pop("#rc3 .rc-in", 61.46, { x: -30 }); pop("#rc4 .rc-in", 62.62, { x: -30 });
+    out(["#rc1", "#rc2", "#rc3", "#rc4"], 63.6);
+    // CTA
+    tl.fromTo("#cgrad", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 66.94);
+    pop("#c1", 67.0, { y: -18, scale: 0.9 }); pop("#c2", 67.4, { scale: 0.5 });
+    window.__timelines["gfx"] = tl;
+  </script>
+</template>
