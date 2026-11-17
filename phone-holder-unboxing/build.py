@@ -70,9 +70,7 @@ elif VAR == "c":  # Version C: no unboxing — hook, then one benefit per beat o
         ("free", 7775, 6.60, 1.30, 1.14, 1.22, 0.5),    # tap the phone on the window, it stays
         ("free", 7775, 7.90, 1.80, 1.08, 1.14, 0.5),
         ("compact", 7771, 89.00, 2.00, 1.00, 1.05, 0.5),# small pad on the phone back
-        ("compact", 7771, 92.40, 2.30, 1.00, 1.08, 0.5),
-        ("multi", 7772, 18.00, 2.20, 1.02, 1.06, 0.5),  # recording a video hands-free
-        ("multi", 7772, 20.80, 1.80, 1.04, 1.10, 0.5),  # filming herself, phone stays on the glass
+        ("compact", 7771, 92.40, 2.50, 1.00, 1.10, 0.5),
     ]
     def at(sc, off): return f"{sc}+{off}"
     TEXTS = [  # "^" starts a smaller sub-line
@@ -80,13 +78,12 @@ elif VAR == "c":  # Version C: no unboxing — hook, then one benefit per beat o
         ("Triple Suction^Cengkaman kuat & stabil", "suction+0.15", "magnet-0.10", "c"),
         ("Magnetic Mount^Pasang & tanggal cepat", "magnet+0.15", "free-0.10", "r"),
         ("Hands-Free^Tak perlu pegang", "free+0.25", "compact-0.10", "l"),
-        ("Portable & Compact^Kecil, senang dibawa", "compact+0.15", "multi-0.10", "c"),
-        ("Multi-Usage^Record & tonton", "multi+0.15", "END-0.15", "l"),
+        ("Portable & Compact^Kecil, senang dibawa", "compact+0.15", "END-0.15", "c"),
     ]
     FX = [("whoosh-short", 1.12, 0.16), ("pop", 1.30, 0.10), ("pop", "suction+0.15", 0.09),
           ("click-soft", "magnet+0.15", 0.20), ("click-soft", "magnet+2.15", 0.22), ("click-soft", "free+0.60", 0.28),
-          ("pop", "compact+0.15", 0.09), ("pop", "multi+0.15", 0.09),
-          ("whoosh-short", "magnet-0.08", 0.10), ("whoosh-short", "free-0.08", 0.10), ("whoosh-short", "multi-0.08", 0.10)]
+          ("pop", "compact+0.15", 0.09),
+          ("whoosh-short", "magnet-0.08", 0.10), ("whoosh-short", "free-0.08", 0.10)]
 else:  # Version B: question hook, every cut on the beat of a brighter 92 BPM bed, unbox -> details -> in use
     MUSIC, OUT = "assets/audio/music-b.wav", "renders/phone-holder-unboxing-b.mp4"
     B = 60 / 92
