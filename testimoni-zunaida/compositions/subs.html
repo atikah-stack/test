@@ -1,0 +1,44 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Poppins",sans-serif; }
+    .blk { position:absolute; left:60px; right:60px; display:flex; flex-direction:column; align-items:center; text-align:center; }
+    .w, .y { font-weight:900; text-transform:uppercase; line-height:1.02; letter-spacing:0.005em; text-shadow:0 6px 22px rgba(0,0,0,.55), 0 2px 5px rgba(0,0,0,.5); }
+    .w { color:#FFFFFF; }
+    .y { color:#F5C518; }
+
+    .cap { position:absolute; left:90px; right:90px; top:1150px; height:180px; display:flex; align-items:flex-end; justify-content:center; }
+    .line { max-width:900px; text-align:center; color:#FFFFFF; font-weight:700; font-size:48px; line-height:1.22;
+      text-shadow:0 3px 12px rgba(0,0,0,.7), 0 1px 3px rgba(0,0,0,.7); }
+    .k { color:#F5C518; }
+  </style>
+  <div id="root" data-composition-id="subs" data-width="1080" data-height="1920">
+    <div id="sub01" class="cap clip" data-start="0.0" data-duration="2.0" data-track-index="0"><div class="line">Kontrak pun <span class="k">dua tahun</span> lah.</div></div>
+    <div id="sub02" class="cap clip" data-start="2.0" data-duration="2.8" data-track-index="0"><div class="line">Tapi Alhamdulillah, rumah siap <span class="k">satu tahun setengah</span>.</div></div>
+    <div id="sub03" class="cap clip" data-start="4.8" data-duration="3.0" data-track-index="0"><div class="line">So okey, cepat. Consider cepat lah.</div></div>
+    <div id="sub04" class="cap clip" data-start="7.8" data-duration="2.2" data-track-index="0"><div class="line">Alhamdulillah.</div></div>
+    <div id="sub05" class="cap clip" data-start="10.0" data-duration="6.6" data-track-index="0"><div class="line">Sebab dia kata keluasan dia <span class="k">3,774 kaki persegi</span>,</div></div>
+    <div id="sub06" class="cap clip" data-start="16.6" data-duration="2.0" data-track-index="0"><div class="line">macam bina <span class="k">dua buah rumah</span> dia kata.</div></div>
+    <div id="sub07" class="cap clip" data-start="18.6" data-duration="3.3" data-track-index="0"><div class="line">So kalau sebuah rumah satu tahun,</div></div>
+    <div id="sub08" class="cap clip" data-start="21.9" data-duration="2.3" data-track-index="0"><div class="line">sebab yang ni macam dua buah rumah, <span class="k">dua tahun</span>.</div></div>
+    <div id="sub09" class="cap clip" data-start="24.2" data-duration="2.4" data-track-index="0"><div class="line"><span class="k">Sangat gembira</span> sebab dah lama tunggu,</div></div>
+    <div id="sub10" class="cap clip" data-start="26.6" data-duration="1.6" data-track-index="0"><div class="line">setahun setengah tunggu.</div></div>
+    <div id="sub11" class="cap clip" data-start="28.2" data-duration="4.4" data-track-index="0"><div class="line">Sebenarnya dua tahun kontrak, tapi <span class="k">dapat cepat kunci</span> kan.</div></div>
+    <div id="sub12" class="cap clip" data-start="32.6" data-duration="4.5" data-track-index="0"><div class="line">So okeylah, balik boleh <span class="k">duduk rumah sendiri</span>.</div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#sub01 .line", { opacity:0, y:8 }, { opacity:1, y:0, duration:0.15, ease:"power1.out" }, 0.0);
+    tl.fromTo("#sub02 .line", { opacity:0, y:8 }, { opacity:1, y:0, duration:0.15, ease:"power1.out" }, 2.0);
+    tl.fromTo("#sub03 .line", { opacity:0, y:8 }, { opacity:1, y:0, duration:0.15, ease:"power1.out" }, 4.8);
+    tl.fromTo("#sub04 .line", { opacity:0, y:8 }, { opacity:1, y:0, duration:0.15, ease:"power1.out" }, 7.8);
+    tl.fromTo("#sub05 .line", { opacity:0, y:8 }, { opacity:1, y:0, duration:0.15, ease:"power1.out" }, 10.0);
+    tl.fromTo("#sub06 .line", { opacity:0, y:8 }, { opacity:1, y:0, duration:0.15, ease:"power1.out" }, 16.6);
+    tl.fromTo("#sub07 .line", { opacity:0, y:8 }, { opacity:1, y:0, duration:0.15, ease:"power1.out" }, 18.6);
+    tl.fromTo("#sub08 .line", { opacity:0, y:8 }, { opacity:1, y:0, duration:0.15, ease:"power1.out" }, 21.9);
+    tl.fromTo("#sub09 .line", { opacity:0, y:8 }, { opacity:1, y:0, duration:0.15, ease:"power1.out" }, 24.2);
+    tl.fromTo("#sub10 .line", { opacity:0, y:8 }, { opacity:1, y:0, duration:0.15, ease:"power1.out" }, 26.6);
+    tl.fromTo("#sub11 .line", { opacity:0, y:8 }, { opacity:1, y:0, duration:0.15, ease:"power1.out" }, 28.2);
+    tl.fromTo("#sub12 .line", { opacity:0, y:8 }, { opacity:1, y:0, duration:0.15, ease:"power1.out" }, 32.6);
+    window.__timelines["subs"] = tl;
+  </script>
+</template>

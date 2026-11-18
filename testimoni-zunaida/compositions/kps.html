@@ -1,0 +1,26 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Poppins",sans-serif; }
+    .blk { position:absolute; left:60px; right:60px; display:flex; flex-direction:column; align-items:center; text-align:center; }
+    .w, .y { font-weight:900; text-transform:uppercase; line-height:1.02; letter-spacing:0.005em; text-shadow:0 6px 22px rgba(0,0,0,.55), 0 2px 5px rgba(0,0,0,.5); }
+    .w { color:#FFFFFF; }
+    .y { color:#F5C518; }
+
+    #kp { top:330px; }
+    #kp-n { font-size:150px; }
+    #kp-u { font-size:58px; margin-top:2px; letter-spacing:0.08em; }
+  </style>
+  <div id="root" data-composition-id="kps" data-width="1080" data-height="1920">
+    <div id="kp" class="blk clip" data-start="0" data-duration="2.6" data-track-index="0">
+      <div id="kp-n" class="y">3,774</div>
+      <div id="kp-u" class="w">KAKI PERSEGI</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#kp-n", { opacity:0, y:26, scale:0.95 }, { opacity:1, y:0, scale:1, duration:0.55, ease:"power2.out" }, 0);
+    tl.fromTo("#kp-u", { opacity:0, y:26, scale:0.95 }, { opacity:1, y:0, scale:1, duration:0.5, ease:"power2.out" }, 0.2);
+    tl.to("#kp", { opacity:0, duration:0.35, ease:"sine.in" }, 2.2);
+    window.__timelines["kps"] = tl;
+  </script>
+</template>

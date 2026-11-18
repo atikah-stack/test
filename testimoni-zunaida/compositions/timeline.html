@@ -1,0 +1,33 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Poppins",sans-serif; }
+    .blk { position:absolute; left:60px; right:60px; display:flex; flex-direction:column; align-items:center; text-align:center; }
+    .w, .y { font-weight:900; text-transform:uppercase; line-height:1.02; letter-spacing:0.005em; text-shadow:0 6px 22px rgba(0,0,0,.55), 0 2px 5px rgba(0,0,0,.5); }
+    .w { color:#FFFFFF; }
+    .y { color:#F5C518; }
+
+    #tlb { top:470px; }
+    #tl-row { display:flex; align-items:center; gap:28px; }
+    #tl-24, #tl-18 { font-size:84px; }
+    #tl-arrow { font-size:72px; }
+    #tl-bar { position:relative; width:820px; height:16px; margin-top:28px; border-radius:8px; background:rgba(255,255,255,.35); }
+    #tl-fill { position:absolute; left:0; top:0; bottom:0; width:615px; border-radius:8px; background:#F5C518; transform-origin:0 50%; }
+    #tl-mark { position:absolute; left:613px; top:-14px; width:4px; height:44px; background:#FFFFFF; border-radius:2px; }
+  </style>
+  <div id="root" data-composition-id="timeline" data-width="1080" data-height="1920">
+    <div id="tlb" class="blk clip" data-start="0" data-duration="2.75" data-track-index="0">
+      <div id="tl-row"><div id="tl-24" class="w">24 BULAN</div><div id="tl-arrow" class="w">→</div><div id="tl-18" class="y">18 BULAN</div></div>
+      <div id="tl-bar"><div id="tl-fill"></div><div id="tl-mark"></div></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#tl-24", { opacity:0, y:26, scale:0.95 }, { opacity:1, y:0, scale:1, duration:0.45, ease:"power2.out" }, 0);
+    tl.fromTo("#tl-arrow", { opacity:0, y:26, scale:0.95 }, { opacity:1, y:0, scale:1, duration:0.4, ease:"power2.out" }, 0.35);
+    tl.fromTo("#tl-18", { opacity:0, y:26, scale:0.95 }, { opacity:1, y:0, scale:1, duration:0.45, ease:"power2.out" }, 0.6);
+    tl.fromTo("#tl-bar", { opacity:0, y:26, scale:0.95 }, { opacity:1, y:0, scale:1, duration:0.4, ease:"power2.out" }, 0.2);
+    tl.fromTo("#tl-fill", { scaleX:0 }, { scaleX:1, duration:1.1, ease:"power2.inOut" }, 0.5);
+    tl.to("#tlb", { opacity:0, duration:0.35, ease:"sine.in" }, 2.35);
+    window.__timelines["timeline"] = tl;
+  </script>
+</template>

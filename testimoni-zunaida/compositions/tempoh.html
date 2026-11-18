@@ -1,0 +1,26 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Poppins",sans-serif; }
+    .blk { position:absolute; left:60px; right:60px; display:flex; flex-direction:column; align-items:center; text-align:center; }
+    .w, .y { font-weight:900; text-transform:uppercase; line-height:1.02; letter-spacing:0.005em; text-shadow:0 6px 22px rgba(0,0,0,.55), 0 2px 5px rgba(0,0,0,.5); }
+    .w { color:#FFFFFF; }
+    .y { color:#F5C518; }
+
+    #tp { top:400px; }
+    #tp-1, #tp-2 { font-size:54px; }
+    #tp-2 { margin-top:14px; }
+  </style>
+  <div id="root" data-composition-id="tempoh" data-width="1080" data-height="1920">
+    <div id="tp" class="blk clip" data-start="0" data-duration="5.3" data-track-index="0">
+      <div id="tp-1" class="w">TEMPOH KONTRAK: 24 BULAN</div>
+      <div id="tp-2" class="y">TEMPOH SIAP: 18 BULAN</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#tp-1", { opacity:0, y:26, scale:0.95 }, { opacity:1, y:0, scale:1, duration:0.5, ease:"power2.out" }, 0);
+    tl.fromTo("#tp-2", { opacity:0, y:26, scale:0.95 }, { opacity:1, y:0, scale:1, duration:0.5, ease:"power2.out" }, 3.4);
+    tl.to("#tp", { opacity:0, duration:0.35, ease:"sine.in" }, 4.9);
+    window.__timelines["tempoh"] = tl;
+  </script>
+</template>

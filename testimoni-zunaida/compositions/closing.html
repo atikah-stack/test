@@ -1,0 +1,32 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Poppins",sans-serif; }
+    .blk { position:absolute; left:60px; right:60px; display:flex; flex-direction:column; align-items:center; text-align:center; }
+    .w, .y { font-weight:900; text-transform:uppercase; line-height:1.02; letter-spacing:0.005em; text-shadow:0 6px 22px rgba(0,0,0,.55), 0 2px 5px rgba(0,0,0,.5); }
+    .w { color:#FFFFFF; }
+    .y { color:#F5C518; }
+
+    #cl { top:430px; }
+    #cl-1 { font-size:96px; }
+    #cl-2 { font-size:96px; margin-top:4px; }
+    #cl-logo { position:absolute; left:380px; top:1110px; width:320px; padding:24px 26px; border-radius:24px; background:#FFFFFF;
+      box-shadow:0 14px 40px rgba(0,0,0,.3); }
+    #cl-img { display:block; width:268px; height:auto; }
+  </style>
+  <div id="root" data-composition-id="closing" data-width="1080" data-height="1920">
+    <div id="cl" class="blk clip" data-start="0" data-duration="2.5" data-track-index="0">
+      <div id="cl-1" class="w">IMPIAN</div>
+      <div id="cl-2" class="y">JADI KENYATAAN</div>
+    </div>
+    <div id="cl-logo" class="clip" data-start="0" data-duration="2.5" data-track-index="1">
+      <img id="cl-img" src="assets/brand/logo-mi.png" alt="Mahligai Idaman" />
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#cl-1", { opacity:0, y:26, scale:0.95 }, { opacity:1, y:0, scale:1, duration:0.5, ease:"power2.out" }, 0);
+    tl.fromTo("#cl-2", { opacity:0, y:26, scale:0.95 }, { opacity:1, y:0, scale:1, duration:0.5, ease:"power2.out" }, 0.18);
+    tl.fromTo("#cl-logo", { opacity:0, y:16 }, { opacity:1, y:0, duration:0.6, ease:"power2.out" }, 0.45);
+    window.__timelines["closing"] = tl;
+  </script>
+</template>

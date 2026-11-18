@@ -1,0 +1,25 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Poppins",sans-serif; }
+    .blk { position:absolute; left:60px; right:60px; display:flex; flex-direction:column; align-items:center; text-align:center; }
+    .w, .y { font-weight:900; text-transform:uppercase; line-height:1.02; letter-spacing:0.005em; text-shadow:0 6px 22px rgba(0,0,0,.55), 0 2px 5px rgba(0,0,0,.5); }
+    .w { color:#FFFFFF; }
+    .y { color:#F5C518; }
+
+    #aw { top:400px; }
+    #aw-1 { font-size:70px; }
+    #aw-2 { font-size:92px; margin-top:4px; }
+  </style>
+  <div id="root" data-composition-id="awal" data-width="1080" data-height="1920">
+    <div id="aw" class="blk clip" data-start="0" data-duration="3.6" data-track-index="0">
+      <div id="aw-1" class="w">SIAP 6 BULAN</div>
+      <div id="aw-2" class="y">LEBIH AWAL</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#aw", { opacity:0 }, { opacity:1, duration:0.5, ease:"sine.out" }, 0);
+    tl.to("#aw", { opacity:0, duration:0.35, ease:"sine.in" }, 3.2);
+    window.__timelines["awal"] = tl;
+  </script>
+</template>
