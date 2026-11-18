@@ -27,26 +27,74 @@ DIALOGUE = [
     ("d7", "A", 44.80, 49.30),    # So okeylah, balik boleh duduk rumah sendiri.
 ]
 
-# Shots: (id, out start, duration, kind, source, media start, rate, zoom from, zoom to)
-# kind "int" = interview (muted picture; sound comes from DIALOGUE), "broll" = muted B-roll.
-SHOTS = [
-    ("v01", 0.0, 2.0, "int", "B", 377.80, 1, 1.35, 1.42),
-    ("v02", 2.0, 2.8, "int", "B", 380.20, 1, 1.50, 1.72),   # punch-in on "satu tahun setengah"
-    ("v03", 4.8, 3.0, "broll", "assets/src/copy_F371EC91-96A0-45F7-9EF7-DBEC5C39D4B7.mov", 0.0, 1, 1.0, 1.06),
-    ("v04", 7.8, 2.2, "int", "B", 387.00, 1, 1.40, 1.46),
-    ("v05", 10.0, 1.6, "int", "B", 363.40, 1, 1.35, 1.40),
-    ("v06", 11.6, 3.4, "broll", "assets/src/copy_94BEB817-F987-4FD8-AC46-D89488E47548.mov", 0.0, 0.99, 1.0, 1.06),
-    ("v07", 15.0, 3.6, "broll", "assets/src/IMG_3753.MOV", 0.0, 1, 1.0, 1.05),
-    ("v08", 18.6, 3.0, "broll", "assets/src/IMG_3827.MOV", 0.0, 1, 1.0, 1.05),
-    ("v09", 21.6, 2.6, "int", "B", 375.00, 1, 1.45, 1.50),
-    ("v10", 24.2, 4.0, "int", "A", 36.00, 1, 1.35, 1.45),
-    ("v11", 28.2, 2.6, "broll", "assets/src/IMG_7194.MOV", 0.0, 1, 1.0, 1.04),
-    ("v12", 30.8, 1.8, "int", "A", 42.60, 1, 1.50, 1.55),
-    ("v13", 32.6, 2.6, "broll", "assets/src/IMG_7098.MOV", 1.5, 1, 1.0, 1.04),
-    ("v14", 35.2, 1.9, "broll", "assets/src/IMG_3615.MOV", 0.0, 1, 1.0, 1.05),
-    ("v15", 37.1, 2.6, "broll", "assets/src/IMG_3749.MOV", 0.0, 0.85, 1.0, 1.04),
+F371 = "assets/src/copy_F371EC91-96A0-45F7-9EF7-DBEC5C39D4B7.mov"
+A94 = "assets/src/copy_94BEB817-F987-4FD8-AC46-D89488E47548.mov"
+MED = (1.35, 1.40)   # interview, medium
+CLO = (1.62, 1.68)   # interview, close (jump-cut zoom)
+
+# Fast cut, back to back: (duration, source or "int", media start, rate, zoom).
+# Interview shots ("int") take their picture from the dialogue playing at that moment,
+# so lips stay in sync wherever the cut lands.
+CUTS = [
+    # 1 Hook 0.0-4.8
+    (1.0, "int", None, 1, MED),
+    (1.0, "int", None, 1, CLO),
+    (0.8, "int", None, 1, (1.40, 1.44)),
+    (2.0, "int", None, 1, (1.65, 1.85)),          # punch-in on "satu tahun setengah"
+    # 2 House reveal 4.8-10.0
+    (1.5, F371, 0.0, 1, (1.0, 1.04)),
+    (1.5, "assets/src/IMG_3827.MOV", 1.5, 1, (1.0, 1.04)),
+    (2.2, "int", None, 1, CLO),                   # smile on "Alhamdulillah"
+    # 3 Scale 10.0-18.6
+    (1.2, "int", None, 1, MED),
+    (1.4, "int", None, 1, CLO),
+    (2.0, A94, 0.0, 1, (1.0, 1.05)),              # "3,774" lands here
+    (1.2, "assets/src/IMG_3753.MOV", 0.0, 1, (1.0, 1.04)),
+    (1.1, "assets/src/IMG_3534.MOV", 0.5, 1, (1.0, 1.04)),
+    (0.9, "assets/src/IMG_3623.mov", 0.3, 1, (1.0, 1.04)),
+    (0.8, "assets/src/IMG_3540.MOV", 0.1, 1, (1.0, 1.04)),
+    # 4 Timeline 18.6-24.2
+    (1.4, "assets/src/IMG_3827.MOV", 0.0, 1, (1.0, 1.04)),
+    (1.35, A94, 2.0, 1, (1.05, 1.09)),
+    (1.25, "int", None, 1, MED),
+    (1.6, "int", None, 1, CLO),
+    # 5 Emotion 24.2-32.6
+    (1.8, "int", None, 1, MED),
+    (1.2, "assets/src/IMG_7098.MOV", 0.0, 1, (1.0, 1.04)),
+    (1.2, "int", None, 1, CLO),
+    (1.6, "assets/src/IMG_7194.MOV", 0.0, 1, (1.0, 1.04)),
+    (1.3, "assets/src/IMG_7124.MOV", 2.0, 1, (1.0, 1.04)),
+    (1.3, "int", None, 1, CLO),
+    # 6 Ending 32.6-39.7
+    (1.4, "assets/src/IMG_7098.MOV", 2.2, 1, (1.0, 1.04)),
+    (1.2, "assets/src/IMG_3615.MOV", 0.0, 1, (1.0, 1.04)),
+    (1.0, "assets/src/IMG_3534.MOV", 2.5, 1, (1.04, 1.08)),
+    (0.9, F371, 1.6, 1, (1.04, 1.08)),
+    (2.6, "assets/src/IMG_3749.MOV", 0.0, 0.85, (1.0, 1.04)),
 ]
-DISSOLVE_IN = {"v03", "v04", "v06", "v15"}  # 0.2 s dissolves around drone shots and the ending
+DISSOLVE_IN = {f"v{len(CUTS):02d}"}  # straight cuts throughout; one soft dissolve into the final shot
+
+
+def dialogue_at(t):
+    """Which interview section and source time is heard at timeline time t."""
+    pos = 0.0
+    for _, seg, a, b in DIALOGUE:
+        if t < pos + (b - a) - 1e-6:
+            return seg, a + (t - pos)
+        pos += b - a
+    raise ValueError(f"no dialogue at {t}")
+
+
+# Shots: (id, out start, duration, kind, source, media start, rate, zoom from, zoom to)
+SHOTS = []
+t = 0.0
+for n, (dur, src, ms, rate, (z0, z1)) in enumerate(CUTS, 1):
+    if src == "int":
+        seg, srct = dialogue_at(t)
+        SHOTS.append((f"v{n:02d}", round(t, 2), dur, "int", seg, round(srct, 3), 1, z0, z1))
+    else:
+        SHOTS.append((f"v{n:02d}", round(t, 2), dur, "broll", src, ms, rate, z0, z1))
+    t += dur
 
 TOTAL = round(SHOTS[-1][1] + SHOTS[-1][2], 2)
 

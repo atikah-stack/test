@@ -2,6 +2,8 @@
 
 Storyline penuh dan pelan suntingan (EDL) untuk video 9:16, **±39 saat**. Belum dirender — tunggu kelulusan.
 
+> **Kemas kini — versi fast cut (39.7 s, 29 syot, purata 1.4 s):** enam babak dan dialog di bawah kekal sama. EDL syot-demi-syot kini dalam senarai `CUTS` di `build.py`: temu bual bertukar medium ↔ close-up pada setiap ayat, babak skala dan penutup jadi montaj pantas (aerial, anjung, ruang keluarga, almari, ruang solat, ruang tamu), dan klip IMG_3534, IMG_3540, IMG_3623, IMG_7124 kini digunakan. Tajuk diletak di atas kepala klien / di langit. Lihat `storyboard.jpg`.
+
 Semua footage dalam kedua-dua folder Google Drive telah dimuat turun, disemak dan ditonton sebagai contact sheet. Semua dialog datang daripada rakaman asal IMG_7123.mov; masa sumber diambil daripada transkrip berperkataan (word-level) dan jeda dalam audio, ketepatan ±0.2 s — akan dikunci semasa suntingan.
 
 ---
