@@ -13,6 +13,9 @@ SEG = {
     "A": ("assets/interview/IMG_7123_a_0033.96.mov", 33.963333),
     "B": ("assets/interview/IMG_7123_b_0601.35.mov", 361.353333),
 }
+# Dialogue sound: the same two sections, lightly cleaned (rumble and hiss) and levelled
+# to about -14 LUFS with a soft limiter. Same start points as the .mov files.
+VOICE = {"A": "assets/interview/IMG_7123_a_voice.wav", "B": "assets/interview/IMG_7123_b_voice.wav"}
 # Face sits about 46% down the frame; zooming from there keeps it in place.
 FACE_ORIGIN = "50% 46%"
 
@@ -153,17 +156,18 @@ for i, (vid, start, dur, kind, src, ms, rate, z0, z1) in enumerate(SHOTS):
 
 t = 0.0
 for did, seg, a, b in DIALOGUE:
-    path, off = SEG[seg]
+    off = SEG[seg][1]
     d = round(b - a, 2)
     rows.append(
-        f'      <audio id="{did}" class="clip" src="{path}" data-start="{round(t, 2)}" data-duration="{d}" '
-        f'data-media-start="{round(a - off, 3)}" data-volume="1" data-track-index="10"></audio>'
+        f'      <audio id="{did}" class="clip" src="{VOICE[seg]}" data-start="{round(t, 2)}" data-duration="{d}" '
+        f'data-media-start="{round(a - off, 3)}" data-volume="1" data-fade-in="0.04" data-fade-out="0.04" '
+        f'data-track-index="{10 + int(did[1:]) % 2}"></audio>'
     )
     t += d
 assert abs(t - SHOTS[-1][1]) < 0.01, f"dialogue ends at {t}, ending shot starts at {SHOTS[-1][1]}"
 rows.append(
     f'      <audio id="a-amb" class="clip" src="assets/src/IMG_3749.MOV" data-start="37.1" data-duration="{round(TOTAL - 37.1, 2)}" '
-    f'data-media-start="0" data-volume="0.35" data-track-index="11"></audio>'
+    f'data-media-start="0" data-volume="0.35" data-fade-in="0.3" data-track-index="14"></audio>'
 )
 for sid, f, s, d, v in SFX:
     rows.append(
