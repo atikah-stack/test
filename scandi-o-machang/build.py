@@ -9,13 +9,17 @@ YELLOW = "#F5C518"
 GRADE = json.dumps({"preset": "warm-daylight", "intensity": 0.4})
 
 # (duration, file, media start, rate, zoom from, zoom to, note)
+DRONE_TOP = "copy_7339E792-E530-4778-BF5A-9BBB19C8734F.mov"    # drone, top-down rise over the O-shape (1080p, 50 fps)
+DRONE_FRONT = "copy_F839D845-7E8C-468E-ADD9-0E4E4DE10A2F.mov"  # drone, 45-degree front (1080p, 37.5 fps)
+
+# (duration, file, media start, rate, zoom from, zoom to, note)
+# Drone slow-motion rates keep at least 25 source frames a second, so nothing judders.
 SHOTS = [
     # 1 Hook 0-5
-    (2.6, "IMG_9045.mov", 0.0, 1, 1.00, 1.04, "front facade, two gables (stored sideways, turned upright)"),
-    (2.4, "IMG_9038.MOV", 0.3, 1, 1.00, 1.07, "front gable and main door, push-in"),
+    (5.0, DRONE_FRONT, 0.0, 0.677, 1.00, 1.06, "drone front, 45 degrees, slow push-in"),
     # 2 O-shape 5-11
-    (3.0, "IMG_9039.mov", 3.5, 1, 1.00, 1.03, "walk along the wing, gables wrap around"),
-    (3.0, "IMG_9158.MOV", 0.0, 1, 1.00, 1.03, "tilt down from the roof into the courtyard"),
+    (3.3, DRONE_TOP, 0.0, 0.75, 1.00, 1.03, "drone top-down: the pool inside the O"),
+    (2.7, "IMG_9158.MOV", 0.0, 1, 1.00, 1.03, "tilt down from the roof into the courtyard"),
     # 3 Pool 11-18
     (3.2, "IMG_9157.MOV", 0.0, 1, 1.00, 1.04, "pool with the house around it"),
     (2.2, "IMG_9129.MOV", 0.0, 1, 1.00, 1.04, "living room, pool behind the glass wall"),
@@ -33,11 +37,11 @@ SHOTS = [
     (2.0, "IMG_9147.MOV", 0.5, 1, 1.00, 1.04, "bathroom"),
     # 6 Price 34-39
     (5.0, "IMG_9157.MOV", 5.0, 1, 1.00, 1.06, "pool wide, slow push"),
-    # 7 Ending 39-43.5
-    (4.5, "IMG_9041.MOV", 0.0, 1, 1.00, 1.05, "corner of the house against the sky"),
+    # 7 Ending 39-42.5
+    (3.5, DRONE_TOP, 2.48, 0.5, 1.00, 1.03, "drone top-down, the whole O with the pool"),
 ]
-ROTATED = {"IMG_9045.mov"}   # stored sideways: shown upright with a slow pan
-DISSOLVE = {4, 16, 17}         # 0-based shot indices that fade in: courtyard tilt, price, ending
+ROTATED = set()          # no sideways clip in the cut now (IMG_9045 replaced by the drone front)
+DISSOLVE = {1, 15, 16}   # 0-based shot indices that fade in: into the drone top-down, price, ending
 
 starts, t = [], 0.0
 for s in SHOTS:
@@ -56,12 +60,12 @@ TEXT = {
     "bilik": (29.6, 4.3, 620, [("4 BILIK TIDUR | 3 BILIK AIR", "w", 58)], None),
     "harga": (34.3, 4.6, 600, [("HARGA ASAS BERMULA", "w", 66), ("BAWAH RM400K", "y", 104)],
               "*Harga asas sahaja. Kolam & spesifikasi dalam video tertakluk pakej."),
-    "ending": (39.3, TOTAL - 39.3, 560, [("MAHLIGAI IDAMAN", "w", 78), ("BINA RUMAH ATAS TANAH SENDIRI", "y", 50)], "logo"),
+    "ending": (39.3, TOTAL - 39.3, 380, [("MAHLIGAI IDAMAN", "w", 78), ("BINA RUMAH ATAS TANAH SENDIRI", "y", 50)], "logo"),
 }
 
 SFX = [  # (id, file, start, duration, volume)
     ("x-open", "whoosh-cinematic.mp3", 0.0, 2.5, 0.18),
-    ("x-court", "whoosh-short.mp3", 7.85, 0.6, 0.18),
+    ("x-court", "whoosh-short.mp3", 8.05, 0.6, 0.18),
     ("x-pool", "impact-bass-1.mp3", 11.0, 2.0, 0.16),
     ("x-price", "riser.mp3", 31.0, 3.2, 0.12),
     ("x-price-hit", "impact-bass-1.mp3", 34.3, 2.0, 0.18),
@@ -148,7 +152,7 @@ for cid, (s, d, top, lines, extra) in TEXT.items():
     extra_css = extra_html = ""
     if extra == "logo":
         extra_css = """
-    #logo-card { position:absolute; left:390px; top:900px; width:300px; padding:22px 24px; border-radius:24px; background:#FFFFFF;
+    #logo-card { position:absolute; left:390px; top:1250px; width:300px; padding:22px 24px; border-radius:24px; background:#FFFFFF;
       box-shadow:0 14px 40px rgba(0,0,0,.3); }
     #logo-img { display:block; width:252px; height:auto; }"""
         extra_html = (f'\n    <div id="logo-card" class="clip" data-start="0" data-duration="{d}" data-track-index="1">'
