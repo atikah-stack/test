@@ -38,13 +38,13 @@
       <!-- side entrance -->
       <video id="s10" class="shot clip" src="assets/src/IMG_9178.MOV" muted playsinline data-start="23.2" data-duration="1.8" data-media-start="4.0" data-track-index="1" data-color-grading='{"preset": "warm-daylight", "intensity": 0.4}' style="z-index:10"></video>
       <!-- living hall pan (60 fps source) -->
-      <video id="s11" class="shot clip" src="assets/src/IMG_9396.MOV" muted playsinline data-start="25.0" data-duration="2.0" data-media-start="3.0" data-track-index="0" data-color-grading='{"preset": "warm-daylight", "intensity": 0.4}' style="z-index:11"></video>
+      <video id="s11" class="shot clip" src="assets/src/IMG_9396.MOV" muted playsinline data-start="25.0" data-duration="1.8" data-media-start="3.0" data-track-index="0" data-color-grading='{"preset": "warm-daylight", "intensity": 0.4}' style="z-index:11"></video>
       <!-- chandelier -->
-      <video id="s12" class="shot clip" src="assets/src/IMG_9174.MOV" muted playsinline data-start="27.0" data-duration="1.4" data-media-start="2.0" data-track-index="1" data-color-grading='{"preset": "warm-daylight", "intensity": 0.4}' style="z-index:12"></video>
+      <video id="s12" class="shot clip" src="assets/src/IMG_9174.MOV" muted playsinline data-start="26.8" data-duration="1.2" data-media-start="2.0" data-track-index="1" data-color-grading='{"preset": "warm-daylight", "intensity": 0.4}' style="z-index:12"></video>
       <!-- kitchen -->
-      <video id="s13" class="shot clip" src="assets/src/IMG_9093.MOV" muted playsinline data-start="28.4" data-duration="2.0" data-media-start="0.0" data-track-index="0" data-color-grading='{"preset": "warm-daylight", "intensity": 0.4}' style="z-index:13"></video>
-      <!-- bedroom -->
-      <video id="s14" class="shot clip" src="assets/src/IMG_9121.MOV" muted playsinline data-start="30.4" data-duration="1.6" data-media-start="0.0" data-track-index="1" data-color-grading='{"preset": "warm-daylight", "intensity": 0.4}' style="z-index:14"></video>
+      <video id="s13" class="shot clip" src="assets/src/IMG_9093.MOV" muted playsinline data-start="28.0" data-duration="1.8" data-media-start="0.0" data-track-index="0" data-color-grading='{"preset": "warm-daylight", "intensity": 0.4}' style="z-index:13"></video>
+      <!-- bedroom: the only bedroom clip, held longer with a slow push -->
+      <video id="s14" class="shot clip" src="assets/src/IMG_9121.MOV" muted playsinline data-start="29.8" data-duration="2.2" data-media-start="0.0" data-playback-rate="0.8" data-track-index="1" data-color-grading='{"preset": "warm-daylight", "intensity": 0.4}' style="z-index:14"></video>
       <!-- bathroom -->
       <video id="s15" class="shot clip" src="assets/src/IMG_9147.MOV" muted playsinline data-start="32.0" data-duration="2.0" data-media-start="0.5" data-track-index="0" data-color-grading='{"preset": "warm-daylight", "intensity": 0.4}' style="z-index:15"></video>
       <!-- pool wide, slow push -->
@@ -64,13 +64,13 @@
       <div id="konsep" data-composition-id="konsep" data-composition-src="compositions/konsep.html" data-start="18.2" data-duration="3.1" data-track-index="6" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:63"></div>
       <div id="lokasi" data-composition-id="lokasi" data-composition-src="compositions/lokasi.html" data-start="21.4" data-duration="3.5" data-track-index="5" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:64"></div>
       <div id="kps" data-composition-id="kps" data-composition-src="compositions/kps.html" data-start="25.2" data-duration="4.3" data-track-index="6" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:65"></div>
-      <div id="bilik" data-composition-id="bilik" data-composition-src="compositions/bilik.html" data-start="29.6" data-duration="4.3" data-track-index="5" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:66"></div>
+      <div id="bilik" data-composition-id="bilik" data-composition-src="compositions/bilik.html" data-start="29.9" data-duration="4.0" data-track-index="5" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:66"></div>
       <div id="harga" data-composition-id="harga" data-composition-src="compositions/harga.html" data-start="34.3" data-duration="4.6" data-track-index="6" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:67"></div>
       <div id="ending" data-composition-id="ending" data-composition-src="compositions/ending.html" data-start="39.3" data-duration="3.2" data-track-index="5" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:68"></div>
     </div>
     <script>
       const tl = gsap.timeline({ paused: true });
-      const shots = [["s01", 0.0, 5.0, 1.0, 1.06, false, false], ["s02", 5.0, 3.3, 1.0, 1.03, true, false], ["s03", 8.3, 2.7, 1.0, 1.03, false, false], ["s04", 11.0, 3.2, 1.0, 1.04, false, false], ["s05", 14.2, 2.2, 1.0, 1.04, false, false], ["s06", 16.4, 1.6, 1.03, 1.06, false, false], ["s07", 18.0, 1.4, 1.0, 1.04, false, false], ["s08", 19.4, 1.6, 1.0, 1.04, false, false], ["s09", 21.0, 2.2, 1.0, 1.04, false, false], ["s10", 23.2, 1.8, 1.0, 1.04, false, false], ["s11", 25.0, 2.0, 1.0, 1.04, false, false], ["s12", 27.0, 1.4, 1.0, 1.04, false, false], ["s13", 28.4, 2.0, 1.0, 1.04, false, false], ["s14", 30.4, 1.6, 1.0, 1.04, false, false], ["s15", 32.0, 2.0, 1.0, 1.04, false, false], ["s16", 34.0, 5.0, 1.0, 1.06, true, false], ["s17", 39.0, 3.5, 1.0, 1.03, true, false]];
+      const shots = [["s01", 0.0, 5.0, 1.0, 1.06, false, false], ["s02", 5.0, 3.3, 1.0, 1.03, true, false], ["s03", 8.3, 2.7, 1.0, 1.03, false, false], ["s04", 11.0, 3.2, 1.0, 1.04, false, false], ["s05", 14.2, 2.2, 1.0, 1.04, false, false], ["s06", 16.4, 1.6, 1.03, 1.06, false, false], ["s07", 18.0, 1.4, 1.0, 1.04, false, false], ["s08", 19.4, 1.6, 1.0, 1.04, false, false], ["s09", 21.0, 2.2, 1.0, 1.04, false, false], ["s10", 23.2, 1.8, 1.0, 1.04, false, false], ["s11", 25.0, 1.8, 1.0, 1.04, false, false], ["s12", 26.8, 1.2, 1.0, 1.04, false, false], ["s13", 28.0, 1.8, 1.0, 1.04, false, false], ["s14", 29.8, 2.2, 1.0, 1.07, false, false], ["s15", 32.0, 2.0, 1.0, 1.04, false, false], ["s16", 34.0, 5.0, 1.0, 1.06, true, false], ["s17", 39.0, 3.5, 1.0, 1.03, true, false]];
       shots.forEach(([id, s, d, z0, z1, dissolve, rotated]) => {
         if (rotated) {
           // local y is screen x after the quarter turn: drift slowly across the facade

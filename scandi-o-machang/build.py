@@ -30,10 +30,10 @@ SHOTS = [
     (2.2, "IMG_9044.MOV", 0.0, 1, 1.00, 1.04, "entrance porch, low angle"),
     (1.8, "IMG_9178.MOV", 4.0, 1, 1.00, 1.04, "side entrance"),
     # 5 Interior 25-34
-    (2.0, "IMG_9396.MOV", 3.0, 1, 1.00, 1.04, "living hall pan (60 fps source)"),
-    (1.4, "IMG_9174.MOV", 2.0, 1, 1.00, 1.04, "chandelier"),
-    (2.0, "IMG_9093.MOV", 0.0, 1, 1.00, 1.04, "kitchen"),
-    (1.6, "IMG_9121.MOV", 0.0, 1, 1.00, 1.04, "bedroom"),
+    (1.8, "IMG_9396.MOV", 3.0, 1, 1.00, 1.04, "living hall pan (60 fps source)"),
+    (1.2, "IMG_9174.MOV", 2.0, 1, 1.00, 1.04, "chandelier"),
+    (1.8, "IMG_9093.MOV", 0.0, 1, 1.00, 1.04, "kitchen"),
+    (2.2, "IMG_9121.MOV", 0.0, 0.8, 1.00, 1.07, "bedroom: the only bedroom clip, held longer with a slow push"),
     (2.0, "IMG_9147.MOV", 0.5, 1, 1.00, 1.04, "bathroom"),
     # 6 Price 34-39
     (5.0, "IMG_9157.MOV", 5.0, 1, 1.00, 1.06, "pool wide, slow push"),
@@ -57,7 +57,7 @@ TEXT = {
     "konsep": (18.2, 3.1, 620, [("KONSEP SCANDINAVIAN", "w", 70)], None),
     "lokasi": (21.4, 3.5, 620, [("LOKASI:", "w", 48), ("MACHANG, KELANTAN", "y", 70)], None),
     "kps": (25.2, 4.3, 620, [("KELUASAN", "w", 52), ("2,031 KPS", "y", 110)], None),
-    "bilik": (29.6, 4.3, 620, [("4 BILIK TIDUR | 3 BILIK AIR", "w", 58)], None),
+    "bilik": (29.9, 4.0, 620, [("4 BILIK TIDUR | 3 BILIK AIR", "w", 58)], None),
     "harga": (34.3, 4.6, 600, [("HARGA ASAS BERMULA", "w", 66), ("BAWAH RM400K", "y", 104)],
               "*Harga asas sahaja. Kolam & spesifikasi dalam video tertakluk pakej."),
     "ending": (39.3, TOTAL - 39.3, 380, [("MAHLIGAI IDAMAN", "w", 78), ("BINA RUMAH ATAS TANAH SENDIRI", "y", 50)], "logo"),
