@@ -1,0 +1,26 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Montserrat",sans-serif; }
+    /* the soft shade behind the words lets white text read on white walls and bright sky */
+    .blk { position:absolute; left:0; right:0; padding:110px 60px; margin-top:-110px; display:flex; flex-direction:column;
+      align-items:center; text-align:center; gap:6px;
+      background:radial-gradient(ellipse 60% 50% at 50% 50%, rgba(0,0,0,.44) 0%, rgba(0,0,0,.22) 45%, rgba(0,0,0,0) 78%); }
+    .ln { white-space:nowrap; font-weight:800; text-transform:uppercase; line-height:1.08; letter-spacing:0.01em; text-shadow:0 6px 24px rgba(0,0,0,.55), 0 2px 6px rgba(0,0,0,.5); }
+    .note { margin-top:14px; color:#FFFFFF; font-weight:500; font-size:28px; letter-spacing:0.01em; opacity:.92;
+      text-shadow:0 2px 8px rgba(0,0,0,.7); }
+    #hook-blk { top:560px; }
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
+    <div id="hook-blk" class="blk clip" data-start="0" data-duration="4.75" data-track-index="0">
+      <div id="hook-1" class="ln" style="color:#FFFFFF;font-size:62px">BANGLO SCANDINAVIAN<br>BERBENTUK O</div>
+      <div id="hook-2" class="ln" style="color:#F5C518;font-size:80px">SIAP ADA KOLAM<br>DI TENGAH!</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#hook-1", { opacity:0, y:24, scale:0.96 }, { opacity:1, y:0, scale:1, duration:0.7, ease:"power2.out" }, 0.0);
+    tl.fromTo("#hook-2", { opacity:0, y:24, scale:0.96 }, { opacity:1, y:0, scale:1, duration:0.7, ease:"power2.out" }, 0.18);
+    tl.to("#hook-blk", { opacity:0, duration:0.35, ease:"sine.in" }, 4.35);
+    window.__timelines["hook"] = tl;
+  </script>
+</template>
