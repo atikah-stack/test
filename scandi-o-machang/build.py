@@ -24,24 +24,26 @@ SHOTS = [
     (3.2, "IMG_9157.MOV", 0.0, 1, 1.00, 1.04, "pool with the house around it"),
     (2.2, "IMG_9129.MOV", 0.0, 1, 1.00, 1.04, "living room, pool behind the glass wall"),
     (1.6, "IMG_9158.MOV", 3.6, 1, 1.03, 1.06, "pool, closer"),
-    # 4 Architecture 18-25
+    # 4 Architecture 18-29.9
+    (2.3, "IMG_9035.mov", 0.0, 0.82, 1.00, 1.05, "whole front facade, wide"),
+    (2.6, "IMG_9045.mov", 0.0, 1, 1.00, 1.04, "front facade, closer (stored sideways, turned upright)"),
     (1.4, "IMG_9048.MOV", 0.0, 1, 1.00, 1.04, "main door and arched window"),
     (1.6, "IMG_9180.MOV", 0.5, 1, 1.00, 1.04, "round gable window"),
     (2.2, "IMG_9044.MOV", 0.0, 1, 1.00, 1.04, "entrance porch, low angle"),
     (1.8, "IMG_9178.MOV", 4.0, 1, 1.00, 1.04, "side entrance"),
-    # 5 Interior 25-34
+    # 5 Interior 29.9-38.9
     (1.8, "IMG_9396.MOV", 3.0, 1, 1.00, 1.04, "living hall pan (60 fps source)"),
     (1.2, "IMG_9174.MOV", 2.0, 1, 1.00, 1.04, "chandelier"),
     (1.8, "IMG_9093.MOV", 0.0, 1, 1.00, 1.04, "kitchen"),
     (2.2, "IMG_9121.MOV", 0.0, 0.8, 1.00, 1.07, "bedroom: the only bedroom clip, held longer with a slow push"),
     (2.0, "IMG_9147.MOV", 0.5, 1, 1.00, 1.04, "bathroom"),
-    # 6 Price 34-39
-    (5.0, "IMG_9157.MOV", 5.0, 1, 1.00, 1.06, "pool wide, slow push"),
-    # 7 Ending 39-42.5
+    # 6 Price 38.9-44.5
+    (5.6, "IMG_9157.MOV", 5.0, 1, 1.00, 1.06, "pool wide, slow push"),
+    # 7 Ending 44.5-48
     (3.5, DRONE_TOP, 2.48, 0.5, 1.00, 1.03, "drone top-down, the whole O with the pool"),
 ]
-ROTATED = set()          # no sideways clip in the cut now (IMG_9045 replaced by the drone front)
-DISSOLVE = {1, 15, 16}   # 0-based shot indices that fade in: into the drone top-down, price, ending
+ROTATED = {"IMG_9045.mov"}   # stored sideways: shown upright with a slow drift
+DISSOLVE = {1, 17, 18}   # 0-based shot indices that fade in: into the drone top-down, price, ending
 
 starts, t = [], 0.0
 for s in SHOTS:
@@ -54,22 +56,22 @@ TEXT = {
     "hook": (0.15, 4.75, 560, [("BANGLO SCANDINAVIAN<br>BERBENTUK O", "w", 62), ("SIAP ADA KOLAM<br>DI TENGAH!", "y", 80)], None),
     "oshape": (5.3, 5.4, 620, [("REKA BENTUK O\u2011SHAPE", "w", 70)], None),
     "pool": (11.3, 6.4, 620, [("KOLAM RENANG", "w", 76), ("DI TENGAH RUMAH", "y", 76)], None),
-    "konsep": (18.2, 3.1, 620, [("KONSEP SCANDINAVIAN", "w", 70)], None),
-    "lokasi": (21.4, 3.5, 620, [("LOKASI:", "w", 48), ("MACHANG, KELANTAN", "y", 70)], None),
-    "kps": (25.2, 4.3, 620, [("KELUASAN", "w", 52), ("2,031 KPS", "y", 110)], None),
-    "bilik": (29.9, 4.0, 620, [("4 BILIK TIDUR | 3 BILIK AIR", "w", 58)], None),
-    "harga": (34.3, 4.6, 600, [("HARGA ASAS BERMULA", "w", 66), ("BAWAH RM400K", "y", 104)],
+    "konsep": (18.2, 4.7, 620, [("KONSEP SCANDINAVIAN", "w", 70)], None),
+    "lokasi": (23.3, 6.3, 620, [("LOKASI:", "w", 48), ("MACHANG, KELANTAN", "y", 70)], None),
+    "kps": (30.1, 4.4, 620, [("KELUASAN", "w", 52), ("2,031 KPS", "y", 110)], None),
+    "bilik": (34.8, 4.0, 620, [("4 BILIK TIDUR | 3 BILIK AIR", "w", 58)], None),
+    "harga": (39.2, 5.1, 600, [("HARGA ASAS BERMULA", "w", 66), ("BAWAH RM400K", "y", 104)],
               "*Harga asas sahaja. Kolam & spesifikasi dalam video tertakluk pakej."),
-    "ending": (39.3, TOTAL - 39.3, 380, [("MAHLIGAI IDAMAN", "w", 78), ("BINA RUMAH ATAS TANAH SENDIRI", "y", 50)], "logo"),
+    "ending": (44.8, TOTAL - 44.8, 380, [("MAHLIGAI IDAMAN", "w", 78), ("BINA RUMAH ATAS TANAH SENDIRI", "y", 50)], "logo"),
 }
 
 SFX = [  # (id, file, start, duration, volume)
     ("x-open", "whoosh-cinematic.mp3", 0.0, 2.5, 0.18),
     ("x-court", "whoosh-short.mp3", 8.05, 0.6, 0.18),
     ("x-pool", "impact-bass-1.mp3", 11.0, 2.0, 0.16),
-    ("x-price", "riser.mp3", 31.0, 3.2, 0.12),
-    ("x-price-hit", "impact-bass-1.mp3", 34.3, 2.0, 0.18),
-    ("x-end", "chime.mp3", 39.4, 2.0, 0.18),
+    ("x-price", "riser.mp3", 36.0, 3.2, 0.12),
+    ("x-price-hit", "impact-bass-1.mp3", 39.2, 2.0, 0.18),
+    ("x-end", "chime.mp3", 44.9, 2.0, 0.18),
 ]
 
 # ---------------------------------------------------------------- root

@@ -11,7 +11,7 @@
     #kps-blk { top:620px; }
   </style>
   <div id="root" data-composition-id="kps" data-width="1080" data-height="1920">
-    <div id="kps-blk" class="blk clip" data-start="0" data-duration="4.3" data-track-index="0">
+    <div id="kps-blk" class="blk clip" data-start="0" data-duration="4.4" data-track-index="0">
       <div id="kps-1" class="ln" style="color:#FFFFFF;font-size:52px">KELUASAN</div>
       <div id="kps-2" class="ln" style="color:#F5C518;font-size:110px">2,031 KPS</div>
     </div>
@@ -20,7 +20,7 @@
     const tl = gsap.timeline({ paused: true });
     tl.fromTo("#kps-1", { opacity:0, y:24, scale:0.96 }, { opacity:1, y:0, scale:1, duration:0.7, ease:"power2.out" }, 0.0);
     tl.fromTo("#kps-2", { opacity:0, y:24, scale:0.96 }, { opacity:1, y:0, scale:1, duration:0.7, ease:"power2.out" }, 0.18);
-    tl.to("#kps-blk", { opacity:0, duration:0.35, ease:"sine.in" }, 3.9);
+    tl.to("#kps-blk", { opacity:0, duration:0.35, ease:"sine.in" }, 4.0);
     window.__timelines["kps"] = tl;
   </script>
 </template>
