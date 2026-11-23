@@ -3,12 +3,12 @@ punch=[(0,4.77,1.0,1.04,"50% 45%"),(4.77,6.99,1.14,1.17,"50% 62%"),(6.99,10.93,1
        (10.93,15.0,1.12,1.15,"50% 58%"),(15.0,21.45,1.0,1.03,"50% 50%"),(21.45,DUR,1.14,1.18,"50% 60%")]
 subs=[(0.01,1.19,'Dengan bajet bawah'),(1.21,2.98,'<span class="y">RM280,000,</span>'),
  (3.03,4.75,'<span class="y">banglo</span> macam ni yang anda boleh dapat.'),
- (4.80,6.97,'Ok, assalamualaikum dan salam sejahtera.'),(7.04,8.56,'Ok, hari ni Abang Min berada'),
+ (4.80,6.97,'Ok, assalamualaikum dan salam sejahtera.'),(7.04,8.56,'Ok, hari ni Abang Mi berada'),
  (8.60,10.92,'di Kampung Ceralali, Tanah Merah, Kelantan.'),(10.96,12.42,'Bawa anda semua view'),
  (12.45,14.98,'sebuah <span class="y">banglo</span> yang dibina oleh Mahligai Idaman.'),
  (15.05,16.95,'Di <span class="y">banglo</span> ni berkeluasan'),(16.99,18.92,'1,520 kaki persegi,'),
- (18.96,21.45,'ada 4 bilik tidur, 3 bilik air.'),(21.50,24.08,'Abang Min nak bawa anda view dari rumah ni.'),
- (24.12,DUR,'Jom, let\'s go!')]
+ (18.96,21.45,'ada 4 bilik tidur, 3 bilik air.'),(21.50,24.08,'Abang Mi nak bawa anda view dari rumah ni.'),
+ (24.12,DUR,'Jom, <span class="y">LACAR!!!</span>')]
 S="\n".join(f'<div id="s{i}" class="sub clip" data-start="{a}" data-duration="{round(b-a,2)}" data-track-index="6"><span class="cb">{t}</span></div>' for i,(a,b,t) in enumerate(subs))
 V="\n".join(f'<video id="v{i}" class="v clip" src="assets/v/main.mp4" muted playsinline data-start="{a}" data-duration="{round(b-a,2)}" data-media-start="{a}" data-track-index="0" style="transform-origin:{o}"></video>' for i,(a,b,s0,s1,o) in enumerate(punch))
 TAG=f'<svg class="ic" viewBox="0 0 64 64"><path d="M6 30 L30 6 H56 V32 L32 56 Z" fill="{Y}" stroke="#fff" stroke-width="3"/><circle cx="45" cy="17" r="5" fill="#222"/></svg>'
@@ -28,7 +28,7 @@ html, body {{ margin:0; width:1080px; height:1920px; overflow:hidden; background
 .y {{ color:{Y}; }}
 .hd {{ font-weight:800; line-height:1.03; letter-spacing:-0.01em; text-transform:uppercase; text-align:center; white-space:nowrap;
   -webkit-text-stroke:2px rgba(15,15,20,.55); paint-order:stroke fill; text-shadow:0 4px 18px rgba(0,0,0,.5), 0 2px 5px rgba(0,0,0,.45); }}
-#hook {{ position:absolute; left:30px; right:30px; top:300px; }}
+#hook {{ position:absolute; left:100px; right:100px; top:320px; }}
 .row {{ display:flex; align-items:center; justify-content:center; gap:16px; }}
 .ic {{ width:76px; height:76px; flex:none; filter:drop-shadow(0 3px 6px rgba(0,0,0,.45)); }}
 .ic2 {{ width:46px; height:46px; flex:none; }}
@@ -37,7 +37,7 @@ html, body {{ margin:0; width:1080px; height:1920px; overflow:hidden; background
 .chipwrap {{ position:absolute; left:40px; right:40px; top:420px; display:flex; justify-content:center; gap:16px; flex-wrap:wrap; }}
 .chip {{ display:inline-flex; align-items:center; gap:12px; font-weight:800; font-size:44px; padding:12px 24px; border-radius:18px; background:rgba(0,0,0,.6); border:3px solid {Y}; text-transform:uppercase; white-space:nowrap; }}
 .chip.yb {{ background:{Y}; color:#141414; border-color:{Y}; }}
-.sub {{ position:absolute; left:60px; right:60px; top:1430px; text-align:center; }}
+.sub {{ position:absolute; left:60px; right:60px; top:1290px; text-align:center; }}
 .cb {{ display:inline-block; max-width:940px; padding:12px 26px 14px; border-radius:16px; background:rgba(0,0,0,.58); font-weight:700; font-size:46px; line-height:1.22; }}
 </style>
 </head>
@@ -46,9 +46,9 @@ html, body {{ margin:0; width:1080px; height:1920px; overflow:hidden; background
 {V}
 <div id="shade" class="clip" data-start="0" data-duration="7.2" data-track-index="2"></div>
 <div id="hook" class="clip" data-start="0.05" data-duration="6.95" data-track-index="5">
-  <div id="h1" class="row"><div class="hd" style="font-size:96px">BAJET <span class="y">RM280,000,</span></div></div>
-  <div id="h2" class="row" style="margin-top:12px"><div class="hd" style="font-size:70px">BOLEH BAWA BALIK KUNCI</div></div>
-  <div id="h3" class="hd y" style="font-size:104px;margin-top:10px">BANGLO SENDIRI?</div>
+  <div id="h1" class="row"><div class="hd" style="font-size:80px">BAJET <span class="y">RM280,000,</span></div></div>
+  <div id="h2" class="row" style="margin-top:12px"><div class="hd" style="font-size:58px">BOLEH BAWA BALIK KUNCI</div></div>
+  <div id="h3" class="hd y" style="font-size:86px;margin-top:8px">BANGLO SENDIRI?</div>
 </div>
 <div id="loc" class="chipwrap clip" data-start="8.6" data-duration="2.35" data-track-index="5"><span class="chip">TANAH MERAH, KELANTAN</span></div>
 <div id="by" class="chipwrap clip" data-start="13.0" data-duration="2.0" data-track-index="5"><span class="chip yb">DIBINA OLEH MAHLIGAI IDAMAN</span></div>
