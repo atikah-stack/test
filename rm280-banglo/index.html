@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ms" data-resolution="portrait">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { margin:0; width:1080px; height:1920px; overflow:hidden; background:#000; }
+#root { width:100%; height:100%; background:#000; font-family:"Montserrat",sans-serif; color:#fff; }
+.v { position:absolute; left:0; top:0; width:1080px; height:1920px; object-fit:cover; }
+.y { color:#f6c343; }
+.hd { font-weight:800; line-height:1.03; letter-spacing:-0.01em; text-transform:uppercase; text-align:center; white-space:nowrap;
+  -webkit-text-stroke:2px rgba(15,15,20,.55); paint-order:stroke fill; text-shadow:0 4px 18px rgba(0,0,0,.5), 0 2px 5px rgba(0,0,0,.45); }
+#hook { position:absolute; left:30px; right:30px; top:300px; }
+.row { display:flex; align-items:center; justify-content:center; gap:16px; }
+.ic { width:76px; height:76px; flex:none; filter:drop-shadow(0 3px 6px rgba(0,0,0,.45)); }
+.ic2 { width:46px; height:46px; flex:none; }
+#swoosh { display:block; margin:6px auto 0; }
+#shade { position:absolute; left:0; right:0; top:0; height:820px; background:linear-gradient(180deg,rgba(0,0,0,.38),rgba(0,0,0,0)); }
+.chipwrap { position:absolute; left:40px; right:40px; top:420px; display:flex; justify-content:center; gap:16px; flex-wrap:wrap; }
+.chip { display:inline-flex; align-items:center; gap:12px; font-weight:800; font-size:44px; padding:12px 24px; border-radius:18px; background:rgba(0,0,0,.6); border:3px solid #f6c343; text-transform:uppercase; white-space:nowrap; }
+.chip.yb { background:#f6c343; color:#141414; border-color:#f6c343; }
+.sub { position:absolute; left:60px; right:60px; top:1430px; text-align:center; }
+.cb { display:inline-block; max-width:940px; padding:12px 26px 14px; border-radius:16px; background:rgba(0,0,0,.58); font-weight:700; font-size:46px; line-height:1.22; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="25.7" data-width="1080" data-height="1920">
+<video id="v0" class="v clip" src="assets/v/main.mp4" muted playsinline data-start="0" data-duration="4.77" data-media-start="0" data-track-index="0" style="transform-origin:50% 45%"></video>
+<video id="v1" class="v clip" src="assets/v/main.mp4" muted playsinline data-start="4.77" data-duration="2.22" data-media-start="4.77" data-track-index="0" style="transform-origin:50% 62%"></video>
+<video id="v2" class="v clip" src="assets/v/main.mp4" muted playsinline data-start="6.99" data-duration="3.94" data-media-start="6.99" data-track-index="0" style="transform-origin:50% 50%"></video>
+<video id="v3" class="v clip" src="assets/v/main.mp4" muted playsinline data-start="10.93" data-duration="4.07" data-media-start="10.93" data-track-index="0" style="transform-origin:50% 58%"></video>
+<video id="v4" class="v clip" src="assets/v/main.mp4" muted playsinline data-start="15.0" data-duration="6.45" data-media-start="15.0" data-track-index="0" style="transform-origin:50% 50%"></video>
+<video id="v5" class="v clip" src="assets/v/main.mp4" muted playsinline data-start="21.45" data-duration="4.25" data-media-start="21.45" data-track-index="0" style="transform-origin:50% 60%"></video>
+<div id="shade" class="clip" data-start="0" data-duration="7.2" data-track-index="2"></div>
+<div id="hook" class="clip" data-start="0.05" data-duration="6.95" data-track-index="5">
+  <div id="h1" class="row"><div class="hd" style="font-size:96px">BAJET <span class="y">RM280,000,</span></div></div>
+  <div id="h2" class="row" style="margin-top:12px"><div class="hd" style="font-size:70px">BOLEH BAWA BALIK KUNCI</div></div>
+  <div id="h3" class="hd y" style="font-size:104px;margin-top:10px">BANGLO SENDIRI?</div>
+</div>
+<div id="loc" class="chipwrap clip" data-start="8.6" data-duration="2.35" data-track-index="5"><span class="chip">TANAH MERAH, KELANTAN</span></div>
+<div id="by" class="chipwrap clip" data-start="13.0" data-duration="2.0" data-track-index="5"><span class="chip yb">DIBINA OLEH MAHLIGAI IDAMAN</span></div>
+<div id="spec" class="chipwrap clip" data-start="16.95" data-duration="4.5" data-track-index="5" style="top:400px">
+  <span id="c1" class="chip">1,520 KPS</span><span id="c2" class="chip">4 BILIK TIDUR</span><span id="c3" class="chip">3 BILIK AIR</span>
+</div>
+<div id="s0" class="sub clip" data-start="0.01" data-duration="1.18" data-track-index="6"><span class="cb">Dengan bajet bawah</span></div>
+<div id="s1" class="sub clip" data-start="1.21" data-duration="1.77" data-track-index="6"><span class="cb"><span class="y">RM280,000,</span></span></div>
+<div id="s2" class="sub clip" data-start="3.03" data-duration="1.72" data-track-index="6"><span class="cb"><span class="y">banglo</span> macam ni yang anda boleh dapat.</span></div>
+<div id="s3" class="sub clip" data-start="4.8" data-duration="2.17" data-track-index="6"><span class="cb">Ok, assalamualaikum dan salam sejahtera.</span></div>
+<div id="s4" class="sub clip" data-start="7.04" data-duration="1.52" data-track-index="6"><span class="cb">Ok, hari ni Abang Min berada</span></div>
+<div id="s5" class="sub clip" data-start="8.6" data-duration="2.32" data-track-index="6"><span class="cb">di Kampung Ceralali, Tanah Merah, Kelantan.</span></div>
+<div id="s6" class="sub clip" data-start="10.96" data-duration="1.46" data-track-index="6"><span class="cb">Bawa anda semua view</span></div>
+<div id="s7" class="sub clip" data-start="12.45" data-duration="2.53" data-track-index="6"><span class="cb">sebuah <span class="y">banglo</span> yang dibina oleh Mahligai Idaman.</span></div>
+<div id="s8" class="sub clip" data-start="15.05" data-duration="1.9" data-track-index="6"><span class="cb">Di <span class="y">banglo</span> ni berkeluasan</span></div>
+<div id="s9" class="sub clip" data-start="16.99" data-duration="1.93" data-track-index="6"><span class="cb">1,520 kaki persegi,</span></div>
+<div id="s10" class="sub clip" data-start="18.96" data-duration="2.49" data-track-index="6"><span class="cb">ada 4 bilik tidur, 3 bilik air.</span></div>
+<div id="s11" class="sub clip" data-start="21.5" data-duration="2.58" data-track-index="6"><span class="cb">Abang Min nak bawa anda view dari rumah ni.</span></div>
+<div id="s12" class="sub clip" data-start="24.12" data-duration="1.58" data-track-index="6"><span class="cb">Jom, let's go!</span></div>
+<audio id="voice" class="clip" src="assets/audio/voice.wav" data-start="0" data-duration="25.7" data-volume="1" data-track-index="8"></audio>
+<audio id="fx0" class="clip" src="assets/audio/pop.mp3" data-start="0.1" data-duration="0.8" data-volume="0.16" data-track-index="9"></audio>
+<audio id="fx1" class="clip" src="assets/audio/chime.mp3" data-start="0.75" data-duration="1.0" data-volume="0.14" data-track-index="10"></audio>
+<audio id="fx2" class="clip" src="assets/audio/whoosh-short.mp3" data-start="4.72" data-duration="0.8" data-volume="0.12" data-track-index="9"></audio>
+<audio id="fx3" class="clip" src="assets/audio/pop.mp3" data-start="8.6" data-duration="0.8" data-volume="0.14" data-track-index="10"></audio>
+<audio id="fx4" class="clip" src="assets/audio/whoosh-short.mp3" data-start="10.9" data-duration="0.8" data-volume="0.12" data-track-index="9"></audio>
+<audio id="fx5" class="clip" src="assets/audio/pop.mp3" data-start="13.0" data-duration="0.8" data-volume="0.14" data-track-index="10"></audio>
+<audio id="fx6" class="clip" src="assets/audio/pop.mp3" data-start="16.95" data-duration="0.8" data-volume="0.14" data-track-index="9"></audio>
+<audio id="fx7" class="clip" src="assets/audio/pop.mp3" data-start="19.0" data-duration="0.8" data-volume="0.14" data-track-index="10"></audio>
+<audio id="fx8" class="clip" src="assets/audio/pop.mp3" data-start="20.3" data-duration="0.8" data-volume="0.14" data-track-index="9"></audio>
+<audio id="fx9" class="clip" src="assets/audio/whoosh-short.mp3" data-start="21.42" data-duration="0.8" data-volume="0.12" data-track-index="10"></audio>
+</div>
+<script>
+window.__timelines = window.__timelines || {};
+const tl = gsap.timeline({ paused: true });
+const P=[['#v0', 0, 4.77, 1.0, 1.04], ['#v1', 4.77, 2.22, 1.14, 1.17], ['#v2', 6.99, 3.94, 1.0, 1.03], ['#v3', 10.93, 4.07, 1.12, 1.15], ['#v4', 15.0, 6.45, 1.0, 1.03], ['#v5', 21.45, 4.25, 1.14, 1.18]];
+P.forEach(([id,s,d,a,b])=>tl.fromTo(id,{scale:a},{scale:b,duration:d,ease:"none"},s));
+tl.fromTo("#h1",{opacity:0,y:40,scale:0.85},{opacity:1,y:0,scale:1,duration:0.35,ease:"back.out(2)"},0.08);
+tl.fromTo("#h2",{opacity:0,y:40},{opacity:1,y:0,duration:0.3,ease:"power3.out"},0.45);
+tl.fromTo("#h3",{opacity:0,scale:1.4},{opacity:1,scale:1,duration:0.35,ease:"back.out(1.8)"},0.75);
+tl.to("#h1 .y",{scale:1.08,duration:0.18,yoyo:true,repeat:1,transformOrigin:"50% 50%",display:"inline-block"},1.3);
+tl.to("#hook",{opacity:0,y:-20,duration:0.3,ease:"power1.in"},6.7);
+tl.to("#shade",{opacity:0,duration:0.4},6.8);
+const pop=(sel,t)=>tl.fromTo(sel,{opacity:0,scale:0.6,y:20},{opacity:1,scale:1,y:0,duration:0.3,ease:"back.out(2.2)"},t);
+pop("#loc .chip",8.62); pop("#by .chip",13.02); pop("#c1",16.97); pop("#c2",19.0); pop("#c3",20.32);
+document.querySelectorAll(".sub").forEach(el=>{const s=parseFloat(el.dataset.start); tl.fromTo(el.querySelector(".cb"),{opacity:0,y:10},{opacity:1,y:0,duration:0.12},s);});
+window.__timelines["main"] = tl;
+</script>
+</body>
+</html>
