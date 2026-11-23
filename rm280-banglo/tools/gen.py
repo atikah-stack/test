@@ -55,7 +55,6 @@ html, body {{ margin:0; width:1080px; height:1920px; overflow:hidden; background
 <div id="spec" class="chipwrap clip" data-start="16.95" data-duration="4.5" data-track-index="5" style="top:400px">
   <span id="c1" class="chip">1,520 KPS</span><span id="c2" class="chip">4 BILIK TIDUR</span><span id="c3" class="chip">3 BILIK AIR</span>
 </div>
-{S}
 <audio id="voice" class="clip" src="assets/audio/voice.wav" data-start="0" data-duration="{DUR}" data-volume="1" data-track-index="8"></audio>
 <audio id="fx0" class="clip" src="assets/audio/pop.mp3" data-start="0.1" data-duration="0.8" data-volume="0.16" data-track-index="9"></audio>
 <audio id="fx1" class="clip" src="assets/audio/chime.mp3" data-start="0.75" data-duration="1.0" data-volume="0.14" data-track-index="10"></audio>
