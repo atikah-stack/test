@@ -11,13 +11,13 @@ Output: `output/TORRAS_enhanced.mp4` — 1080×1920, 60 fps, **1,972 frames / 32
 ## Typography
 - Headlines: **Gaegu, 55 px**, white, centred at x = 50 %, y = 38 / 40 / 62 % of frame (within 38–62 % band).
   Gaegu is a free (OFL) look-alike of CapCut's *Ugly Dave*, which is a paid font licensed for CapCut only.
-- Animation: pen-following stroke reveal (0.45–0.8 s), Soft-Pink (#F4B7CE) underline swash, sparkle on completion, 0.3 s fade-out.
+- Animation: pen-following stroke reveal (0.45–0.8 s), Soft-Pink (#F4B7CE) heart, sparkle on completion, 0.3 s fade-out.
 - Small labels: DM Sans 29 px (white / Champagne Cream #FFF4E8). **No text shadows.**
 
 ## Cue list (rebuild in CapCut with Ugly Dave if you prefer)
 | Time (s) | Text | Y | Graphic (motion-tracked to the real product) |
 |---|---|---|---|
-| 6.00–8.40 | Unboxing my favourite ♡ | 38 % | underline + sparkle |
+| 6.00–8.40 | Unboxing my favourite ♡ | 38 % | heart + sparkle |
 | 16.10–17.90 | Crystal Clear ♡ | 38 % | edge trace + light sweep on the clear case (16.2–17.2) |
 | 18.00–19.35 | Anti-Yellowing Design | 38 % | clean-glass sweep, thin line, twinkles |
 | 22.80–23.85 | Everyday Protection ♡ | 62 % | dashed circle round camera + "Raised camera edge" pointer |

@@ -195,9 +195,7 @@ class Headline:
             ux0 = x0 + s.ink0 + (s.text_end - s.ink0) * 0.08; ux1 = x0 + s.text_end - 6
             uy = y0 + s.baseline + 14
             pts = [(ux0 + (ux1 - ux0) * k / 40, uy + 3.5 * math.sin(k / 40 * math.pi) - 2 * k / 40) for k in range(41)]
-            pp = partial_path(pts, u)
-            if len(pp) > 1:
-                m = stroke_poly(pp, 3); cv.over(m, PINK, 0.95 * fade)
+            # (underline removed at user's request; only the completion sparkle remains)
             # sparkle at stroke completion
             sp = ease_out(seg(t, tw_end + 0.25, tw_end + 0.6)) * (1 - seg(t, tw_end + 0.9, tw_end + 1.3))
             if sp > 0: draw_sparkle(cv, (ux1 + 10, uy - 6), 11 * sp, sp * fade, rot=(t - tw_end) * 40)
