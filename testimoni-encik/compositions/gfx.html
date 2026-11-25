@@ -1,0 +1,155 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: Montserrat, sans-serif; color: #fff; }
+    .y { color: #FFD230; }
+    .cw { position: absolute; left: 90px; right: 150px; top: 1405px; display: flex; justify-content: center; }
+    .cap { width: 840px; min-height: 170px; display: flex; align-items: center; justify-content: center; padding: 14px 30px 16px; border-radius: 22px;
+      background: rgba(10,12,16,.72); text-align: center; font-weight: 800; font-size: 50px; line-height: 1.18; color: #fff;
+      text-shadow: 0 2px 8px rgba(0,0,0,.4); opacity: 0; }
+    .gw { position: absolute; left: 90px; right: 150px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .k1 { font-weight: 800; font-size: 62px; line-height: 1.04; color: #fff; white-space: nowrap; letter-spacing: .01em;
+      text-shadow: 0 5px 18px rgba(0,0,0,.5), 0 2px 4px rgba(0,0,0,.4); opacity: 0; }
+    .k2 { font-weight: 800; line-height: 1.0; color: #FFD230; white-space: nowrap; letter-spacing: .005em;
+      text-shadow: 0 6px 22px rgba(0,0,0,.55), 0 2px 5px rgba(0,0,0,.45); opacity: 0; }
+    .dl { font-family: Montserrat, sans-serif; font-weight: 800; font-size: 26px; letter-spacing: .14em; fill: #fff; }
+    #dmap { margin-top: 14px; overflow: visible; filter: drop-shadow(0 4px 10px rgba(0,0,0,.45)); }
+    .q { display: flex; align-items: center; gap: 22px; padding: 22px 40px 24px 24px; border-radius: 26px; background: rgba(10,12,16,.6);
+      border: 3px solid rgba(255,210,48,.9); opacity: 0; }
+    .qm { width: 84px; height: 84px; border-radius: 50%; background: #FFD230; color: #14161B; font-weight: 800; font-size: 60px; line-height: 84px; flex: none; }
+    .qt { position: relative; font-weight: 800; font-size: 54px; line-height: 1.1; text-align: left; color: #fff; white-space: nowrap; }
+    .st { position: absolute; left: -6px; right: -6px; top: 50%; height: 8px; margin-top: -4px; background: #FFD230; border-radius: 4px;
+      transform: scaleX(0); transform-origin: 0 50%; }
+    .tl { position: relative; width: 840px; display: flex; justify-content: space-between; opacity: 0; }
+    .tl-line { position: absolute; left: 100px; right: 100px; top: 46px; height: 4px; background: rgba(255,255,255,.35); border-radius: 2px; }
+    .tl-fill { position: absolute; inset: 0; background: #FFD230; transform-origin: 0 50%; border-radius: 2px; }
+    .st-item { position: relative; width: 200px; display: flex; flex-direction: column; align-items: center; gap: 12px; opacity: 0.28; }
+    .st-ic { position: relative; width: 96px; height: 96px; border-radius: 50%; background: rgba(10,12,16,.75); border: 3px solid #FFD230;
+      display: flex; align-items: center; justify-content: center; }
+    .st-ok { position: absolute; right: -6px; bottom: -6px; width: 36px; height: 36px; border-radius: 50%; background: #FFD230;
+      display: flex; align-items: center; justify-content: center; opacity: 0; }
+    .st-lb { font-weight: 800; font-size: 22px; letter-spacing: .03em; color: #fff; white-space: nowrap; text-shadow: 0 3px 10px rgba(0,0,0,.6); }
+    .pm { font-weight: 800; font-size: 92px; letter-spacing: .12em; color: #FFD230; white-space: nowrap;
+      text-shadow: 0 6px 24px rgba(0,0,0,.55), 0 2px 5px rgba(0,0,0,.45); opacity: 0; }
+    .pmr { width: 560px; height: 3px; margin: 18px 0 16px; background: rgba(255,255,255,.85); transform: scaleX(0); }
+    .pms { font-weight: 600; font-size: 36px; color: #fff; letter-spacing: .03em; text-shadow: 0 3px 12px rgba(0,0,0,.6); opacity: 0; }
+    .obg { position: absolute; inset: 0; background: rgba(8,9,11,.72); opacity: 0; }
+    .ow { position: absolute; left: 90px; right: 150px; top: 640px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; }
+    .ologo { width: 210px; height: auto; margin-bottom: 18px; opacity: 0; }
+    .o1 { letter-spacing: .06em; font-weight: 800; font-size: 50px; color: #fff; white-space: nowrap; opacity: 0; }
+    .o2 { letter-spacing: .06em; font-weight: 800; font-size: 50px; color: #FFD230; white-space: nowrap; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="gfx" data-width="1080" data-height="1920" data-duration="51.1">
+    <div class="cw clip" id="cp0" data-start="0.02" data-duration="1.39"><div class="cap" id="ct0"><div class="cin">Kalau <span class="y">harga murah</span> pun,</div></div></div>
+    <div class="cw clip" id="cp1" data-start="1.43" data-duration="1.67"><div class="cap" id="ct1"><div class="cin">tapi kita <span class="y">tak ada</span> <span class="y">ketenangan</span>,</div></div></div>
+    <div class="cw clip" id="cp2" data-start="3.12" data-duration="1.12"><div class="cap" id="ct2"><div class="cin"><span class="y">tak ada</span> <span class="y">peace of mind</span>,</div></div></div>
+    <div class="cw clip" id="cp3" data-start="4.26" data-duration="2.05"><div class="cap" id="ct3"><div class="cin">terus <span class="y">tak ada</span> poin.</div></div></div>
+    <div class="cw clip" id="cp4" data-start="6.33" data-duration="1.99"><div class="cap" id="ct4"><div class="cin">Sebab kita <span class="y">duduk jauh</span>.</div></div></div>
+    <div class="cw clip" id="cp5" data-start="8.34" data-duration="2.19"><div class="cap" id="ct5"><div class="cin">Nak balik, orang kata</div></div></div>
+    <div class="cw clip" id="cp6" data-start="10.55" data-duration="1.3"><div class="cap" id="ct6"><div class="cin">nak <span class="y">memantau</span></div></div></div>
+    <div class="cw clip" id="cp7" data-start="11.87" data-duration="3.1"><div class="cap" id="ct7"><div class="cin">perjalanan projek tu pun</div></div></div>
+    <div class="cw clip" id="cp8" data-start="14.99" data-duration="0.83"><div class="cap" id="ct8"><div class="cin"><span class="y">agak sukar</span>.</div></div></div>
+    <div class="cw clip" id="cp9" data-start="15.84" data-duration="2.77"><div class="cap" id="ct9"><div class="cin">Daripada start, kita nak</div></div></div>
+    <div class="cw clip" id="cp10" data-start="18.63" data-duration="2.22"><div class="cap" id="ct10"><div class="cin"><span class="y">ukur tanah</span> semua,</div></div></div>
+    <div class="cw clip" id="cp11" data-start="20.87" data-duration="1.28"><div class="cap" id="ct11"><div class="cin">boleh katakan</div></div></div>
+    <div class="cw clip" id="cp12" data-start="22.17" data-duration="2.1"><div class="cap" id="ct12"><div class="cin"><span class="y">Mahligai</span> yang <span class="y">uruskan</span> segala-galanya.</div></div></div>
+    <div class="cw clip" id="cp13" data-start="24.29" data-duration="1.46"><div class="cap" id="ct13"><div class="cin">Jadi kita macam</div></div></div>
+    <div class="cw clip" id="cp14" data-start="25.77" data-duration="2.02"><div class="cap" id="ct14"><div class="cin"><span class="y">tenang</span>. Tak payah nak fikir apa.</div></div></div>
+    <div class="cw clip" id="cp15" data-start="27.81" data-duration="1.37"><div class="cap" id="ct15"><div class="cin">Kita cuma <span class="y">tenang</span>.</div></div></div>
+    <div class="cw clip" id="cp16" data-start="29.2" data-duration="3.91"><div class="cap" id="ct16"><div class="cin"><span class="y">Tak ada</span> kerisauan kata,</div></div></div>
+    <div class="cw clip" id="cp17" data-start="33.13" data-duration="1.73"><div class="cap" id="ct17"><div class="cin">“Eh, ni dah siap ke kat sini,</div></div></div>
+    <div class="cw clip" id="cp18" data-start="34.88" data-duration="2.68"><div class="cap" id="ct18"><div class="cin">dah sampai <span class="y">stage</span> mana” semua.</div></div></div>
+    <div class="cw clip" id="cp19" data-start="37.58" data-duration="2.93"><div class="cap" id="ct19"><div class="cin">Benda-benda tu semua <span class="y">tak ada</span>.</div></div></div>
+    <div class="cw clip" id="cp20" data-start="40.53" data-duration="1.77"><div class="cap" id="ct20"><div class="cin">Jadi memang orang kata</div></div></div>
+    <div class="cw clip" id="cp21" data-start="42.32" data-duration="2.07"><div class="cap" id="ct21"><div class="cin"><span class="y">pilihan tu tepat</span>.</div></div></div>
+    <div class="cw clip" id="cp22" data-start="44.41" data-duration="1.66"><div class="cap" id="ct22"><div class="cin">Alhamdulillah, <span class="y">pilihan tu tepat</span>.</div></div></div>
+    <div class="gw clip" id="g-hook" data-start="0.1" data-duration="3.25" style="top:280px"><div class="k1" id="g-hook-1">BINA RUMAH DARI JAUH,</div><div class="k2" id="g-hook-2" style="font-size:104px">TAPI LANGSUNG<br>TAK RISAU!</div></div>
+    <div class="gw clip" id="g-pom1" data-start="3.43" data-duration="2.9" style="top:330px"><div class="k1" id="g-pom1-1">TAK ADA</div><div class="k2" id="g-pom1-2" style="font-size:112px">PEACE OF MIND</div></div>
+    <div class="gw clip" id="g-dist" data-start="6.33" data-duration="3.96" style="top:280px"><div class="k2" id="dj" style="font-size:104px">DUDUK JAUH</div><svg id="dmap" viewBox="0 0 760 230" width="760" height="230"><path id="droute" d="M120 140 C 260 40, 500 40, 640 140" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-dasharray="2 18"/><g id="dpa"><circle cx="120" cy="140" r="44" fill="rgba(10,12,16,.65)" stroke="#FFD230" stroke-width="4"/><path d="M98 146 120 128l22 18M104 143v18h32v-18" fill="none" stroke="#fff" stroke-width="5" stroke-linejoin="round"/></g><g id="dpb"><circle cx="640" cy="140" r="44" fill="rgba(10,12,16,.65)" stroke="#FFD230" stroke-width="4"/><path d="M618 160h44M624 160v-22h32v22M624 138l16-14 16 14" fill="none" stroke="#FFD230" stroke-width="5" stroke-linejoin="round"/></g><text x="120" y="218" text-anchor="middle" class="dl">ANDA</text><text x="640" y="218" text-anchor="middle" class="dl">TAPAK RUMAH</text></svg></div>
+    <div class="gw clip" id="g-q1" data-start="10.55" data-duration="5.24" style="top:360px"><div class="q" id="g-q1-q"><span class="qm">?</span><span class="qt">MACAM MANA NAK<br>PANTAU PROGRES?<i class="st" id="g-q1-st"></i></span></div></div>
+    <div class="gw clip" id="g-time" data-start="18.28" data-duration="9.42" style="top:300px"><div class="tl"><div class="tl-line"><div class="tl-fill" id="tlf"></div></div><div class="st-item" id="stp0"><div class="st-ic"><svg viewBox="0 0 48 48" width="50" height="50" fill="none" stroke="#FFD230" stroke-width="3.4"><path d="M6 30h36M10 30V18m8 12V22m8 8V18m8 12V22m6 8V18" stroke-linecap="round"/></svg><div class="st-ok" id="ok0"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 12.5 10 17 19 7" fill="none" stroke="#14161B" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div><div class="st-lb">UKUR TANAH</div></div><div class="st-item" id="stp1"><div class="st-ic"><svg viewBox="0 0 48 48" width="50" height="50" fill="none" stroke="#FFD230" stroke-width="3.4"><path d="M8 40 30 18l6 6-22 22H8z M28 20l8-8 6 6-8 8" stroke-linejoin="round"/></svg><div class="st-ok" id="ok1"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 12.5 10 17 19 7" fill="none" stroke="#14161B" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div><div class="st-lb">REKA BENTUK</div></div><div class="st-item" id="stp2"><div class="st-ic"><svg viewBox="0 0 48 48" width="50" height="50" fill="none" stroke="#FFD230" stroke-width="3.4"><path d="M6 40h36M10 40V22h28v18M16 22v-8h16v8M20 30h8" stroke-linejoin="round"/></svg><div class="st-ok" id="ok2"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 12.5 10 17 19 7" fill="none" stroke="#14161B" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div><div class="st-lb">PEMBINAAN</div></div><div class="st-item" id="stp3"><div class="st-ic"><svg viewBox="0 0 48 48" width="50" height="50" fill="none" stroke="#FFD230" stroke-width="3.4"><circle cx="16" cy="24" r="8"/><path d="M24 24h18m-6 0v7m-6-7v5" stroke-linecap="round"/></svg><div class="st-ok" id="ok3"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 12.5 10 17 19 7" fill="none" stroke="#14161B" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div><div class="st-lb">SERAHAN KUNCI</div></div></div></div>
+    <div class="gw clip" id="g-urus" data-start="22.2" data-duration="2.03" style="top:760px"><div class="k1" id="g-urus-1">MAHLIGAI</div><div class="k2" id="g-urus-2" style="font-size:118px">URUSKAN</div></div>
+    <div class="gw clip" id="g-q2" data-start="33.1" data-duration="5.1" style="top:360px"><div class="q" id="g-q2-q"><span class="qm">?</span><span class="qt">DAH SAMPAI<br>STAGE MANA?<i class="st" id="g-q2-st"></i></span></div></div>
+    <div class="gw clip" id="g-pom2" data-start="38.25" data-duration="2.25" style="top:560px"><div class="pm" id="pm1">PEACE OF MIND</div><div class="pmr" id="pmr"></div><div class="pms" id="pm2">Ketenangan sepanjang perjalanan membina rumah.</div></div>
+    <div class="gw clip" id="g-tepat" data-start="42.3" data-duration="5.3" style="top:360px"><div class="k1" id="g-tepat-1">PILIHAN</div><div class="k2" id="g-tepat-2" style="font-size:118px">YANG TEPAT</div></div>
+    <div class="clip" id="g-out" data-start="47.3" data-duration="3.8" style="position:absolute; inset:0"><div class="obg" id="obg"></div><div class="ow"><img class="ologo" id="olg" src="assets/img/logo.png" alt="" /><div class="o1" id="o1">MORE THAN BUILDING HOMES.</div><div class="o2" id="o2">DELIVERING PEACE OF MIND.</div></div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#ct0", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.14, ease: "power3.out" }, 0.02);
+    tl.fromTo("#ct1", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.14, ease: "power3.out" }, 1.43);
+    tl.fromTo("#ct2", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.14, ease: "power3.out" }, 3.12);
+    tl.fromTo("#ct3", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.14, ease: "power3.out" }, 4.26);
+    tl.fromTo("#ct4", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.14, ease: "power3.out" }, 6.33);
+    tl.fromTo("#ct5", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.14, ease: "power3.out" }, 8.34);
+    tl.fromTo("#ct6", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.14, ease: "power3.out" }, 10.55);
+    tl.fromTo("#ct7", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.14, ease: "power3.out" }, 11.87);
+    tl.fromTo("#ct8", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.14, ease: "power3.out" }, 14.99);
+    tl.fromTo("#ct9", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.14, ease: "power3.out" }, 15.84);
+    tl.fromTo("#ct10", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.14, ease: "power3.out" }, 18.63);
+    tl.fromTo("#ct11", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.14, ease: "power3.out" }, 20.87);
+    tl.fromTo("#ct12", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.14, ease: "power3.out" }, 22.17);
+    tl.fromTo("#ct13", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.14, ease: "power3.out" }, 24.29);
+    tl.fromTo("#ct14", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.14, ease: "power3.out" }, 25.77);
+    tl.fromTo("#ct15", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.14, ease: "power3.out" }, 27.81);
+    tl.fromTo("#ct16", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.14, ease: "power3.out" }, 29.2);
+    tl.fromTo("#ct17", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.14, ease: "power3.out" }, 33.13);
+    tl.fromTo("#ct18", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.14, ease: "power3.out" }, 34.88);
+    tl.fromTo("#ct19", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.14, ease: "power3.out" }, 37.58);
+    tl.fromTo("#ct20", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.14, ease: "power3.out" }, 40.53);
+    tl.fromTo("#ct21", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.14, ease: "power3.out" }, 42.32);
+    tl.fromTo("#ct22", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.14, ease: "power3.out" }, 44.41);
+    tl.fromTo("#g-hook-1", { opacity: 0, y: 40, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "expo.out" }, 0.15);
+    tl.fromTo("#g-hook-2", { opacity: 0, scale: 1.3, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, 0.38);
+    tl.to("#g-hook", { opacity: 0, y: -18, duration: 0.25, ease: "power2.in" }, 3.1);
+    tl.fromTo("#g-pom1-1", { opacity: 0, y: 40, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "expo.out" }, 3.48);
+    tl.fromTo("#g-pom1-2", { opacity: 0, scale: 1.3, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, 3.71);
+    tl.to("#g-pom1", { opacity: 0, y: -18, duration: 0.25, ease: "power2.in" }, 6.08);
+    tl.fromTo("#dj", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" }, 6.43);
+    tl.fromTo("#dpa", { opacity: 0, scale: 0.4, transformOrigin: "120px 140px" }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.8)" }, 6.83);
+    tl.fromTo("#droute", { strokeDashoffset: 600, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: 1.4, ease: "power2.inOut" }, 7.13);
+    tl.fromTo("#dpb", { opacity: 0, scale: 0.4, transformOrigin: "640px 140px" }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.8)" }, 8.23);
+    tl.fromTo("#g-dist svg text", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 8.43);
+    tl.to("#g-dist", { opacity: 0, duration: 0.25, ease: "power2.in" }, 10.04);
+    tl.fromTo("#g-q1-q", { opacity: 0, y: 30, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 10.55);
+    tl.to("#g-q1", { opacity: 0, y: -14, duration: 0.25, ease: "power2.in" }, 15.54);
+    tl.fromTo("#g-time .tl", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 18.28);
+    tl.fromTo("#stp0", { opacity: 0.28 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 18.63);
+    tl.fromTo("#stp0 .st-ic", { scale: 0.8 }, { scale: 1, duration: 0.4, ease: "back.out(2)" }, 18.63);
+    tl.fromTo("#ok0", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "back.out(2.2)" }, 18.83);
+    tl.to("#tlf", { scaleX: 0.0, duration: 0.4, ease: "power2.out" }, 18.63);
+    tl.fromTo("#stp1", { opacity: 0.28 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 21.28);
+    tl.fromTo("#stp1 .st-ic", { scale: 0.8 }, { scale: 1, duration: 0.4, ease: "back.out(2)" }, 21.28);
+    tl.fromTo("#ok1", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "back.out(2.2)" }, 21.48);
+    tl.to("#tlf", { scaleX: 0.333, duration: 0.4, ease: "power2.out" }, 21.28);
+    tl.fromTo("#stp2", { opacity: 0.28 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 22.25);
+    tl.fromTo("#stp2 .st-ic", { scale: 0.8 }, { scale: 1, duration: 0.4, ease: "back.out(2)" }, 22.25);
+    tl.fromTo("#ok2", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "back.out(2.2)" }, 22.45);
+    tl.to("#tlf", { scaleX: 0.667, duration: 0.4, ease: "power2.out" }, 22.25);
+    tl.fromTo("#stp3", { opacity: 0.28 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 24.4);
+    tl.fromTo("#stp3 .st-ic", { scale: 0.8 }, { scale: 1, duration: 0.4, ease: "back.out(2)" }, 24.4);
+    tl.fromTo("#ok3", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "back.out(2.2)" }, 24.6);
+    tl.to("#tlf", { scaleX: 1.0, duration: 0.4, ease: "power2.out" }, 24.4);
+    tl.set("#tlf", { scaleX: 0 }, 0);
+    tl.to("#g-time", { opacity: 0, duration: 0.25, ease: "power2.in" }, 27.45);
+    tl.fromTo("#g-urus-1", { opacity: 0, y: 40, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "expo.out" }, 22.25);
+    tl.fromTo("#g-urus-2", { opacity: 0, scale: 1.3, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, 22.48);
+    tl.to("#g-urus", { opacity: 0, y: -18, duration: 0.25, ease: "power2.in" }, 23.98);
+    tl.fromTo("#g-q2-q", { opacity: 0, y: 30, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 33.1);
+    tl.fromTo("#g-q2-st", { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "power3.inOut" }, 37.6);
+    tl.to("#g-q2-q", { opacity: 0.55, duration: 0.3 }, 37.9);
+    tl.to("#g-q2", { opacity: 0, y: -14, duration: 0.25, ease: "power2.in" }, 37.95);
+    tl.fromTo("#pm1", { opacity: 0, scaleX: 1.22, filter: "blur(8px)" }, { opacity: 1, scaleX: 1, filter: "blur(0px)", duration: 1.4, ease: "power3.out" }, 38.3);
+    tl.fromTo("#pmr", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: "power3.inOut" }, 38.75);
+    tl.fromTo("#pm2", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 39.05);
+    tl.to("#g-pom2", { opacity: 0, duration: 0.3, ease: "power1.in" }, 40.2);
+    tl.fromTo("#g-tepat-1", { opacity: 0, y: 40, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "expo.out" }, 42.35);
+    tl.fromTo("#g-tepat-2", { opacity: 0, scale: 1.3, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, 42.58);
+    tl.to("#g-tepat", { opacity: 0, y: -18, duration: 0.25, ease: "power2.in" }, 47.35);
+    tl.fromTo("#obg", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power1.inOut" }, 47.3);
+    tl.fromTo("#olg", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 47.7);
+    tl.fromTo("#o1", { opacity: 0, scaleX: 1.18, filter: "blur(8px)" }, { opacity: 1, scaleX: 1, filter: "blur(0px)", duration: 0.9, ease: "power3.out" }, 47.95);
+    tl.fromTo("#o2", { opacity: 0, scaleX: 1.18, filter: "blur(8px)" }, { opacity: 1, scaleX: 1, filter: "blur(0px)", duration: 0.9, ease: "power3.out" }, 48.45);
+    tl.to(["#olg", "#o1", "#o2"], { opacity: 0, duration: 0.5, ease: "power1.in" }, 50.55);
+    window.__timelines["gfx"] = tl;
+  </script>
+</template>
