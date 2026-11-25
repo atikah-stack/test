@@ -1,0 +1,21 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Montserrat",sans-serif; }
+    .ln { white-space:nowrap; font-weight:800; text-transform:uppercase; line-height:1.06; letter-spacing:0.01em; text-shadow:0 6px 24px rgba(0,0,0,.55), 0 2px 6px rgba(0,0,0,.5); }
+    .shade { position:absolute; left:0; right:0; padding:100px 162px 100px 60px; margin-top:-100px; display:flex; flex-direction:column;
+      align-items:center; text-align:center; gap:4px;
+      background:radial-gradient(ellipse 60% 50% at 46% 50%, rgba(0,0,0,.42) 0%, rgba(0,0,0,.2) 45%, rgba(0,0,0,0) 78%); }
+
+    #lg { position:absolute; left:380px; top:360px; width:300px; padding:22px 24px; border-radius:24px; background:#FFFFFF;
+      box-shadow:0 14px 40px rgba(0,0,0,.3); }
+    #lg img { display:block; width:252px; height:auto; }
+  </style>
+  <div id="root" data-composition-id="endlogo" data-width="1080" data-height="1920">
+    <div id="lg" class="clip" data-start="0" data-duration="1.55" data-track-index="0"><img src="assets/brand/logo-mi.png" alt="Mahligai Idaman" /></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#lg", { opacity:0, y:16, scale:0.95 }, { opacity:1, y:0, scale:1, duration:0.6, ease:"power2.out" }, 0.1);
+    window.__timelines["endlogo"] = tl;
+  </script>
+</template>

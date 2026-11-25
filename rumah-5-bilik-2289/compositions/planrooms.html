@@ -1,0 +1,78 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Montserrat",sans-serif; }
+    .ln { white-space:nowrap; font-weight:800; text-transform:uppercase; line-height:1.06; letter-spacing:0.01em; text-shadow:0 6px 24px rgba(0,0,0,.55), 0 2px 6px rgba(0,0,0,.5); }
+    .shade { position:absolute; left:0; right:0; padding:100px 162px 100px 60px; margin-top:-100px; display:flex; flex-direction:column;
+      align-items:center; text-align:center; gap:4px;
+      background:radial-gradient(ellipse 60% 50% at 46% 50%, rgba(0,0,0,.42) 0%, rgba(0,0,0,.2) 45%, rgba(0,0,0,0) 78%); }
+
+    #planrooms-bg { position:absolute; inset:0; background:#17181a;
+      background-image:linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size:60px 60px; }
+    #planrooms-pbox { position:absolute; left:220px; top:400px; width:640px; height:1066px; }
+    #planrooms-pimg { position:absolute; inset:0; width:100%; height:100%; opacity:.82; }
+    #planrooms-scan { position:absolute; left:-8px; right:-8px; height:3px; top:0; background:#FFD43B; box-shadow:0 0 14px #FFD43B; }
+    .planrooms-bed { fill:#FFD43B; fill-opacity:0; stroke:#FFD43B; stroke-width:3; stroke-opacity:0; vector-effect:non-scaling-stroke; }
+    .planrooms-bath { fill:#6FB6FF; fill-opacity:0; stroke:#FFFFFF; stroke-width:2.5; stroke-opacity:0; vector-effect:non-scaling-stroke; }
+    .planrooms-liv { fill:#FFFFFF; fill-opacity:0; stroke:#FFFFFF; stroke-width:3; stroke-opacity:0; vector-effect:non-scaling-stroke; }
+    .planrooms-num { font-family:"Montserrat",sans-serif; font-weight:900; font-size:56px; fill:#17181a; opacity:0; }
+    #planrooms-side { position:absolute; left:60px; width:858px; top:0; height:1920px; }
+    .sl { position:absolute; left:0; width:858px; text-align:center; font-weight:800; text-transform:uppercase; line-height:1.04; white-space:nowrap; text-shadow:0 4px 14px rgba(0,0,0,.6); }
+
+  </style>
+  <div id="root" data-composition-id="planrooms" data-width="1080" data-height="1920">
+    <div id="planrooms-bg" class="clip" data-start="0" data-duration="5.0" data-track-index="0"></div>
+    <div id="planrooms-pbox" class="clip" data-start="0" data-duration="5.0" data-track-index="1">
+      <img id="planrooms-pimg" src="assets/plan/plan-dark.png" alt="Pelan lantai" />
+      <svg id="planrooms-psvg" viewBox="60 380 940 1565" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%"><polygon id="planrooms-bed1" class="planrooms-bed" points="618,1357 776,1357 776,1354 960,1354 960,1640 618,1640" /><polygon id="planrooms-bed2" class="planrooms-bed" points="720,994 960,994 960,1222 720,1222" /><polygon id="planrooms-bed3" class="planrooms-bed" points="720,640 960,640 960,880 720,880" /><polygon id="planrooms-bed4" class="planrooms-bed" points="722,416 960,416 960,626 722,626" /><polygon id="planrooms-bed5" class="planrooms-bed" points="372,416 608,416 608,626 372,626" /><polygon id="planrooms-bath1" class="planrooms-bath" points="782,1236 960,1236 960,1347 782,1347" /><polygon id="planrooms-bath2" class="planrooms-bath" points="804,888 960,888 960,984 804,984" /><polygon id="planrooms-bath3" class="planrooms-bath" points="618,416 714,416 714,548 618,548" /><polygon id="planrooms-living" class="planrooms-liv" points="308,1150 606,1150 606,1436 308,1436" /><text id="planrooms-num1" class="planrooms-num" x="789.0" y="1519.0" text-anchor="middle">01</text><text id="planrooms-num2" class="planrooms-num" x="840.0" y="1130.0" text-anchor="middle">02</text><text id="planrooms-num3" class="planrooms-num" x="840.0" y="782.0" text-anchor="middle">03</text><text id="planrooms-num4" class="planrooms-num" x="841.0" y="543.0" text-anchor="middle">04</text><text id="planrooms-num5" class="planrooms-num" x="490.0" y="543.0" text-anchor="middle">05</text></svg>
+      <div id="planrooms-scan"></div>
+    </div>
+    <div id="planrooms-side" class="clip" data-start="0" data-duration="5.0" data-track-index="2">
+      <div id="planrooms-c5" class="sl" style="top:292px;color:#FFD43B;font-size:66px">5 BILIK TIDUR</div>
+      <div id="planrooms-bl" class="sl" style="top:366px;color:#FFFFFF;font-size:30px;letter-spacing:0.12em;font-weight:600">01 → 05</div>
+      <div id="planrooms-ba" class="sl" style="top:292px;color:#FFFFFF;font-size:66px">3 BILIK AIR</div>
+      <div id="planrooms-ba-m" style="position:absolute;left:394px;top:374px;width:70px;height:14px;border-radius:7px;background:#6FB6FF"></div>
+      <div id="planrooms-s1" class="sl" style="top:290px;color:#FFD43B;font-size:62px">2,289 KPS</div>
+      <div id="planrooms-s1u" class="sl" style="top:362px;color:#FFFFFF;font-size:32px">5 BILIK TIDUR | 3 BILIK AIR</div>
+      <div id="planrooms-s2" class="sl" style="top:362px"></div>
+      <div id="planrooms-s3" class="sl" style="top:362px"></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#planrooms-pbox", { clipPath:"inset(0% 0% 100% 0%)" }, { clipPath:"inset(0% 0% 0% 0%)", duration:0.85, ease:"power2.inOut" }, 0);
+    tl.fromTo("#planrooms-scan", { y:0, opacity:1 }, { y:1066, duration:0.85, ease:"power2.inOut" }, 0);
+    tl.to("#planrooms-scan", { opacity:0, duration:0.2 }, 0.85);
+    tl.set(["#planrooms-c5","#planrooms-bl","#planrooms-ba","#planrooms-ba-m","#planrooms-s1","#planrooms-s1u","#planrooms-s2","#planrooms-s3"], { opacity:0 }, 0);
+    tl.to("#planrooms-bed1", { fillOpacity:0.5, strokeOpacity:1, duration:0.22 }, 0.45);
+    tl.to("#planrooms-num1", { opacity:1, duration:0.2 }, 0.5);
+    tl.to("#planrooms-bed2", { fillOpacity:0.5, strokeOpacity:1, duration:0.22 }, 0.7);
+    tl.to("#planrooms-num2", { opacity:1, duration:0.2 }, 0.75);
+    tl.to("#planrooms-bed3", { fillOpacity:0.5, strokeOpacity:1, duration:0.22 }, 0.95);
+    tl.to("#planrooms-num3", { opacity:1, duration:0.2 }, 1.0);
+    tl.to("#planrooms-bed4", { fillOpacity:0.5, strokeOpacity:1, duration:0.22 }, 1.2);
+    tl.to("#planrooms-num4", { opacity:1, duration:0.2 }, 1.25);
+    tl.to("#planrooms-bed5", { fillOpacity:0.5, strokeOpacity:1, duration:0.22 }, 1.45);
+    tl.to("#planrooms-num5", { opacity:1, duration:0.2 }, 1.5);
+    tl.fromTo("#planrooms-c5", { opacity:0, y:20 }, { opacity:1, y:0, duration:0.35 }, 0.45);
+    tl.fromTo("#planrooms-bl", { opacity:0 }, { opacity:1, duration:0.3 }, 0.55);
+    tl.to(["#planrooms-c5","#planrooms-bl"], { opacity:0, duration:0.2 }, 1.8499999999999999);
+    tl.to("#planrooms-bath1", { fillOpacity:0.55, strokeOpacity:1, duration:0.22 }, 1.9);
+    tl.to("#planrooms-bath2", { fillOpacity:0.55, strokeOpacity:1, duration:0.22 }, 2.15);
+    tl.to("#planrooms-bath3", { fillOpacity:0.55, strokeOpacity:1, duration:0.22 }, 2.4);
+    tl.fromTo(["#planrooms-ba","#planrooms-ba-m"], { opacity:0, y:20 }, { opacity:1, y:0, duration:0.3 }, 1.9);
+    tl.to(["#planrooms-ba","#planrooms-ba-m"], { opacity:0, duration:0.2 }, 3.1999999999999997);
+    tl.fromTo("#planrooms-s1", { opacity:0, y:24, scale:0.95 }, { opacity:1, y:0, scale:1, duration:0.45, ease:"power2.out" }, 3.3);
+    tl.fromTo("#planrooms-s1u", { opacity:0, y:24, scale:0.95 }, { opacity:1, y:0, scale:1, duration:0.45, ease:"power2.out" }, 3.4);
+    tl.fromTo("#planrooms-s2", { opacity:0, y:24, scale:0.95 }, { opacity:1, y:0, scale:1, duration:0.45, ease:"power2.out" }, 3.52);
+    tl.fromTo("#planrooms-s3", { opacity:0, y:24, scale:0.95 }, { opacity:1, y:0, scale:1, duration:0.45, ease:"power2.out" }, 3.6399999999999997);
+    tl.to("#planrooms-side", { opacity:0, duration:0.3 }, 4.4);
+    tl.to(".planrooms-bed, .planrooms-bath", { fillOpacity:0.12, strokeOpacity:0.35, duration:0.3 }, 4.4);
+    tl.to(".planrooms-num", { opacity:0, duration:0.2 }, 4.4);
+    tl.to("#planrooms-living", { fillOpacity:0.18, strokeOpacity:1, duration:0.3 }, 4.4);
+    tl.set("#planrooms-pbox", { transformOrigin:"270px 622px" }, 0);
+    tl.to("#planrooms-pbox", { scale:2.6, x:50, y:-122, duration:0.85, ease:"power2.in" }, 4.4);
+    tl.to(["#planrooms-pbox","#planrooms-bg"], { opacity:0, duration:0.4, ease:"sine.in" }, 4.58);
+    window.__timelines["planrooms"] = tl;
+  </script>
+</template>

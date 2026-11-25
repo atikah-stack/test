@@ -1,0 +1,35 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Montserrat",sans-serif; }
+    .ln { white-space:nowrap; font-weight:800; text-transform:uppercase; line-height:1.06; letter-spacing:0.01em; text-shadow:0 6px 24px rgba(0,0,0,.55), 0 2px 6px rgba(0,0,0,.5); }
+    .shade { position:absolute; left:0; right:0; padding:100px 162px 100px 60px; margin-top:-100px; display:flex; flex-direction:column;
+      align-items:center; text-align:center; gap:4px;
+      background:radial-gradient(ellipse 60% 50% at 46% 50%, rgba(0,0,0,.42) 0%, rgba(0,0,0,.2) 45%, rgba(0,0,0,0) 78%); }
+
+    #rc { top:330px; }
+    #rc-1 { color:#FFFFFF; font-size:38px; letter-spacing:0.04em; }
+    #rc-n { color:#FFD43B; font-size:112px; }
+    #rc-rule { position:relative; width:560px; height:30px; margin-top:6px; }
+    #rc-line { position:absolute; left:0; right:0; top:14px; height:3px; background:#FFD43B; transform-origin:50% 50%; }
+    .tick { position:absolute; top:2px; width:3px; height:26px; background:#FFD43B; }
+  </style>
+  <div id="root" data-composition-id="recom" data-width="1080" data-height="1920">
+    <div id="rc" class="shade clip" data-start="0" data-duration="2.75" data-track-index="0">
+      <div id="rc-1" class="ln">KELUASAN YANG DISARANKAN</div>
+      <div id="rc-n" class="ln">0 KPS</div>
+      <div id="rc-rule"><div id="rc-line"></div><div id="rc-t1" class="tick" style="left:0"></div><div id="rc-t2" class="tick" style="right:0"></div></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#rc-1", { opacity:0, y:24, scale:0.95 }, { opacity:1, y:0, scale:1, duration:0.5, ease:"power2.out" }, 0);
+    tl.fromTo("#rc-n", { opacity:0, y:24, scale:0.95 }, { opacity:1, y:0, scale:1, duration:0.5, ease:"power2.out" }, 0.1);
+    const n = { v: 0 };
+    tl.to(n, { v: 2500, duration: 0.9, ease: "power2.out", onUpdate: () => {
+      document.querySelector("#rc-n").textContent = Math.round(n.v).toLocaleString("en-US") + (n.v >= 2499.5 ? "+ KPS" : " KPS"); } }, 0.15);
+    tl.fromTo("#rc-line", { scaleX:0 }, { scaleX:1, duration:0.7, ease:"power2.out" }, 0.3);
+    tl.fromTo(["#rc-t1","#rc-t2"], { opacity:0 }, { opacity:1, duration:0.3 }, 0.8);
+    tl.to("#rc", { opacity:0, duration:0.35, ease:"sine.in" }, 2.4);
+    window.__timelines["recom"] = tl;
+  </script>
+</template>

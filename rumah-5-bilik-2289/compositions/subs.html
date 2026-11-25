@@ -1,0 +1,40 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Montserrat",sans-serif; }
+    .ln { white-space:nowrap; font-weight:800; text-transform:uppercase; line-height:1.06; letter-spacing:0.01em; text-shadow:0 6px 24px rgba(0,0,0,.55), 0 2px 6px rgba(0,0,0,.5); }
+    .shade { position:absolute; left:0; right:0; padding:100px 162px 100px 60px; margin-top:-100px; display:flex; flex-direction:column;
+      align-items:center; text-align:center; gap:4px;
+      background:radial-gradient(ellipse 60% 50% at 46% 50%, rgba(0,0,0,.42) 0%, rgba(0,0,0,.2) 45%, rgba(0,0,0,0) 78%); }
+
+    .cap { position:absolute; left:60px; right:162px; top:1180px; height:150px; display:flex; align-items:flex-end; justify-content:center; }
+    .line { max-width:858px; text-align:center; color:#FFFFFF; font-weight:700; font-size:44px; line-height:1.22;
+      text-shadow:0 3px 12px rgba(0,0,0,.8), 0 1px 3px rgba(0,0,0,.8); }
+    .k { color:#FFD43B; }
+  </style>
+  <div id="root" data-composition-id="subs" data-width="1080" data-height="1920">
+    <div id="sb01" class="cap clip" data-start="0.0" data-duration="1.95" data-track-index="0"><div class="line">Biasanya kalau client tanya Abe, “Abe,</div></div>
+    <div id="sb02" class="cap clip" data-start="2.2" data-duration="3.25" data-track-index="0"><div class="line">berapa keluasan rumah hok dapat kalau dengan <span class="k">5 bilik</span>, Abe?”</div></div>
+    <div id="sb03" class="cap clip" data-start="5.6" data-duration="1.55" data-track-index="0"><div class="line">Ha, biasanya Abe akan advise ke dia,</div></div>
+    <div id="sb04" class="cap clip" data-start="7.45" data-duration="2.9" data-track-index="0"><div class="line">saiz <span class="k">2,500 kaki persegi</span> ke atas hok selesa.</div></div>
+    <div id="sb05" class="cap clip" data-start="10.45" data-duration="0.9" data-track-index="0"><div class="line">Tapi tuan-puan,</div></div>
+    <div id="sb06" class="cap clip" data-start="11.4" data-duration="4.4" data-track-index="0"><div class="line">rumah di belakang Abe ni berkeluasan <span class="k">2,289 kaki persegi</span> sahaja,</div></div>
+    <div id="sb07" class="cap clip" data-start="15.95" data-duration="1.73" data-track-index="0"><div class="line">tapi boleh dapat <span class="k">5 bilik tidur</span>,</div></div>
+    <div id="sb08" class="cap clip" data-start="17.75" data-duration="1.45" data-track-index="0"><div class="line"><span class="k">3 bilik air</span>, tuan-puan.</div></div>
+    <div id="sb09" class="cap clip" data-start="19.3" data-duration="1.55" data-track-index="0"><div class="line">Nak tengok apa yang ada kat dalam?</div></div>
+    <div id="sb10" class="cap clip" data-start="21.0" data-duration="1.2" data-track-index="0"><div class="line">Jom Abe tunjuk!</div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#sb01 .line", { opacity:0, y:8 }, { opacity:1, y:0, duration:0.15, ease:"power1.out" }, 0.0);
+    tl.fromTo("#sb02 .line", { opacity:0, y:8 }, { opacity:1, y:0, duration:0.15, ease:"power1.out" }, 2.2);
+    tl.fromTo("#sb03 .line", { opacity:0, y:8 }, { opacity:1, y:0, duration:0.15, ease:"power1.out" }, 5.6);
+    tl.fromTo("#sb04 .line", { opacity:0, y:8 }, { opacity:1, y:0, duration:0.15, ease:"power1.out" }, 7.45);
+    tl.fromTo("#sb05 .line", { opacity:0, y:8 }, { opacity:1, y:0, duration:0.15, ease:"power1.out" }, 10.45);
+    tl.fromTo("#sb06 .line", { opacity:0, y:8 }, { opacity:1, y:0, duration:0.15, ease:"power1.out" }, 11.4);
+    tl.fromTo("#sb07 .line", { opacity:0, y:8 }, { opacity:1, y:0, duration:0.15, ease:"power1.out" }, 15.95);
+    tl.fromTo("#sb08 .line", { opacity:0, y:8 }, { opacity:1, y:0, duration:0.15, ease:"power1.out" }, 17.75);
+    tl.fromTo("#sb09 .line", { opacity:0, y:8 }, { opacity:1, y:0, duration:0.15, ease:"power1.out" }, 19.3);
+    tl.fromTo("#sb10 .line", { opacity:0, y:8 }, { opacity:1, y:0, duration:0.15, ease:"power1.out" }, 21.0);
+    window.__timelines["subs"] = tl;
+  </script>
+</template>

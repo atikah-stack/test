@@ -1,0 +1,56 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Montserrat",sans-serif; }
+    .ln { white-space:nowrap; font-weight:800; text-transform:uppercase; line-height:1.06; letter-spacing:0.01em; text-shadow:0 6px 24px rgba(0,0,0,.55), 0 2px 6px rgba(0,0,0,.5); }
+    .shade { position:absolute; left:0; right:0; padding:100px 162px 100px 60px; margin-top:-100px; display:flex; flex-direction:column;
+      align-items:center; text-align:center; gap:4px;
+      background:radial-gradient(ellipse 60% 50% at 46% 50%, rgba(0,0,0,.42) 0%, rgba(0,0,0,.2) 45%, rgba(0,0,0,0) 78%); }
+
+    #gw { position:absolute; left:0; right:100px; top:1100px; height:430px; perspective:900px; perspective-origin:50% -60%; }
+    #gp { position:absolute; left:0; right:0; bottom:0; display:flex; flex-direction:column; align-items:center; transform-origin:50% 100%; }
+    #g-n { font-weight:900; font-size:168px; color:#FFD43B; line-height:1; letter-spacing:-0.01em;
+      text-shadow:0 26px 30px rgba(0,0,0,.55), 0 4px 10px rgba(0,0,0,.45); white-space:nowrap; }
+    #g-u { font-weight:800; font-size:56px; color:#FFFFFF; letter-spacing:0.3em; margin-top:4px; white-space:nowrap;
+      text-shadow:0 14px 20px rgba(0,0,0,.55); }
+    #g-rule { position:relative; width:760px; height:30px; margin-top:16px; }
+    #g-line { position:absolute; left:0; right:0; top:14px; height:4px; background:#FFD43B; transform-origin:50% 50%; }
+    .gt { position:absolute; top:0; width:4px; height:30px; background:#FFD43B; }
+    #cmp { top:330px; }
+    .lbl { font-weight:600; font-size:28px; color:#FFFFFF; letter-spacing:0.12em; opacity:.9; text-shadow:0 6px 24px rgba(0,0,0,.55), 0 2px 6px rgba(0,0,0,.5); }
+    #cmp-row { display:flex; align-items:flex-end; gap:30px; }
+    .cell { display:flex; flex-direction:column; align-items:center; gap:2px; }
+    #c-a { color:#FFFFFF; font-size:56px; }
+    #c-b { color:#FFD43B; font-size:56px; }
+    #c-arrow { color:#FFFFFF; font-size:52px; }
+  </style>
+  <div id="root" data-composition-id="ground" data-width="1080" data-height="1920">
+    <div id="cmp" class="shade clip" data-start="0" data-duration="4.3" data-track-index="1">
+      <div id="cmp-row">
+        <div class="cell"><div class="lbl">DISARANKAN</div><div id="c-a" class="ln">2,500+ KPS</div></div>
+        <div id="c-arrow" class="ln">→</div>
+        <div class="cell"><div class="lbl">RUMAH INI</div><div id="c-b" class="ln">2,289 KPS</div></div>
+      </div>
+    </div>
+    <div id="gw" class="clip" data-start="0" data-duration="4.3" data-track-index="0">
+      <div id="gp">
+        <div id="g-n">2,289</div>
+        <div id="g-u">KPS</div>
+        <div id="g-rule"><div id="g-line"></div><div class="gt" style="left:0"></div><div class="gt" style="right:0"></div></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#gp", { rotationX:88, opacity:0, scale:0.9 }, { rotationX:64, opacity:1, scale:1, duration:0.9, ease:"power3.out" }, 2.0);
+    tl.fromTo("#g-line", { scaleX:0 }, { scaleX:1, duration:0.8, ease:"power2.out" }, 2.35);
+    tl.to("#gp", { y:6, duration:2.0999999999999996, ease:"none" }, 2.9);
+    tl.set("#cmp", { opacity:0 }, 0);
+    tl.to("#cmp", { opacity:1, duration:0.4 }, 2.5);
+    tl.fromTo("#c-a", { opacity:0, y:24, scale:0.95 }, { opacity:1, y:0, scale:1, duration:0.45, ease:"power2.out" }, 2.5);
+    tl.fromTo("#c-arrow", { opacity:0, y:24, scale:0.95 }, { opacity:1, y:0, scale:1, duration:0.4, ease:"power2.out" }, 2.75);
+    tl.fromTo("#c-b", { opacity:0, y:24, scale:0.95 }, { opacity:1, y:0, scale:1, duration:0.45, ease:"power2.out" }, 2.95);
+    tl.to("#gw", { opacity:0, duration:0.35, ease:"sine.in" }, 3.95);
+    tl.to("#cmp", { opacity:0, duration:0.35, ease:"sine.in" }, 3.95);
+    window.__timelines["ground"] = tl;
+  </script>
+</template>

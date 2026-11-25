@@ -1,0 +1,49 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Montserrat",sans-serif; }
+    .ln { white-space:nowrap; font-weight:800; text-transform:uppercase; line-height:1.06; letter-spacing:0.01em; text-shadow:0 6px 24px rgba(0,0,0,.55), 0 2px 6px rgba(0,0,0,.5); }
+    .shade { position:absolute; left:0; right:0; padding:100px 162px 100px 60px; margin-top:-100px; display:flex; flex-direction:column;
+      align-items:center; text-align:center; gap:4px;
+      background:radial-gradient(ellipse 60% 50% at 46% 50%, rgba(0,0,0,.42) 0%, rgba(0,0,0,.2) 45%, rgba(0,0,0,0) 78%); }
+
+    #planq-bg { position:absolute; inset:0; background:#17181a;
+      background-image:linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size:60px 60px; }
+    #planq-pbox { position:absolute; left:220px; top:400px; width:640px; height:1066px; }
+    #planq-pimg { position:absolute; inset:0; width:100%; height:100%; opacity:.82; }
+    #planq-scan { position:absolute; left:-8px; right:-8px; height:3px; top:0; background:#FFD43B; box-shadow:0 0 14px #FFD43B; }
+    .planq-bed { fill:#FFD43B; fill-opacity:0; stroke:#FFD43B; stroke-width:3; stroke-opacity:0; vector-effect:non-scaling-stroke; }
+    .planq-bath { fill:#6FB6FF; fill-opacity:0; stroke:#FFFFFF; stroke-width:2.5; stroke-opacity:0; vector-effect:non-scaling-stroke; }
+    .planq-liv { fill:#FFFFFF; fill-opacity:0; stroke:#FFFFFF; stroke-width:3; stroke-opacity:0; vector-effect:non-scaling-stroke; }
+    .planq-num { font-family:"Montserrat",sans-serif; font-weight:900; font-size:56px; fill:#17181a; opacity:0; }
+    #planq-side { position:absolute; left:60px; width:858px; top:0; height:1920px; }
+    .sl { position:absolute; left:0; width:858px; text-align:center; font-weight:800; text-transform:uppercase; line-height:1.04; white-space:nowrap; text-shadow:0 4px 14px rgba(0,0,0,.6); }
+
+  </style>
+  <div id="root" data-composition-id="planq" data-width="1080" data-height="1920">
+    <div id="planq-bg" class="clip" data-start="0" data-duration="2.2" data-track-index="0"></div>
+    <div id="planq-pbox" class="clip" data-start="0" data-duration="2.2" data-track-index="1">
+      <img id="planq-pimg" src="assets/plan/plan-dark.png" alt="Pelan lantai" />
+      <svg id="planq-psvg" viewBox="60 380 940 1565" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%"><polygon id="planq-bed1" class="planq-bed" points="618,1357 776,1357 776,1354 960,1354 960,1640 618,1640" /><polygon id="planq-bed2" class="planq-bed" points="720,994 960,994 960,1222 720,1222" /><polygon id="planq-bed3" class="planq-bed" points="720,640 960,640 960,880 720,880" /><polygon id="planq-bed4" class="planq-bed" points="722,416 960,416 960,626 722,626" /><polygon id="planq-bed5" class="planq-bed" points="372,416 608,416 608,626 372,626" /><polygon id="planq-bath1" class="planq-bath" points="782,1236 960,1236 960,1347 782,1347" /><polygon id="planq-bath2" class="planq-bath" points="804,888 960,888 960,984 804,984" /><polygon id="planq-bath3" class="planq-bath" points="618,416 714,416 714,548 618,548" /><polygon id="planq-living" class="planq-liv" points="308,1150 606,1150 606,1436 308,1436" /></svg>
+      <div id="planq-scan"></div>
+    </div>
+    <div id="planq-side" class="clip" data-start="0" data-duration="2.2" data-track-index="2">
+      <div id="planq-q1" class="sl" style="top:292px;color:#FFD43B;font-size:66px">5 BILIK TIDUR?</div>
+      <div id="planq-q2" class="sl" style="top:364px;color:#FFFFFF;font-size:30px;letter-spacing:0.12em;font-weight:600"></div>
+      <div id="planq-q3" class="sl" style="top:364px;color:#FFFFFF;font-size:30px;letter-spacing:0.12em;font-weight:600">BERAPA KPS?</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#planq-pbox", { clipPath:"inset(0% 0% 100% 0%)" }, { clipPath:"inset(0% 0% 0% 0%)", duration:0.85, ease:"power2.inOut" }, 0);
+    tl.fromTo("#planq-scan", { y:0, opacity:1 }, { y:1066, duration:0.85, ease:"power2.inOut" }, 0);
+    tl.to("#planq-scan", { opacity:0, duration:0.2 }, 0.85);
+    tl.fromTo("#planq-q1", { opacity:0, y:24, scale:0.95 }, { opacity:1, y:0, scale:1, duration:0.5, ease:"power2.out" }, 0.3);
+    tl.fromTo("#planq-q2", { opacity:0, y:24, scale:0.95 }, { opacity:1, y:0, scale:1, duration:0.5, ease:"power2.out" }, 0.42);
+    tl.fromTo("#planq-q3", { opacity:0, y:24, scale:0.95 }, { opacity:1, y:0, scale:1, duration:0.5, ease:"power2.out" }, 0.7);
+    tl.fromTo(".planq-bed", { strokeOpacity:0 }, { strokeOpacity:1, duration:0.4, stagger:0.08 }, 0.9);
+    tl.to(".planq-bed", { strokeOpacity:0.35, duration:0.3, yoyo:true, repeat:1 }, 1.5);
+    tl.to(["#planq-pbox","#planq-side"], { opacity:0, duration:0.25 }, 1.9500000000000002);
+    window.__timelines["planq"] = tl;
+  </script>
+</template>
