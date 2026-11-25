@@ -49,7 +49,7 @@ SUBS = [  # (start, end, text) — loghat kept, numbers and keywords marked **
     (15.95, 17.68, "tapi boleh dapat **5 bilik tidur**,"),
     (17.75, 19.20, "**3 bilik air**, tuan-puan."),
     (19.30, 20.85, "Nak tengok apa yang ada kat dalam?"),
-    (21.00, 22.20, "Jom Abe tunjuk!"),
+    (21.00, 22.20, "Jom Abe tunjuk!", 66),   # closing call, set larger
 ]
 
 SFX = [  # (id, file, start, duration, volume)
@@ -365,9 +365,10 @@ def mark(text):
 
 
 rows_s, js_s = [], []
-for i, (s, e, text) in enumerate(SUBS, 1):
+for i, (s, e, text, *size) in enumerate(SUBS, 1):
+    style = f' style="font-size:{size[0]}px"' if size else ""
     rows_s.append(f'    <div id="sb{i:02d}" class="cap clip" data-start="{s}" data-duration="{round(e - s, 2)}" data-track-index="0">'
-                  f'<div class="line">{mark(text)}</div></div>')
+                  f'<div class="line"{style}>{mark(text)}</div></div>')
     js_s.append(f'    tl.fromTo("#sb{i:02d} .line", {{ opacity:0, y:8 }}, {{ opacity:1, y:0, duration:0.15, ease:"power1.out" }}, {s});')
 scene("subs", SCENES["subs"][1], f"""
     .cap {{ position:absolute; left:60px; right:162px; top:1180px; height:150px; display:flex; align-items:flex-end; justify-content:center; }}
