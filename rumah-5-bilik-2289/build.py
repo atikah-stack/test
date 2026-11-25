@@ -36,7 +36,6 @@ SCENES = {
     "recom": (7.6, 2.75, "graphics"),
     "ground": (11.55, 4.3, "graphics"),
     "planrooms": (15.9, 5.0, "graphics"),
-    "endlogo": (21.2, 1.55, "graphics"),
     "subs": (0.0, 22.2, "captions"),
 }
 
@@ -70,7 +69,6 @@ SFX = [  # (id, file, start, duration, volume)
     ("x-w3", "click-soft.mp3", 18.3, 0.4, 0.18),
     ("x-spec", "whoosh-short.mp3", 19.15, 0.6, 0.12),
     ("x-zoom", "whoosh-cinematic.mp3", 20.1, 2.0, 0.12),
-    ("x-end", "chime.mp3", 21.3, 1.4, 0.14),
 ]
 
 # ---------------------------------------------------------------- root
@@ -359,15 +357,6 @@ js += [f'    tl.fromTo(["#ba","#ba-m"], {{ opacity:0, y:20 }}, {{ opacity:1, y:0
        f'    tl.to("#pbox", {{ scale:2.6, x:{540 - BOX["left"] - ox}, y:{900 - BOX["top"] - oy}, duration:0.85, ease:"power2.in" }}, {zoom_at});',
        f'    tl.to(["#pbox","#bg"], {{ opacity:0, duration:0.4, ease:"sine.in" }}, {d - 0.42});']
 plan_scene("planrooms", d, side, ("", js), numbers=True)
-
-# ---------------------------------------------------------------- end logo
-d = SCENES["endlogo"][1]
-scene("endlogo", d, """
-    #lg { position:absolute; left:380px; top:360px; width:300px; padding:22px 24px; border-radius:24px; background:#FFFFFF;
-      box-shadow:0 14px 40px rgba(0,0,0,.3); }
-    #lg img { display:block; width:252px; height:auto; }""",
-      f"""    <div id="lg" class="clip" data-start="0" data-duration="{d}" data-track-index="0"><img src="assets/brand/logo-mi.png" alt="Mahligai Idaman" /></div>""",
-      rise("#lg", 0.1, 0.6, 16))
 
 # ---------------------------------------------------------------- subtitles
 def mark(text):
