@@ -27,7 +27,7 @@ start, t = {}, 0.0
 for sid, c, a, b in SEGS:
     start[sid] = round(t, 3); t += b - a
 TALK = round(t, 3)
-HOLD, OUTRO = 1.6, 3.4
+HOLD, OUTRO = 1.6, 1.6
 TOTAL = round(TALK + HOLD + OUTRO, 3)
 
 def src(sid, s):
@@ -48,7 +48,7 @@ BROLL = [
     ("r-ext", "b-3753", src("S5", 415.20), 2.35, 0.6),        # porch exterior
     ("r-hero", "b-94beb817", src("S6b", 420.15) + 0.35, 3.05, 0.2),  # drone hero
 ]
-HERO2 = ("r-hero2", "b-f371ec91", TALK, 3.05, 0.0)          # strongest wide shot into the outro
+HERO2 = ("r-hero2", "b-f371ec91", TALK, 3.05, 0.0)  # runs to the end          # strongest wide shot into the outro
 
 def vtag(rid, f, s, d, m, z, extra=""):
     if f.startswith("img:"):
@@ -89,13 +89,14 @@ MUSIC = '''      <audio id="mu-a" class="clip" src="assets/audio/music.mp3" data
     talk=TALK, tail=round(TOTAL - TALK, 3))
 
 PUSH = []
+# talent shots are punched in ~1.5x from the top so the wiped burned-in caption band (y 1415-1605) sits below the frame
 for k, (sid, c, a, b) in enumerate(SEGS):
-    s0 = 1.0 if k % 2 == 0 else 1.05
+    s0 = 1.48 if k % 2 == 0 else 1.56
     if sid == "S1":
-        PUSH.append((sid, start[sid], 0.5, 1.16, 1.04, "expo.out"))
-        PUSH.append((sid, start[sid] + 0.5, round(b - a - 0.5, 3), 1.04, 1.09, "none"))
+        PUSH.append((sid, start[sid], 0.5, 1.62, 1.5, "expo.out"))
+        PUSH.append((sid, start[sid] + 0.5, round(b - a - 0.5, 3), 1.5, 1.55, "none"))
     else:
-        PUSH.append((sid, start[sid], round(b - a, 3), s0, s0 + 0.04, "none"))
+        PUSH.append((sid, start[sid], round(b - a, 3), s0, s0 + 0.03, "none"))
 
 index = f'''<!doctype html>
 <html lang="ms" data-resolution="portrait">
@@ -121,7 +122,7 @@ index = f'''<!doctype html>
     </div>
     <script>
       const tl = gsap.timeline({{ paused: true }});
-      {json.dumps(PUSH)}.forEach(([id, s, d, a, b, e]) => tl.fromTo("#w-" + id, {{ scale: a }}, {{ scale: b, duration: d, ease: e, immediateRender: false }}, s));
+      {json.dumps(PUSH)}.forEach(([id, s, d, a, b, e]) => tl.fromTo("#w-" + id, {{ scale: a, transformOrigin: "540px 400px" }}, {{ scale: b, transformOrigin: "540px 400px", duration: d, ease: e, immediateRender: false }}, s));
       {json.dumps([(r[0], round(r[2], 3), r[3]) for r in BROLL + [HERO2]])}.forEach(([id, s, d]) => {{
         tl.fromTo("#w-" + id, {{ opacity: 0, scale: 1.05 }}, {{ opacity: 1, scale: 1.0, duration: 0.3, ease: "power2.out" }}, s);
         tl.to("#w-" + id, {{ scale: 1.07, duration: d - 0.3, ease: "none" }}, s + 0.3);
@@ -270,24 +271,21 @@ js(f'tl.to("#g-pom2", {{ opacity: 0, duration: 0.3, ease: "power1.in" }}, {round
 # Scene 6 — the choice
 kin("g-tepat", src("S6b", 420.2), TALK + HOLD - 0.1, "PILIHAN", "YANG TEPAT", top=360, size2=118)
 
-# Scene 7 — outro
+# Scene 7 — logo only over the drone hero, then fade to black
 s = TALK + HOLD
-el(f'<div class="clip" id="g-out" data-start="{round(s - 0.4, 3)}" data-duration="{round(TOTAL - s + 0.4, 3)}" style="position:absolute; inset:0">'
-   '<div class="obg" id="obg"></div><div class="ow"><img class="ologo" id="olg" src="assets/img/logo.png" alt="" />'
-   '<div class="o1" id="o1">MORE THAN BUILDING HOMES.</div><div class="o2" id="o2">DELIVERING PEACE OF MIND.</div></div></div>')
-js(f'tl.fromTo("#obg", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.6, ease: "power1.inOut" }}, {round(s - 0.4, 3)});')
-js(f'tl.fromTo("#olg", {{ opacity: 0, y: -16 }}, {{ opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }}, {round(s, 3)});')
-js(f'tl.fromTo("#o1", {{ opacity: 0, scaleX: 1.18, filter: "blur(8px)" }}, {{ opacity: 1, scaleX: 1, filter: "blur(0px)", duration: 0.9, ease: "power3.out" }}, {round(s + 0.25, 3)});')
-js(f'tl.fromTo("#o2", {{ opacity: 0, scaleX: 1.18, filter: "blur(8px)" }}, {{ opacity: 1, scaleX: 1, filter: "blur(0px)", duration: 0.9, ease: "power3.out" }}, {round(s + 0.75, 3)});')
-js(f'tl.to(["#olg", "#o1", "#o2"], {{ opacity: 0, duration: 0.5, ease: "power1.in" }}, {round(TOTAL - 0.55, 3)});')
+el(f'<div class="clip" id="g-out" data-start="{round(s - 0.2, 3)}" data-duration="{round(TOTAL - s + 0.2, 3)}" style="position:absolute; inset:0">'
+   '<div class="ow"><img class="ologo" id="olg" src="assets/img/logo.png" alt="" /></div><div class="obg" id="obg"></div></div>')
+js(f'tl.fromTo("#olg", {{ opacity: 0, y: -16 }}, {{ opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }}, {round(s - 0.2, 3)});')
+js(f'tl.fromTo("#obg", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.5, ease: "power1.in" }}, {round(TOTAL - 0.5, 3)});')
 
 CSS = '''
     #root { position: absolute; inset: 0; overflow: hidden; font-family: Montserrat, sans-serif; color: #fff; }
     .y { color: #FFD230; }
-    .cw { position: absolute; left: 90px; right: 150px; top: 1405px; display: flex; justify-content: center; }
-    .cap { width: 840px; min-height: 170px; display: flex; align-items: center; justify-content: center; padding: 14px 30px 16px; border-radius: 22px;
-      background: rgba(10,12,16,.72); text-align: center; font-weight: 800; font-size: 50px; line-height: 1.18; color: #fff;
-      text-shadow: 0 2px 8px rgba(0,0,0,.4); opacity: 0; }
+    .cw { position: absolute; left: 90px; right: 150px; top: 1395px; display: flex; justify-content: center; }
+    .cap { width: 840px; min-height: 130px; display: flex; align-items: center; justify-content: center; padding: 0 20px;
+      text-align: center; font-weight: 800; font-size: 54px; line-height: 1.16; color: #fff;
+      -webkit-text-stroke: 1.5px rgba(0,0,0,.55); paint-order: stroke fill;
+      text-shadow: 0 3px 0 rgba(0,0,0,.45), 0 4px 16px rgba(0,0,0,.65), 0 0 2px rgba(0,0,0,.8); opacity: 0; }
     .gw { position: absolute; left: 90px; right: 150px; display: flex; flex-direction: column; align-items: center; text-align: center; }
     .k1 { font-weight: 800; font-size: 62px; line-height: 1.04; color: #fff; white-space: nowrap; letter-spacing: .01em;
       text-shadow: 0 5px 18px rgba(0,0,0,.5), 0 2px 4px rgba(0,0,0,.4); opacity: 0; }
@@ -314,9 +312,9 @@ CSS = '''
       text-shadow: 0 6px 24px rgba(0,0,0,.55), 0 2px 5px rgba(0,0,0,.45); opacity: 0; }
     .pmr { width: 560px; height: 3px; margin: 18px 0 16px; background: rgba(255,255,255,.85); transform: scaleX(0); }
     .pms { font-weight: 600; font-size: 36px; color: #fff; letter-spacing: .03em; text-shadow: 0 3px 12px rgba(0,0,0,.6); opacity: 0; }
-    .obg { position: absolute; inset: 0; background: rgba(8,9,11,.72); opacity: 0; }
-    .ow { position: absolute; left: 90px; right: 150px; top: 640px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; }
-    .ologo { width: 210px; height: auto; margin-bottom: 18px; opacity: 0; }
+    .obg { position: absolute; inset: 0; background: #000; opacity: 0; }
+    .ow { position: absolute; left: 90px; right: 150px; top: 330px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; }
+    .ologo { width: 230px; height: auto; opacity: 0; filter: drop-shadow(0 6px 16px rgba(0,0,0,.55)); }
     .o1 { letter-spacing: .06em; font-weight: 800; font-size: 50px; color: #fff; white-space: nowrap; opacity: 0; }
     .o2 { letter-spacing: .06em; font-weight: 800; font-size: 50px; color: #FFD230; white-space: nowrap; opacity: 0; }
 '''
