@@ -1,7 +1,8 @@
 """Builds the cleaned-up house tour (Pn Zunaida's house, Kok Lanas) from house.mov.
 
-Source: assets/src/house.mov (5:40, 1080x1920, 30 fps; already has burned-in captions, which the
-caption card covers). Not in git (480 MB): download it from the client's Google Drive folder.
+Source: assets/src/house.mov (5:40, 1080x1920, 30 fps), the clean copy without burned-in captions
+(copy_787F671C...mov; same timing as the first, captioned copy). Not in git (480 MB): it is in the
+client's Google Drive folder. Captions are off (CAPTIONS = False) at the client's request.
 Voice: assets/audio/voice-clean.wav — the same audio, de-noised and levelled to about -14 LUFS.
 
 The edit only removes things: repeated words, false starts, a memory slip, and long pauses.
@@ -11,7 +12,8 @@ Run `python3 build.py`; it also writes EDL.md (what was cut and kept, with sourc
 import json, wave
 import numpy as np
 
-SRC = "assets/src/house.mov"
+SRC = "assets/src/house.mov"     # clean version without burned-in captions (copy_787F671C...mov, same timing)
+CAPTIONS = False                 # client asked for no captions at all
 VOICE = "assets/audio/voice-clean.wav"
 DUR = 339.96
 W, Y = "#FFFFFF", "#FFD43B"
@@ -142,7 +144,7 @@ for i, (s, e, o) in enumerate(segs):
     z = 1.0 if i % 2 == 0 else 1.06   # alternate framing so jump cuts read as deliberate
     # zoom about the burned-in caption line (y ~1505) so it never moves out from under the new caption card
     rows.append(f'      <video id="p{i:03d}" class="shot clip" src="{SRC}" muted playsinline data-start="{o}" data-duration="{d}" '
-                f'data-media-start="{s}" data-track-index="{i % 2}" style="z-index:{1 + i % 2};transform-origin:50% 78.4%;transform:scale({z})"></video>')
+                f'data-media-start="{s}" data-track-index="{i % 2}" style="z-index:{1 + i % 2};transform-origin:50% 40%;transform:scale({z})"></video>')
     rows.append(f'      <audio id="a{i:03d}" class="clip" src="{VOICE}" data-start="{o}" data-duration="{d}" data-media-start="{s}" '
                 f'data-volume="1" data-fade-in="0.03" data-fade-out="0.03" data-track-index="{10 + i % 2}"></audio>')
 for k, (st, f, ms, d, note) in enumerate(BROLL):
@@ -159,7 +161,7 @@ for n, (cid, s, d, kind, _) in enumerate(scenes):
     rows.append(f'      <div id="{cid}" data-composition-id="{cid}" data-composition-src="compositions/{cid}.html" data-start="{s}" '
                 f'data-duration="{d}" data-track-index="{5 + n % 2}" data-track-kind="graphics" data-width="1080" data-height="1920" '
                 f'style="z-index:{40 + n}"></div>')
-rows.append(f'      <div id="subs" data-composition-id="subs" data-composition-src="compositions/subs.html" data-start="0" '
+if CAPTIONS: rows.append(f'      <div id="subs" data-composition-id="subs" data-composition-src="compositions/subs.html" data-start="0" '
             f'data-duration="{TOTAL}" data-track-index="8" data-track-kind="captions" data-width="1080" data-height="1920" style="z-index:80"></div>')
 
 open("index.html", "w").write(f"""<!doctype html>
@@ -301,7 +303,8 @@ SUBS_CSS = f"""
       padding:12px 34px; border-radius:22px; background:#141414;
       color:#FFFFFF; font-weight:700; font-size:42px; line-height:1.2; }}
     .k {{ color:{Y}; }}"""
-write_scene("subs", TOTAL, SUBS_CSS, "\n".join(sub_rows), "")
+if CAPTIONS:
+    write_scene("subs", TOTAL, SUBS_CSS, "\n".join(sub_rows), "")
 
 # ---------------------------------------------------------------- EDL
 with open("EDL.md", "w") as f:
@@ -335,7 +338,7 @@ def part(name, t0, t1, tail, title):
             z = 1.0 if i % 2 == 0 else 1.06
             r.append(f'      <video id="p{i:03d}" class="shot clip" src="{SRC}" muted playsinline data-start="{round(a0 - t0, 3)}" '
                      f'data-duration="{round(a1 - a0, 3)}" data-media-start="{round(s + a0 - o, 3)}" data-track-index="{i % 2}" '
-                     f'style="z-index:{1 + i % 2};transform-origin:50% 78.4%;transform:scale({z})"></video>')
+                     f'style="z-index:{1 + i % 2};transform-origin:50% 40%;transform:scale({z})"></video>')
         b1 = min(o + d, t1)
         if b1 - a0 > 0.02:
             fo = "0.25" if abs(b1 - t1) < 0.01 else "0.03"
@@ -360,8 +363,9 @@ def part(name, t0, t1, tail, title):
                 d2 = t1 + tail - s2
             rows_.append(f'    <div id="sb{k:03d}" class="cap clip" data-start="{round(s2 - t0, 2)}" data-duration="{round(d2, 2)}" '
                          f'data-track-index="0"><div class="card"><span class="tx">{txt}</span></div></div>')
-    write_scene(f"subs-{name}", pt, SUBS_CSS, "\n".join(rows_), "")
-    r.append(f'      <div id="subs" data-composition-id="subs-{name}" data-composition-src="compositions/subs-{name}.html" data-start="0" '
+    if CAPTIONS:
+        write_scene(f"subs-{name}", pt, SUBS_CSS, "\n".join(rows_), "")
+    if CAPTIONS: r.append(f'      <div id="subs" data-composition-id="subs-{name}" data-composition-src="compositions/subs-{name}.html" data-start="0" '
              f'data-duration="{pt}" data-track-index="8" data-track-kind="captions" data-width="1080" data-height="1920" style="z-index:80"></div>')
     tcid, tstart, tdur, l1, l2 = title
     write_scene(tcid, tdur, f"""
