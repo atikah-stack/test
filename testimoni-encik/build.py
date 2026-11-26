@@ -199,14 +199,14 @@ def kin(gid, s, e, l1, l2="", top=330, size2=108):
     js(f'tl.to("#{gid}", {{ opacity: 0, y: -18, duration: 0.25, ease: "power2.in" }}, {round(e - 0.25, 3)});')
 
 # Scene 1 — hook headline, then PEACE OF MIND as he says it
-kin("g-hook", 0.1, 3.35, "BINA RUMAH DARI JAUH,", "TAPI LANGSUNG<br>TAK RISAU!", top=280, size2=104)
-kin("g-pom1", src("S1", 42.55), src("S1", 45.45), "TAK ADA", "PEACE OF MIND", top=330, size2=112)
+kin("g-hook", 0.1, 3.35, "BINA RUMAH DARI JAUH,", "TAPI LANGSUNG<br>TAK RISAU!", top=430, size2=80)
+kin("g-pom1", src("S1", 42.55), src("S1", 45.45), "TAK ADA", "PEACE OF MIND", top=440, size2=84)
 
 # Scene 2 — distance visualisation on "Sebab kita duduk jauh"
 s, e = src("S2a", 22.44), src("S2a", 26.40)
-el(f'<div class="gw clip" id="g-dist" data-start="{s}" data-duration="{round(e - s, 3)}" style="top:280px">'
-   '<div class="k2" id="dj" style="font-size:104px">DUDUK JAUH</div>'
-   '<svg id="dmap" viewBox="0 0 760 230" width="760" height="230">'
+el(f'<div class="gw clip" id="g-dist" data-start="{s}" data-duration="{round(e - s, 3)}" style="top:420px">'
+   '<div class="k2" id="dj" style="font-size:82px">DUDUK JAUH</div>'
+   '<svg id="dmap" viewBox="0 0 760 230" width="620" height="188">'
    '<path id="droute" d="M120 140 C 260 40, 500 40, 640 140" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-dasharray="2 18"/>'
    '<g id="dpa"><circle cx="120" cy="140" r="44" fill="rgba(10,12,16,.65)" stroke="#FFD230" stroke-width="4"/>'
    '<path d="M98 146 120 128l22 18M104 143v18h32v-18" fill="none" stroke="#fff" stroke-width="5" stroke-linejoin="round"/></g>'
@@ -222,7 +222,7 @@ js(f'tl.to("#g-dist", {{ opacity: 0, duration: 0.25, ease: "power2.in" }}, {roun
 
 # Scene 2 — pain point
 def ask(gid, s, e, text, strike_at=None):
-    el(f'<div class="gw clip" id="{gid}" data-start="{round(s, 3)}" data-duration="{round(e - s, 3)}" style="top:360px">'
+    el(f'<div class="gw clip" id="{gid}" data-start="{round(s, 3)}" data-duration="{round(e - s, 3)}" style="top:460px">'
        f'<div class="q" id="{gid}-q"><span class="qm">?</span><span class="qt">{text}<i class="st" id="{gid}-st"></i></span></div></div>')
     js(f'tl.fromTo("#{gid}-q", {{ opacity: 0, y: 30, scale: 0.96 }}, {{ opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }}, {round(s, 3)});')
     if strike_at:
@@ -245,7 +245,7 @@ steps_html = "".join(
     f'<div class="st-item" id="stp{i}"><div class="st-ic"><svg viewBox="0 0 48 48" width="50" height="50" fill="none" stroke="#FFD230" stroke-width="3.4">{ICON[i]}</svg>'
     f'<div class="st-ok" id="ok{i}"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 12.5 10 17 19 7" fill="none" stroke="#14161B" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>'
     f'<div class="st-lb">{n}</div></div>' for i, (n, _) in enumerate(STEPS))
-el(f'<div class="gw clip" id="g-time" data-start="{s}" data-duration="{round(e - s, 3)}" style="top:300px">'
+el(f'<div class="gw clip" id="g-time" data-start="{s}" data-duration="{round(e - s, 3)}" style="top:440px">'
    f'<div class="tl"><div class="tl-line"><div class="tl-fill" id="tlf"></div></div>{steps_html}</div></div>')
 js(f'tl.fromTo("#g-time .tl", {{ opacity: 0, y: -20 }}, {{ opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }}, {s});')
 for i, (_, tt) in enumerate(STEPS):
@@ -255,7 +255,7 @@ for i, (_, tt) in enumerate(STEPS):
     js(f'tl.to("#tlf", {{ scaleX: {round(i / 3, 3)}, duration: 0.4, ease: "power2.out" }}, {round(tt, 3)});')
 js(f'tl.set("#tlf", {{ scaleX: 0 }}, 0);')
 js(f'tl.to("#g-time", {{ opacity: 0, duration: 0.25, ease: "power2.in" }}, {round(e - 0.25, 3)});')
-kin("g-urus", src("S4b", 386.55), src("S4b", 388.6) - 0.02, "MAHLIGAI", "URUSKAN", top=760, size2=118)
+kin("g-urus", src("S4b", 386.55), src("S4b", 388.6) - 0.02, "MAHLIGAI", "URUSKAN", top=760, size2=90)
 
 # Scene 5 — pain point crossed out, then PEACE OF MIND
 ask("g-q2", src("S5", 410.2), src("S5", 415.3), "DAH SAMPAI<br>STAGE MANA?", strike_at=src("S5", 414.7))
@@ -269,7 +269,7 @@ js(f'tl.fromTo("#pm2", {{ opacity: 0, y: 14 }}, {{ opacity: 1, y: 0, duration: 0
 js(f'tl.to("#g-pom2", {{ opacity: 0, duration: 0.3, ease: "power1.in" }}, {round(e - 0.3, 3)});')
 
 # Scene 6 — the choice
-kin("g-tepat", src("S6b", 420.2), TALK + HOLD - 0.1, "PILIHAN", "YANG TEPAT", top=360, size2=118)
+kin("g-tepat", src("S6b", 420.2), TALK + HOLD - 0.1, "PILIHAN", "YANG TEPAT", top=450, size2=90)
 
 # Scene 7 — logo only over the drone hero, then fade to black
 s = TALK + HOLD
@@ -281,40 +281,40 @@ js(f'tl.fromTo("#obg", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.5, ease: "po
 CSS = '''
     #root { position: absolute; inset: 0; overflow: hidden; font-family: Montserrat, sans-serif; color: #fff; }
     .y { color: #FFD230; }
-    .cw { position: absolute; left: 90px; right: 150px; top: 1395px; display: flex; justify-content: center; }
-    .cap { width: 840px; min-height: 130px; display: flex; align-items: center; justify-content: center; padding: 0 20px;
-      text-align: center; font-weight: 800; font-size: 54px; line-height: 1.16; color: #fff;
+    .cw { position: absolute; left: 150px; right: 150px; top: 1395px; display: flex; justify-content: center; }
+    .cap { width: 780px; min-height: 130px; display: flex; align-items: center; justify-content: center; padding: 0 20px;
+      text-align: center; font-weight: 800; font-size: 46px; line-height: 1.16; color: #fff;
       -webkit-text-stroke: 1.5px rgba(0,0,0,.55); paint-order: stroke fill;
       text-shadow: 0 3px 0 rgba(0,0,0,.45), 0 4px 16px rgba(0,0,0,.65), 0 0 2px rgba(0,0,0,.8); opacity: 0; }
-    .gw { position: absolute; left: 90px; right: 150px; display: flex; flex-direction: column; align-items: center; text-align: center; }
-    .k1 { font-weight: 800; font-size: 62px; line-height: 1.04; color: #fff; white-space: nowrap; letter-spacing: .01em;
+    .gw { position: absolute; left: 150px; right: 150px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .k1 { font-weight: 800; font-size: 48px; line-height: 1.04; color: #fff; white-space: nowrap; letter-spacing: .01em;
       text-shadow: 0 5px 18px rgba(0,0,0,.5), 0 2px 4px rgba(0,0,0,.4); opacity: 0; }
     .k2 { font-weight: 800; line-height: 1.0; color: #FFD230; white-space: nowrap; letter-spacing: .005em;
       text-shadow: 0 6px 22px rgba(0,0,0,.55), 0 2px 5px rgba(0,0,0,.45); opacity: 0; }
     .dl { font-family: Montserrat, sans-serif; font-weight: 800; font-size: 26px; letter-spacing: .14em; fill: #fff; }
     #dmap { margin-top: 14px; overflow: visible; filter: drop-shadow(0 4px 10px rgba(0,0,0,.45)); }
-    .q { display: flex; align-items: center; gap: 22px; padding: 22px 40px 24px 24px; border-radius: 26px; background: rgba(10,12,16,.6);
+    .q { display: flex; align-items: center; gap: 22px; padding: 16px 30px 18px 18px; border-radius: 22px; background: rgba(10,12,16,.6);
       border: 3px solid rgba(255,210,48,.9); opacity: 0; }
-    .qm { width: 84px; height: 84px; border-radius: 50%; background: #FFD230; color: #14161B; font-weight: 800; font-size: 60px; line-height: 84px; flex: none; }
-    .qt { position: relative; font-weight: 800; font-size: 54px; line-height: 1.1; text-align: left; color: #fff; white-space: nowrap; }
+    .qm { width: 64px; height: 64px; border-radius: 50%; background: #FFD230; color: #14161B; font-weight: 800; font-size: 44px; line-height: 64px; flex: none; }
+    .qt { position: relative; font-weight: 800; font-size: 42px; line-height: 1.1; text-align: left; color: #fff; white-space: nowrap; }
     .st { position: absolute; left: -6px; right: -6px; top: 50%; height: 8px; margin-top: -4px; background: #FFD230; border-radius: 4px;
       transform: scaleX(0); transform-origin: 0 50%; }
-    .tl { position: relative; width: 840px; display: flex; justify-content: space-between; opacity: 0; }
-    .tl-line { position: absolute; left: 100px; right: 100px; top: 46px; height: 4px; background: rgba(255,255,255,.35); border-radius: 2px; }
+    .tl { position: relative; width: 740px; display: flex; justify-content: space-between; opacity: 0; }
+    .tl-line { position: absolute; left: 88px; right: 88px; top: 38px; height: 4px; background: rgba(255,255,255,.35); border-radius: 2px; }
     .tl-fill { position: absolute; inset: 0; background: #FFD230; transform-origin: 0 50%; border-radius: 2px; }
-    .st-item { position: relative; width: 200px; display: flex; flex-direction: column; align-items: center; gap: 12px; opacity: 0.28; }
-    .st-ic { position: relative; width: 96px; height: 96px; border-radius: 50%; background: rgba(10,12,16,.75); border: 3px solid #FFD230;
+    .st-item { position: relative; width: 175px; display: flex; flex-direction: column; align-items: center; gap: 12px; opacity: 0.28; }
+    .st-ic { position: relative; width: 80px; height: 80px; border-radius: 50%; background: rgba(10,12,16,.75); border: 3px solid #FFD230;
       display: flex; align-items: center; justify-content: center; }
     .st-ok { position: absolute; right: -6px; bottom: -6px; width: 36px; height: 36px; border-radius: 50%; background: #FFD230;
       display: flex; align-items: center; justify-content: center; opacity: 0; }
-    .st-lb { font-weight: 800; font-size: 22px; letter-spacing: .03em; color: #fff; white-space: nowrap; text-shadow: 0 3px 10px rgba(0,0,0,.6); }
-    .pm { font-weight: 800; font-size: 92px; letter-spacing: .12em; color: #FFD230; white-space: nowrap;
+    .st-lb { font-weight: 800; font-size: 19px; letter-spacing: .03em; color: #fff; white-space: nowrap; text-shadow: 0 3px 10px rgba(0,0,0,.6); }
+    .pm { font-weight: 800; font-size: 70px; letter-spacing: .12em; color: #FFD230; white-space: nowrap;
       text-shadow: 0 6px 24px rgba(0,0,0,.55), 0 2px 5px rgba(0,0,0,.45); opacity: 0; }
-    .pmr { width: 560px; height: 3px; margin: 18px 0 16px; background: rgba(255,255,255,.85); transform: scaleX(0); }
-    .pms { font-weight: 600; font-size: 36px; color: #fff; letter-spacing: .03em; text-shadow: 0 3px 12px rgba(0,0,0,.6); opacity: 0; }
+    .pmr { width: 440px; height: 3px; margin: 18px 0 16px; background: rgba(255,255,255,.85); transform: scaleX(0); }
+    .pms { font-weight: 600; font-size: 29px; color: #fff; letter-spacing: .03em; text-shadow: 0 3px 12px rgba(0,0,0,.6); opacity: 0; }
     .obg { position: absolute; inset: 0; background: #000; opacity: 0; }
-    .ow { position: absolute; left: 90px; right: 150px; top: 330px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; }
-    .ologo { width: 230px; height: auto; opacity: 0; filter: drop-shadow(0 6px 16px rgba(0,0,0,.55)); }
+    .ow { position: absolute; left: 150px; right: 150px; top: 460px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 22px; }
+    .ologo { width: 190px; height: auto; opacity: 0; filter: drop-shadow(0 6px 16px rgba(0,0,0,.55)); }
     .o1 { letter-spacing: .06em; font-weight: 800; font-size: 50px; color: #fff; white-space: nowrap; opacity: 0; }
     .o2 { letter-spacing: .06em; font-weight: 800; font-size: 50px; color: #FFD230; white-space: nowrap; opacity: 0; }
 '''
