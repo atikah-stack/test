@@ -20,7 +20,7 @@ W, Y = "#FFFFFF", "#FFD43B"
 CUTS = [
     (29.05, 30.95, "pause and “Okay.” before the surau"),
     (59.55, 60.02, "“our…” (false start before “Our living room”)"),
-    (39.47, 41.02, "“boleh. Bolehlah.” (repeat)"),
+    (39.42, 40.16, "“boleh. Bolehlah.” (repeat) — set by the loudness trace, not snapped", False),
     (49.02, 51.00, "“Macam nak buat apa?” (filler question)"),
     (79.35, 82.00, "“yang paling, orang kata apa?” (false start)"),
     (118.02, 120.00, "“Kita pergi ke dining room.” (repeat of “ruang makan”)"),
@@ -52,12 +52,14 @@ CARDS = [
 
 # Spelling fixes for subtitles (lowercase match -> replacement); loghat kept
 FIX = {"malikai": "Mahligai", "daman.": "Idaman.", "daman": "Idaman", "malika": "Mahligai", "idamal.": "Idaman.",
-       "idamal": "Idaman", "haus": "house", "tuah": "tour", "tahliah": "tahlil", "tahlih": "tahlil", "kopi": "coffee",
+       "idamal": "Idaman", "haus": "house", "tuah": "tour", "tahliah": "Tahlil", "tahlih": "Tahlil", "kopi": "coffee",
        "berabarak": "berborak", "berak-berak": "berborak", "bora": "borak", "sport": "spot", "komplek": "komplet",
        "separatkan": "separate-kan", "separatekan": "separate-kan", "semayang": "sembahyang", "jemua": "jamu",
-       "jemur": "jamu", "seri": "Sri", "dekor": "Dekor", "cabinet": "kabinet", "cabinet.": "kabinet."}
+       "jemur": "jamu", "seri": "Sri", "dekor": "Dekor", "deko": "Dekor", "cabinet": "kabinet", "cabinet.": "kabinet.",
+       "malika": "Mahligai"}
 DROP = {"help."}                       # stutter tokens not shown in captions
-PHRASE = {"Ada laman dia": "Dalaman dia", "ada laman dia": "dalaman dia", "Our living room": "our living room"}
+PHRASE = {"Ada laman dia": "Dalaman dia", "ada laman dia": "dalaman dia", "Our living room": "our living room",
+          "estetik menyebab.": "aesthetic punya vibe.", "Kita masuk bar,": "Termasuk bar,", "kita masuk bar,": "termasuk bar,"}
 PROPER = {"Zunaida", "Mahligai", "Idaman", "Sri", "Dekor", "TV", "Assalamu'alaikum", "Alhamdulillah", "So", "Okey", "Jom"}
 KEY = {"surau", "6", "enam", "custom-made", "island", "island.", "island,", "mahligai", "idaman", "idaman.", "coffee",
        "bar", "dining", "luxury", "family", "kabinet"}
@@ -78,8 +80,10 @@ def snap(t):
 
 
 removed = []
-for s, e, why in CUTS:
-    removed.append((snap(s), snap(e), why))
+for c in CUTS:
+    s, e, why = c[:3]
+    exact = len(c) > 3 and c[3] is False
+    removed.append((s, e, why) if exact else (snap(s), snap(e), why))
 for line in open("assets/audio/pauses.txt"):
     span = line.split()[0]
     s, e = map(float, span.split("-"))
