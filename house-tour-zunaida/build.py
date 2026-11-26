@@ -54,8 +54,8 @@ CARDS = [
 FIX = {"malikai": "Mahligai", "daman.": "Idaman.", "daman": "Idaman", "malika": "Mahligai", "idamal.": "Idaman.",
        "idamal": "Idaman", "haus": "house", "tuah": "tour", "tahliah": "Tahlil", "tahlih": "Tahlil", "kopi": "coffee",
        "berabarak": "berborak", "berak-berak": "berborak", "bora": "borak", "sport": "spot", "komplek": "komplet",
-       "separatkan": "separate-kan", "separatekan": "separate-kan", "semayang": "sembahyang", "jemua": "jamu",
-       "jemur": "jamu", "seri": "Sri", "dekor": "Dekor", "deko": "Dekor", "cabinet": "kabinet", "cabinet.": "kabinet.",
+       "separatkan": "separate-kan", "separatekan": "separate-kan", "semayang": "sembahyang", "jemua": "jemput",
+       "jemur": "jemput", "seri": "Sri", "dekor": "Dekor", "deko": "Dekor", "cabinet": "kabinet", "cabinet.": "kabinet.",
        "malika": "Mahligai"}
 DROP = {"help."}                       # stutter tokens not shown in captions
 PHRASE = {"Ada laman dia": "Dalaman dia", "ada laman dia": "dalaman dia", "Our living room": "our living room",
@@ -269,10 +269,11 @@ if cur:
     groups.append(cur)
 
 sub_rows, sub_js, spans = [], [], []
+SUBDATA = []   # (start, duration, html) on the full edit timeline, reused by the parts
 for k, g in enumerate(groups):
     s, e = g[0][0], g[-1][1]
     nxt = groups[k + 1][0][0] if k + 1 < len(groups) else TOTAL
-    e = nxt if nxt - e < 1.2 else e + 0.25          # keep the card up through short gaps
+    e_txt = min(nxt, e + 2.5)                       # the line stays up through pauses, at most 2.5 s past the last word
     toks = []
     for j, (_, _, t) in enumerate(g):
         t = fix(t)
@@ -286,15 +287,21 @@ for k, g in enumerate(groups):
         plain = plain.replace(a_, b_)
     toks = plain.split(" ")
     txt = " ".join(f'<span class="k">{t}</span>' if t.lower().strip(",.?!") in KEY else t for t in toks)
-    sub_rows.append(f'    <div id="sb{k:03d}" class="cap clip" data-start="{round(s, 2)}" data-duration="{round(max(0.3, e - s), 2)}" '
+    sub_rows.append(f'    <div id="sb{k:03d}" class="cap clip" data-start="{round(s, 2)}" data-duration="{round(max(0.3, e_txt - s), 2)}" '
                     f'data-track-index="0"><div class="card"><span class="tx">{txt}</span></div></div>')
-write_scene("subs", TOTAL, f"""
+    SUBDATA.append((round(s, 2), round(max(0.3, e_txt - s), 2), txt))
+    if nxt - e_txt > 0.05:   # empty card until the next line, so the old burned-in caption never shows
+        sub_rows.append(f'    <div id="sg{k:03d}" class="cap clip" data-start="{round(e_txt, 2)}" data-duration="{round(nxt - e_txt, 2)}" '
+                        f'data-track-index="0"><div class="card"></div></div>')
+        SUBDATA.append((round(e_txt, 2), round(nxt - e_txt, 2), ""))
+SUBS_CSS = f"""
     .cap {{ position:absolute; left:40px; right:40px; top:1408px; height:156px; display:flex; align-items:flex-end; justify-content:center; }}
     /* solid card, fixed size: fully hides the old burned-in captions (one or two lines, y 1420-1550) */
     .card {{ height:156px; width:1000px; display:flex; align-items:center; justify-content:center; text-align:center;
       padding:12px 34px; border-radius:22px; background:#141414;
       color:#FFFFFF; font-weight:700; font-size:42px; line-height:1.2; }}
-    .k {{ color:{Y}; }}""", "\n".join(sub_rows), "")
+    .k {{ color:{Y}; }}"""
+write_scene("subs", TOTAL, SUBS_CSS, "\n".join(sub_rows), "")
 
 # ---------------------------------------------------------------- EDL
 with open("EDL.md", "w") as f:
@@ -306,3 +313,99 @@ with open("EDL.md", "w") as f:
     for s, e, o in segs:
         f.write(f"| {s:.2f} | {e:.2f} | {o:.2f} |\n")
 print("segments", len(segs), "total", TOTAL, "removed", round(DUR - TOTAL, 1), "subtitle groups", len(groups))
+
+
+# ---------------------------------------------------------------- Part 1 / Part 2 (separate root files: part1.html, part2.html)
+# Split between "...semua jamu makan kat sini." and "So, next kita pergi ke coffee bar", at the quietest moment.
+with wave.open("assets/audio/edit-voice.wav") as wf:
+    ev = np.frombuffer(wf.readframes(wf.getnframes()), dtype=np.int16).astype(np.float32)
+lo, hi = int(139.0 * sr), int(139.5 * sr)
+win = ev[lo:hi][: (hi - lo) // (sr // 100) * (sr // 100)].reshape(-1, sr // 100)
+SPLIT = round(139.0 + int(np.argmin((win ** 2).mean(1))) / 100, 2)
+TAIL = 2.2   # Part 1 holds the picture, without speech, under "BERSAMBUNG DI PART 2"
+
+
+def part(name, t0, t1, tail, title):
+    pt = round(t1 - t0 + tail, 2)
+    r = []
+    for i, (s, e, o) in enumerate(segs):
+        d = e - s
+        a0, a1 = max(o, t0), min(o + d, t1 + tail)
+        if a1 - a0 > 0.02:
+            z = 1.0 if i % 2 == 0 else 1.06
+            r.append(f'      <video id="p{i:03d}" class="shot clip" src="{SRC}" muted playsinline data-start="{round(a0 - t0, 3)}" '
+                     f'data-duration="{round(a1 - a0, 3)}" data-media-start="{round(s + a0 - o, 3)}" data-track-index="{i % 2}" '
+                     f'style="z-index:{1 + i % 2};transform-origin:50% 78.4%;transform:scale({z})"></video>')
+        b1 = min(o + d, t1)
+        if b1 - a0 > 0.02:
+            fo = "0.25" if abs(b1 - t1) < 0.01 else "0.03"
+            r.append(f'      <audio id="a{i:03d}" class="clip" src="{VOICE}" data-start="{round(a0 - t0, 3)}" data-duration="{round(b1 - a0, 3)}" '
+                     f'data-media-start="{round(s + a0 - o, 3)}" data-volume="0.7" data-fade-in="0.03" data-fade-out="{fo}" data-track-index="{10 + i % 2}"></audio>')
+    for k, (st, f, ms, d, note) in enumerate(BROLL):
+        o = max(0.0, round(to_out(st) - d / 2, 2))
+        if t0 <= o < t1:
+            r.append(f'      <video id="b{k}" class="shot clip" src="assets/broll/{f}" muted playsinline data-start="{round(o - t0, 2)}" '
+                     f'data-duration="{d}" data-media-start="{ms}" data-track-index="3" style="z-index:20"></video>')
+    for n, (cid, s, d, kind, _) in enumerate(scenes):
+        if t0 <= s < t1:
+            r.append(f'      <div id="{cid}" data-composition-id="{cid}" data-composition-src="compositions/{cid}.html" data-start="{round(s - t0, 2)}" '
+                     f'data-duration="{round(min(d, t1 - s), 2)}" data-track-index="{5 + n % 2}" data-track-kind="graphics" data-width="1080" '
+                     f'data-height="1920" style="z-index:{40 + n}"></div>')
+    rows_ = []
+    inside = [(k, x) for k, x in enumerate(SUBDATA) if x[0] + x[1] > t0 and x[0] < t1]
+    for n_, (k, (s, d, txt)) in enumerate(inside):
+        if s + d > t0 and s < t1:
+            s2 = max(s, t0); d2 = min(s + d, t1) - s2
+            if n_ == len(inside) - 1 and tail:      # last line stays up over the tail, covering the old caption
+                d2 = t1 + tail - s2
+            rows_.append(f'    <div id="sb{k:03d}" class="cap clip" data-start="{round(s2 - t0, 2)}" data-duration="{round(d2, 2)}" '
+                         f'data-track-index="0"><div class="card"><span class="tx">{txt}</span></div></div>')
+    write_scene(f"subs-{name}", pt, SUBS_CSS, "\n".join(rows_), "")
+    r.append(f'      <div id="subs" data-composition-id="subs-{name}" data-composition-src="compositions/subs-{name}.html" data-start="0" '
+             f'data-duration="{pt}" data-track-index="8" data-track-kind="captions" data-width="1080" data-height="1920" style="z-index:80"></div>')
+    tcid, tstart, tdur, l1, l2 = title
+    write_scene(tcid, tdur, f"""
+    #{tcid}-c {{ position:absolute; left:60px; right:162px; top:300px; display:flex; flex-direction:column; align-items:center; gap:6px;
+      padding:40px 30px; border-radius:30px; background:rgba(12,12,12,.62); }}
+    .tl {{ font-weight:800; text-transform:uppercase; white-space:nowrap; line-height:1.08; text-shadow:{SHADOW}; }}""",
+                f'    <div id="{tcid}-c" class="clip" data-start="0" data-duration="{tdur}" data-track-index="0">\n'
+                f'      <div id="{tcid}-1" class="tl" style="color:#FFFFFF;font-size:46px;letter-spacing:0.08em">{l1}</div>\n'
+                f'      <div id="{tcid}-2" class="tl" style="color:{Y};font-size:84px">{l2}</div>\n    </div>',
+                f'    tl.fromTo("#{tcid}-1", {{ opacity:0, y:20 }}, {{ opacity:1, y:0, duration:0.5, ease:"power2.out" }}, 0.05);\n'
+                f'    tl.fromTo("#{tcid}-2", {{ opacity:0, y:20, scale:0.95 }}, {{ opacity:1, y:0, scale:1, duration:0.6, ease:"power2.out" }}, 0.2);')
+    r.append(f'      <div id="{tcid}" data-composition-id="{tcid}" data-composition-src="compositions/{tcid}.html" data-start="{tstart}" '
+             f'data-duration="{tdur}" data-track-index="7" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:85"></div>')
+    r.append(f'      <div id="fade" class="clip" data-start="0" data-duration="{pt}" data-track-index="9" data-layout-ignore></div>')
+    os.makedirs("parts", exist_ok=True)
+    open(f"parts/{name}.html", "w").write(f"""<!doctype html>
+<html lang="ms" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+      html, body {{ margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #0b0b0b; }}
+      #root {{ width: 100%; height: 100%; background: #0b0b0b; font-family: "Montserrat", sans-serif; }}
+      .shot {{ position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }}
+      #fade {{ position: absolute; inset: 0; z-index: 95; background: #0b0b0b; opacity: 0; pointer-events: none; }}
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="{pt}" data-fps="30" data-width="1080" data-height="1920">
+{chr(10).join(r)}
+    </div>
+    <script>
+      const tl = gsap.timeline({{ paused: true }});
+      tl.fromTo("#fade", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.5, ease: "sine.in" }}, {round(pt - 0.5, 2)});
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
+""")
+    return pt
+
+
+P1 = part("part1", 0.0, SPLIT, TAIL, ("p1end", round(SPLIT + 0.15, 2), round(TAIL - 0.15, 2), "BERSAMBUNG DI", "PART 2"))
+P2 = part("part2", SPLIT, TOTAL, 0.0, ("p2title", 0.0, 2.6, "HOUSE TOUR", "PART 2"))
+print("split", SPLIT, "part1", P1, "part2", P2)

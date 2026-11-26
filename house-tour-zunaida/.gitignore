@@ -8,3 +8,4 @@ work-*/
 .*.hf-transaction-*/
 *.mp4.tmp
 assets/src/house.mov
+export/*_HQ.mp4
