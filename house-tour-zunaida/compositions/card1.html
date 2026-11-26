@@ -1,0 +1,23 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Montserrat",sans-serif; }
+    #card1-c { position:absolute; left:60px; right:162px; top:470px; display:flex; flex-direction:column; align-items:center; gap:4px;
+      padding:34px 30px; border-radius:30px; background:rgba(12,12,12,.6); }
+    .cl { font-weight:800; text-transform:uppercase; white-space:nowrap; line-height:1.08; text-shadow:0 6px 22px rgba(0,0,0,.55), 0 2px 6px rgba(0,0,0,.5); }
+  </style>
+  <div id="root" data-composition-id="card1" data-width="1080" data-height="1920">
+    <div id="card1-c" class="clip" data-start="0" data-duration="5.0" data-track-index="0">
+      <div id="card1-0" class="cl" style="color:#FFD43B;font-size:66px">6 BILIK TIDUR</div>
+      <div id="card1-1" class="cl" style="color:#FFFFFF;font-size:54px">6 BILIK AIR</div>
+      <div id="card1-2" class="cl" style="color:#FFFFFF;font-size:40px">3,774 KPS</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#card1-0", { opacity:0, y:22, scale:0.96 }, { opacity:1, y:0, scale:1, duration:0.55, ease:"power2.out" }, 0.0);
+    tl.fromTo("#card1-1", { opacity:0, y:22, scale:0.96 }, { opacity:1, y:0, scale:1, duration:0.55, ease:"power2.out" }, 0.12);
+    tl.fromTo("#card1-2", { opacity:0, y:22, scale:0.96 }, { opacity:1, y:0, scale:1, duration:0.55, ease:"power2.out" }, 0.24);
+    tl.to("#card1-c", { opacity:0, duration:0.35, ease:"sine.in" }, 4.6);
+    window.__timelines["card1"] = tl;
+  </script>
+</template>

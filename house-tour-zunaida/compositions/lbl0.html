@@ -1,0 +1,18 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; font-family:"Montserrat",sans-serif; }
+    #lbl0-w { position:absolute; left:60px; right:162px; top:330px; display:flex; justify-content:center; }
+    #lbl0-p { display:flex; align-items:center; gap:16px; padding:14px 28px 14px 22px; border-radius:40px; background:rgba(12,12,12,.62); }
+    #lbl0-bar { width:8px; height:34px; border-radius:4px; background:#FFD43B; }
+    #lbl0-t { color:#FFFFFF; font-weight:800; font-size:36px; letter-spacing:0.06em; white-space:nowrap; }
+  </style>
+  <div id="root" data-composition-id="lbl0" data-width="1080" data-height="1920">
+    <div id="lbl0-w" class="clip" data-start="0" data-duration="2.6" data-track-index="0"><div id="lbl0-p"><div id="lbl0-bar"></div><div id="lbl0-t">SURAU</div></div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#lbl0-p", { opacity:0, y:-14 }, { opacity:1, y:0, duration:0.45, ease:"power2.out" }, 0);
+    tl.to("#lbl0-p", { opacity:0, duration:0.35, ease:"sine.in" }, 2.2);
+    window.__timelines["lbl0"] = tl;
+  </script>
+</template>
