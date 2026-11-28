@@ -15,8 +15,6 @@ FILM = round(TALK + OUTRO, 2)
 
 # overlays: (clip, film start, film end, media start, speed)
 OV = [
-    ("IMG_6027", 0.00, 3.44, 1.0, 0.75),    # "rumah dah siap cantik dah" - finished MI bungalow (Kok Lanas)
-    ("IMG_6015", 3.44, 5.00, 2.0, 0.8),     # "tapi halaman tu kurang menyerlah" - bare gravel yard
     ("IMG_1937", 6.55, 7.95, 0.0, 0.75),    # "apa kata kita lengkapkan sekali" - paving pallets
     ("IMG_1884", 14.45, 16.35, 1.0, 1.0),   # "kerjasama dengan Gubah Bina" - Gubah Bina logo wall
     ("IMG_2083", 16.35, 17.40, 0.0, 0.95),  # signboard
@@ -88,7 +86,7 @@ index = f'''<!doctype html>
         tl.fromTo("#w" + i, {{ opacity: 0 }}, {{ opacity: 1, duration: 0.15 }}, s);
         tl.fromTo("#o" + i, {{ scale: 1.0 }}, {{ scale: 1.07, duration: d, ease: "none" }}, s);
       }});
-      tl.fromTo("#w0", {{ scale: 1.1 }}, {{ scale: 1.0, duration: 0.6, ease: "expo.out" }}, 0);
+      tl.fromTo("#tal", {{ scale: 1.08 }}, {{ scale: 1.0, duration: 0.6, ease: "expo.out" }}, 0);
       window.__timelines["main"] = tl;
     </script>
   </body>
