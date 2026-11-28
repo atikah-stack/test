@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # Builds assets/video (git-ignored) from Drive folder 10S8Wvm7OFy16McDkVHj03uWA9zvLfH2c:
-# talent.mp4 (presenter, constant 30 fps, voice cleaned) and one upright 1080x1920 60 fps clip per overlay (native rate).
+# talent.mp4 (presenter, constant 60 fps, voice cleaned) and one upright 1080x1920 60 fps clip per overlay (native rate).
 set -euo pipefail
 cd "$(dirname "$0")"; mkdir -p assets/video
 V="-c:v libx264 -preset medium -crf 15 -g 60 -pix_fmt yuv420p -colorspace bt709 -color_primaries bt709 -color_trc bt709"
-ffmpeg -v error -y -i assets/src/talent.mov -map 0:v:0 -map 0:a:0 -vf "fps=30,eq=contrast=1.04:saturation=1.05,unsharp=5:5:0.3:3:3:0" $V \
+ffmpeg -v error -y -i assets/src/talent.mov -map 0:v:0 -map 0:a:0 -vf "fps=60,eq=contrast=1.04:saturation=1.05,unsharp=5:5:0.3:3:3:0" $V \
   -af "highpass=f=90,afftdn=nf=-28,acompressor=threshold=-20dB:ratio=2.5:attack=8:release=120,loudnorm=I=-16:TP=-1.5" -c:a aac -b:a 256k -ar 48000 assets/video/talent.mp4
 for f in assets/src/IMG_*; do
   n=$(basename "${f%.*}")
