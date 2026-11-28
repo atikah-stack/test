@@ -1,0 +1,71 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: Montserrat, sans-serif; color: #FFFFFF; }
+    .grp { position: absolute; left: 30px; right: 30px; display: flex; flex-direction: column; align-items: center; }
+    .hw { font-weight: 900; line-height: 1.02; letter-spacing: -.01em; text-align: center; white-space: nowrap; color: #FFFFFF; text-shadow: 0 2px 4px rgba(0,0,0,.35), 0 4px 18px rgba(0,0,0,.45); }
+    .hy { font-weight: 900; line-height: 1.0; letter-spacing: -.02em; text-align: center; white-space: nowrap; color: #FFD54A; text-shadow: 0 2px 4px rgba(0,0,0,.35), 0 4px 18px rgba(0,0,0,.45); }
+    .loc { display: flex; align-items: center; gap: 12px; margin-top: 18px; }
+    .loc span { font-weight: 700; font-size: 42px; color: #FFFFFF; text-shadow: 0 2px 4px rgba(0,0,0,.35), 0 4px 18px rgba(0,0,0,.45); }
+    .rule { width: 300px; height: 7px; margin-top: 14px; border-radius: 4px; background: #FFD54A; }
+    .bds { display: flex; flex-direction: column; gap: 18px; align-items: center; }
+    .bd { display: flex; align-items: center; gap: 24px; width: 820px; padding: 16px 28px 16px 16px; border-radius: 18px; background: rgba(21,23,27,.72); }
+    .bi { width: 110px; height: 110px; border-radius: 14px; background: #FFD54A; display: flex; align-items: center; justify-content: center; flex: none; }
+    .bt { font-weight: 900; font-size: 64px; color: #FFFFFF; white-space: nowrap; }
+    .bt b { color: #FFD54A; font-weight: 900; }
+    .outro { position: absolute; inset: 0; background: #15171B; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .glow { position: absolute; width: 900px; height: 900px; border-radius: 50%; background: radial-gradient(circle, rgba(255,213,74,.22) 0%, rgba(255,213,74,0) 65%); }
+    #logo { position: relative; width: 560px; height: auto; }
+    .shine { position: absolute; width: 220px; height: 1920px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent); transform: skewX(-18deg); mix-blend-mode: overlay; }
+  </style>
+  <div id="root" data-composition-id="gfx" data-width="1080" data-height="1920" data-duration="50.0">
+    <div class="grp clip" id="g1" data-start="0.2" data-duration="4.746" style="top:320px"><div class="hw" id="g1a" style="font-size:87px">BANGLO 2,928 KPS,</div><div class="hy" id="g1b" style="font-size:74px">SIAP ADA MINI OFFICE</div><div class="hy" id="g1c" style="font-size:74px">&amp; BILIK SOLAT!</div><div class="loc" id="g1l"><svg viewBox="0 0 48 64" width="34" height="45"><path d="M24 1C11.3 1 1 11.3 1 24c0 16.5 23 39 23 39s23-22.5 23-39C47 11.3 36.7 1 24 1z" fill="#FFD54A"/><circle cx="24" cy="24" r="8.5" fill="#15171B"/></svg><span>Kok Lanas, Kelantan</span></div></div>
+    <div class="grp clip" id="g2" data-start="6.339" data-duration="6.502" style="top:330px"><div class="hw" id="g2a" style="font-size:60px">HARGA ASAS BERMULA</div><div class="hy" id="g2b" style="font-size:150px"><span id="nrm">RM483,120</span></div><div class="rule" id="g2r"></div></div>
+    <div class="grp clip" id="g3" data-start="14.234" data-duration="7.895" style="top:330px"><div class="hw" id="g3a" style="font-size:72px">KELUASAN</div><div class="hy" id="g3b" style="font-size:150px"><span id="nkps">2,928</span> KPS</div></div>
+    <div class="grp clip" id="g4" data-start="23.986" data-duration="10.217" style="top:340px"><div class="bds"><div class="bd" id="g40"><div class="bi"><svg viewBox="0 0 48 48" width="64" height="64" fill="none" stroke="#15171B" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 38V12M4 30h40v8M44 30v-6c0-3-2-5-5-5H20v11"/><circle cx="12" cy="24" r="4"/></svg></div><div class="bt"><b>4</b> BILIK TIDUR</div></div><div class="bd" id="g41"><div class="bi"><svg viewBox="0 0 48 48" width="64" height="64" fill="none" stroke="#15171B" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 24h40v4c0 7-5 12-12 12H16C9 40 4 35 4 28z"/><path d="M10 24V10a4 4 0 0 1 8 0"/><path d="M12 40l-2 4M36 40l2 4"/></svg></div><div class="bt"><b>4</b> BILIK AIR</div></div></div></div>
+    <div class="grp clip" id="g5" data-start="36.061" data-duration="6.965" style="top:340px"><div class="bds"><div class="bd" id="g50"><div class="bi"><svg viewBox="0 0 48 48" width="64" height="64" fill="none" stroke="#15171B" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="9" width="36" height="22" rx="2"/><path d="M2 38h44M18 31l-2 7M30 31l2 7"/></svg></div><div class="bt"><b>1</b> MINI OFFICE</div></div><div class="bd" id="g51"><div class="bi"><svg viewBox="0 0 48 48" width="64" height="64" fill="none" stroke="#15171B" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 42V14l14-9 14 9v28z"/><path d="M18 42V30a6 6 0 0 1 12 0v12"/><path d="M24 5V1"/></svg></div><div class="bt"><b>1</b> BILIK SOLAT</div></div></div></div>
+    <div class="grp clip" id="g6" data-start="44.42" data-duration="3.665" style="top:330px"><div class="hw" id="g6a" style="font-size:68px">BINA RUMAH IMPIAN ANDA</div><div class="hy" id="g6b" style="font-size:64px">BERSAMA MAHLIGAI IDAMAN</div></div>
+    <div class="clip outro" id="outro" data-start="48.135" data-duration="1.865"><div class="glow" id="glow"></div>
+      <img id="logo" src="assets/img/logo.png" alt="" /><div class="shine" id="shine"></div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.to("#g1", { opacity: 0, y: -14, duration: 0.25, ease: "power2.in" }, 4.696);
+    tl.fromTo("#g1a", { opacity: 0, scale: 0.86 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 0.25);
+    tl.set("#g1b", { opacity: 0 }, 0);
+    tl.fromTo("#g1b", { opacity: 0, y: 26 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "power3.out" }, 1.231);
+    tl.set("#g1c", { opacity: 0 }, 0);
+    tl.fromTo("#g1c", { opacity: 0, y: 26 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "power3.out" }, 1.695);
+    tl.set("#g1l", { opacity: 0 }, 0);
+    tl.fromTo("#g1l", { opacity: 0, y: 26 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "power3.out" }, 2.16);
+    tl.to("#g2", { opacity: 0, y: -14, duration: 0.25, ease: "power2.in" }, 12.591);
+    tl.fromTo("#g2a", { opacity: 0, y: 26 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "power3.out" }, 6.339);
+    tl.set("#g2b", { opacity: 0 }, 0);
+    tl.fromTo("#g2b", { opacity: 0, scale: 0.86 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 6.804);
+    (() => { const o = { v: 0 }; tl.fromTo(o, { v: 0 }, { v: 483120, duration: 1.0, ease: "power3.out", onUpdate: () => { document.querySelector("#nrm").textContent = "RM" + Math.round(o.v).toLocaleString("en-US"); } }, 6.804); })();
+    tl.fromTo("#g2r", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "power3.out" }, 7.732);
+    tl.to("#g3", { opacity: 0, y: -14, duration: 0.25, ease: "power2.in" }, 21.879);
+    tl.fromTo("#g3a", { opacity: 0, y: 26 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "power3.out" }, 14.234);
+    tl.set("#g3b", { opacity: 0 }, 0);
+    tl.fromTo("#g3b", { opacity: 0, scale: 0.86 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 14.698);
+    (() => { const o = { v: 0 }; tl.fromTo(o, { v: 0 }, { v: 2928, duration: 0.9, ease: "power3.out", onUpdate: () => { document.querySelector("#nkps").textContent = "" + Math.round(o.v).toLocaleString("en-US"); } }, 14.698); })();
+    tl.to("#g4", { opacity: 0, y: -14, duration: 0.25, ease: "power2.in" }, 33.953);
+    tl.set("#g40", { opacity: 0 }, 0);
+    tl.fromTo("#g40", { opacity: 0, y: 26 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "power3.out" }, 23.986);
+    tl.set("#g41", { opacity: 0 }, 0);
+    tl.fromTo("#g41", { opacity: 0, y: 26 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "power3.out" }, 24.915);
+    tl.to("#g5", { opacity: 0, y: -14, duration: 0.25, ease: "power2.in" }, 42.776);
+    tl.set("#g50", { opacity: 0 }, 0);
+    tl.fromTo("#g50", { opacity: 0, y: 26 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "power3.out" }, 36.061);
+    tl.set("#g51", { opacity: 0 }, 0);
+    tl.fromTo("#g51", { opacity: 0, y: 26 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "power3.out" }, 36.99);
+    tl.to("#g6", { opacity: 0, y: -14, duration: 0.25, ease: "power2.in" }, 47.835);
+    tl.fromTo("#g6a", { opacity: 0, y: 26 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "power3.out" }, 44.42);
+    tl.set("#g6b", { opacity: 0 }, 0);
+    tl.fromTo("#g6b", { opacity: 0, scale: 0.86 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "power3.out" }, 45.348);
+    tl.fromTo("#outro", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 48.135);
+    tl.fromTo("#logo", { opacity: 0, scale: 0.8, filter: "blur(8px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.7, ease: "expo.out" }, 48.235);
+    tl.fromTo("#glow", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.9, ease: "power2.out" }, 48.235);
+    tl.fromTo("#shine", { x: -700 }, { x: 700, duration: 0.8, ease: "power2.inOut" }, 48.835);
+    window.__timelines["gfx"] = tl;
+  </script>
+</template>
