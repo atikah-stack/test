@@ -7,10 +7,10 @@ def card(id,start,dur,top,title,lines,extra=""):
     li="".join(f'<div class="li">{l}</div>' for l in lines)
     return f'<div id="{id}" class="cardwrap clip" data-start="{start}" data-duration="{dur}" data-track-index="5" style="top:{top}px"><div class="card"><div class="ct">{title}</div>{li}{extra}</div></div>'
 cards=[
- card("cDoor",2.15,2.8,360,"PINTU SEKURITI",[]),
+ card("cDoor",2.0,1.55,360,"PINTU SEKURITI",[]),
  card("cWarna",5.15,1.9,330,"PILIHAN WARNA",["<span class='y'>3</span> pilihan warna luar","<span class='y'>3</span> pilihan warna dalam"],'<img class="logos" src="assets/img/paint-logos-cut.png" alt="" />'),
  card("cElec",7.15,4.15,330,"PENDAWAIAN ELEKTRIK",["<span class='big y'>THREE-PHASE</span>"]),
- card("cTamu",11.75,4.95,1080,"RUANG TAMU",["Siling <span class='y'>double layer</span>"],'<svg class="layers" viewBox="0 0 300 70" width="300" height="70"><rect id="ly1" x="10" y="8" width="280" height="18" rx="5" fill="#fff"/><rect id="ly2" x="40" y="40" width="220" height="18" rx="5" fill="'+Y+'"/></svg>'),
+ card("cTamu",11.75,4.95,930,"RUANG TAMU",["Siling <span class='y'>double layer</span>"],'<svg class="layers" viewBox="0 0 300 70" width="300" height="70"><rect id="ly1" x="10" y="8" width="280" height="18" rx="5" fill="#fff"/><rect id="ly2" x="40" y="40" width="220" height="18" rx="5" fill="'+Y+'"/></svg>'),
  card("cFrame",22.45,5.8,330,"BINGKAI PINTU",["Bilik tidur &amp; bilik air","<span class='y'>Zincalume</span> &bull; tebal <span class='y'>0.75 mm</span>"]),
  card("cSani",28.4,4.55,330,"KELENGKAPAN SANITARI",["Fitting tandas <span class='y'>stainless steel 304</span>","Jenama <span class='y'>MORVAN</span>","Tandas duduk <span class='y'>1-piece</span> atau","tandas cangkung import khas"]),
  card("cDapur",33.1,5.65,330,"RUANG DAPUR",["Backsplash mozek <span class='y'>2 kaki 6 inci</span>","Table top bermozek <span class='y'>12 kaki</span>","Sink <span class='y'>stainless steel 304</span>, dua lubang"]),
@@ -66,7 +66,7 @@ html, body {{ margin:0; width:1080px; height:1920px; overflow:hidden; background
 <div id="flash" class="clip" data-start="{round(T0-0.25,2)}" data-duration="0.6" data-track-index="8"></div>
 <audio id="mus" class="clip" src="assets/audio/music.wav" data-start="0" data-duration="{DUR}" data-volume="1" data-track-index="9"></audio>
 ''' 
-fx=[("pop",0.1),("pop",2.15),("sparkle",0.7),("pop",5.15),("pop",7.15),("pop",11.75),("pop",22.45),("pop",28.4),("pop",33.1),("whoosh",T0-0.3),("pop",T0+0.35),("pop",T0+1.25),("chime",T0+2.3)]
+fx=[("pop",0.1),("pop",2.0),("sparkle",0.7),("pop",5.15),("pop",7.15),("pop",11.75),("pop",22.45),("pop",28.4),("pop",33.1),("whoosh",T0-0.3),("pop",T0+0.35),("pop",T0+1.25),("chime",T0+2.3)]
 html+="\n".join(f'<audio id="fx{i}" class="clip" src="assets/audio/{n}.mp3" data-start="{round(t,2)}" data-duration="1.0" data-volume="{0.16 if n!="whoosh" else 0.2}" data-track-index="{10+i%3}"></audio>' for i,(n,t) in enumerate(fx))
 html+=f'''
 </div>
@@ -79,7 +79,7 @@ tl.fromTo("#h2",{{opacity:0,scale:1.5}},{{opacity:1,scale:1,duration:0.35,ease:"
 tl.fromTo("#h3",{{opacity:0,y:30}},{{opacity:1,y:0,duration:0.3,ease:"power3.out"}},0.65);
 tl.to("#hook",{{opacity:0,duration:0.2}},1.95); tl.to("#shade",{{opacity:0,duration:0.3}},4.7);
 const cardIn=(id,s,d)=>{{tl.fromTo(id+" .card",{{opacity:0,x:-60}},{{opacity:1,x:0,duration:0.35,ease:"power3.out"}},s);tl.to(id+" .card",{{opacity:0,x:40,duration:0.25,ease:"power1.in"}},s+d-0.27);}};
-cardIn("#cDoor",2.15,2.8); cardIn("#cWarna",5.15,1.9); cardIn("#cElec",7.15,4.15); cardIn("#cTamu",11.75,4.95); cardIn("#cFrame",22.45,5.8); cardIn("#cSani",28.4,4.55); cardIn("#cDapur",33.1,5.65);
+cardIn("#cDoor",2.0,1.55); cardIn("#cWarna",5.15,1.9); cardIn("#cElec",7.15,4.15); cardIn("#cTamu",11.75,4.95); cardIn("#cFrame",22.45,5.8); cardIn("#cSani",28.4,4.55); cardIn("#cDapur",33.1,5.65);
 tl.fromTo("#cElec .big",{{opacity:0.3}},{{opacity:1,duration:0.18,yoyo:true,repeat:4}},7.6);
 tl.fromTo("#ly1",{{opacity:0,y:-20}},{{opacity:1,y:0,duration:0.3}},12.2); tl.fromTo("#ly2",{{opacity:0,y:20}},{{opacity:1,y:0,duration:0.3}},12.5);
 tl.fromTo("#philips",{{opacity:0,y:40}},{{opacity:1,y:0,duration:0.45,ease:"power3.out"}},0.7);
