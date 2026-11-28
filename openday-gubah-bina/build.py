@@ -15,6 +15,8 @@ FILM = round(TALK + OUTRO, 2)
 
 # overlays: (clip, film start, film end, media start, speed)
 OV = [
+    ("IMG_6027", 0.00, 3.44, 1.0, 0.75),    # "rumah dah siap cantik dah" - finished MI bungalow (Kok Lanas)
+    ("IMG_6015", 3.44, 5.00, 2.0, 0.8),     # "tapi halaman tu kurang menyerlah" - bare gravel yard
     ("IMG_1937", 6.55, 7.95, 0.0, 0.75),    # "apa kata kita lengkapkan sekali" - paving pallets
     ("IMG_1884", 14.45, 16.35, 1.0, 1.0),   # "kerjasama dengan Gubah Bina" - Gubah Bina logo wall
     ("IMG_2083", 16.35, 17.40, 0.0, 0.95),  # signboard
@@ -36,7 +38,7 @@ for i, (c, s, e, m, r) in enumerate(OV):
                 f'data-duration="{round(e - s, 3)}" data-media-start="{m}" data-playback-rate="{r}" data-track-index="2" muted playsinline></video></div>')
 push = [(i, s, round(e - s, 3)) for i, (c, s, e, m, r) in enumerate(OV)]
 
-AUD = []
+AUD = [f'      <audio id="bgm" class="clip" src="assets/bgm/track.mp3" data-start="0" data-duration="{FILM}" data-track-index="7" data-volume="0.07" data-fade-out="1.5"></audio>']
 
 
 def sfx(name, f, at, d, v):
@@ -86,7 +88,7 @@ index = f'''<!doctype html>
         tl.fromTo("#w" + i, {{ opacity: 0 }}, {{ opacity: 1, duration: 0.15 }}, s);
         tl.fromTo("#o" + i, {{ scale: 1.0 }}, {{ scale: 1.07, duration: d, ease: "none" }}, s);
       }});
-      tl.fromTo("#tal", {{ scale: 1.08 }}, {{ scale: 1.0, duration: 0.6, ease: "expo.out" }}, 0);
+      tl.fromTo("#w0", {{ scale: 1.1 }}, {{ scale: 1.0, duration: 0.6, ease: "expo.out" }}, 0);
       window.__timelines["main"] = tl;
     </script>
   </body>
@@ -126,7 +128,19 @@ head("g3", 14.55, 18.80, "MAHLIGAI IDAMAN", "× GUBAH BINA", 70, 112)
 head("g4", 19.30, 23.00, "PAKAR PEMASANGAN", "PAVING BLOCK", 70, 112)
 head("g5", 26.90, 30.00, "HARGA ISTIMEWA", "UNTUK PELANGGAN MI", 80, 92)
 head("g6", 32.60, 35.00, "HALAMAN LEBIH", "LUAS &amp; MENARIK", 80, 108)
-head("g7", 35.55, 38.95, "JANGAN LEPASKAN", "PELUANG!", 76, 130)
+# Open Day info card (facts from the poster) before the poster itself
+PIN = f'<svg viewBox="0 0 48 64" width="34" height="45"><path d="M24 1C11.3 1 1 11.3 1 24c0 16.5 23 39 23 39s23-22.5 23-39C47 11.3 36.7 1 24 1z" fill="{YEL}"/><circle cx="24" cy="24" r="8.5" fill="{INK}"/></svg>'
+BOXES.append(("g7", 320, 1000))
+H.append(f'''    <div class="grp clip" id="g7" data-start="35.0" data-duration="3.95" style="top:320px">
+      <div class="hw" id="g7h" style="font-size:66px">JOM HADIR</div><div class="hy" id="g7y" style="font-size:92px">OPEN DAY 2026!</div>
+      <div class="ic" id="g7a">{PIN}<div><div class="ict">GRAND RIVERVIEW HOTEL, KOTA BHARU</div><div class="icd">10 DISEMBER 2026 (KHAMIS)</div></div></div>
+      <div class="ic" id="g7b">{PIN}<div><div class="ict">DUYONG MARINA &amp; RESORT, K. TERENGGANU</div><div class="icd">19 DISEMBER 2026 (SABTU)</div></div></div>
+      <div class="ip" id="g7c">YURAN <b>RM49</b> · BOLEH BAWA PASANGAN · <b>100 SLOT</b> SETIAP LOKASI</div>
+    </div>''')
+tin("#g7h", 35.0); hide("#g7y"); tin("#g7y", 35.2, "scale")
+for sel, at in [("#g7a", 35.7), ("#g7b", 36.4), ("#g7c", 37.1)]:
+    hide(sel); tin(sel, at, "up")
+J.append('tl.to("#g7", { opacity: 0, duration: 0.2 }, 38.75);')
 head("g8", 43.30, 46.00, "MAHLIGAI IDAMAN × GUBAH BINA", "JUMPA ANDA DI SANA!", 54, 96)
 
 # poster on "rujuk poster ni" and as the outro
@@ -136,6 +150,12 @@ for pid, s, e in [("p1", 38.95, 42.95), ("p2", TALK - 0.2, FILM)]:
     J.append(f'tl.fromTo("#{pid}", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.25 }}, {s});')
     J.append(f'tl.fromTo("#{pid}i", {{ scale: 1.12, y: 40 }}, {{ scale: 1.0, y: 0, duration: 0.7, ease: "expo.out" }}, {s});')
     J.append(f'tl.to("#{pid}i", {{ scale: 1.03, duration: {round(e - s - 0.7, 2)}, ease: "none" }}, {s + 0.7});')
+
+# CTA on the outro poster
+BOXES.append(("cta", 1400, 120))
+H.append(f'    <div class="clip cta" id="cta" data-start="{TALK + 0.4}" data-duration="{round(FILM - TALK - 0.4, 3)}"><span>DAFTAR SEKARANG, SLOT TERHAD!</span></div>')
+J.append(f'tl.fromTo("#cta", {{ opacity: 0, y: 30, scale: 0.9 }}, {{ opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "back.out(1.8)" }}, {TALK + 0.4});')
+J.append(f'tl.fromTo("#cta span", {{ scale: 1 }}, {{ scale: 1.05, duration: 0.35, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }}, {TALK + 0.9});')
 
 # subtitles: white text in a dark rounded box
 WORDS = json.load(open("words.json")); WORDS = WORDS if isinstance(WORDS, list) else WORDS.get("words", WORDS)
@@ -172,6 +192,13 @@ CSS = f'''
     .poster {{ position: absolute; inset: 0; overflow: hidden; }}
     .pbg {{ position: absolute; inset: 0; background: {INK}; }}
     .pimg {{ position: absolute; inset: 0; width: 1080px; height: 1920px; object-fit: contain; }}
+    .ic {{ display: flex; align-items: center; gap: 16px; width: 960px; margin-top: 18px; padding: 18px 24px; border-radius: 16px; background: rgba(21,23,27,.86); border-left: 8px solid {YEL}; }}
+    .ict {{ font-weight: 800; font-size: 34px; color: {WHT}; white-space: nowrap; }}
+    .icd {{ font-weight: 900; font-size: 40px; color: {YEL}; margin-top: 4px; }}
+    .ip {{ margin-top: 18px; padding: 14px 22px; border-radius: 999px; background: {YEL}; color: {INK}; font-weight: 800; font-size: 26px; white-space: nowrap; }}
+    .ip b {{ font-weight: 900; }}
+    .cta {{ position: absolute; left: 0; right: 0; top: 1400px; display: flex; justify-content: center; }}
+    .cta span {{ display: inline-block; padding: 22px 44px; border-radius: 999px; background: {YEL}; color: {INK}; font-weight: 900; font-size: 46px; white-space: nowrap; box-shadow: 0 10px 30px rgba(0,0,0,.45); }}
     .subs {{ position: absolute; left: 70px; right: 70px; top: 1340px; height: 180px; }}
     .cue {{ position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; }}
     .cue span {{ display: inline; font-weight: 700; font-size: 42px; line-height: 1.6; color: {WHT}; background: rgba(22,22,24,.86);
